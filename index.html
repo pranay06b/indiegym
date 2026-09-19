@@ -2,199 +2,261 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>6-Day Upper Body + Abs Gym Plan — Editable</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Iron &amp; Ledger — 6-Day Upper Body Plan</title>
 <style>
 :root{
-  --bg:#f4f7fb; --card:#ffffff; --surface:#f8fafc; --ink:#172033; --muted:#64748b;
-  --line:#dbe3ef; --accent:#1d4ed8; --accent-ink:#ffffff; --accent2:#dbeafe;
-  --easy:#dcfce7; --easy-ink:#166534; --medium:#fef3c7; --medium-ink:#92400e; --difficult:#fee2e2; --difficult-ink:#991b1b;
-  --danger:#dc2626; --danger2:#fee2e2;
+  --bg:#f3f5f9; --card:#ffffff; --surface:#f7f9fc; --ink:#151b2c; --muted:#647089;
+  --line:#dee4ef; --accent:#e05a2b; --accent-ink:#ffffff; --accent2:#fde3d6; --accent-soft:#fff1e8;
+  --easy:#dcf5e6; --easy-ink:#1a7a44; --medium:#fdecc8; --medium-ink:#95610a; --difficult:#fbdede; --difficult-ink:#a3283a;
+  --danger:#c9372f; --danger2:#fbe3e1; --flame:#e05a2b; --gold:#c98a12;
+  --tab-bg:#ffffff;
 }
 :root[data-theme="dark"]{
-  --bg:#0b1220; --card:#161f32; --surface:#101a2c; --ink:#e5e9f0; --muted:#94a3b8;
-  --line:#2a3650; --accent:#3b82f6; --accent-ink:#ffffff; --accent2:#1e3a5f;
-  --easy:#123524; --easy-ink:#4ade80; --medium:#3a2a0d; --medium-ink:#fbbf24; --difficult:#3a1414; --difficult-ink:#f87171;
-  --danger:#f87171; --danger2:#3a1414;
+  --bg:#0d1220; --card:#171e30; --surface:#111729; --ink:#e9edf6; --muted:#93a0bd;
+  --line:#2a3450; --accent:#ff7a45; --accent-ink:#171017; --accent2:#3a2013; --accent-soft:#241a12;
+  --easy:#123524; --easy-ink:#5fe0a0; --medium:#3a2a0d; --medium-ink:#f5c15a; --difficult:#3a1414; --difficult-ink:#ff8b8b;
+  --danger:#ff6b63; --danger2:#3a1414; --flame:#ff8555; --gold:#f2c14e;
+  --tab-bg:#171e30;
 }
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45;transition:background-color .15s ease, color .15s ease}
-header{background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;padding:36px 24px}
-.container{max-width:1500px;margin:0 auto}
-header h1{margin:0 0 8px;font-size:30px}
-header p{margin:0;color:#dbeafe}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.summary{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:22px 0}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
-.stat b{display:block;font-size:18px}
-.stat span{color:var(--muted);font-size:13px}
-.day{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:24px 0;overflow:hidden;box-shadow:0 4px 18px rgba(15,23,42,.06)}
-.day h2{margin:0;padding:16px 20px;background:var(--accent2);border-bottom:1px solid var(--line);font-size:20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.day h2 .title{flex:1}
-.day-actions{display:flex;gap:6px;flex-shrink:0}
-.table-wrap{overflow:auto}
-table{width:100%;border-collapse:collapse;min-width:1200px}
-th,td{padding:12px 11px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
-th{background:var(--surface);color:var(--ink);font-size:13px;position:sticky;top:0;z-index:1}
-td{font-size:13px}
-.exercise{font-weight:700;white-space:nowrap}
-.muscle{font-weight:600;color:#334155;white-space:nowrap}
-.diff{font-weight:700;padding:4px 8px;border-radius:999px;display:inline-block;font-size:12px;white-space:nowrap}
-.easy{background:var(--easy);color:var(--easy-ink)}.medium{background:var(--medium);color:var(--medium-ink)}.difficult{background:var(--difficult);color:var(--difficult-ink)}
-.gif{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
-.gif img{width:140px;height:110px;object-fit:contain;background:#fff;border:1px solid #cbd5e1;border-radius:10px}
-.gif a{font-weight:700;color:var(--accent);text-decoration:none;font-size:12px}
-.gif a:hover{text-decoration:underline}
-.row-actions{white-space:nowrap}
-.note{padding:16px 20px;background:var(--surface);border-top:1px solid var(--line);color:var(--muted);font-size:13px}
-.footer{padding:30px 0 60px;color:var(--muted);font-size:13px}
-
-/* Buttons */
-.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:9px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-.btn:hover{background:var(--surface)}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:'Segoe UI',Inter,ui-sans-serif,system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45;padding-bottom:78px;transition:background-color .15s ease, color .15s ease}
+a{color:inherit}
+.container{max-width:1100px;margin:0 auto;padding:0 16px}
+header{background:linear-gradient(135deg,#151b2c,#3a2013 140%);color:#fff;padding:22px 0 18px}
+header .container{display:flex;flex-direction:column;gap:10px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .mark{font-size:26px}
+header h1{margin:0;font-size:21px;font-weight:800;letter-spacing:-.01em}
+header p{margin:0;color:#f0c4a8;font-size:13px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:9px 13px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;min-height:38px}
+.btn:active{transform:scale(.97)}
 .btn-primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.btn-primary:hover{background:#1743b0}
-.btn-danger{color:var(--danger);border-color:#fecaca}
-.btn-danger:hover{background:var(--danger2)}
-.btn-sm{padding:5px 9px;font-size:12px;border-radius:7px}
-.btn-ghost{background:transparent;border-color:transparent;color:#fff}
-.btn-ghost:hover{background:rgba(255,255,255,.15)}
-.icon-btn{padding:5px 8px;font-size:12px;border-radius:7px}
-.add-row{padding:14px 20px;background:var(--surface)}
+.btn-danger{color:var(--danger);border-color:var(--danger2)}
+.btn-sm{padding:6px 10px;font-size:12.5px;min-height:32px;border-radius:8px}
+.btn-ghost{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.35);color:#fff}
+.btn-block{width:100%;justify-content:center}
+
+/* Stat strip */
+.statstrip{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px}
+.stat b{display:block;font-size:19px;line-height:1.1}
+.stat span{color:var(--muted);font-size:12px}
+.stat.streak b{color:var(--flame)}
+
+/* Tabs */
+.tabbar{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:5px;margin:14px 0}
+.tabbtn{flex:1;text-align:center;padding:9px 4px;border-radius:10px;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer;background:transparent;border:none}
+.tabbtn.active{background:var(--accent);color:var(--accent-ink)}
+.view{display:none}
+.view.active{display:block}
+
+/* Day cards */
+.day{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:16px 0;overflow:hidden;box-shadow:0 3px 14px rgba(15,23,42,.05)}
+.day h2{margin:0;padding:14px 16px;background:var(--accent-soft);border-bottom:1px solid var(--line);font-size:16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.day h2 .title{flex:1;min-width:140px;font-weight:800}
+.day-actions{display:flex;gap:6px;flex-shrink:0}
+.ex-list{padding:6px 10px}
+.ex-row{border-bottom:1px solid var(--line);padding:12px 6px;display:flex;flex-wrap:wrap;gap:8px 10px;align-items:flex-start}
+.ex-row:last-child{border-bottom:none}
+.ex-main{display:flex;align-items:flex-start;gap:10px;flex:1;min-width:200px}
+.ex-icon{font-size:20px;line-height:1;margin-top:2px}
+.ex-name{font-weight:700;font-size:14.5px}
+.ex-meta{color:var(--muted);font-size:12.5px;margin-top:2px}
+.ex-instructions{color:var(--muted);font-size:12.5px;margin-top:6px;max-width:100%}
+.ex-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.diff{font-weight:700;padding:3px 9px;border-radius:999px;display:inline-block;font-size:11.5px;white-space:nowrap}
+.easy{background:var(--easy);color:var(--easy-ink)}.medium{background:var(--medium);color:var(--medium-ink)}.difficult{background:var(--difficult);color:var(--difficult-ink)}
+.muscle-chip{background:var(--surface);border:1px solid var(--line);color:var(--muted);padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:600}
+.row-actions{display:flex;gap:6px;flex-shrink:0;margin-left:auto}
+.empty-day{padding:22px 16px;color:var(--muted);font-size:13px;text-align:center}
+.add-row{padding:10px 12px 14px}
+.note{padding:14px 16px;background:var(--surface);border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+
+/* table (weekly overview only) */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:480px}
+th,td{padding:10px 9px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;font-size:13px}
+th{background:var(--surface);color:var(--ink)}
 
 /* Modal */
-.overlay{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow:auto;z-index:50}
+.overlay{position:fixed;inset:0;background:rgba(10,14,26,.55);display:none;align-items:flex-end;justify-content:center;z-index:50}
 .overlay.open{display:flex}
-.modal{background:var(--card);color:var(--ink);border-radius:16px;max-width:640px;width:100%;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.modal h3{margin:0 0 16px;font-size:19px}
-.field{margin-bottom:14px}
-.field label{display:block;font-size:12px;font-weight:700;color:#475569;margin-bottom:5px;text-transform:uppercase;letter-spacing:.03em}
-.field input[type=text], .field textarea, .field select{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;font-size:14px;font-family:inherit;background:var(--card);color:var(--ink)}
-.field textarea{min-height:70px;resize:vertical}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
-.hint{color:var(--muted);font-size:12px;margin-top:4px}
-.search-wrap{position:relative;margin-bottom:6px}
-.search-results{border:1px solid var(--line);border-radius:9px;margin-top:6px;max-height:220px;overflow:auto;background:var(--card)}
-.search-results div.result{padding:9px 11px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px}
-.search-results div.result:last-child{border-bottom:none}
-.search-results div.result:hover{background:var(--accent2)}
-.result .muted{color:var(--muted);font-size:12px}
-.divider{border:none;border-top:1px solid var(--line);margin:16px 0}
-.preview-gif{display:flex;align-items:center;gap:10px;margin-top:6px}
-.preview-gif img{width:90px;height:70px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:#fff}
-.small-link{font-size:12px;color:var(--accent);text-decoration:none;font-weight:600}
-.small-link:hover{text-decoration:underline}
-.empty-day{padding:24px 20px;color:var(--muted);font-size:13px;text-align:center}
-.toast{position:fixed;bottom:20px;right:20px;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:9px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transform:translateY(8px);transition:opacity .2s ease, transform .2s ease;pointer-events:none;z-index:100}
-.toast.show{opacity:1;transform:translateY(0)}
-
-@media (max-width:800px){
-  header h1{font-size:24px}
-  .summary{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .grid2{grid-template-columns:1fr}
+.modal{background:var(--card);color:var(--ink);border-radius:18px 18px 0 0;max-width:640px;width:100%;padding:18px 18px 22px;box-shadow:0 -10px 40px rgba(0,0,0,.4);max-height:92vh;overflow:auto}
+@media (min-width:720px){
+  .overlay{align-items:center;padding:30px 16px}
+  .modal{border-radius:18px;max-height:88vh}
 }
+.modal h3{margin:0 0 14px;font-size:18px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:11.5px;font-weight:700;color:var(--muted);margin-bottom:5px;letter-spacing:.02em}
+.field input[type=text], .field input[type=number], .field input[type=date], .field textarea, .field select{width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:10px;font-size:16px;font-family:inherit;background:var(--card);color:var(--ink)}
+.field textarea{min-height:64px;resize:vertical}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:16px;flex-wrap:wrap}
+.hint{color:var(--muted);font-size:11.5px;margin-top:4px}
+.search-results{border:1px solid var(--line);border-radius:10px;margin-top:6px;max-height:260px;overflow:auto;background:var(--card)}
+.search-results div.result{padding:10px 11px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px}
+.search-results div.result:last-child{border-bottom:none}
+.search-results div.result:hover{background:var(--accent-soft)}
+.result .muted{color:var(--muted);font-size:11.5px}
+.divider{border:none;border-top:1px solid var(--line);margin:14px 0}
+
+.chipbar{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 12px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:600;cursor:pointer}
+.chip.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+/* Library cards */
+.lib-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:640px){ .lib-grid{grid-template-columns:1fr 1fr} }
+.lib-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 13px;cursor:pointer}
+.lib-card .top{display:flex;align-items:center;gap:8px}
+.lib-card .name{font-weight:700;font-size:14px;flex:1}
+.lib-card .meta{color:var(--muted);font-size:12px;margin-top:4px}
+.lib-card .detail{display:none;margin-top:8px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.lib-card.open .detail{display:block}
+
+/* Log workout */
+.session-ex{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 13px;margin-bottom:10px}
+.session-ex .head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.session-ex .head .name{font-weight:700;font-size:14px;flex:1}
+.setrow{display:grid;grid-template-columns:28px 1fr 1fr 34px;gap:8px;align-items:center;margin-bottom:6px}
+.setrow input[type=number]{padding:8px 9px;font-size:15px}
+.setrow .setnum{color:var(--muted);font-size:12.5px;text-align:center}
+.setrow input[type=checkbox]{width:22px;height:22px}
+.target{color:var(--muted);font-size:11.5px}
+
+/* History */
+.session-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 13px;margin-bottom:10px}
+.session-card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.session-card .date{font-weight:800;font-size:14.5px}
+.session-card .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.session-card .figs{display:flex;gap:14px;margin-top:8px;flex-wrap:wrap}
+.session-card .figs div b{display:block;font-size:15px}
+.session-card .figs div span{color:var(--muted);font-size:11px}
+.session-detail{display:none;margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+.session-detail.open{display:block}
+.session-detail .row{display:flex;justify-content:space-between;font-size:12.5px;padding:4px 0;border-bottom:1px solid var(--line)}
+.bars{display:flex;align-items:flex-end;gap:6px;height:110px;margin-top:8px}
+.bar{flex:1;background:var(--accent2);border-radius:6px 6px 0 0;position:relative;min-height:3px}
+.bar span{position:absolute;bottom:100%;left:0;right:0;text-align:center;font-size:10px;color:var(--muted);margin-bottom:2px}
+.bar-label{display:flex;gap:6px;margin-top:4px}
+.bar-label div{flex:1;text-align:center;font-size:10px;color:var(--muted)}
+
+.empty-state{text-align:center;padding:34px 16px;color:var(--muted)}
+.empty-state .big{font-size:34px}
+.empty-state p{max-width:340px;margin:8px auto 0;font-size:13.5px}
+
+.toast{position:fixed;bottom:86px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:12px;font-size:13.5px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.3);opacity:0;transition:opacity .2s ease, transform .2s ease;pointer-events:none;z-index:100;max-width:88vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.bottomnav{position:fixed;left:0;right:0;bottom:0;background:var(--tab-bg);border-top:1px solid var(--line);display:flex;z-index:40;padding-bottom:env(safe-area-inset-bottom)}
+.bottomnav button{flex:1;background:transparent;border:none;padding:9px 2px 8px;color:var(--muted);font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+.bottomnav button .ic{font-size:19px}
+.bottomnav button.active{color:var(--accent)}
+@media (min-width:760px){ .bottomnav{display:none} body{padding-bottom:20px} }
+@media (max-width:759px){ .tabbar{display:none} }
+
+.footer{padding:18px 0 30px;color:var(--muted);font-size:12px;text-align:center}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.badge{background:var(--accent-soft);color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:6px 11px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px}
 </style>
 </head>
 <body>
 <header>
   <div class="container">
-    <h1>6-Day Upper-Body + Abs Gym Plan</h1>
-    <p>90-minute sessions · Editable · JEFIT GIFs embedded inline</p>
+    <div class="brand"><span class="mark">🏋️‍♂️</span><div><h1>Iron &amp; Ledger</h1><p>Your 6-day upper body plan — plan it, log it, track it</p></div></div>
     <div class="toolbar">
-      <button class="btn btn-ghost" style="border:1px solid rgba(255,255,255,.4)" onclick="addDay()">+ Add Day</button>
-      <button class="btn btn-ghost" style="border:1px solid rgba(255,255,255,.4)" onclick="resetToDefault()">Reset to Original Plan</button>
-      <button class="btn btn-ghost" id="themeToggleBtn" style="border:1px solid rgba(255,255,255,.4)" onclick="toggleTheme()">🌙 Dark Mode</button>
-      <button class="btn btn-ghost" style="border:1px solid rgba(255,255,255,.4)" onclick="openSettings()">⚙ Settings</button>
+      <button class="btn btn-ghost" id="themeToggleBtn" onclick="toggleTheme()">🌙 Dark Mode</button>
+      <button class="btn btn-ghost" onclick="openSettings()">⚙ Settings</button>
     </div>
   </div>
 </header>
 <main class="container">
-  <div class="summary" id="summaryStats"></div>
-  <div id="daysContainer"></div>
+  <div class="statstrip" id="statStrip"></div>
+  <div id="badgeRow" class="badge-row"></div>
 
-  <section class="day">
-    <h2><span class="title">Weekly Overview</span></h2>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Day</th><th>Workout</th><th>Overall Difficulty</th><th># Exercises</th></tr></thead>
-        <tbody id="weeklyOverviewBody"></tbody>
-      </table>
+  <div class="tabbar" id="tabbarDesktop"></div>
+
+  <section class="view active" id="view-plan">
+    <div class="toolbar" style="margin-bottom:10px">
+      <button class="btn" onclick="addDay()">+ Add Day</button>
+      <button class="btn" onclick="resetToDefault()">Reset to Original Plan</button>
     </div>
-    <div class="note"><strong>90-minute structure:</strong> Warm-up 8–10 min · Weight training 65–70 min · Abs/Core 8–12 min · Cooldown 3–5 min.</div>
+    <div id="daysContainer"></div>
+
+    <section class="day">
+      <h2><span class="title">Weekly Overview</span></h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Day</th><th>Focus</th><th>Overall Difficulty</th><th># Exercises</th></tr></thead>
+          <tbody id="weeklyOverviewBody"></tbody>
+        </table>
+      </div>
+      <div class="note"><strong>90-minute structure:</strong> Warm-up 8–10 min · Weight training 65–70 min · Abs/Core 8–12 min · Cooldown 3–5 min.</div>
+    </section>
   </section>
 
-  <section class="day">
-    <h2><span class="title">How this works</span></h2>
-    <div class="note">
-      Use <strong>+ Add Exercise</strong> on any day to search the built-in exercise library (pulled from this plan's original JEFIT entries) or enter a custom exercise with your own sets/reps, instructions and GIF link. Use the pencil/trash icons to edit or remove any exercise or day. Everything you change is saved automatically in this browser (via local storage), so your edits are still here next time you open this file — use <strong>Reset to Original Plan</strong> to start over.
-    </div>
+  <section class="view" id="view-log">
+    <div id="logContainer"></div>
   </section>
 
-  <div class="footer">
-    Prepared from the exercise plan in this conversation. GIF URLs are kept unchanged from the original table where applicable.
-  </div>
+  <section class="view" id="view-history">
+    <div id="historyContainer"></div>
+  </section>
+
+  <section class="view" id="view-library">
+    <div class="field" style="margin-top:6px">
+      <input type="text" id="libSearchInput" placeholder="Search 249 exercises… e.g. curl, row, squat" oninput="renderLibrary()">
+    </div>
+    <div class="chipbar" id="libChipBar"></div>
+    <div class="lib-grid" id="libGrid"></div>
+  </section>
+
+  <div class="footer">Iron &amp; Ledger — every rep counts. Your plan, logs and history are saved right here in this browser.</div>
 </main>
+
 <div class="toast" id="toast"></div>
+<nav class="bottomnav" id="bottomNav"></nav>
 
 <!-- Exercise Add/Edit Modal -->
 <div class="overlay" id="exerciseOverlay">
   <div class="modal">
     <h3 id="exerciseModalTitle">Add Exercise</h3>
-
     <div id="searchSection">
       <div class="field">
-        <label>Search Exercise Library</label>
-        <div class="search-wrap">
-          <input type="text" id="exerciseSearchInput" placeholder="Type an exercise name, e.g. &quot;curl&quot;, &quot;press&quot;, &quot;row&quot;…" oninput="renderSearchResults()">
-        </div>
+        <label>Search the exercise library (249 exercises)</label>
+        <input type="text" id="exerciseSearchInput" placeholder="Type a name or muscle, e.g. &quot;curl&quot;, &quot;squat&quot;, &quot;shoulders&quot;…" oninput="renderSearchResults()">
         <div class="search-results" id="searchResults" style="display:none"></div>
-        <div class="hint">
-          This searches a built-in library of ~35 exercises (with JEFIT-style instructions &amp; images) drawn from this plan.
-        </div>
       </div>
       <hr class="divider">
     </div>
-
     <div class="field">
       <label>Or Fetch From a JEFIT Exercise Page</label>
       <div style="display:flex;gap:8px">
         <input type="text" id="jefitUrlInput" placeholder="https://www.jefit.com/my-jefit/exercises/…" style="flex:1">
         <button class="btn btn-primary btn-sm" style="flex-shrink:0" onclick="fetchFromJefit()">Fetch</button>
       </div>
-      <div class="hint" id="jefitFetchStatus">
-        Paste a link to a specific JEFIT exercise page (like the one you shared) and click Fetch to pull its name, instructions and image automatically. If JEFIT blocks the request from your browser (CORS) or changes their page layout, this will fail — fill the fields in manually below instead, or open
-        <a class="small-link" href="https://www.jefit.com/my-jefit/exercises/find" target="_blank" rel="noopener noreferrer">JEFIT's exercise directory</a> to copy details over by hand.
-      </div>
+      <div class="hint" id="jefitFetchStatus">Paste a link to a JEFIT exercise page to try pulling its name, instructions and image automatically. If it fails, fill the fields in by hand below.</div>
     </div>
     <hr class="divider">
-
     <div class="grid2">
       <div class="field"><label>Exercise Name</label><input type="text" id="f_exercise" placeholder="e.g. Barbell Bench Press"></div>
-      <div class="field"><label>Muscle Group</label><input type="text" id="f_muscle" placeholder="e.g. Chest"></div>
-      <div class="field"><label>Sets × Reps</label><input type="text" id="f_sets" placeholder="e.g. 4 × 8–12"></div>
+      <div class="field"><label>Target Muscle</label><input type="text" id="f_muscle" placeholder="e.g. Chest" list="muscleListOptions"></div>
+      <div class="field"><label>Sets × Reps</label><input type="text" id="f_sets" placeholder="e.g. 4 x 8-12"></div>
       <div class="field"><label>Rest</label><input type="text" id="f_rest" placeholder="e.g. 90 sec"></div>
     </div>
+    <datalist id="muscleListOptions"></datalist>
     <div class="field">
       <label>Difficulty</label>
       <select id="f_difficulty">
-        <option>Easy</option>
-        <option>Medium</option>
-        <option>Difficult</option>
-        <option>Easy–Medium</option>
-        <option>Medium–Difficult</option>
+        <option>Easy</option><option>Medium</option><option>Difficult</option>
       </select>
     </div>
-    <div class="field"><label>How to do it</label><textarea id="f_instructions" placeholder="Step-by-step instructions…"></textarea></div>
-    <div class="field">
-      <label>Exercise Image / GIF URL</label>
-      <input type="text" id="f_gif" placeholder="https://…" oninput="updateGifPreview()">
-      <div class="preview-gif" id="gifPreviewWrap" style="display:none">
-        <img id="gifPreview" src="" alt="Exercise image preview">
-        <span class="hint">Preview</span>
-      </div>
-    </div>
-
+    <div class="field"><label>How to do it</label><textarea id="f_instructions" placeholder="Step-by-step cues…"></textarea></div>
+    <div class="field"><label>Image / GIF URL (optional)</label><input type="text" id="f_gif" placeholder="https://…"></div>
     <div class="modal-actions">
       <button class="btn" onclick="closeExerciseModal()">Cancel</button>
       <button class="btn btn-primary" onclick="saveExercise()">Save Exercise</button>
@@ -214,18 +276,32 @@ td{font-size:13px}
   </div>
 </div>
 
+<!-- Add-to-day picker (used from Library) -->
+<div class="overlay" id="pickDayOverlay">
+  <div class="modal">
+    <h3>Add to which day?</h3>
+    <div class="field">
+      <select id="pickDaySelect"></select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closePickDayModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmAddFromLibrary()">Add Exercise</button>
+    </div>
+  </div>
+</div>
+
 <!-- Settings Modal -->
 <div class="overlay" id="settingsOverlay">
   <div class="modal">
     <h3>Settings</h3>
     <div class="field">
-      <label>corsproxy.io API Key</label>
+      <label>corsproxy.io API Key (optional, for JEFIT fetch)</label>
       <input type="text" id="corsProxyKeyInput" placeholder="e.g. 7461b7b8">
-      <div class="hint">
-        JEFIT's server blocks direct cross-origin requests from this page. Routing the "Fetch From a JEFIT Exercise Page" request through
-        <a class="small-link" href="https://corsproxy.io" target="_blank" rel="noopener noreferrer">corsproxy.io</a>
-        gets around that. Paste your corsproxy.io API key here — it's saved only in this browser's local storage and is sent solely to corsproxy.io as part of the fetch request, never anywhere else. Leave blank to try corsproxy.io's free/keyless tier instead.
-      </div>
+      <div class="hint">Used only to fetch exercise pages from JEFIT if you want to pull in real photos. Saved in this browser only. Leave blank to try the free tier.</div>
+    </div>
+    <hr class="divider">
+    <div class="field">
+      <button class="btn btn-danger btn-block" onclick="clearHistory()">🗑️ Clear all workout history</button>
     </div>
     <div class="modal-actions">
       <button class="btn" onclick="closeSettingsModal()">Cancel</button>
@@ -236,168 +312,13 @@ td{font-size:13px}
 </div>
 
 <script>
-/* ---------- Exercise library (searchable, offline snapshot of JEFIT entries used in this plan) ---------- */
-const EXERCISE_DB = [
-  {exercise:"Barbell Bench Press",muscle:"Chest",sets:"4 × 6–10",rest:"2 min",difficulty:"Difficult",instructions:"Lie flat with feet firmly on the floor and shoulders/back supported by the bench. Grip the bar slightly wider than shoulder width. Unrack over the chest, lower it slowly toward the mid-chest, then press back up while keeping control.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/2.gif"},
-  {exercise:"Incline Dumbbell Press",muscle:"Chest",sets:"4 × 8–12",rest:"90 sec",difficulty:"Medium",instructions:"Set the bench around 30–45°. Hold dumbbells near your upper chest with palms forward. Press them upward until the arms are extended, then slowly bring them back to the sides of the chest.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/31.gif"},
-  {exercise:"Machine Chest Press",muscle:"Chest",sets:"3 × 8–12",rest:"90 sec",difficulty:"Easy",instructions:"Adjust the seat so the handles align with your chest. Push the handles forward until the arms are extended, squeeze the chest, then return slowly to the starting position.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/163.gif"},
-  {exercise:"Pec Deck / Cable Fly",muscle:"Chest",sets:"3 × 12–15",rest:"60 sec",difficulty:"Easy",instructions:"Sit or stand in the correct position with a slight bend in the elbows. Bring the handles together in front of the chest, squeeze the pectorals, then slowly return to the starting position.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/836.gif"},
-  {exercise:"Triceps Pushdown",muscle:"Triceps",sets:"3 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Stand facing the pulley with elbows close to the body. Push the handle downward until the arms are extended, contract the triceps, then slowly allow the handle to return upward.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/159.gif"},
-  {exercise:"Overhead Rope Triceps Extension",muscle:"Triceps",sets:"3 × 10–15",rest:"60 sec",difficulty:"Medium",instructions:"Hold the rope overhead with elbows pointing forward. Lower the rope behind the head by bending the elbows, then extend the arms back to the starting position.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/155.gif"},
-  {exercise:"Assisted Dip",muscle:"Triceps",sets:"2 × 8–12",rest:"75 sec",difficulty:"Medium",instructions:"Grip the dip handles and place your knees on the assistance pad. Lower your body in a controlled manner by bending your elbows, then push through the handles to return upward.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1261.gif"},
-  {exercise:"Decline Crunch",muscle:"Abs",sets:"3 × 12–15",rest:"45 sec",difficulty:"Easy",instructions:"Secure your feet on the decline bench. Curl your upper body toward your knees while contracting your abs, then slowly lower back down without using momentum.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/78.gif"},
-  {exercise:"Hanging Knee Raise",muscle:"Abs",sets:"3 × 10–15",rest:"45 sec",difficulty:"Medium",instructions:"Hang from the bar with a firm grip. Slowly raise the knees toward the chest, hold briefly, then return to the starting position without swinging.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/690.gif"},
-  {exercise:"Machine Lat Pulldown",muscle:"Back",sets:"4 × 8–12",rest:"2 min",difficulty:"Medium",instructions:"Sit securely and grip the bar/handles. Pull downward by driving your elbows toward your sides until the bar reaches the upper chest area, then slowly return upward.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1268.gif"},
-  {exercise:"Neutral-Grip Lat Pulldown",muscle:"Back",sets:"3 × 10–12",rest:"75 sec",difficulty:"Medium",instructions:"Use the neutral handles and pull them downward by driving your elbows toward your sides. Bring the handles toward the upper chest area, then slowly release.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1268.gif"},
-  {exercise:"Dumbbell Incline Bench Row",muscle:"Back",sets:"4 × 8–12",rest:"90 sec",difficulty:"Medium",instructions:"Lie chest-down on an incline bench while holding dumbbells. Let the arms extend, then pull the dumbbells toward your sides by squeezing the back. Lower them slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1040.gif"},
-  {exercise:"Cable Rope Seated Row",muscle:"Back",sets:"3 × 8–12",rest:"90 sec",difficulty:"Easy",instructions:"Sit upright with feet supported and arms extended. Pull the rope toward the abdomen while keeping the torso controlled, squeeze the back, then slowly extend the arms.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1050.gif"},
-  {exercise:"Single-Arm Lat Pulldown",muscle:"Back",sets:"3 × 10–12",rest:"75 sec",difficulty:"Medium",instructions:"Grip one handle and sit upright. Pull the elbow downward toward your side until the hand reaches roughly shoulder/chest level, then return slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/825.gif"},
-  {exercise:"Cable Pullover",muscle:"Back",sets:"3 × 12–15",rest:"60 sec",difficulty:"Easy",instructions:"Position yourself beneath/near the pulley with arms extended. Pull the cable downward toward the body while keeping the arms relatively straight, squeeze the lats, then return under control.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/760.gif"},
-  {exercise:"EZ-Bar Curl",muscle:"Biceps",sets:"3 × 8–12",rest:"75 sec",difficulty:"Medium",instructions:"Stand with the EZ bar and elbows close to the torso. Curl the bar toward the shoulders without swinging, squeeze the biceps, then lower slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/95.gif"},
-  {exercise:"Incline Dumbbell Curl",muscle:"Biceps",sets:"3 × 10–12",rest:"60 sec",difficulty:"Medium",instructions:"Sit against a roughly 45° incline bench with arms hanging down. Curl the dumbbells upward while keeping the elbows controlled, squeeze the biceps, then return slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/106.gif"},
-  {exercise:"Hammer Curl",muscle:"Biceps",sets:"2 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Stand holding dumbbells with a neutral grip. Keep the elbows near the body, curl the dumbbells upward, then lower them slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/108.gif"},
-  {exercise:"Cable Curl",muscle:"Biceps",sets:"3 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Grip the cable handle with elbows stationary at your sides. Curl toward the shoulders, squeeze the biceps, then slowly lower the handle.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/102.gif"},
-  {exercise:"Preacher Curl Machine",muscle:"Biceps",sets:"3 × 10–15",rest:"60 sec",difficulty:"Medium",instructions:"Position your upper arms on the pad and grip the handles. Curl the weight upward while keeping the arms supported, then lower slowly toward extension.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/271.gif"},
-  {exercise:"Plank",muscle:"Core",sets:"3 × 45–60 sec",rest:"45 sec",difficulty:"Easy",instructions:"Support yourself on your forearms and toes, brace your core and maintain a straight body position throughout the hold.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/631.gif"},
-  {exercise:"Side Plank",muscle:"Abs",sets:"2 × 30–45 sec/side",rest:"45 sec",difficulty:"Medium",instructions:"Support yourself on one forearm and the side of one foot. Keep the body straight, brace the core and hold the position without allowing the hips to drop.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/633.gif"},
-  {exercise:"Dead Bug",muscle:"Core",sets:"3 × 8–12/side",rest:"45 sec",difficulty:"Easy",instructions:"Lie on your back with arms raised and knees bent. Brace the abs and slowly lower the opposite arm and leg toward the floor, return and alternate sides.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1338.gif"},
-  {exercise:"Dumbbell Shoulder Press",muscle:"Shoulders",sets:"4 × 8–12",rest:"90 sec",difficulty:"Medium",instructions:"Start with dumbbells at shoulder height. Press both weights overhead until the arms are extended, then lower them back to shoulder level under control.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/884.gif"},
-  {exercise:"Seated Shoulder Press",muscle:"Shoulders",sets:"3 × 8–12",rest:"90 sec",difficulty:"Medium",instructions:"Sit with back supported and weights at shoulder level. Press the weight overhead, then lower it in a controlled manner back to shoulder height.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/46.gif"},
-  {exercise:"Lateral Raise",muscle:"Shoulders",sets:"4 × 12–15",rest:"60 sec",difficulty:"Easy",instructions:"Hold dumbbells beside the body with a slight elbow bend. Raise the arms outward to approximately shoulder height, pause briefly, then lower slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/32.gif"},
-  {exercise:"Dumbbell Lateral Raise",muscle:"Shoulders",sets:"3 × 12–20",rest:"45 sec",difficulty:"Easy",instructions:"Hold dumbbells at your sides and raise them outward to shoulder level with controlled movement. Lower them slowly without swinging.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/32.gif"},
-  {exercise:"Cable Lateral Raise",muscle:"Shoulders",sets:"4 × 12–15",rest:"60 sec",difficulty:"Easy",instructions:"Stand beside the low pulley and raise the working arm sideways to shoulder height. Keep the torso stable and lower the handle slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/19.gif"},
-  {exercise:"Rear-Delt Fly",muscle:"Shoulders",sets:"4 × 12–15",rest:"60 sec",difficulty:"Easy",instructions:"Position yourself bent forward or against a bench. Raise the weights outward and backward using the rear shoulders, then slowly return them.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/27.gif"},
-  {exercise:"Face Pull",muscle:"Shoulders",sets:"3 × 12–15",rest:"60 sec",difficulty:"Medium",instructions:"Set the rope around face height. Pull it toward your face while separating your hands and keeping your elbows elevated, then slowly extend the arms again.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/874.gif"},
-  {exercise:"Incline Barbell Press",muscle:"Chest",sets:"4 × 6–10",rest:"2 min",difficulty:"Difficult",instructions:"Lie on the incline bench with feet planted and shoulder blades retracted. Grip the bar, lower it toward the upper chest under control, then press it back upward.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/8.gif"},
-  {exercise:"Flat Dumbbell Press",muscle:"Chest",sets:"3 × 8–12",rest:"90 sec",difficulty:"Medium",instructions:"Lie on the flat bench with dumbbells at chest level. Press the weights upward until the arms are extended, then lower them slowly to the sides of your chest.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/26.gif"},
-  {exercise:"Pec Deck",muscle:"Chest",sets:"3 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Sit with your back against the pad and bring the machine arms together in front of your chest. Squeeze the chest, then slowly return.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/836.gif"},
-  {exercise:"Pull-up",muscle:"Back",sets:"4 × 8–12",rest:"2 min",difficulty:"Difficult",instructions:"Grip the bar securely and hang under control. Pull your body upward by driving the elbows down until your chin approaches the bar, then slowly lower yourself.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/83.gif"},
-  {exercise:"Close-Grip Smith Bench Press",muscle:"Triceps",sets:"3 × 8–12",rest:"90 sec",difficulty:"Difficult",instructions:"Lie on the bench and grip the bar narrower than a regular bench press. Lower the bar toward the lower chest/upper abdomen with elbows close to the body, then press back up.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/248.gif"},
-  {exercise:"Rope Pushdown",muscle:"Triceps",sets:"3 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Keep elbows tucked, push the rope downward until the arms are extended, squeeze the triceps and slowly return upward.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/159.gif"},
-  {exercise:"Overhead Triceps Extension",muscle:"Triceps",sets:"2 × 12–15",rest:"60 sec",difficulty:"Medium",instructions:"Keep the elbows relatively fixed as the weight is lowered behind the head. Extend the elbows to return the weight overhead.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/155.gif"},
-  {exercise:"Weighted Crunch",muscle:"Abs",sets:"3 × 12–15",rest:"45 sec",difficulty:"Easy–Medium",instructions:"Hold a weight against your chest and lie in the crunch position. Contract the abs to lift the upper torso, pause briefly, then lower with control.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/803.gif"},
-  {exercise:"Reverse Crunch",muscle:"Abs",sets:"3 × 12–15",rest:"45 sec",difficulty:"Easy",instructions:"Lie on your back with knees bent. Bring the knees toward the chest and curl the hips upward, then slowly return them toward the floor.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/338.gif"}
-];
-
-/* ---------- Default plan (the original 6-day plan) ---------- */
+const EXERCISE_DB = [{"exercise": "Barbell Bench Press", "muscle": "Chest", "sets": "4 x 6-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Incline Barbell Press", "muscle": "Chest", "sets": "4 x 6-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Decline Barbell Press", "muscle": "Chest", "sets": "3 x 8-10", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Flat Dumbbell Press", "muscle": "Chest", "sets": "4 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Incline Dumbbell Press", "muscle": "Chest", "sets": "4 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Decline Dumbbell Press", "muscle": "Chest", "sets": "3 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Machine Chest Press", "muscle": "Chest", "sets": "3 x 8-12", "rest": "90 sec", "difficulty": "Easy", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Smith Machine Bench Press", "muscle": "Chest", "sets": "4 x 8-10", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Push-Up", "muscle": "Chest", "sets": "3 x 12-20", "rest": "60 sec", "difficulty": "Easy", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Incline Push-Up", "muscle": "Chest", "sets": "3 x 12-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Decline Push-Up", "muscle": "Chest", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Diamond Push-Up", "muscle": "Chest", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Wide Push-Up", "muscle": "Chest", "sets": "3 x 12-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Cable Crossover", "muscle": "Chest", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Cable Fly (High to Low)", "muscle": "Chest", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Cable Fly (Low to High)", "muscle": "Chest", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Cable Incline Fly", "muscle": "Chest", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Pec Deck Fly", "muscle": "Chest", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Dumbbell Fly (Flat)", "muscle": "Chest", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Dumbbell Fly (Incline)", "muscle": "Chest", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Weighted Dip", "muscle": "Chest", "sets": "3 x 6-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Bodyweight Dip (Chest Focus)", "muscle": "Chest", "sets": "3 x 8-15", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Landmine Press", "muscle": "Chest", "sets": "3 x 10-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Svend Press", "muscle": "Chest", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Easy", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Floor Press", "muscle": "Chest", "sets": "3 x 8-10", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Resistance Band Chest Press", "muscle": "Chest", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Easy", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Plate Squeeze Press", "muscle": "Chest", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Easy", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Single-Arm Cable Press", "muscle": "Chest", "sets": "3 x 10-12/side", "rest": "60 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Guillotine Press", "muscle": "Chest", "sets": "3 x 6-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Machine Fly", "muscle": "Chest", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udfcb\ufe0f"}, {"exercise": "Conventional Deadlift", "muscle": "Back", "sets": "4 x 4-6", "rest": "3 min", "difficulty": "Difficult", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Romanian Deadlift", "muscle": "Back", "sets": "4 x 8-10", "rest": "2 min", "difficulty": "Medium", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Sumo Deadlift", "muscle": "Back", "sets": "4 x 4-6", "rest": "3 min", "difficulty": "Difficult", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Pull-Up", "muscle": "Back", "sets": "4 x 6-12", "rest": "2 min", "difficulty": "Difficult", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Chin-Up", "muscle": "Back", "sets": "4 x 6-12", "rest": "2 min", "difficulty": "Difficult", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Wide-Grip Pull-Up", "muscle": "Back", "sets": "3 x 6-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Assisted Pull-Up", "muscle": "Back", "sets": "3 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Lat Pulldown (Wide Grip)", "muscle": "Back", "sets": "4 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Lat Pulldown (Close Grip)", "muscle": "Back", "sets": "3 x 10-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Lat Pulldown (Reverse Grip)", "muscle": "Back", "sets": "3 x 10-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Single-Arm Lat Pulldown", "muscle": "Back", "sets": "3 x 10-12/side", "rest": "75 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Seated Cable Row", "muscle": "Back", "sets": "3 x 8-12", "rest": "90 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Cable Row Wide Grip", "muscle": "Back", "sets": "3 x 10-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Bent-Over Barbell Row", "muscle": "Back", "sets": "4 x 6-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Pendlay Row", "muscle": "Back", "sets": "4 x 6-8", "rest": "2 min", "difficulty": "Difficult", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "T-Bar Row", "muscle": "Back", "sets": "4 x 8-10", "rest": "90 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "One-Arm Dumbbell Row", "muscle": "Back", "sets": "3 x 8-12/side", "rest": "75 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Chest-Supported Row", "muscle": "Back", "sets": "3 x 10-12", "rest": "90 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Machine Row", "muscle": "Back", "sets": "3 x 10-12", "rest": "90 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Inverted Row", "muscle": "Back", "sets": "3 x 10-15", "rest": "75 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Straight-Arm Pulldown", "muscle": "Back", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Cable Pullover", "muscle": "Back", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Dumbbell Pullover", "muscle": "Back", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Face Pull", "muscle": "Back", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Rack Pull", "muscle": "Back", "sets": "4 x 4-6", "rest": "2 min", "difficulty": "Difficult", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Good Morning", "muscle": "Back", "sets": "3 x 8-10", "rest": "90 sec", "difficulty": "Medium", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Hyperextension", "muscle": "Back", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Reverse Hyperextension", "muscle": "Back", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Meadows Row", "muscle": "Back", "sets": "3 x 8-10/side", "rest": "90 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Kroc Row", "muscle": "Back", "sets": "3 x 10-15/side", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Renegade Row", "muscle": "Back", "sets": "3 x 8-10/side", "rest": "75 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Landmine Row", "muscle": "Back", "sets": "3 x 10-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Seal Row", "muscle": "Back", "sets": "3 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Superman", "muscle": "Back", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Band Pull-Apart", "muscle": "Back", "sets": "3 x 15-20", "rest": "30 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\uddbe"}, {"exercise": "Overhead Barbell Press", "muscle": "Shoulders", "sets": "4 x 6-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Seated Dumbbell Press", "muscle": "Shoulders", "sets": "4 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Standing Dumbbell Press", "muscle": "Shoulders", "sets": "3 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Arnold Press", "muscle": "Shoulders", "sets": "3 x 10-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Push Press", "muscle": "Shoulders", "sets": "4 x 4-6", "rest": "2 min", "difficulty": "Difficult", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Behind-the-Neck Press", "muscle": "Shoulders", "sets": "3 x 6-8", "rest": "2 min", "difficulty": "Difficult", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Machine Shoulder Press", "muscle": "Shoulders", "sets": "3 x 8-12", "rest": "90 sec", "difficulty": "Easy", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Lateral Raise", "muscle": "Shoulders", "sets": "4 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Cable Lateral Raise", "muscle": "Shoulders", "sets": "4 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Leaning Cable Lateral Raise", "muscle": "Shoulders", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Machine Lateral Raise", "muscle": "Shoulders", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Egyptian Lateral Raise", "muscle": "Shoulders", "sets": "3 x 10-12/side", "rest": "60 sec", "difficulty": "Medium", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Front Raise", "muscle": "Shoulders", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Plate Front Raise", "muscle": "Shoulders", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Rear Delt Fly", "muscle": "Shoulders", "sets": "4 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Bent-Over Reverse Fly", "muscle": "Shoulders", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Cable Rear Delt Fly", "muscle": "Shoulders", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Reverse Pec Deck", "muscle": "Shoulders", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Upright Row", "muscle": "Shoulders", "sets": "3 x 10-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Cable Upright Row", "muscle": "Shoulders", "sets": "3 x 10-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Landmine Shoulder Press", "muscle": "Shoulders", "sets": "3 x 8-10/side", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Cuban Press", "muscle": "Shoulders", "sets": "3 x 10-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Y-Raise", "muscle": "Shoulders", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "W-Raise", "muscle": "Shoulders", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Bus Driver", "muscle": "Shoulders", "sets": "3 x 10-15", "rest": "45 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Plate Raise", "muscle": "Shoulders", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Handstand Push-Up", "muscle": "Shoulders", "sets": "3 x 5-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Pike Push-Up", "muscle": "Shoulders", "sets": "3 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Dumbbell Scott Press", "muscle": "Shoulders", "sets": "3 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\udd38"}, {"exercise": "Barbell Curl", "muscle": "Biceps", "sets": "3 x 8-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "EZ-Bar Curl", "muscle": "Biceps", "sets": "3 x 8-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Dumbbell Curl", "muscle": "Biceps", "sets": "3 x 10-12", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Alternating Dumbbell Curl", "muscle": "Biceps", "sets": "3 x 10-12/side", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Hammer Curl", "muscle": "Biceps", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Cross-Body Hammer Curl", "muscle": "Biceps", "sets": "3 x 10-12/side", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Incline Dumbbell Curl", "muscle": "Biceps", "sets": "3 x 10-12", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Concentration Curl", "muscle": "Biceps", "sets": "3 x 10-12/side", "rest": "45 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Preacher Curl", "muscle": "Biceps", "sets": "3 x 8-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Preacher Curl Machine", "muscle": "Biceps", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Cable Curl", "muscle": "Biceps", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Cable Rope Hammer Curl", "muscle": "Biceps", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Spider Curl", "muscle": "Biceps", "sets": "3 x 8-12", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Zottman Curl", "muscle": "Biceps", "sets": "3 x 8-12", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Drag Curl", "muscle": "Biceps", "sets": "3 x 8-12", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "21s Bicep Curl", "muscle": "Biceps", "sets": "3 x 21", "rest": "75 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Reverse Curl", "muscle": "Biceps", "sets": "3 x 10-12", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Chin-Up (Biceps Focus)", "muscle": "Biceps", "sets": "3 x 6-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Triceps Pushdown", "muscle": "Triceps", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your upper arm still and hinge only at the elbow. Extend the weight until your arm is straight, pause briefly, then bend the elbow to return under control.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Rope Pushdown", "muscle": "Triceps", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your upper arm still and hinge only at the elbow. Extend the weight until your arm is straight, pause briefly, then bend the elbow to return under control.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Reverse-Grip Pushdown", "muscle": "Triceps", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your upper arm still and hinge only at the elbow. Extend the weight until your arm is straight, pause briefly, then bend the elbow to return under control.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Overhead Rope Extension", "muscle": "Triceps", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your upper arm still and hinge only at the elbow. Extend the weight until your arm is straight, pause briefly, then bend the elbow to return under control.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Overhead Dumbbell Extension", "muscle": "Triceps", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your upper arm still and hinge only at the elbow. Extend the weight until your arm is straight, pause briefly, then bend the elbow to return under control.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Single-Arm Overhead Extension", "muscle": "Triceps", "sets": "3 x 10-12/side", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your upper arm still and hinge only at the elbow. Extend the weight until your arm is straight, pause briefly, then bend the elbow to return under control.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Skull Crusher", "muscle": "Triceps", "sets": "3 x 8-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Keep your upper arm still and hinge only at the elbow. Extend the weight until your arm is straight, pause briefly, then bend the elbow to return under control.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "EZ-Bar Skull Crusher", "muscle": "Triceps", "sets": "3 x 8-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Keep your upper arm still and hinge only at the elbow. Extend the weight until your arm is straight, pause briefly, then bend the elbow to return under control.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Close-Grip Bench Press", "muscle": "Triceps", "sets": "3 x 8-12", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Close-Grip Smith Press", "muscle": "Triceps", "sets": "3 x 8-12", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Weighted Triceps Dip", "muscle": "Triceps", "sets": "3 x 6-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Bench Dip", "muscle": "Triceps", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Diamond Push-Up (Triceps Focus)", "muscle": "Triceps", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Triceps Kickback", "muscle": "Triceps", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Easy", "instructions": "Keep your upper arm still and hinge only at the elbow. Extend the weight until your arm is straight, pause briefly, then bend the elbow to return under control.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Cable Kickback", "muscle": "Triceps", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Easy", "instructions": "Keep your upper arm still and hinge only at the elbow. Extend the weight until your arm is straight, pause briefly, then bend the elbow to return under control.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "JM Press", "muscle": "Triceps", "sets": "3 x 6-10", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Keep your upper arm still and hinge only at the elbow. Extend the weight until your arm is straight, pause briefly, then bend the elbow to return under control.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Triceps Dip Machine", "muscle": "Triceps", "sets": "3 x 10-15", "rest": "75 sec", "difficulty": "Easy", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Tate Press", "muscle": "Triceps", "sets": "3 x 8-12", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your upper arm still and hinge only at the elbow. Extend the weight until your arm is straight, pause briefly, then bend the elbow to return under control.", "gif": "", "icon": "\ud83d\udcaa"}, {"exercise": "Wrist Curl", "muscle": "Forearms", "sets": "3 x 15-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\u270a"}, {"exercise": "Reverse Wrist Curl", "muscle": "Forearms", "sets": "3 x 15-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\u270a"}, {"exercise": "Farmer's Carry", "muscle": "Forearms", "sets": "3 x 30-40m", "rest": "90 sec", "difficulty": "Medium", "instructions": "Grip the weight firmly, stand tall with your shoulders back and core braced, then move with controlled, even steps or hold the position for time.", "gif": "", "icon": "\u270a"}, {"exercise": "Plate Pinch Hold", "muscle": "Forearms", "sets": "3 x 20-30 sec", "rest": "45 sec", "difficulty": "Medium", "instructions": "Grip the weight firmly, stand tall with your shoulders back and core braced, then move with controlled, even steps or hold the position for time.", "gif": "", "icon": "\u270a"}, {"exercise": "Dead Hang", "muscle": "Forearms", "sets": "3 x 20-40 sec", "rest": "45 sec", "difficulty": "Easy", "instructions": "Grip the weight firmly, stand tall with your shoulders back and core braced, then move with controlled, even steps or hold the position for time.", "gif": "", "icon": "\u270a"}, {"exercise": "Wrist Roller", "muscle": "Forearms", "sets": "3 x up-down", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\u270a"}, {"exercise": "Behind-the-Back Wrist Curl", "muscle": "Forearms", "sets": "3 x 15-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\u270a"}, {"exercise": "Grip Crusher", "muscle": "Forearms", "sets": "3 x 15-20", "rest": "30 sec", "difficulty": "Easy", "instructions": "Grip the weight firmly, stand tall with your shoulders back and core braced, then move with controlled, even steps or hold the position for time.", "gif": "", "icon": "\u270a"}, {"exercise": "Reverse Curl (Forearm Focus)", "muscle": "Forearms", "sets": "3 x 10-12", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\u270a"}, {"exercise": "Towel Pull-Up Hang", "muscle": "Forearms", "sets": "3 x 15-20 sec", "rest": "45 sec", "difficulty": "Medium", "instructions": "Grip the weight firmly, stand tall with your shoulders back and core braced, then move with controlled, even steps or hold the position for time.", "gif": "", "icon": "\u270a"}, {"exercise": "Crunch", "muscle": "Abs", "sets": "3 x 15-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Weighted Crunch", "muscle": "Abs", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Decline Crunch", "muscle": "Abs", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Reverse Crunch", "muscle": "Abs", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Bicycle Crunch", "muscle": "Abs", "sets": "3 x 15-20/side", "rest": "45 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Cable Crunch", "muscle": "Abs", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Standing Cable Crunch", "muscle": "Abs", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Hanging Knee Raise", "muscle": "Abs", "sets": "3 x 10-15", "rest": "45 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Hanging Leg Raise", "muscle": "Abs", "sets": "3 x 8-12", "rest": "60 sec", "difficulty": "Difficult", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Hanging Windshield Wiper", "muscle": "Abs", "sets": "3 x 8-10/side", "rest": "60 sec", "difficulty": "Difficult", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Captain's Chair Leg Raise", "muscle": "Abs", "sets": "3 x 10-15", "rest": "45 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Plank", "muscle": "Abs", "sets": "3 x 45-60 sec", "rest": "45 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Side Plank", "muscle": "Abs", "sets": "2 x 30-45 sec/side", "rest": "45 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Weighted Plank", "muscle": "Abs", "sets": "3 x 30-45 sec", "rest": "45 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Copenhagen Plank", "muscle": "Abs", "sets": "2 x 20-30 sec/side", "rest": "45 sec", "difficulty": "Difficult", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Russian Twist", "muscle": "Abs", "sets": "3 x 15-20/side", "rest": "45 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Cable Woodchopper", "muscle": "Abs", "sets": "3 x 10-12/side", "rest": "60 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Ab Wheel Rollout", "muscle": "Abs", "sets": "3 x 8-12", "rest": "60 sec", "difficulty": "Difficult", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Dead Bug", "muscle": "Abs", "sets": "3 x 8-12/side", "rest": "45 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Mountain Climber", "muscle": "Abs", "sets": "3 x 20-30", "rest": "45 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Sit-Up", "muscle": "Abs", "sets": "3 x 15-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Weighted Sit-Up", "muscle": "Abs", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Toe Touch", "muscle": "Abs", "sets": "3 x 15-20", "rest": "30 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "V-Up", "muscle": "Abs", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Flutter Kick", "muscle": "Abs", "sets": "3 x 20-30", "rest": "30 sec", "difficulty": "Easy", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Lying Leg Raise", "muscle": "Abs", "sets": "3 x 12-15", "rest": "45 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Pallof Press", "muscle": "Abs", "sets": "3 x 10-12/side", "rest": "45 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Hollow Body Hold", "muscle": "Abs", "sets": "3 x 20-30 sec", "rest": "45 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Dragon Flag", "muscle": "Abs", "sets": "3 x 5-8", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "L-Sit", "muscle": "Abs", "sets": "3 x 10-20 sec", "rest": "60 sec", "difficulty": "Difficult", "instructions": "Brace your core and keep your spine in a neutral, controlled position throughout. Move deliberately and resist the urge to use momentum.", "gif": "", "icon": "\ud83d\udd25"}, {"exercise": "Barbell Back Squat", "muscle": "Quads", "sets": "4 x 6-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Front Squat", "muscle": "Quads", "sets": "4 x 6-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Goblet Squat", "muscle": "Quads", "sets": "3 x 10-15", "rest": "90 sec", "difficulty": "Easy", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Leg Press", "muscle": "Quads", "sets": "4 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Hack Squat", "muscle": "Quads", "sets": "4 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Bulgarian Split Squat", "muscle": "Quads", "sets": "3 x 8-12/side", "rest": "90 sec", "difficulty": "Medium", "instructions": "Step into position with control and keep your torso upright. Lower until your back knee approaches the floor while your front knee tracks over your foot, then push back up to the start.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Walking Lunge", "muscle": "Quads", "sets": "3 x 10-12/side", "rest": "75 sec", "difficulty": "Medium", "instructions": "Step into position with control and keep your torso upright. Lower until your back knee approaches the floor while your front knee tracks over your foot, then push back up to the start.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Reverse Lunge", "muscle": "Quads", "sets": "3 x 10-12/side", "rest": "75 sec", "difficulty": "Medium", "instructions": "Step into position with control and keep your torso upright. Lower until your back knee approaches the floor while your front knee tracks over your foot, then push back up to the start.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Step-Up", "muscle": "Quads", "sets": "3 x 10-12/side", "rest": "60 sec", "difficulty": "Easy", "instructions": "Step into position with control and keep your torso upright. Lower until your back knee approaches the floor while your front knee tracks over your foot, then push back up to the start.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Leg Extension", "muscle": "Quads", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Sissy Squat", "muscle": "Quads", "sets": "3 x 8-12", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Zercher Squat", "muscle": "Quads", "sets": "3 x 6-10", "rest": "2 min", "difficulty": "Difficult", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Smith Machine Squat", "muscle": "Quads", "sets": "4 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Box Squat", "muscle": "Quads", "sets": "4 x 6-10", "rest": "2 min", "difficulty": "Medium", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Overhead Squat", "muscle": "Quads", "sets": "3 x 6-8", "rest": "2 min", "difficulty": "Difficult", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Pistol Squat", "muscle": "Quads", "sets": "3 x 5-8/side", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Wall Sit", "muscle": "Quads", "sets": "3 x 30-60 sec", "rest": "45 sec", "difficulty": "Easy", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Belt Squat", "muscle": "Quads", "sets": "4 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Cyclist Squat", "muscle": "Quads", "sets": "3 x 10-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Split Squat", "muscle": "Quads", "sets": "3 x 10-12/side", "rest": "75 sec", "difficulty": "Medium", "instructions": "Step into position with control and keep your torso upright. Lower until your back knee approaches the floor while your front knee tracks over your foot, then push back up to the start.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Smith Machine Lunge", "muscle": "Quads", "sets": "3 x 10-12/side", "rest": "75 sec", "difficulty": "Medium", "instructions": "Step into position with control and keep your torso upright. Lower until your back knee approaches the floor while your front knee tracks over your foot, then push back up to the start.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Single-Leg Press", "muscle": "Quads", "sets": "3 x 10-12/side", "rest": "90 sec", "difficulty": "Medium", "instructions": "Set up with stable footing or back support and a secure grip. Press the weight away from your body until your arms are extended, then lower it back under control without letting your joints collapse.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Romanian Deadlift (Hamstring Focus)", "muscle": "Hamstrings", "sets": "4 x 8-10", "rest": "2 min", "difficulty": "Medium", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Stiff-Leg Deadlift", "muscle": "Hamstrings", "sets": "3 x 8-10", "rest": "2 min", "difficulty": "Medium", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Lying Leg Curl", "muscle": "Hamstrings", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Seated Leg Curl", "muscle": "Hamstrings", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Standing Leg Curl", "muscle": "Hamstrings", "sets": "3 x 10-15/side", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Good Morning (Hamstring Focus)", "muscle": "Hamstrings", "sets": "3 x 8-10", "rest": "90 sec", "difficulty": "Medium", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Glute Ham Raise", "muscle": "Hamstrings", "sets": "3 x 6-10", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Nordic Curl", "muscle": "Hamstrings", "sets": "3 x 5-8", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Single-Leg Romanian Deadlift", "muscle": "Hamstrings", "sets": "3 x 8-10/side", "rest": "90 sec", "difficulty": "Medium", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Cable Pull-Through", "muscle": "Hamstrings", "sets": "3 x 12-15", "rest": "75 sec", "difficulty": "Easy", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Swiss Ball Leg Curl", "muscle": "Hamstrings", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your elbows fixed and avoid swinging your torso for momentum. Curl the weight up in a controlled arc, squeeze at the top, then lower it slowly through the full range of motion.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Sumo Deadlift (Hamstring Focus)", "muscle": "Hamstrings", "sets": "4 x 4-6", "rest": "3 min", "difficulty": "Difficult", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83e\uddb5"}, {"exercise": "Barbell Hip Thrust", "muscle": "Glutes", "sets": "4 x 8-12", "rest": "90 sec", "difficulty": "Medium", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Barbell Glute Bridge", "muscle": "Glutes", "sets": "3 x 10-15", "rest": "75 sec", "difficulty": "Easy", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Cable Glute Kickback", "muscle": "Glutes", "sets": "3 x 12-15/side", "rest": "45 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Glute Kickback Machine", "muscle": "Glutes", "sets": "3 x 12-15/side", "rest": "60 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Bulgarian Split Squat (Glute Focus)", "muscle": "Glutes", "sets": "3 x 8-12/side", "rest": "90 sec", "difficulty": "Medium", "instructions": "Step into position with control and keep your torso upright. Lower until your back knee approaches the floor while your front knee tracks over your foot, then push back up to the start.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Step-Up (Glute Focus)", "muscle": "Glutes", "sets": "3 x 10-12/side", "rest": "60 sec", "difficulty": "Easy", "instructions": "Step into position with control and keep your torso upright. Lower until your back knee approaches the floor while your front knee tracks over your foot, then push back up to the start.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Sumo Squat", "muscle": "Glutes", "sets": "3 x 10-15", "rest": "90 sec", "difficulty": "Medium", "instructions": "Keep your chest up and core braced throughout. Lower your hips back and down until you reach a comfortable depth, then drive through your feet to stand back up.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Curtsy Lunge", "muscle": "Glutes", "sets": "3 x 10-12/side", "rest": "60 sec", "difficulty": "Medium", "instructions": "Step into position with control and keep your torso upright. Lower until your back knee approaches the floor while your front knee tracks over your foot, then push back up to the start.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Fire Hydrant", "muscle": "Glutes", "sets": "3 x 15-20/side", "rest": "30 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Clamshell", "muscle": "Glutes", "sets": "3 x 15-20/side", "rest": "30 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Banded Lateral Walk", "muscle": "Glutes", "sets": "3 x 15-20 steps/side", "rest": "45 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Frog Pump", "muscle": "Glutes", "sets": "3 x 15-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Single-Leg Hip Thrust", "muscle": "Glutes", "sets": "3 x 10-12/side", "rest": "75 sec", "difficulty": "Medium", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Donkey Kick", "muscle": "Glutes", "sets": "3 x 15-20/side", "rest": "30 sec", "difficulty": "Easy", "instructions": "Choose a light-to-moderate load and a slow, controlled tempo. Raise the weight out to the target angle, pause briefly at the top, then lower it slowly without swinging.", "gif": "", "icon": "\ud83c\udf51"}, {"exercise": "Standing Calf Raise", "muscle": "Calves", "sets": "4 x 12-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Rise onto the balls of your feet by contracting your calves, pause briefly at the top, then lower your heels slowly to get a full stretch at the bottom.", "gif": "", "icon": "\ud83e\uddb6"}, {"exercise": "Seated Calf Raise", "muscle": "Calves", "sets": "4 x 12-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Rise onto the balls of your feet by contracting your calves, pause briefly at the top, then lower your heels slowly to get a full stretch at the bottom.", "gif": "", "icon": "\ud83e\uddb6"}, {"exercise": "Leg Press Calf Raise", "muscle": "Calves", "sets": "3 x 15-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Rise onto the balls of your feet by contracting your calves, pause briefly at the top, then lower your heels slowly to get a full stretch at the bottom.", "gif": "", "icon": "\ud83e\uddb6"}, {"exercise": "Donkey Calf Raise", "muscle": "Calves", "sets": "3 x 15-20", "rest": "45 sec", "difficulty": "Medium", "instructions": "Rise onto the balls of your feet by contracting your calves, pause briefly at the top, then lower your heels slowly to get a full stretch at the bottom.", "gif": "", "icon": "\ud83e\uddb6"}, {"exercise": "Single-Leg Calf Raise", "muscle": "Calves", "sets": "3 x 12-15/side", "rest": "45 sec", "difficulty": "Medium", "instructions": "Rise onto the balls of your feet by contracting your calves, pause briefly at the top, then lower your heels slowly to get a full stretch at the bottom.", "gif": "", "icon": "\ud83e\uddb6"}, {"exercise": "Smith Machine Calf Raise", "muscle": "Calves", "sets": "4 x 12-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Rise onto the balls of your feet by contracting your calves, pause briefly at the top, then lower your heels slowly to get a full stretch at the bottom.", "gif": "", "icon": "\ud83e\uddb6"}, {"exercise": "Calf Press (Leg Press Machine)", "muscle": "Calves", "sets": "3 x 15-20", "rest": "45 sec", "difficulty": "Easy", "instructions": "Rise onto the balls of your feet by contracting your calves, pause briefly at the top, then lower your heels slowly to get a full stretch at the bottom.", "gif": "", "icon": "\ud83e\uddb6"}, {"exercise": "Jump Rope (Calf Focus)", "muscle": "Calves", "sets": "3 x 60 sec", "rest": "45 sec", "difficulty": "Easy", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\ud83e\uddb6"}, {"exercise": "Barbell Shrug", "muscle": "Traps", "sets": "4 x 10-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your arms straight and simply elevate your shoulders straight up toward your ears, pause briefly at the top, then lower them slowly.", "gif": "", "icon": "\ud83e\uddf1"}, {"exercise": "Dumbbell Shrug", "muscle": "Traps", "sets": "4 x 10-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your arms straight and simply elevate your shoulders straight up toward your ears, pause briefly at the top, then lower them slowly.", "gif": "", "icon": "\ud83e\uddf1"}, {"exercise": "Trap Bar Shrug", "muscle": "Traps", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your arms straight and simply elevate your shoulders straight up toward your ears, pause briefly at the top, then lower them slowly.", "gif": "", "icon": "\ud83e\uddf1"}, {"exercise": "Cable Shrug", "muscle": "Traps", "sets": "3 x 12-15", "rest": "60 sec", "difficulty": "Easy", "instructions": "Keep your arms straight and simply elevate your shoulders straight up toward your ears, pause briefly at the top, then lower them slowly.", "gif": "", "icon": "\ud83e\uddf1"}, {"exercise": "Behind-the-Back Barbell Shrug", "muscle": "Traps", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Keep your arms straight and simply elevate your shoulders straight up toward your ears, pause briefly at the top, then lower them slowly.", "gif": "", "icon": "\ud83e\uddf1"}, {"exercise": "Farmer's Carry (Trap Focus)", "muscle": "Traps", "sets": "3 x 30-40m", "rest": "90 sec", "difficulty": "Medium", "instructions": "Grip the weight firmly, stand tall with your shoulders back and core braced, then move with controlled, even steps or hold the position for time.", "gif": "", "icon": "\ud83e\uddf1"}, {"exercise": "Snatch Grip Shrug", "muscle": "Traps", "sets": "3 x 8-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Keep your arms straight and simply elevate your shoulders straight up toward your ears, pause briefly at the top, then lower them slowly.", "gif": "", "icon": "\ud83e\uddf1"}, {"exercise": "Upright Row (Trap Focus)", "muscle": "Traps", "sets": "3 x 10-12", "rest": "75 sec", "difficulty": "Medium", "instructions": "Brace your core and keep your chest lifted. Pull the weight or your body toward the target point by driving your elbows back, squeeze the working muscles at the peak, then extend slowly to return to the start.", "gif": "", "icon": "\ud83e\uddf1"}, {"exercise": "Burpee", "muscle": "Full Body", "sets": "3 x 10-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Kettlebell Swing", "muscle": "Full Body", "sets": "4 x 15-20", "rest": "60 sec", "difficulty": "Medium", "instructions": "Push your hips back with a soft bend in the knees and a flat back. Lower the weight along your legs until you feel a stretch through the hamstrings, then drive your hips forward to stand tall.", "gif": "", "icon": "\u26a1"}, {"exercise": "Clean and Press", "muscle": "Full Body", "sets": "4 x 4-6", "rest": "2 min", "difficulty": "Difficult", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Thruster", "muscle": "Full Body", "sets": "3 x 8-10", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Battle Ropes", "muscle": "Full Body", "sets": "4 x 30 sec", "rest": "45 sec", "difficulty": "Medium", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Rowing Machine", "muscle": "Full Body", "sets": "4 x 250-500m", "rest": "60 sec", "difficulty": "Easy", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Assault Bike", "muscle": "Full Body", "sets": "4 x 20-30 sec", "rest": "60 sec", "difficulty": "Medium", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Jump Rope", "muscle": "Full Body", "sets": "4 x 60 sec", "rest": "45 sec", "difficulty": "Easy", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Sled Push", "muscle": "Full Body", "sets": "4 x 20-30m", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Sled Pull", "muscle": "Full Body", "sets": "4 x 20-30m", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Man Maker", "muscle": "Full Body", "sets": "3 x 8-10", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Turkish Get-Up", "muscle": "Full Body", "sets": "3 x 5/side", "rest": "90 sec", "difficulty": "Difficult", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Wall Ball", "muscle": "Full Body", "sets": "4 x 12-15", "rest": "60 sec", "difficulty": "Medium", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Box Jump", "muscle": "Full Body", "sets": "4 x 8-10", "rest": "75 sec", "difficulty": "Medium", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}, {"exercise": "Bear Crawl", "muscle": "Full Body", "sets": "3 x 20-30m", "rest": "45 sec", "difficulty": "Easy", "instructions": "Move with control but purpose, keeping your form sound as fatigue builds. Focus on a consistent pace and full range of motion rather than rushing.", "gif": "", "icon": "\u26a1"}];
+const DAY_TEMPLATES = [{"title": "Day 1 \u2014 Chest + Triceps + Abs", "names": ["Barbell Bench Press", "Incline Dumbbell Press", "Machine Chest Press", "Cable Fly (High to Low)", "Triceps Pushdown", "Overhead Rope Extension", "Bench Dip", "Decline Crunch", "Hanging Knee Raise"]}, {"title": "Day 2 \u2014 Back + Biceps", "names": ["Lat Pulldown (Wide Grip)", "One-Arm Dumbbell Row", "Seated Cable Row", "Single-Arm Lat Pulldown", "Cable Pullover", "EZ-Bar Curl", "Incline Dumbbell Curl", "Hammer Curl", "Plank"]}, {"title": "Day 3 \u2014 Shoulders + Arms + Abs", "names": ["Seated Dumbbell Press", "Lateral Raise", "Rear Delt Fly", "Face Pull", "Cable Curl", "Rope Pushdown", "Hammer Curl", "Overhead Dumbbell Extension", "Dead Bug", "Side Plank"]}, {"title": "Day 4 \u2014 Chest + Back", "names": ["Incline Barbell Press", "Flat Dumbbell Press", "Pec Deck Fly", "Pull-Up", "One-Arm Dumbbell Row", "Seated Cable Row", "Cable Pullover", "Face Pull"]}, {"title": "Day 5 \u2014 Shoulders + Arms + Abs", "names": ["Standing Dumbbell Press", "Cable Lateral Raise", "Rear Delt Fly", "EZ-Bar Curl", "Preacher Curl Machine", "Hammer Curl", "Close-Grip Bench Press", "Rope Pushdown", "Overhead Dumbbell Extension", "Weighted Crunch", "Reverse Crunch"]}, {"title": "Day 6 \u2014 Upper-Body Hypertrophy + Core", "names": ["Machine Chest Press", "Incline Dumbbell Press", "Lat Pulldown (Close Grip)", "One-Arm Dumbbell Row", "Lateral Raise", "Rear Delt Fly", "Cable Curl", "Rope Pushdown", "Hanging Knee Raise", "Dead Bug", "Plank"]}];
+const MUSCLE_LIST = ["Abs", "Back", "Biceps", "Calves", "Chest", "Forearms", "Full Body", "Glutes", "Hamstrings", "Quads", "Shoulders", "Traps", "Triceps"];
+</script>
+<script>
+/* ================= Utilities ================= */
 function uid(){ return 'x' + Math.random().toString(36).slice(2,10); }
-
-function buildDefaultData(){
-  const mk = (rows) => rows.map(r => ({id: uid(), ...r}));
-  return {
-    days: [
-      {id: uid(), title:"Day 1 — Chest + Triceps + Abs", exercises: mk([
-        {muscle:"Chest",exercise:"Barbell Bench Press",sets:"4 × 6–10",rest:"2 min",difficulty:"Difficult",instructions:"Lie flat with feet firmly on the floor and shoulders/back supported by the bench. Grip the bar slightly wider than shoulder width. Unrack over the chest, lower it slowly toward the mid-chest, then press back up while keeping control.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/2.gif"},
-        {muscle:"Chest",exercise:"Incline Dumbbell Press",sets:"4 × 8–12",rest:"90 sec",difficulty:"Medium",instructions:"Set the bench around 30–45°. Hold dumbbells near your upper chest with palms forward. Press them upward until the arms are extended, then slowly bring them back to the sides of the chest.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/31.gif"},
-        {muscle:"Chest",exercise:"Machine Chest Press",sets:"3 × 8–12",rest:"90 sec",difficulty:"Easy",instructions:"Adjust the seat so the handles align with your chest. Push the handles forward until the arms are extended, squeeze the chest, then return slowly to the starting position.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/163.gif"},
-        {muscle:"Chest",exercise:"Pec Deck / Cable Fly",sets:"3 × 12–15",rest:"60 sec",difficulty:"Easy",instructions:"Sit or stand in the correct position with a slight bend in the elbows. Bring the handles together in front of the chest, squeeze the pectorals, then slowly return to the starting position.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/836.gif"},
-        {muscle:"Triceps",exercise:"Triceps Pushdown",sets:"3 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Stand facing the pulley with elbows close to the body. Push the handle downward until the arms are extended, contract the triceps, then slowly allow the handle to return upward.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/159.gif"},
-        {muscle:"Triceps",exercise:"Overhead Rope Triceps Extension",sets:"3 × 10–15",rest:"60 sec",difficulty:"Medium",instructions:"Hold the rope overhead with elbows pointing forward. Lower the rope behind the head by bending the elbows, then extend the arms back to the starting position.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/155.gif"},
-        {muscle:"Triceps",exercise:"Assisted Dip",sets:"2 × 8–12",rest:"75 sec",difficulty:"Medium",instructions:"Grip the dip handles and place your knees on the assistance pad. Lower your body in a controlled manner by bending your elbows, then push through the handles to return upward.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1261.gif"},
-        {muscle:"Abs",exercise:"Decline Crunch",sets:"3 × 12–15",rest:"45 sec",difficulty:"Easy",instructions:"Secure your feet on the decline bench. Curl your upper body toward your knees while contracting your abs, then slowly lower back down without using momentum.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/78.gif"},
-        {muscle:"Abs",exercise:"Hanging Knee Raise",sets:"3 × 10–15",rest:"45 sec",difficulty:"Medium",instructions:"Hold the pull-up bar with a firm grip. Slowly raise your knees toward your chest until you feel your lower abs contract, pause briefly, then lower your legs in a controlled manner.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/690.gif"}
-      ])},
-      {id: uid(), title:"Day 2 — Back + Biceps", exercises: mk([
-        {muscle:"Back",exercise:"Machine Lat Pulldown",sets:"4 × 8–12",rest:"2 min",difficulty:"Medium",instructions:"Sit securely and grip the bar/handles. Pull downward by driving your elbows toward your sides until the bar reaches the upper chest area, then slowly return upward.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1268.gif"},
-        {muscle:"Back",exercise:"Dumbbell Incline Bench Row",sets:"4 × 8–12",rest:"90 sec",difficulty:"Medium",instructions:"Lie chest-down on an incline bench while holding dumbbells. Let the arms extend, then pull the dumbbells toward your sides by squeezing the back. Lower them slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1040.gif"},
-        {muscle:"Back",exercise:"Cable Rope Seated Row",sets:"3 × 8–12",rest:"90 sec",difficulty:"Easy",instructions:"Sit upright with feet supported and arms extended. Pull the rope toward the abdomen while keeping the torso controlled, squeeze the back, then slowly extend the arms.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1050.gif"},
-        {muscle:"Back",exercise:"Single-Arm Lat Pulldown",sets:"3 × 10–12",rest:"75 sec",difficulty:"Medium",instructions:"Grip one handle and sit upright. Pull the elbow downward toward your side until the hand reaches roughly shoulder/chest level, then return slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/825.gif"},
-        {muscle:"Back",exercise:"Cable Pullover",sets:"3 × 12–15",rest:"60 sec",difficulty:"Easy",instructions:"Position yourself beneath/near the pulley with arms extended. Pull the cable downward toward the body while keeping the arms relatively straight, squeeze the lats, then return under control.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/760.gif"},
-        {muscle:"Biceps",exercise:"EZ-Bar Curl",sets:"3 × 8–12",rest:"75 sec",difficulty:"Medium",instructions:"Stand with the EZ bar and elbows close to the torso. Curl the bar toward the shoulders without swinging, squeeze the biceps, then lower slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/95.gif"},
-        {muscle:"Biceps",exercise:"Incline Dumbbell Curl",sets:"3 × 10–12",rest:"60 sec",difficulty:"Medium",instructions:"Sit against a roughly 45° incline bench with arms hanging down. Curl the dumbbells upward while keeping the elbows controlled, squeeze the biceps, then return slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/106.gif"},
-        {muscle:"Biceps",exercise:"Hammer Curl",sets:"2 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Stand holding dumbbells with a neutral grip. Keep the elbows near the body, curl the dumbbells upward, then lower them slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/108.gif"},
-        {muscle:"Core",exercise:"Plank",sets:"3 × 45–60 sec",rest:"45 sec",difficulty:"Easy",instructions:"Support your body on your forearms and toes. Keep the body aligned and brace your abdominal muscles while holding the position without letting the hips sag.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/631.gif"}
-      ])},
-      {id: uid(), title:"Day 3 — Shoulders + Arms + Abs", exercises: mk([
-        {muscle:"Shoulders",exercise:"Dumbbell Shoulder Press",sets:"4 × 8–12",rest:"90 sec",difficulty:"Medium",instructions:"Start with dumbbells at shoulder height. Press both weights overhead until the arms are extended, then lower them back to shoulder level under control.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/884.gif"},
-        {muscle:"Shoulders",exercise:"Lateral Raise",sets:"4 × 12–15",rest:"60 sec",difficulty:"Easy",instructions:"Hold dumbbells beside the body with a slight elbow bend. Raise the arms outward to approximately shoulder height, pause briefly, then lower slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/32.gif"},
-        {muscle:"Shoulders",exercise:"Rear-Delt Fly",sets:"4 × 12–15",rest:"60 sec",difficulty:"Easy",instructions:"Position yourself bent forward or against a bench. Raise the weights outward and backward using the rear shoulders, then slowly return them.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/27.gif"},
-        {muscle:"Shoulders",exercise:"Face Pull",sets:"3 × 12–15",rest:"60 sec",difficulty:"Medium",instructions:"Set the rope around face height. Pull it toward your face while separating your hands and keeping your elbows elevated, then slowly extend the arms again.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/874.gif"},
-        {muscle:"Biceps",exercise:"Cable Curl",sets:"3 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Grip the cable handle with elbows stationary at your sides. Curl toward the shoulders, squeeze the biceps, then slowly lower the handle.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/102.gif"},
-        {muscle:"Triceps",exercise:"Rope Pushdown",sets:"3 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Keep the elbows beside the torso. Push the rope downward until the arms are extended, separate the rope slightly at the bottom, then return slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/159.gif"},
-        {muscle:"Biceps",exercise:"Hammer Curl",sets:"2 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Keep the palms facing each other throughout the movement. Curl the dumbbells without swinging the body, then lower them slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/108.gif"},
-        {muscle:"Triceps",exercise:"Overhead Triceps Extension",sets:"2 × 10–15",rest:"60 sec",difficulty:"Medium",instructions:"Hold the weight above/behind the head with elbows pointing forward. Bend the elbows to lower the weight, then extend the arms back up.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/155.gif"},
-        {muscle:"Abs",exercise:"Dead Bug",sets:"3 × 8–12/side",rest:"45 sec",difficulty:"Easy",instructions:"Lie on your back with knees bent and arms raised. Brace your core, slowly extend the opposite arm and leg, return to the starting position and alternate sides.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1338.gif"},
-        {muscle:"Abs",exercise:"Side Plank",sets:"2 × 30–45 sec/side",rest:"45 sec",difficulty:"Medium",instructions:"Support yourself on one forearm and the side of one foot. Keep the body straight, brace the core and hold the position without allowing the hips to drop.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/633.gif"}
-      ])},
-      {id: uid(), title:"Day 4 — Chest + Back", exercises: mk([
-        {muscle:"Chest",exercise:"Incline Barbell Press",sets:"4 × 6–10",rest:"2 min",difficulty:"Difficult",instructions:"Lie on the incline bench with feet planted and shoulder blades retracted. Grip the bar, lower it toward the upper chest under control, then press it back upward.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/8.gif"},
-        {muscle:"Chest",exercise:"Flat Dumbbell Press",sets:"3 × 8–12",rest:"90 sec",difficulty:"Medium",instructions:"Lie on the flat bench with dumbbells at chest level. Press the weights upward until the arms are extended, then lower them slowly to the sides of your chest.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/26.gif"},
-        {muscle:"Chest",exercise:"Pec Deck",sets:"3 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Sit with your back against the pad and bring the machine arms together in front of your chest. Squeeze the chest, then slowly return.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/836.gif"},
-        {muscle:"Back",exercise:"Pull-up",sets:"4 × 8–12",rest:"2 min",difficulty:"Difficult",instructions:"Grip the bar securely and hang under control. Pull your body upward by driving the elbows down until your chin approaches the bar, then slowly lower yourself.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/83.gif"},
-        {muscle:"Back",exercise:"Dumbbell Incline Bench Row",sets:"4 × 8–12",rest:"90 sec",difficulty:"Medium",instructions:"Lie chest-down on an incline bench. Pull the dumbbells toward the sides of the torso while squeezing the back, then lower them slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1040.gif"},
-        {muscle:"Back",exercise:"Cable Rope Seated Row",sets:"3 × 10–12",rest:"75 sec",difficulty:"Easy",instructions:"Sit upright and pull the rope toward the abdomen. Squeeze the shoulder blades, then slowly extend the arms again.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1050.gif"},
-        {muscle:"Back",exercise:"Cable Pullover",sets:"2 × 12–15",rest:"60 sec",difficulty:"Easy",instructions:"Keep the arms relatively straight and pull the cable downward toward the body using the lats. Return slowly to the starting position.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/760.gif"},
-        {muscle:"Chest/Shoulders",exercise:"Cable Fly + Face Pull",sets:"2 × 12–15",rest:"45–60 sec",difficulty:"Easy–Medium",instructions:"Fly: bring the cables together in front of the chest. Face pull: pull the rope toward the face with elbows high and separate the hands.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1057.gif"}
-      ])},
-      {id: uid(), title:"Day 5 — Shoulders + Arms + Abs", exercises: mk([
-        {muscle:"Shoulders",exercise:"Seated Shoulder Press",sets:"3 × 8–12",rest:"90 sec",difficulty:"Medium",instructions:"Sit with back supported and weights at shoulder level. Press the weight overhead, then lower it in a controlled manner back to shoulder height.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/46.gif"},
-        {muscle:"Shoulders",exercise:"Cable Lateral Raise",sets:"4 × 12–15",rest:"60 sec",difficulty:"Easy",instructions:"Stand beside the low pulley and raise the working arm sideways to shoulder height. Keep the torso stable and lower the handle slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/19.gif"},
-        {muscle:"Shoulders",exercise:"Dumbbell Lateral Raise",sets:"3 × 12–20",rest:"45 sec",difficulty:"Easy",instructions:"Hold dumbbells at your sides and raise them outward to shoulder level with controlled movement. Lower them slowly without swinging.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/32.gif"},
-        {muscle:"Shoulders",exercise:"Rear-Delt Fly",sets:"3 × 12–15",rest:"60 sec",difficulty:"Easy",instructions:"Lean forward or use a supported position. Raise the dumbbells outward and backward to contract the rear delts, then lower under control.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/27.gif"},
-        {muscle:"Biceps",exercise:"EZ-Bar Curl",sets:"3 × 8–12",rest:"75 sec",difficulty:"Medium",instructions:"Hold the bar with elbows close to the torso. Curl it toward the shoulders without using momentum, then slowly lower it.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/95.gif"},
-        {muscle:"Biceps",exercise:"Preacher Curl Machine",sets:"3 × 10–15",rest:"60 sec",difficulty:"Medium",instructions:"Position your upper arms on the pad and grip the handles. Curl the weight upward while keeping the arms supported, then lower slowly toward extension.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/271.gif"},
-        {muscle:"Biceps",exercise:"Hammer Curl",sets:"2 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Keep a neutral grip and elbows near your body. Curl the dumbbells upward, squeeze the arms, then lower them slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/108.gif"},
-        {muscle:"Triceps",exercise:"Close-Grip Smith Bench Press",sets:"3 × 8–12",rest:"90 sec",difficulty:"Difficult",instructions:"Lie on the bench and grip the bar narrower than a regular bench press. Lower the bar toward the lower chest/upper abdomen with elbows close to the body, then press back up.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/248.gif"},
-        {muscle:"Triceps",exercise:"Rope Pushdown",sets:"3 × 10–15",rest:"60 sec",difficulty:"Easy",instructions:"Keep elbows tucked, push the rope downward until the arms are extended, squeeze the triceps and slowly return upward.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/159.gif"},
-        {muscle:"Triceps",exercise:"Overhead Triceps Extension",sets:"2 × 12–15",rest:"60 sec",difficulty:"Medium",instructions:"Keep the elbows relatively fixed as the weight is lowered behind the head. Extend the elbows to return the weight overhead.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/155.gif"},
-        {muscle:"Abs",exercise:"Weighted Crunch",sets:"3 × 12–15",rest:"45 sec",difficulty:"Easy–Medium",instructions:"Hold a weight against your chest and lie in the crunch position. Contract the abs to lift the upper torso, pause briefly, then lower with control.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/803.gif"},
-        {muscle:"Abs",exercise:"Reverse Crunch",sets:"3 × 12–15",rest:"45 sec",difficulty:"Easy",instructions:"Lie on your back with knees bent. Bring the knees toward the chest and curl the hips upward, then slowly return them toward the floor.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/338.gif"}
-      ])},
-      {id: uid(), title:"Day 6 — Upper-Body Hypertrophy + Core", exercises: mk([
-        {muscle:"Chest",exercise:"Machine Chest Press",sets:"3 × 10–12",rest:"75 sec",difficulty:"Easy",instructions:"Adjust the seat so the handles align with the chest. Press the handles forward, squeeze the chest, then slowly return.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/163.gif"},
-        {muscle:"Chest",exercise:"Incline Dumbbell Press",sets:"3 × 10–12",rest:"75 sec",difficulty:"Medium",instructions:"Set the bench at an incline and position the dumbbells beside the upper chest. Press upward, then return them slowly to the starting position.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/31.gif"},
-        {muscle:"Back",exercise:"Neutral-Grip Lat Pulldown",sets:"3 × 10–12",rest:"75 sec",difficulty:"Medium",instructions:"Use the neutral handles and pull them downward by driving your elbows toward your sides. Bring the handles toward the upper chest area, then slowly release.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1268.gif"},
-        {muscle:"Back",exercise:"Dumbbell Incline Bench Row",sets:"3 × 10–12",rest:"75 sec",difficulty:"Medium",instructions:"Lie chest-down on the incline bench with arms extended. Pull the dumbbells toward the torso while squeezing the back, then lower them slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1040.gif"},
-        {muscle:"Shoulders",exercise:"Lateral Raise",sets:"3 × 12–20",rest:"45 sec",difficulty:"Easy",instructions:"Raise the dumbbells sideways to shoulder height while keeping the movement controlled, then slowly lower them.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/32.gif"},
-        {muscle:"Shoulders",exercise:"Rear-Delt Fly",sets:"3 × 12–20",rest:"45 sec",difficulty:"Easy",instructions:"Raise the arms outward/backward while maintaining the torso position. Squeeze the rear shoulders and slowly return.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/27.gif"},
-        {muscle:"Biceps",exercise:"Cable Curl",sets:"3 × 12–15",rest:"45 sec",difficulty:"Easy",instructions:"Keep the elbows stationary and curl the cable handle toward the shoulders. Squeeze the biceps and slowly return.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/102.gif"},
-        {muscle:"Triceps",exercise:"Rope Pushdown",sets:"3 × 12–15",rest:"45 sec",difficulty:"Easy",instructions:"Push the rope downward while keeping the elbows close to the body. Extend the arms, squeeze the triceps and return slowly.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/159.gif"},
-        {muscle:"Abs",exercise:"Hanging Knee Raise",sets:"3 × 10–15",rest:"45 sec",difficulty:"Medium",instructions:"Hang from the bar with a firm grip. Slowly raise the knees toward the chest, hold briefly, then return to the starting position without swinging.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/690.gif"},
-        {muscle:"Core",exercise:"Dead Bug",sets:"3 × 8–12/side",rest:"45 sec",difficulty:"Easy",instructions:"Lie on your back with arms raised and knees bent. Brace the abs and slowly lower the opposite arm and leg toward the floor, return and alternate sides.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/1338.gif"},
-        {muscle:"Core",exercise:"Plank",sets:"2 × 45–60 sec",rest:"45 sec",difficulty:"Easy",instructions:"Support yourself on your forearms and toes, brace your core and maintain a straight body position throughout the hold.",gif:"https://cdn.jefit.com/assets/img/exercises/gifs/631.gif"}
-      ])}
-    ]
-  };
-}
-
-/* ---------- State management ---------- */
-const STORAGE_KEY = 'gymPlanData_v1';
-let STATE = null;
-
-function loadState(){
-  try{
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if(raw){ STATE = JSON.parse(raw); return; }
-  }catch(e){ console.warn('Could not read saved plan, using default.', e); }
-  STATE = buildDefaultData();
-}
-let toastTimer = null;
-function showToast(msg){
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove('show'), 1800);
-}
-function saveState(){
-  try{
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE));
-    showToast('✓ Saved to this browser');
-  }
-  catch(e){
-    console.warn('Could not save plan locally.', e);
-    showToast('⚠ Could not save — storage may be full or disabled');
-  }
-}
-function resetToDefault(){
-  if(!confirm('Reset the whole plan back to the original 6-day layout? This discards all your edits.')) return;
-  STATE = buildDefaultData();
-  saveState();
-  renderAll();
-}
-
-/* ---------- Helpers ---------- */
 function escapeHtml(str){
   return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
@@ -407,26 +328,209 @@ function diffClass(label){
   if(l.includes('medium')) return 'medium';
   return 'easy';
 }
+function todayStr(){
+  const d = new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function fmtDate(str){
+  const [y,m,d] = str.split('-').map(Number);
+  const dt = new Date(y, m-1, d);
+  return dt.toLocaleDateString(undefined, {weekday:'short', month:'short', day:'numeric'});
+}
+function parseSetCount(setsStr){
+  const m = /^(\d+)/.exec((setsStr||'').trim());
+  return m ? Math.max(1, Math.min(8, parseInt(m[1],10))) : 3;
+}
+function repsTargetText(setsStr){
+  const m = /x\s*(.+)$/i.exec((setsStr||'').trim());
+  return m ? m[1].trim() : '';
+}
+let toastTimer = null;
+function showToast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
+}
+function findLibraryExercise(name){
+  return EXERCISE_DB.find(e => e.exercise === name);
+}
+
+/* ================= Default plan ================= */
+function buildDefaultData(){
+  const days = DAY_TEMPLATES.map(tpl => ({
+    id: uid(),
+    title: tpl.title,
+    exercises: tpl.names.map(name => {
+      const lib = findLibraryExercise(name);
+      return { id: uid(), ...lib };
+    })
+  }));
+  return { days, logs: [], activeSession: null };
+}
+
+/* ================= State ================= */
+const STORAGE_KEY = 'ironLedgerData_v1';
+let STATE = null;
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      STATE = JSON.parse(raw);
+      if(!STATE.logs) STATE.logs = [];
+      if(STATE.activeSession === undefined) STATE.activeSession = null;
+      return;
+    }
+  }catch(e){ console.warn('Could not read saved plan, using default.', e); }
+  STATE = buildDefaultData();
+}
+function saveState(silent){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE));
+    if(!silent) showToast('✓ Saved');
+  }catch(e){
+    console.warn('Could not save locally.', e);
+    showToast('⚠ Could not save — storage may be full or disabled');
+  }
+}
+function resetToDefault(){
+  if(!confirm('Reset the whole plan back to the original 6-day layout? This discards your plan edits (workout history is kept).')) return;
+  const keepLogs = STATE.logs;
+  STATE = buildDefaultData();
+  STATE.logs = keepLogs;
+  saveState();
+  renderAll();
+}
+function clearHistory(){
+  if(!confirm('Delete ALL logged workout history? This cannot be undone.')) return;
+  STATE.logs = [];
+  saveState();
+  renderAll();
+  closeSettingsModal();
+}
+
 function getDay(dayId){ return STATE.days.find(d => d.id === dayId); }
 function getExercise(dayId, exId){ return getDay(dayId)?.exercises.find(e => e.id === exId); }
 
-/* ---------- Rendering ---------- */
-function renderAll(){
-  renderSummary();
-  renderDays();
-  renderWeeklyOverview();
+/* ================= Tabs ================= */
+const TABS = [
+  {id:'plan', label:'Plan', icon:'📋'},
+  {id:'log', label:'Log Workout', icon:'✅'},
+  {id:'history', label:'History', icon:'📈'},
+  {id:'library', label:'Library', icon:'📚'},
+];
+let currentTab = 'plan';
+function renderTabs(){
+  const desktop = document.getElementById('tabbarDesktop');
+  desktop.innerHTML = TABS.map(t => `<button class="tabbtn ${t.id===currentTab?'active':''}" onclick="switchTab('${t.id}')">${t.icon} ${t.label}</button>`).join('');
+  const bottom = document.getElementById('bottomNav');
+  bottom.innerHTML = TABS.map(t => `<button class="${t.id===currentTab?'active':''}" onclick="switchTab('${t.id}')"><span class="ic">${t.icon}</span>${t.label}</button>`).join('');
+}
+function switchTab(tabId){
+  currentTab = tabId;
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-'+tabId).classList.add('active');
+  renderTabs();
+  if(tabId === 'log') renderLog();
+  if(tabId === 'history') renderHistory();
+  if(tabId === 'library') renderLibrary();
+  window.scrollTo({top:0, behavior:'instant'});
 }
 
-function renderSummary(){
-  const totalDays = STATE.days.length;
-  const totalExercises = STATE.days.reduce((n,d)=>n+d.exercises.length,0);
-  const el = document.getElementById('summaryStats');
-  el.innerHTML = `
-    <div class="stat"><b>90 min</b><span>Target session length</span></div>
-    <div class="stat"><b>${totalDays} day${totalDays===1?'':'s'}</b><span>Currently in plan</span></div>
-    <div class="stat"><b>${totalExercises}</b><span>Total exercises</span></div>
-    <div class="stat"><b>8–10 min</b><span>Warm-up</span></div>
-    <div class="stat"><b>8–12 min</b><span>Abs / core</span></div>
+/* ================= Stats & badges ================= */
+function computeStreak(){
+  const dates = new Set(STATE.logs.map(l => l.date));
+  if(dates.size === 0) return 0;
+  let streak = 0;
+  let cursor = new Date();
+  // if no workout today yet, streak can still count from yesterday backwards
+  if(!dates.has(todayStr())) cursor.setDate(cursor.getDate()-1);
+  while(true){
+    const ds = cursor.getFullYear()+'-'+String(cursor.getMonth()+1).padStart(2,'0')+'-'+String(cursor.getDate()).padStart(2,'0');
+    if(dates.has(ds)){ streak++; cursor.setDate(cursor.getDate()-1); }
+    else break;
+  }
+  return streak;
+}
+function computeThisWeekCount(){
+  const now = new Date();
+  const day = now.getDay();
+  const monday = new Date(now);
+  monday.setDate(now.getDate() - ((day+6)%7));
+  monday.setHours(0,0,0,0);
+  return STATE.logs.filter(l => new Date(l.date+'T00:00:00') >= monday).length;
+}
+function computeTotalVolume(){
+  return STATE.logs.reduce((sum,l) => sum + (l.volume||0), 0);
+}
+function renderStats(){
+  const streak = computeStreak();
+  const total = STATE.logs.length;
+  const week = computeThisWeekCount();
+  const vol = computeTotalVolume();
+  document.getElementById('statStrip').innerHTML = `
+    <div class="stat streak"><b>${streak>0?'🔥 ':''}${streak}</b><span>Day streak</span></div>
+    <div class="stat"><b>${total}</b><span>Workouts logged</span></div>
+    <div class="stat"><b>${week}</b><span>This week</span></div>
+    <div class="stat"><b>${vol.toLocaleString()}</b><span>Total volume lifted</span></div>
+  `;
+  const milestones = [5,10,25,50,100,200];
+  const hit = milestones.filter(m => total >= m);
+  const badgeRow = document.getElementById('badgeRow');
+  if(hit.length){
+    badgeRow.innerHTML = hit.map(m => `<span class="badge">🏅 ${m}+ workouts</span>`).join('') + (streak>=3?`<span class="badge">🔥 ${streak}-day streak</span>`:'');
+  } else if(streak>=3){
+    badgeRow.innerHTML = `<span class="badge">🔥 ${streak}-day streak</span>`;
+  } else {
+    badgeRow.innerHTML = '';
+  }
+}
+function celebrateIfMilestone(prevTotal, newTotal, streak){
+  const milestones = [5,10,25,50,100,200];
+  const crossed = milestones.find(m => prevTotal < m && newTotal >= m);
+  if(crossed){
+    showToast(`🎉 Milestone! You've logged ${crossed} workouts!`);
+  } else if(streak === 3 || streak === 7 || streak === 14 || streak === 30){
+    showToast(`🔥 ${streak}-day streak — keep it going!`);
+  } else {
+    showToast('💪 Nice work — workout saved!');
+  }
+}
+
+/* ================= Render: Plan ================= */
+function renderAll(){
+  renderStats();
+  renderTabs();
+  renderDays();
+  renderWeeklyOverview();
+  if(currentTab === 'log') renderLog();
+  if(currentTab === 'history') renderHistory();
+  if(currentTab === 'library') renderLibrary();
+}
+
+function exRowHtml(day, ex){
+  return `
+    <div class="ex-row" data-ex-id="${ex.id}">
+      <div class="ex-main">
+        <div class="ex-icon">${ex.icon||'💪'}</div>
+        <div style="flex:1">
+          <div class="ex-name">${escapeHtml(ex.exercise)}</div>
+          <div class="ex-meta">${escapeHtml(ex.sets)} · Rest ${escapeHtml(ex.rest)}</div>
+          <div class="ex-badges">
+            <span class="muscle-chip">${escapeHtml(ex.muscle)}</span>
+            <span class="diff ${diffClass(ex.difficulty)}">${escapeHtml(ex.difficulty)}</span>
+          </div>
+          <div class="ex-instructions">${escapeHtml(ex.instructions)}</div>
+          ${ex.gif ? `<div style="margin-top:6px"><a href="${escapeHtml(ex.gif)}" target="_blank" rel="noopener noreferrer" style="font-size:12px;font-weight:700;color:var(--accent);text-decoration:none">🖼️ View image/GIF</a></div>` : ''}
+        </div>
+      </div>
+      <div class="row-actions">
+        <button class="btn btn-sm" onclick="editExercise('${day.id}','${ex.id}')" title="Edit">✏️</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteExercise('${day.id}','${ex.id}')" title="Delete">🗑️</button>
+      </div>
+    </div>
   `;
 }
 
@@ -437,38 +541,15 @@ function renderDays(){
       <h2>
         <span class="title">${escapeHtml(day.title)}</span>
         <span class="day-actions">
-          <button class="btn btn-sm icon-btn" onclick="editDay('${day.id}')" title="Edit day title">✏️ Edit Day</button>
-          <button class="btn btn-sm btn-danger icon-btn" onclick="deleteDay('${day.id}')" title="Delete day">🗑️ Delete Day</button>
+          <button class="btn btn-sm" onclick="editDay('${day.id}')" title="Edit day title">✏️</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteDay('${day.id}')" title="Delete day">🗑️</button>
         </span>
       </h2>
-      <div class="table-wrap">
-        ${day.exercises.length ? `
-        <table>
-          <thead><tr><th>Muscle</th><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Difficulty</th><th>How to do it</th><th>JEFIT GIF</th><th>Actions</th></tr></thead>
-          <tbody>
-            ${day.exercises.map(ex => `
-              <tr data-ex-id="${ex.id}">
-                <td class="muscle">${escapeHtml(ex.muscle)}</td>
-                <td class="exercise">${escapeHtml(ex.exercise)}</td>
-                <td>${escapeHtml(ex.sets)}</td>
-                <td>${escapeHtml(ex.rest)}</td>
-                <td><span class="diff ${diffClass(ex.difficulty)}">${escapeHtml(ex.difficulty)}</span></td>
-                <td style="min-width:260px">${escapeHtml(ex.instructions)}</td>
-                <td>
-                  ${ex.gif ? `<div class="gif"><a href="${escapeHtml(ex.gif)}" target="_blank" rel="noopener noreferrer"><img src="${escapeHtml(ex.gif)}" alt="JEFIT exercise demonstration GIF" loading="lazy"><br>Open GIF</a></div>` : '<span class="hint">No GIF</span>'}
-                </td>
-                <td class="row-actions">
-                  <button class="btn btn-sm icon-btn" onclick="editExercise('${day.id}','${ex.id}')" title="Edit">✏️</button>
-                  <button class="btn btn-sm btn-danger icon-btn" onclick="deleteExercise('${day.id}','${ex.id}')" title="Delete">🗑️</button>
-                </td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-        ` : `<div class="empty-day">No exercises yet on this day — add one below.</div>`}
+      <div class="ex-list">
+        ${day.exercises.length ? day.exercises.map(ex => exRowHtml(day, ex)).join('') : `<div class="empty-day">No exercises yet on this day — add one below.</div>`}
       </div>
       <div class="add-row">
-        <button class="btn btn-primary" onclick="addExercise('${day.id}')">+ Add Exercise</button>
+        <button class="btn btn-primary btn-block" onclick="addExercise('${day.id}')">+ Add Exercise</button>
       </div>
     </section>
   `).join('');
@@ -485,11 +566,12 @@ function renderWeeklyOverview(){
       else if(counts.medium >= counts.easy) overall = 'Medium';
       else overall = 'Easy';
     }
-    return `<tr><td>${escapeHtml(day.title)}</td><td>${escapeHtml(day.title.replace(/^Day\s*\d+\s*—\s*/,''))}</td><td>${overall}</td><td>${day.exercises.length}</td></tr>`;
+    const focus = day.title.replace(/^Day\s*\d+\s*—\s*/,'');
+    return `<tr><td>${escapeHtml(day.title.split('—')[0].trim())}</td><td>${escapeHtml(focus)}</td><td>${overall}</td><td>${day.exercises.length}</td></tr>`;
   }).join('');
 }
 
-/* ---------- Day CRUD ---------- */
+/* ================= Day CRUD ================= */
 let dayModalMode = 'add';
 let dayModalTargetId = null;
 
@@ -511,51 +593,13 @@ function editDay(dayId){
   setTimeout(()=>document.getElementById('d_title').focus(), 30);
 }
 function closeDayModal(){ document.getElementById('dayOverlay').classList.remove('open'); }
-
-/* ---------- Settings: corsproxy.io API key ---------- */
-const CORS_KEY_STORAGE = 'corsProxyApiKey_v1';
-function getCorsProxyKey(){
-  try{ return (localStorage.getItem(CORS_KEY_STORAGE) || '').trim(); }
-  catch(e){ return ''; }
-}
-function buildProxiedUrl(targetUrl){
-  const key = getCorsProxyKey();
-  const params = new URLSearchParams();
-  if(key) params.set('key', key);
-  params.set('url', targetUrl);
-  return 'https://corsproxy.io/?' + params.toString();
-}
-function openSettings(){
-  document.getElementById('corsProxyKeyInput').value = getCorsProxyKey();
-  document.getElementById('settingsOverlay').classList.add('open');
-}
-function closeSettingsModal(){ document.getElementById('settingsOverlay').classList.remove('open'); }
-function saveSettings(){
-  const key = document.getElementById('corsProxyKeyInput').value.trim();
-  try{
-    if(key) localStorage.setItem(CORS_KEY_STORAGE, key);
-    else localStorage.removeItem(CORS_KEY_STORAGE);
-    showToast(key ? '✓ CORS proxy key saved' : 'CORS proxy key cleared');
-  }catch(e){
-    showToast('⚠ Could not save key');
-  }
-  closeSettingsModal();
-}
-function clearCorsProxyKey(){
-  document.getElementById('corsProxyKeyInput').value = '';
-  try{ localStorage.removeItem(CORS_KEY_STORAGE); }catch(e){ /* ignore */ }
-  showToast('CORS proxy key cleared');
-  closeSettingsModal();
-}
-
 function saveDay(){
   const title = document.getElementById('d_title').value.trim();
   if(!title){ alert('Please enter a day title.'); return; }
   if(dayModalMode === 'add'){
     STATE.days.push({id: uid(), title, exercises: []});
   } else {
-    const day = getDay(dayModalTargetId);
-    day.title = title;
+    getDay(dayModalTargetId).title = title;
   }
   saveState();
   renderAll();
@@ -569,7 +613,7 @@ function deleteDay(dayId){
   renderAll();
 }
 
-/* ---------- Exercise CRUD ---------- */
+/* ================= Exercise CRUD ================= */
 let exModalMode = 'add';
 let exModalDayId = null;
 let exModalExId = null;
@@ -579,84 +623,12 @@ function clearExerciseForm(){
   document.getElementById('f_difficulty').value = 'Medium';
   document.getElementById('exerciseSearchInput').value = '';
   document.getElementById('searchResults').style.display = 'none';
-  document.getElementById('gifPreviewWrap').style.display = 'none';
   resetJefitStatus();
 }
 function resetJefitStatus(){
   const el = document.getElementById('jefitFetchStatus');
-  el.className = 'hint';
-  el.innerHTML = 'Paste a link to a specific JEFIT exercise page (like the one you shared) and click Fetch to pull its name, instructions and image automatically. If JEFIT blocks the request from your browser (CORS) or changes their page layout, this will fail — fill the fields in manually below instead, or open <a class="small-link" href="https://www.jefit.com/my-jefit/exercises/find" target="_blank" rel="noopener noreferrer">JEFIT\'s exercise directory</a> to copy details over by hand.';
-}
-
-/* ---------- Fetch live data from a JEFIT exercise page ---------- */
-async function fetchFromJefit(){
-  const url = document.getElementById('jefitUrlInput').value.trim();
-  const statusEl = document.getElementById('jefitFetchStatus');
-  if(!url){ alert('Paste a JEFIT exercise page URL first.'); return; }
-  if(!/^https?:\/\/(www\.)?jefit\.com\//i.test(url)){
-    statusEl.className = 'hint';
-    statusEl.style.color = 'var(--danger)';
-    statusEl.textContent = "That doesn't look like a jefit.com link — double-check the URL.";
-    return;
-  }
-  statusEl.style.color = '';
-  statusEl.textContent = 'Fetching from JEFIT via corsproxy.io…';
-
-  const proxiedUrl = buildProxiedUrl(url);
-
-  try{
-    const res = await fetch(proxiedUrl);
-    if(!res.ok) throw new Error('corsproxy.io/JEFIT responded with status ' + res.status);
-    const html = await res.text();
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-
-    // Exercise name
-    const title = (doc.querySelector('h1')?.textContent || '').trim();
-
-    // Instructions: collect text of elements between the "Instructions" heading and the next heading
-    let instructions = '';
-    const headings = Array.from(doc.querySelectorAll('h1,h2,h3,h4'));
-    const instrHeading = headings.find(h => /instructions/i.test(h.textContent || ''));
-    if(instrHeading){
-      const parts = [];
-      let node = instrHeading.nextElementSibling;
-      while(node && !/^H[1-4]$/i.test(node.tagName)){
-        const text = (node.textContent || '').trim();
-        if(text) parts.push(text);
-        node = node.nextElementSibling;
-      }
-      instructions = parts.join('\n\n');
-    }
-
-    // Image: first exercise photo on the page (JEFIT serves static images, not animated GIFs)
-    let imageUrl = '';
-    const imgs = Array.from(doc.querySelectorAll('img'));
-    const exImg = imgs.find(img => /view\s*\d/i.test(img.alt || '') || /\/images\/exercises\//i.test(img.src || img.getAttribute('src') || ''));
-    if(exImg){
-      imageUrl = exImg.getAttribute('src') || exImg.src || '';
-      try{
-        const parsed = new URL(imageUrl, url);
-        const inner = parsed.searchParams.get('url'); // Next.js image proxy wraps the real URL in ?url=
-        if(inner) imageUrl = decodeURIComponent(inner);
-        else imageUrl = parsed.href;
-      }catch(e){ /* keep imageUrl as-is */ }
-    }
-
-    if(!title && !instructions && !imageUrl){
-      throw new Error('Could not find exercise details on that page — JEFIT may have changed their layout.');
-    }
-
-    if(title) document.getElementById('f_exercise').value = title;
-    if(instructions) document.getElementById('f_instructions').value = instructions;
-    if(imageUrl){ document.getElementById('f_gif').value = imageUrl; updateGifPreview(); }
-
-    statusEl.style.color = 'var(--accent)';
-    statusEl.textContent = '✓ Pulled ' + [title && 'name', instructions && 'instructions', imageUrl && 'image'].filter(Boolean).join(', ') + ' from JEFIT. Review the fields below and adjust sets/reps, rest and difficulty yourself.';
-  }catch(err){
-    console.error(err);
-    statusEl.style.color = 'var(--danger)';
-    statusEl.textContent = 'Fetch failed (' + err.message + "). Check that your corsproxy.io API key is entered correctly in Settings (⚙), or try again without a key in case corsproxy.io's free tier is rate-limited — otherwise fill the fields in manually.";
-  }
+  el.style.color = '';
+  el.textContent = 'Paste a link to a JEFIT exercise page to try pulling its name, instructions and image automatically. If it fails, fill the fields in by hand below.';
 }
 function addExercise(dayId){
   exModalMode = 'add';
@@ -681,35 +653,33 @@ function editExercise(dayId, exId){
   document.getElementById('f_difficulty').value = ex.difficulty;
   document.getElementById('f_instructions').value = ex.instructions;
   document.getElementById('f_gif').value = ex.gif || '';
-  updateGifPreview();
   document.getElementById('exerciseModalTitle').textContent = 'Edit Exercise';
-  document.getElementById('searchSection').style.display = 'none'; // searching while editing would be confusing; keep it simple
+  document.getElementById('searchSection').style.display = 'none';
   document.getElementById('exerciseOverlay').classList.add('open');
 }
 function closeExerciseModal(){ document.getElementById('exerciseOverlay').classList.remove('open'); }
-
 function saveExercise(){
   const exercise = document.getElementById('f_exercise').value.trim();
   if(!exercise){ alert('Please enter an exercise name.'); return; }
   const data = {
     exercise,
-    muscle: document.getElementById('f_muscle').value.trim(),
-    sets: document.getElementById('f_sets').value.trim(),
-    rest: document.getElementById('f_rest').value.trim(),
+    muscle: document.getElementById('f_muscle').value.trim() || 'General',
+    sets: document.getElementById('f_sets').value.trim() || '3 x 10-12',
+    rest: document.getElementById('f_rest').value.trim() || '60 sec',
     difficulty: document.getElementById('f_difficulty').value,
-    instructions: document.getElementById('f_instructions').value.trim(),
-    gif: document.getElementById('f_gif').value.trim()
+    instructions: document.getElementById('f_instructions').value.trim() || 'Perform with controlled form through a full range of motion.',
+    gif: document.getElementById('f_gif').value.trim(),
+    icon: iconForMuscle(document.getElementById('f_muscle').value.trim())
   };
   if(exModalMode === 'add'){
-    const day = getDay(exModalDayId);
-    day.exercises.push({id: uid(), ...data});
+    getDay(exModalDayId).exercises.push({id: uid(), ...data});
   } else {
-    const ex = getExercise(exModalDayId, exModalExId);
-    Object.assign(ex, data);
+    Object.assign(getExercise(exModalDayId, exModalExId), data);
   }
   saveState();
   renderAll();
   closeExerciseModal();
+  showToast('✓ Exercise saved to your plan');
 }
 function deleteExercise(dayId, exId){
   const ex = getExercise(dayId, exId);
@@ -719,53 +689,379 @@ function deleteExercise(dayId, exId){
   saveState();
   renderAll();
 }
+function iconForMuscle(muscle){
+  const found = EXERCISE_DB.find(e => e.muscle.toLowerCase() === (muscle||'').toLowerCase());
+  return found ? found.icon : '💪';
+}
 
-/* ---------- Search library ---------- */
+/* ---------- Search library (inside Add Exercise modal) ---------- */
 function renderSearchResults(){
   const q = document.getElementById('exerciseSearchInput').value.trim().toLowerCase();
   const resultsEl = document.getElementById('searchResults');
   if(!q){ resultsEl.style.display = 'none'; resultsEl.innerHTML=''; return; }
-  const matches = EXERCISE_DB.filter(e => e.exercise.toLowerCase().includes(q) || e.muscle.toLowerCase().includes(q)).slice(0, 12);
+  const matches = EXERCISE_DB.filter(e => e.exercise.toLowerCase().includes(q) || e.muscle.toLowerCase().includes(q)).slice(0, 20);
   if(!matches.length){
-    resultsEl.innerHTML = `<div class="result"><span>No library matches for "${escapeHtml(q)}". Try the "Fetch From a JEFIT Exercise Page" box below with a direct link, or fill the fields in manually.</span></div>`;
+    resultsEl.innerHTML = `<div class="result"><span>No library matches for "${escapeHtml(q)}". Fill the fields in manually below, or try the JEFIT fetch box.</span></div>`;
     resultsEl.style.display = 'block';
     return;
   }
-  resultsEl.innerHTML = matches.map((m,i) => `
-    <div class="result" onclick="pickFromLibrary(${EXERCISE_DB.indexOf(m)})">
-      <span>${escapeHtml(m.exercise)}</span>
+  resultsEl.innerHTML = matches.map(m => `
+    <div class="result" onclick="pickFromLibrary('${m.exercise.replace(/'/g,"\\'")}')">
+      <span>${m.icon} ${escapeHtml(m.exercise)}</span>
       <span class="muted">${escapeHtml(m.muscle)} · ${escapeHtml(m.difficulty)}</span>
     </div>
   `).join('');
   resultsEl.style.display = 'block';
 }
-function pickFromLibrary(index){
-  const item = EXERCISE_DB[index];
+function pickFromLibrary(name){
+  const item = findLibraryExercise(name);
+  if(!item) return;
   document.getElementById('f_exercise').value = item.exercise;
   document.getElementById('f_muscle').value = item.muscle;
   document.getElementById('f_sets').value = item.sets;
   document.getElementById('f_rest').value = item.rest;
   document.getElementById('f_difficulty').value = item.difficulty;
   document.getElementById('f_instructions').value = item.instructions;
-  document.getElementById('f_gif').value = item.gif;
-  updateGifPreview();
+  document.getElementById('f_gif').value = item.gif || '';
   document.getElementById('searchResults').style.display = 'none';
 }
-function updateGifPreview(){
-  const url = document.getElementById('f_gif').value.trim();
-  const wrap = document.getElementById('gifPreviewWrap');
-  const img = document.getElementById('gifPreview');
-  if(url){ img.src = url; wrap.style.display = 'flex'; }
-  else { wrap.style.display = 'none'; img.src = ''; }
+
+/* ---------- Fetch live data from a JEFIT exercise page ---------- */
+const CORS_KEY_STORAGE = 'corsProxyApiKey_v1';
+function getCorsProxyKey(){
+  try{ return (localStorage.getItem(CORS_KEY_STORAGE) || '').trim(); } catch(e){ return ''; }
+}
+function buildProxiedUrl(targetUrl){
+  const key = getCorsProxyKey();
+  const params = new URLSearchParams();
+  if(key) params.set('key', key);
+  params.set('url', targetUrl);
+  return 'https://corsproxy.io/?' + params.toString();
+}
+async function fetchFromJefit(){
+  const url = document.getElementById('jefitUrlInput').value.trim();
+  const statusEl = document.getElementById('jefitFetchStatus');
+  if(!url){ alert('Paste a JEFIT exercise page URL first.'); return; }
+  if(!/^https?:\/\/(www\.)?jefit\.com\//i.test(url)){
+    statusEl.style.color = 'var(--danger)';
+    statusEl.textContent = "That doesn't look like a jefit.com link — double-check the URL.";
+    return;
+  }
+  statusEl.style.color = '';
+  statusEl.textContent = 'Fetching from JEFIT via corsproxy.io…';
+  try{
+    const res = await fetch(buildProxiedUrl(url));
+    if(!res.ok) throw new Error('corsproxy.io/JEFIT responded with status ' + res.status);
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const title = (doc.querySelector('h1')?.textContent || '').trim();
+    let instructions = '';
+    const headings = Array.from(doc.querySelectorAll('h1,h2,h3,h4'));
+    const instrHeading = headings.find(h => /instructions/i.test(h.textContent || ''));
+    if(instrHeading){
+      const parts = [];
+      let node = instrHeading.nextElementSibling;
+      while(node && !/^H[1-4]$/i.test(node.tagName)){
+        const text = (node.textContent || '').trim();
+        if(text) parts.push(text);
+        node = node.nextElementSibling;
+      }
+      instructions = parts.join('\n\n');
+    }
+    let imageUrl = '';
+    const imgs = Array.from(doc.querySelectorAll('img'));
+    const exImg = imgs.find(img => /view\s*\d/i.test(img.alt || '') || /\/images\/exercises\//i.test(img.src || img.getAttribute('src') || ''));
+    if(exImg){
+      imageUrl = exImg.getAttribute('src') || exImg.src || '';
+      try{
+        const parsed = new URL(imageUrl, url);
+        const inner = parsed.searchParams.get('url');
+        imageUrl = inner ? decodeURIComponent(inner) : parsed.href;
+      }catch(e){ /* keep as-is */ }
+    }
+    if(!title && !instructions && !imageUrl){
+      throw new Error('Could not find exercise details on that page — JEFIT may have changed their layout.');
+    }
+    if(title) document.getElementById('f_exercise').value = title;
+    if(instructions) document.getElementById('f_instructions').value = instructions;
+    if(imageUrl) document.getElementById('f_gif').value = imageUrl;
+    statusEl.style.color = 'var(--accent)';
+    statusEl.textContent = '✓ Pulled ' + [title && 'name', instructions && 'instructions', imageUrl && 'image'].filter(Boolean).join(', ') + ' from JEFIT. Review and adjust sets/reps yourself.';
+  }catch(err){
+    console.error(err);
+    statusEl.style.color = 'var(--danger)';
+    statusEl.textContent = 'Fetch failed (' + err.message + '). Check your corsproxy.io key in Settings, or fill the fields in manually.';
+  }
 }
 
-/* ---------- Theme (dark mode) ---------- */
+/* ================= Library tab ================= */
+let libActiveMuscle = 'All';
+function renderLibraryChips(){
+  const bar = document.getElementById('libChipBar');
+  const muscles = ['All', ...MUSCLE_LIST];
+  bar.innerHTML = muscles.map(m => `<button class="chip ${m===libActiveMuscle?'active':''}" onclick="setLibMuscle('${m}')">${m}</button>`).join('');
+}
+function setLibMuscle(m){ libActiveMuscle = m; renderLibrary(); }
+function renderLibrary(){
+  renderLibraryChips();
+  const q = (document.getElementById('libSearchInput').value || '').trim().toLowerCase();
+  let list = EXERCISE_DB;
+  if(libActiveMuscle !== 'All') list = list.filter(e => e.muscle === libActiveMuscle);
+  if(q) list = list.filter(e => e.exercise.toLowerCase().includes(q));
+  const grid = document.getElementById('libGrid');
+  if(!list.length){
+    grid.innerHTML = `<div class="empty-state"><div class="big">🔎</div><p>No exercises match. Try a different search or muscle group.</p></div>`;
+    return;
+  }
+  grid.innerHTML = list.map((e,i) => `
+    <div class="lib-card" data-idx="${i}" onclick="toggleLibCard(this)">
+      <div class="top">
+        <span style="font-size:20px">${e.icon}</span>
+        <span class="name">${escapeHtml(e.exercise)}</span>
+        <span class="diff ${diffClass(e.difficulty)}">${escapeHtml(e.difficulty)}</span>
+      </div>
+      <div class="meta">${escapeHtml(e.muscle)} · ${escapeHtml(e.sets)} · Rest ${escapeHtml(e.rest)}</div>
+      <div class="detail">
+        <p>${escapeHtml(e.instructions)}</p>
+        <button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); openPickDayModal('${e.exercise.replace(/'/g,"\\'")}')">+ Add to a day</button>
+      </div>
+    </div>
+  `).join('');
+}
+function toggleLibCard(el){ el.classList.toggle('open'); }
+
+let pickDayExerciseName = null;
+function openPickDayModal(name){
+  pickDayExerciseName = name;
+  const sel = document.getElementById('pickDaySelect');
+  if(!STATE.days.length){
+    alert('Add a day to your plan first (Plan tab → + Add Day).');
+    return;
+  }
+  sel.innerHTML = STATE.days.map(d => `<option value="${d.id}">${escapeHtml(d.title)}</option>`).join('');
+  document.getElementById('pickDayOverlay').classList.add('open');
+}
+function closePickDayModal(){ document.getElementById('pickDayOverlay').classList.remove('open'); }
+function confirmAddFromLibrary(){
+  const dayId = document.getElementById('pickDaySelect').value;
+  const lib = findLibraryExercise(pickDayExerciseName);
+  if(!lib || !dayId) return;
+  getDay(dayId).exercises.push({id: uid(), ...lib});
+  saveState();
+  renderAll();
+  closePickDayModal();
+  showToast(`✓ Added ${lib.exercise} to ${getDay(dayId).title}`);
+}
+
+/* ================= Log Workout tab ================= */
+function renderLog(){
+  const el = document.getElementById('logContainer');
+  if(!STATE.activeSession){
+    if(!STATE.days.length){
+      el.innerHTML = `<div class="empty-state"><div class="big">🗓️</div><p>Add a day to your plan first, then come back here to log a workout.</p></div>`;
+      return;
+    }
+    el.innerHTML = `
+      <div class="day">
+        <h2><span class="title">Start a Workout</span></h2>
+        <div style="padding:14px 16px">
+          <div class="field"><label>Which day are you training?</label>
+            <select id="startDaySelect">${STATE.days.map(d=>`<option value="${d.id}">${escapeHtml(d.title)}</option>`).join('')}</select>
+          </div>
+          <div class="field"><label>Date</label><input type="date" id="startDateInput" value="${todayStr()}"></div>
+          <button class="btn btn-primary btn-block" onclick="startSession()">▶ Start Logging</button>
+        </div>
+      </div>
+    `;
+    return;
+  }
+  const s = STATE.activeSession;
+  const day = getDay(s.dayId);
+  el.innerHTML = `
+    <div class="day">
+      <h2><span class="title">${escapeHtml(day ? day.title : s.dayTitle)} — ${fmtDate(s.date)}</span></h2>
+      <div style="padding:10px 14px 0"><div class="hint">Check off each set as you finish it and log the weight &amp; reps you used.</div></div>
+      <div style="padding:12px 14px">
+        ${s.entries.map((entry, ei) => `
+          <div class="session-ex">
+            <div class="head">
+              <span style="font-size:18px">${entry.icon||'💪'}</span>
+              <span class="name">${escapeHtml(entry.exercise)}</span>
+              <span class="target">target ${escapeHtml(entry.targetSets)}</span>
+            </div>
+            ${entry.sets.map((st, si) => `
+              <div class="setrow">
+                <div class="setnum">${si+1}</div>
+                <input type="number" inputmode="decimal" placeholder="weight" value="${st.weight}" onchange="updateSetField(${ei},${si},'weight',this.value)">
+                <input type="number" inputmode="numeric" placeholder="reps" value="${st.reps}" onchange="updateSetField(${ei},${si},'reps',this.value)">
+                <input type="checkbox" ${st.done?'checked':''} onchange="updateSetField(${ei},${si},'done',this.checked)">
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+        <div class="field"><label>Notes (optional)</label><textarea id="sessionNotes" placeholder="How did it feel?">${escapeHtml(s.notes||'')}</textarea></div>
+        <div class="modal-actions" style="justify-content:space-between">
+          <button class="btn btn-danger" onclick="cancelSession()">Cancel Workout</button>
+          <button class="btn btn-primary" onclick="finishSession()">🏁 Finish &amp; Save</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+function startSession(){
+  const dayId = document.getElementById('startDaySelect').value;
+  const date = document.getElementById('startDateInput').value || todayStr();
+  const day = getDay(dayId);
+  if(!day || !day.exercises.length){
+    alert('This day has no exercises yet — add some in the Plan tab first.');
+    return;
+  }
+  STATE.activeSession = {
+    dayId, dayTitle: day.title, date, notes:'',
+    entries: day.exercises.map(ex => ({
+      exId: ex.id, exercise: ex.exercise, muscle: ex.muscle, icon: ex.icon,
+      targetSets: ex.sets,
+      sets: Array.from({length: parseSetCount(ex.sets)}, () => ({weight:'', reps:'', done:false}))
+    }))
+  };
+  saveState(true);
+  renderLog();
+}
+function updateSetField(entryIdx, setIdx, field, value){
+  const entry = STATE.activeSession.entries[entryIdx];
+  const st = entry.sets[setIdx];
+  if(field === 'done') st.done = value;
+  else st[field] = value;
+  saveState(true);
+}
+function cancelSession(){
+  if(!confirm('Discard this in-progress workout?')) return;
+  STATE.activeSession = null;
+  saveState(true);
+  renderLog();
+}
+function finishSession(){
+  const s = STATE.activeSession;
+  s.notes = document.getElementById('sessionNotes').value.trim();
+  let volume = 0, completedSets = 0, totalSets = 0;
+  s.entries.forEach(entry => entry.sets.forEach(st => {
+    totalSets++;
+    const w = parseFloat(st.weight), r = parseFloat(st.reps);
+    if(st.done) completedSets++;
+    if(st.done && !isNaN(w) && !isNaN(r)) volume += w*r;
+  }));
+  if(completedSets === 0 && !confirm('No sets are checked off yet — save this workout anyway?')) return;
+
+  const prevTotal = STATE.logs.length;
+  STATE.logs.push({
+    id: uid(), date: s.date, dayId: s.dayId, dayTitle: s.dayTitle,
+    entries: s.entries, notes: s.notes, volume: Math.round(volume),
+    completedSets, totalSets, savedAt: new Date().toISOString()
+  });
+  STATE.logs.sort((a,b) => a.date < b.date ? 1 : -1);
+  STATE.activeSession = null;
+  saveState(true);
+  const newStreak = computeStreak();
+  celebrateIfMilestone(prevTotal, STATE.logs.length, newStreak);
+  renderAll();
+  switchTab('history');
+}
+
+/* ================= History tab ================= */
+function renderHistory(){
+  const el = document.getElementById('historyContainer');
+  if(!STATE.logs.length){
+    el.innerHTML = `<div class="empty-state"><div class="big">📈</div><p>No workouts logged yet. Head to the Log Workout tab to record your first session!</p></div>`;
+    return;
+  }
+  el.innerHTML = `
+    <div class="day">
+      <h2><span class="title">Weekly Volume</span></h2>
+      <div style="padding:14px 16px">${renderVolumeChart()}</div>
+    </div>
+    ${STATE.logs.map(log => `
+      <div class="session-card">
+        <div class="top" onclick="toggleSessionDetail('${log.id}')" style="cursor:pointer">
+          <div>
+            <div class="date">${fmtDate(log.date)}</div>
+            <div class="sub">${escapeHtml(log.dayTitle)}</div>
+          </div>
+          <button class="btn btn-sm btn-danger" onclick="event.stopPropagation(); deleteSession('${log.id}')">🗑️</button>
+        </div>
+        <div class="figs">
+          <div><b>${log.completedSets}/${log.totalSets}</b><span>Sets done</span></div>
+          <div><b>${log.volume.toLocaleString()}</b><span>Volume</span></div>
+          <div><b>${log.entries.length}</b><span>Exercises</span></div>
+        </div>
+        <div class="session-detail" id="detail-${log.id}">
+          ${log.entries.map(entry => `
+            <div class="row"><span>${entry.icon||''} ${escapeHtml(entry.exercise)}</span><span>${entry.sets.filter(s=>s.done).map(s=>`${s.weight||'–'}×${s.reps||'–'}`).join(', ') || 'not logged'}</span></div>
+          `).join('')}
+          ${log.notes ? `<div class="hint" style="margin-top:8px">📝 ${escapeHtml(log.notes)}</div>` : ''}
+        </div>
+      </div>
+    `).join('')}
+  `;
+}
+function toggleSessionDetail(id){
+  document.getElementById('detail-'+id).classList.toggle('open');
+}
+function deleteSession(id){
+  if(!confirm('Delete this logged workout?')) return;
+  STATE.logs = STATE.logs.filter(l => l.id !== id);
+  saveState();
+  renderAll();
+}
+function renderVolumeChart(){
+  const weeks = [];
+  const now = new Date();
+  for(let i=7;i>=0;i--){
+    const start = new Date(now);
+    start.setDate(now.getDate() - now.getDay() - (i*7) + 1);
+    start.setHours(0,0,0,0);
+    const end = new Date(start); end.setDate(start.getDate()+7);
+    const vol = STATE.logs.filter(l => {
+      const d = new Date(l.date+'T00:00:00');
+      return d >= start && d < end;
+    }).reduce((s,l) => s + l.volume, 0);
+    weeks.push({label: (start.getMonth()+1)+'/'+start.getDate(), vol});
+  }
+  const max = Math.max(1, ...weeks.map(w=>w.vol));
+  return `
+    <div class="bars">${weeks.map(w => `<div class="bar" style="height:${Math.max(3,(w.vol/max)*100)}%"><span>${w.vol>0?w.vol.toLocaleString():''}</span></div>`).join('')}</div>
+    <div class="bar-label">${weeks.map(w => `<div>${w.label}</div>`).join('')}</div>
+  `;
+}
+
+/* ================= Settings ================= */
+function openSettings(){
+  document.getElementById('corsProxyKeyInput').value = getCorsProxyKey();
+  document.getElementById('settingsOverlay').classList.add('open');
+}
+function closeSettingsModal(){ document.getElementById('settingsOverlay').classList.remove('open'); }
+function saveSettings(){
+  const key = document.getElementById('corsProxyKeyInput').value.trim();
+  try{
+    if(key) localStorage.setItem(CORS_KEY_STORAGE, key);
+    else localStorage.removeItem(CORS_KEY_STORAGE);
+    showToast(key ? '✓ CORS proxy key saved' : 'CORS proxy key cleared');
+  }catch(e){ showToast('⚠ Could not save key'); }
+  closeSettingsModal();
+}
+function clearCorsProxyKey(){
+  document.getElementById('corsProxyKeyInput').value = '';
+  try{ localStorage.removeItem(CORS_KEY_STORAGE); }catch(e){}
+  showToast('CORS proxy key cleared');
+  closeSettingsModal();
+}
+
+/* ================= Theme ================= */
 const THEME_KEY = 'gymPlanTheme_v1';
 function applyTheme(theme){
   document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
   const btn = document.getElementById('themeToggleBtn');
   if(btn) btn.textContent = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
-  try{ localStorage.setItem(THEME_KEY, theme); }catch(e){ /* ignore */ }
+  try{ localStorage.setItem(THEME_KEY, theme); }catch(e){}
 }
 function toggleTheme(){
   const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
@@ -774,17 +1070,22 @@ function toggleTheme(){
 function loadTheme(){
   let saved = 'light';
   try{ saved = localStorage.getItem(THEME_KEY) || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
-  catch(e){ /* ignore */ }
+  catch(e){}
   applyTheme(saved);
 }
 
-/* ---------- Init ---------- */
+/* ================= Init ================= */
 document.addEventListener('click', (e) => {
   if(e.target.classList.contains('overlay')) e.target.classList.remove('open');
 });
+function populateMuscleDatalist(){
+  document.getElementById('muscleListOptions').innerHTML = MUSCLE_LIST.map(m => `<option value="${m}">`).join('');
+}
 loadTheme();
 loadState();
+populateMuscleDatalist();
 renderAll();
+
 </script>
 </body>
 </html>
