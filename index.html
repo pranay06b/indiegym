@@ -328,7 +328,7 @@ const LIB_SEED = [
  ["Pull-up","Back","4 × 8–12","2 min","Difficult",83,"Grip the bar securely and hang under control. Pull your body upward by driving the elbows down until your chin approaches the bar, then slowly lower yourself."],
  ["Close-Grip Smith Bench Press","Triceps","3 × 8–12","90 sec","Difficult",248,"Lie on the bench and grip the bar narrower than a regular bench press. Lower the bar toward the lower chest/upper abdomen with elbows close to the body, then press back up."],
  ["Cable Tricep Pushdown (Rope)","Triceps","3 × 10–15","60 sec","Easy",159,"Stand at the high pulley with a rope and use an overhand grip. Keep the elbows at your sides, push the rope toward the thighs, split the rope at the bottom, squeeze the triceps, then return slowly."],
- ["Overhead Triceps Extension","Triceps","2 × 12–15","60 sec","Medium",155,"Keep the elbows relatively fixed as the weight is lowered behind the head. Extend the elbows to return the weight overhead."],
+ ["Cable Overhead Tricep Extension","Triceps","2 × 12–15","60 sec","Medium",155,"Keep the elbows relatively fixed as the weight is lowered behind the head. Extend the elbows to return the weight overhead."],
  ["Weighted Crunch","Abs","3 × 12–15","45 sec","Easy–Medium",803,"Hold a weight against your chest and lie in the crunch position. Contract the abs to lift the upper torso, pause briefly, then lower with control."],
  ["Reverse Crunch","Abs","3 × 12–15","45 sec","Easy",338,"Lie on your back with knees bent. Bring the knees toward the chest and curl the hips upward, then slowly return them toward the floor."],
  ["Cable Mid Chest Crossover + Face Pull","Chest/Shoulders","2 × 12–15","45–60 sec","Easy–Medium",1057,"Cable crossover: stand between high pulleys and bring the handles down and together in front of the body while squeezing the chest. For the face-pull portion, use a separate rope attachment and pull toward the face with elbows elevated."]
@@ -635,7 +635,7 @@ const JEFIT_MORE = [
   ["Cable Low Row", "Back|Biceps", "Strength Machine", "Medium"],
   ["Cable Lat Pulldown", "Back", "Strength Machine", "Medium"],
   ["Cable Straight Arm Pulldown", "Back", "Strength Machine", "Medium"],
-  ["Cable Pullover", "Back", "Strength Machine", "Easy"],
+  ["Cable Pullover (Supine)", "Back", "Strength Machine", "Easy"],
   ["Cable Face Pull", "Back|Shoulders", "Strength Machine", "Easy"],
   ["Cable Reverse Fly", "Back|Chest|Shoulders", "Strength Machine", "Easy"],
   ["Cable Rear Delt Raise", "Full Body", "Strength Machine", "Easy"],
@@ -655,7 +655,7 @@ const JEFIT_MORE = [
   ["Cable Pullover Press", "Back|Chest|Triceps", "Strength Machine", "Easy"],
   ["Cable Close Grip Press", "Chest|Triceps", "Strength Machine", "Easy"],
   ["Cable Reverse Grip Press", "Chest|Triceps", "Strength Machine", "Easy"],
-  ["Cable Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Cable Bicep Curl", "Biceps", "Strength Machine", "Medium"],
   ["Cable Reverse Curl", "Biceps", "Strength Machine", "Medium"],
   ["Cable Hammer Curl", "Biceps", "Strength Machine", "Medium"],
   ["Cable Concentration Curl", "Biceps", "Strength Machine", "Medium"],
@@ -820,20 +820,20 @@ LIB.forEach(e => { if(!e.source) e.source = "JEFIT"; });
 const LIB_BY_NAME = new Map(LIB.map(e => [e.name, e]));
 // Backward-compatible aliases for the original 6-day plan names.
 [
-  ["Pec Deck / Cable Fly", "Pec Deck / Machine Fly"],
-  ["Overhead Rope Triceps Extension", "Cable Rope Overhead Tricep Extension"],
-  ["Assisted Dip", "Machine Assisted Dip"],
-  ["Single-Arm Lat Pulldown", "Cable One-Arm Lat Pulldown"],
-  ["Cable Pullover", "Cable Pullover (Supine)"],
-  ["Incline Dumbbell Curl", "Dumbbell Incline Curl"],
-  ["Hammer Curl", "Dumbbell Hammer Curl"],
+  ["Pec Deck / Machine Fly", "Pec Deck / Machine Fly"],
+  ["Cable Rope Overhead Tricep Extension", "Cable Rope Overhead Tricep Extension"],
+  ["Machine Assisted Dip", "Machine Assisted Dip"],
+  ["Cable One-Arm Lat Pulldown", "Cable One-Arm Lat Pulldown"],
+  ["Cable Pullover (Supine)", "Cable Pullover (Supine)"],
+  ["Dumbbell Incline Curl", "Dumbbell Incline Curl"],
+  ["Dumbbell Hammer Curl", "Dumbbell Hammer Curl"],
   ["Lateral Raise", "Dumbbell Lateral Raise"],
-  ["Rear-Delt Fly", "Dumbbell Bent-Over Raise"],
-  ["Face Pull", "Cable Rope Face Pull"],
-  ["Cable Curl", "Cable Bicep Curl"],
-  ["Rope Pushdown", "Cable Tricep Pushdown (Rope)"],
-  ["Seated Shoulder Press", "Machine Shoulder Press"],
-  ["Pec Deck", "Pec Deck (Machine Fly)"]
+  ["Dumbbell Bent-Over Raise", "Dumbbell Bent-Over Raise"],
+  ["Cable Rope Face Pull", "Cable Rope Face Pull"],
+  ["Cable Bicep Curl", "Cable Bicep Curl"],
+  ["Cable Tricep Pushdown", "Cable Tricep Pushdown (Rope)"],
+  ["Machine Shoulder Press", "Machine Shoulder Press"],
+  ["Pec Deck / Machine Fly", "Pec Deck (Machine Fly)"]
 ].forEach(([alias, canonical]) => {
   if(LIB_BY_NAME.has(canonical)) LIB_BY_NAME.set(alias, LIB_BY_NAME.get(canonical));
 });
@@ -853,30 +853,30 @@ LIB.forEach(normalizeLibraryEntry);
 const PLAN_SEED = [
  ["Day 1 — Chest + Triceps + Abs",[
   ["Barbell Bench Press","4 × 6–10","2 min"],["Incline Dumbbell Press","4 × 8–12","90 sec"],["Machine Chest Press","3 × 8–12","90 sec"],
-  ["Pec Deck / Cable Fly","3 × 12–15","60 sec"],["Triceps Pushdown","3 × 10–15","60 sec"],["Overhead Rope Triceps Extension","3 × 10–15","60 sec"],
-  ["Assisted Dip","2 × 8–12","75 sec"],["Decline Crunch","3 × 12–15","45 sec"],["Hanging Knee Raise","3 × 10–15","45 sec"]]],
+  ["Pec Deck / Machine Fly","3 × 12–15","60 sec"],["Triceps Pushdown","3 × 10–15","60 sec"],["Cable Rope Overhead Tricep Extension","3 × 10–15","60 sec"],
+  ["Machine Assisted Dip","2 × 8–12","75 sec"],["Decline Crunch","3 × 12–15","45 sec"],["Hanging Knee Raise","3 × 10–15","45 sec"]]],
  ["Day 2 — Back + Biceps",[
   ["Machine Lat Pulldown","4 × 8–12","2 min"],["Dumbbell Incline Bench Row","4 × 8–12","90 sec"],["Cable Rope Seated Row","3 × 8–12","90 sec"],
-  ["Single-Arm Lat Pulldown","3 × 10–12","75 sec"],["Cable Pullover","3 × 12–15","60 sec"],["EZ-Bar Curl","3 × 8–12","75 sec"],
-  ["Incline Dumbbell Curl","3 × 10–12","60 sec"],["Hammer Curl","2 × 10–15","60 sec"],["Plank","3 × 45–60 sec","45 sec"]]],
+  ["Cable One-Arm Lat Pulldown","3 × 10–12","75 sec"],["Cable Pullover (Supine)","3 × 12–15","60 sec"],["EZ-Bar Curl","3 × 8–12","75 sec"],
+  ["Dumbbell Incline Curl","3 × 10–12","60 sec"],["Dumbbell Hammer Curl","2 × 10–15","60 sec"],["Plank","3 × 45–60 sec","45 sec"]]],
  ["Day 3 — Shoulders + Arms + Abs",[
-  ["Dumbbell Shoulder Press","4 × 8–12","90 sec"],["Lateral Raise","4 × 12–15","60 sec"],["Rear-Delt Fly","4 × 12–15","60 sec"],
-  ["Face Pull","3 × 12–15","60 sec"],["Cable Curl","3 × 10–15","60 sec"],["Rope Pushdown","3 × 10–15","60 sec"],
-  ["Hammer Curl","2 × 10–15","60 sec"],["Overhead Triceps Extension","2 × 10–15","60 sec"],["Dead Bug","3 × 8–12/side","45 sec"],
+  ["Dumbbell Shoulder Press","4 × 8–12","90 sec"],["Lateral Raise","4 × 12–15","60 sec"],["Dumbbell Bent-Over Raise","4 × 12–15","60 sec"],
+  ["Cable Rope Face Pull","3 × 12–15","60 sec"],["Cable Bicep Curl","3 × 10–15","60 sec"],["Cable Tricep Pushdown","3 × 10–15","60 sec"],
+  ["Dumbbell Hammer Curl","2 × 10–15","60 sec"],["Cable Overhead Tricep Extension","2 × 10–15","60 sec"],["Dead Bug","3 × 8–12/side","45 sec"],
   ["Side Plank","2 × 30–45 sec/side","45 sec"]]],
  ["Day 4 — Chest + Back",[
-  ["Incline Barbell Press","4 × 6–10","2 min"],["Flat Dumbbell Press","3 × 8–12","90 sec"],["Pec Deck","3 × 10–15","60 sec"],
+  ["Incline Barbell Press","4 × 6–10","2 min"],["Flat Dumbbell Press","3 × 8–12","90 sec"],["Pec Deck / Machine Fly","3 × 10–15","60 sec"],
   ["Pull-up","4 × 8–12","2 min"],["Dumbbell Incline Bench Row","4 × 8–12","90 sec"],["Cable Rope Seated Row","3 × 10–12","75 sec"],
-  ["Cable Pullover","2 × 12–15","60 sec"],["Cable Fly + Face Pull","2 × 12–15","45–60 sec"]]],
+  ["Cable Pullover (Supine)","2 × 12–15","60 sec"],["Cable Fly + Face Pull","2 × 12–15","45–60 sec"]]],
  ["Day 5 — Shoulders + Arms + Abs",[
-  ["Seated Shoulder Press","3 × 8–12","90 sec"],["Cable Lateral Raise","4 × 12–15","60 sec"],["Dumbbell Lateral Raise","3 × 12–20","45 sec"],
-  ["Rear-Delt Fly","3 × 12–15","60 sec"],["EZ-Bar Curl","3 × 8–12","75 sec"],["Preacher Curl Machine","3 × 10–15","60 sec"],
-  ["Hammer Curl","2 × 10–15","60 sec"],["Close-Grip Smith Bench Press","3 × 8–12","90 sec"],["Rope Pushdown","3 × 10–15","60 sec"],
-  ["Overhead Triceps Extension","2 × 12–15","60 sec"],["Weighted Crunch","3 × 12–15","45 sec"],["Reverse Crunch","3 × 12–15","45 sec"]]],
+  ["Machine Shoulder Press","3 × 8–12","90 sec"],["Cable Lateral Raise","4 × 12–15","60 sec"],["Dumbbell Lateral Raise","3 × 12–20","45 sec"],
+  ["Dumbbell Bent-Over Raise","3 × 12–15","60 sec"],["EZ-Bar Curl","3 × 8–12","75 sec"],["Preacher Curl Machine","3 × 10–15","60 sec"],
+  ["Dumbbell Hammer Curl","2 × 10–15","60 sec"],["Close-Grip Smith Bench Press","3 × 8–12","90 sec"],["Cable Tricep Pushdown","3 × 10–15","60 sec"],
+  ["Cable Overhead Tricep Extension","2 × 12–15","60 sec"],["Weighted Crunch","3 × 12–15","45 sec"],["Reverse Crunch","3 × 12–15","45 sec"]]],
  ["Day 6 — Upper-Body Hypertrophy + Core",[
   ["Machine Chest Press","3 × 10–12","75 sec"],["Incline Dumbbell Press","3 × 10–12","75 sec"],["Neutral-Grip Lat Pulldown","3 × 10–12","75 sec"],
-  ["Dumbbell Incline Bench Row","3 × 10–12","75 sec"],["Lateral Raise","3 × 12–20","45 sec"],["Rear-Delt Fly","3 × 12–20","45 sec"],
-  ["Cable Curl","3 × 12–15","45 sec"],["Rope Pushdown","3 × 12–15","45 sec"],["Hanging Knee Raise","3 × 10–15","45 sec"],
+  ["Dumbbell Incline Bench Row","3 × 10–12","75 sec"],["Lateral Raise","3 × 12–20","45 sec"],["Dumbbell Bent-Over Raise","3 × 12–20","45 sec"],
+  ["Cable Bicep Curl","3 × 12–15","45 sec"],["Cable Tricep Pushdown","3 × 12–15","45 sec"],["Hanging Knee Raise","3 × 10–15","45 sec"],
   ["Dead Bug","3 × 8–12/side","45 sec"],["Plank","2 × 45–60 sec","45 sec"]]]
 ];
 
@@ -893,6 +893,42 @@ function buildDefault(){
    ========================================================= */
 let S;
 const UI = {tab: "plan", q: "", group: "All", muscles: [], difficulty: "All", equipment: "All", matchAll: false};
+
+function normalizePlanExercises(plan){
+  if(!plan || typeof plan !== "object") return plan;
+  const aliasMap = {
+    "Pec Deck / Cable Fly":"Pec Deck / Machine Fly",
+    "Overhead Rope Triceps Extension":"Cable Rope Overhead Tricep Extension",
+    "Assisted Dip":"Machine Assisted Dip",
+    "Single-Arm Lat Pulldown":"Cable One-Arm Lat Pulldown",
+    "Cable Pullover":"Cable Pullover (Supine)",
+    "Incline Dumbbell Curl":"Dumbbell Incline Curl",
+    "Hammer Curl":"Dumbbell Hammer Curl",
+    "Cable Curl":"Cable Bicep Curl",
+    "Rope Pushdown":"Cable Tricep Pushdown",
+    "Overhead Triceps Extension":"Cable Overhead Tricep Extension",
+    "Seated Shoulder Press":"Machine Shoulder Press",
+    "Pec Deck":"Pec Deck / Machine Fly",
+    "Rear-Delt Fly":"Dumbbell Bent-Over Raise",
+    "Face Pull":"Cable Rope Face Pull"
+  };
+  const days = Array.isArray(plan) ? plan : (plan.days || []);
+  days.forEach(day => {
+    if(!Array.isArray(day.exercises)) return;
+    day.exercises.forEach(ex => {
+      if(ex && aliasMap[ex.name]) ex.name = aliasMap[ex.name];
+      const canonical = ex && LIB_BY_NAME.get(ex.name);
+      if(canonical && ex){
+        ex.gif = canonical.gif;
+        ex.instructions = canonical.instructions;
+        ex.muscle = canonical.muscle;
+        ex.muscles = canonical.muscles;
+        ex.difficulty = canonical.difficulty;
+      }
+    });
+  });
+  return plan;
+}
 
 function loadState(){
   try{
