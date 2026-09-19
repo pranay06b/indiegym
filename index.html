@@ -18,17 +18,20 @@
   --paper:#FFFFFF;
   --line:#C9CDD6;
   --signal:#FF5B1F;    /* safety orange: attention only */
+  --good:#1F9D55;
   --danger:#B3200C;
   --font-display:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
   --font-body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
-  --gl:max(16px,env(safe-area-inset-left));   /* left/right gutters, safe-area aware */
+  --gl:max(16px,env(safe-area-inset-left));
   --gr:max(16px,env(safe-area-inset-right));
-  --top-h:58px;                                /* header height, kept in sync by JS for sticky bars */
+  --top-h:58px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--floor);color:var(--ink);font:16px/1.45 var(--font-body);padding-bottom:calc(84px + env(safe-area-inset-bottom))}
 body.noscroll{overflow:hidden}
+body.has-active{padding-bottom:calc(150px + env(safe-area-inset-bottom))}
 h1,h2,h3,h4,p{margin:0}
 button,input,select,textarea{font:inherit;color:inherit}
 button,[data-act]{touch-action:manipulation}
@@ -45,8 +48,8 @@ button{-webkit-appearance:none;appearance:none}
 .keychip.none,.keychip.bad{background:var(--signal);border-color:var(--signal);color:var(--ink)}
 .keychip.ok::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#7CF2A6;margin-right:8px}
 
-/* ---------- Tabs (bottom bar on phones, inline on desktop) ---------- */
-.tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(3,1fr);background:var(--paper);border-top:1.5px solid var(--ink);padding-bottom:env(safe-area-inset-bottom)}
+/* ---------- Tabs ---------- */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(4,1fr);background:var(--paper);border-top:1.5px solid var(--ink);padding-bottom:env(safe-area-inset-bottom)}
 .tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:60px;border:0;background:none;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer}
 .tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .tab.on{color:var(--slab);box-shadow:inset 0 3px 0 var(--slab)}
@@ -60,7 +63,7 @@ button{-webkit-appearance:none;appearance:none}
 .keybar .btn{flex:0 0 auto}
 main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 
-/* Day rail: sticks under the header so you can switch days from anywhere in the list */
+/* Workout rail */
 .rail{position:sticky;top:calc(var(--top-h) - 1px);z-index:20;display:flex;gap:8px;overflow-x:auto;margin:0 calc(-1 * var(--gr)) 0 calc(-1 * var(--gl));padding:12px var(--gr) 10px var(--gl);background:var(--floor);border-bottom:1px solid var(--line);scroll-snap-type:x proximity;scroll-padding-left:var(--gl);scrollbar-width:none}
 .rail::-webkit-scrollbar,.chips::-webkit-scrollbar{display:none}
 .dchip{flex:0 0 auto;width:120px;text-align:left;background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;padding:9px 11px 10px;cursor:pointer;scroll-snap-align:start}
@@ -68,16 +71,15 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .dchip span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:12px;line-height:1.3;color:var(--muted);margin-top:4px;min-height:2.6em}
 .dchip.on{background:var(--slab);border-color:var(--slab);color:#fff}
 .dchip.on span{color:#DDE1FF}
-.dchip.add{background:transparent;border-style:dashed;width:88px}
+.dchip.add{background:transparent;border-style:dashed;width:96px}
 
-/* Day header */
 .day-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:16px 0 12px}
 .day-head > div{min-width:0}
 .day-head h2{font-family:var(--font-display);font-weight:800;font-size:clamp(36px,9vw,56px);line-height:.95}
 .day-head .meta{color:var(--muted);font-size:14px;margin-top:8px}
 .day-head .btn{flex:0 0 auto;margin-top:4px}
+.start-btn{margin-bottom:14px}
 
-/* Exercise rows */
 .ex-list{border-top:2px solid var(--ink)}
 .ex{display:grid;grid-template-columns:112px 1fr 18px;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
 .ex:active{background:rgba(255,255,255,.75)}
@@ -106,7 +108,7 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .gif.sm{width:56px;flex:0 0 56px}
 .gif-msg{font-size:12px;line-height:1.25;color:var(--muted);padding:0 8px}
 .gif-btn{border:1.5px solid var(--ink);background:var(--paper);border-radius:999px;padding:0 12px;min-height:32px;font-size:12px;font-weight:700;cursor:pointer}
-.gif:not(.lg) .gif-btn.k{display:none}   /* the banner already says "add key"; keep small slots quiet */
+.gif:not(.lg) .gif-btn.k{display:none}
 .gif.sm .gif-msg{display:none}
 .gif.sm .gif-btn{font-size:10px;padding:0 6px;min-height:22px}
 
@@ -134,7 +136,94 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .tile-meta{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}
 .empty{grid-column:1/-1;color:var(--muted);padding:24px 0}
 
-/* Bottom sheets: fixed header and footer, body scrolls, drag down to dismiss */
+/* ---------- Progress tab ---------- */
+.hero{background:var(--slab);color:#fff;border-radius:12px;padding:18px;margin-top:16px}
+.hero-top{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.lv-wrap{text-align:center;min-width:78px;border:2px solid rgba(255,255,255,.7);border-radius:12px;padding:6px 10px}
+.lv-wrap span{display:block;font-size:12px;font-weight:600;color:#DDE1FF}
+.lv-wrap b{display:block;font-family:var(--font-display);font-size:50px;line-height:1;font-weight:800}
+.hero h2{font-family:var(--font-display);font-size:40px;line-height:1;font-weight:800}
+.hero p{color:#DDE1FF;font-size:14px;margin-top:4px}
+.bar{height:12px;border-radius:99px;background:rgba(255,255,255,.22);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--signal);border-radius:inherit;transition:width .4s}
+.bar.dark{background:var(--line)}
+.bar.dark i{background:var(--slab)}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.stat{background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;padding:10px 12px}
+.stat b{display:block;font-family:var(--font-display);font-size:36px;line-height:1;font-weight:800}
+.stat span{font-size:12.5px;color:var(--muted)}
+.card{background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;padding:14px;margin-top:12px}
+.card-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.card-head b{font-size:15px}
+.card-head span{font-size:13.5px;color:var(--muted)}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:12px}
+.wd{text-align:center;font-size:12px;color:var(--muted)}
+.wd i{display:block;height:34px;margin-top:4px;border-radius:8px;border:1.5px solid var(--line);background:#fff}
+.wd.on i{background:var(--slab);border-color:var(--slab)}
+.wd.today{color:var(--ink);font-weight:700}
+.wd.today i{border-color:var(--ink)}
+.sec{font-family:var(--font-display);font-weight:800;font-size:32px;line-height:1;margin:28px 0 12px}
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.bd{background:var(--paper);border:1.5px solid var(--ink);border-radius:10px;padding:12px 6px;text-align:center}
+.bd .g{width:52px;height:52px;border-radius:50%;margin:0 auto 8px;display:grid;place-items:center;background:var(--signal);color:var(--ink);font-family:var(--font-display);font-weight:800;font-size:22px}
+.bd b{display:block;font-size:12.5px;line-height:1.2}
+.bd small{display:block;font-size:11.5px;color:var(--muted);margin-top:2px;line-height:1.25}
+.bd.locked{border-color:var(--line);background:transparent}
+.bd.locked .g{background:var(--line);color:var(--muted)}
+.bd.locked b{color:var(--muted)}
+.hist{border-top:2px solid var(--ink)}
+.hrow{display:flex;width:100%;justify-content:space-between;align-items:center;gap:12px;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:12px 0;min-height:64px;cursor:pointer}
+.hrow:active{background:rgba(255,255,255,.75)}
+.hrow b{display:block;font-size:16px}
+.hrow small{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.pill{display:inline-block;background:var(--signal);color:var(--ink);font-weight:700;font-size:12px;border-radius:999px;padding:2px 9px;flex:0 0 auto}
+
+/* ---------- Active workout ---------- */
+.resume{position:fixed;left:var(--gl);right:var(--gr);bottom:calc(68px + env(safe-area-inset-bottom));z-index:35}
+.resume-btn{width:100%;min-height:52px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--signal);color:var(--ink);border:1.5px solid var(--ink);border-radius:10px;padding:0 16px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(16,26,74,.25)}
+.resume-btn b{font-family:var(--font-display);font-size:24px}
+.sstat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:6px}
+.sstat div{background:var(--floor);border-radius:8px;padding:8px 10px}
+.sstat b{display:block;font-family:var(--font-display);font-size:28px;line-height:1;font-weight:700}
+.sstat span{font-size:12px;color:var(--muted)}
+.lx{padding:14px 0;border-top:1px solid var(--line)}
+.lx-head{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.sheet .lx-head h4{margin:0;font-size:16px}
+.srow{display:grid;grid-template-columns:30px minmax(0,1fr) 78px 70px 46px;gap:8px;align-items:center;margin-bottom:8px}
+.srow.head{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:4px}
+.srow.head span:nth-child(n+3){text-align:center}
+.srow .sn{font-weight:700;text-align:center}
+.srow .prev{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srow input{width:100%;min-width:0;min-height:44px;text-align:center;border:1.5px solid var(--line);border-radius:8px;padding:0 4px;background:#fff;font-size:16px;font-weight:600}
+.srow input:focus{border-color:var(--slab);outline:none;box-shadow:0 0 0 3px rgba(27,44,193,.18)}
+.tick{width:46px;height:44px;border-radius:8px;border:1.5px solid var(--ink);background:#fff;display:grid;place-items:center;cursor:pointer;padding:0}
+.tick svg{width:22px;height:22px;stroke:var(--line);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.srow.done input{background:#E8F6EE;border-color:var(--good)}
+.srow.done .tick{background:var(--good);border-color:var(--good)}
+.srow.done .tick svg{stroke:#fff}
+.lx-actions{display:flex;flex-wrap:wrap;gap:0 14px}
+.restbar{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--ink);color:#fff;border-radius:8px;padding:4px 6px 4px 14px;margin-bottom:10px}
+.restbar b{font-family:var(--font-display);font-size:26px;margin-left:6px}
+.restbar .link{color:#fff}
+.win{text-align:center;padding:8px 0 14px}
+.win span{font-size:14px;color:var(--muted)}
+.win b{display:block;font-family:var(--font-display);font-weight:800;font-size:72px;line-height:1;color:var(--slab)}
+.lvline{margin:4px 0 16px}
+.lvline .hint{margin-top:6px;text-align:center}
+.plist{margin:0;padding:0;list-style:none}
+.plist li{padding:9px 0;border-bottom:1px solid var(--line);font-size:15px;display:flex;justify-content:space-between;gap:12px}
+.plist li span{color:var(--muted);font-size:13.5px}
+.confetti{position:relative;height:0}
+.confetti i{position:absolute;top:-4px;width:8px;height:14px;border-radius:2px;animation:fall 1.9s ease-in forwards}
+@keyframes fall{to{transform:translateY(380px) rotate(540deg);opacity:0}}
+.mini-badges{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.edit-ex{display:flex;align-items:center;gap:6px;padding:8px 0;border-bottom:1px solid var(--line)}
+.edit-ex span{flex:1;min-width:0;font-size:14.5px;font-weight:600}
+.icon-btn{flex:0 0 auto;width:44px;height:44px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-size:16px;cursor:pointer}
+.icon-btn:disabled{opacity:.35}
+.icon-btn.danger{color:var(--danger);border-color:var(--danger)}
+
+/* Bottom sheets */
 .scrim{position:fixed;inset:0;background:rgba(16,26,74,.62);display:none;z-index:60;align-items:flex-end;justify-content:center;overscroll-behavior:contain}
 .scrim.open{display:flex}
 .sheet{background:var(--paper);width:100%;max-width:600px;max-height:92vh;max-height:92dvh;display:flex;flex-direction:column;overflow:hidden;border-radius:18px 18px 0 0;animation:rise .18s ease-out;outline:none}
@@ -203,25 +292,26 @@ details.jefit .hint{margin:8px 0 12px}
 .check{display:flex;gap:12px;align-items:center;min-height:44px;font-size:14.5px}
 .check input{width:22px;height:22px;min-height:0;accent-color:var(--slab)}
 .toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 18px;border-radius:999px;font-size:14px;z-index:80;max-width:90vw;opacity:0;pointer-events:none;transition:opacity .2s}
+body.has-active .toast{bottom:calc(150px + env(safe-area-inset-bottom))}
 .toast.show{opacity:1}
 
-/* ---------- Phones ---------- */
 @media(max-width:819px){
-  .keychip{display:none}                    /* the banner and the Settings tab cover this on phones */
-  body.kb .tabs{display:none}               /* free the screen while the keyboard is up */
+  .keychip{display:none}
+  .tab.settings-tab{display:flex}
+  body.kb .tabs,body.kb .resume{display:none}
 }
 @media(min-width:400px){
   .ex{grid-template-columns:128px 1fr 18px}
   .ex .gif{width:128px}
 }
-
-/* ---------- Wider screens ---------- */
 @media(min-width:620px){
   .lib-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .badges{grid-template-columns:repeat(5,1fr)}
 }
 @media(min-width:820px){
   :root{--gl:max(24px,env(safe-area-inset-left));--gr:max(24px,env(safe-area-inset-right))}
-  body{padding-bottom:0}
+  body,body.has-active{padding-bottom:0}
+  body.has-active{padding-bottom:90px}
   main{padding-bottom:56px}
   .top-in{padding-top:12px;padding-bottom:12px}
   .tabs{position:static;display:flex;gap:4px;background:none;border:0;padding:0}
@@ -239,7 +329,9 @@ details.jefit .hint{margin:8px 0 12px}
   .sheet{border-radius:14px;max-height:88vh;max-height:88dvh}
   .grab{display:none}
   .sheet-head{padding-top:18px}
-  .toast{bottom:32px}
+  .toast,body.has-active .toast{bottom:32px}
+  .resume{left:auto;right:24px;bottom:24px;width:340px}
+  .hist{display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
 }
 @media(min-width:1100px){
   .lib-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
@@ -260,6 +352,7 @@ details.jefit .hint{margin:8px 0 12px}
     <nav class="tabs" aria-label="Sections">
       <button class="tab" data-act="tab" data-tab="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>Plan</button>
       <button class="tab" data-act="tab" data-tab="lib"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Library</button>
+      <button class="tab" data-act="tab" data-tab="prog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0V4zM8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3M12 13v4M8 20h8M10 17h4"/></svg>Progress</button>
       <button class="tab settings-tab" data-act="open-settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h9M19 6h1M4 12h3M13 12h7M4 18h11M21 18h-1"/><circle cx="16" cy="6" r="2.5"/><circle cx="10" cy="12" r="2.5"/><circle cx="18" cy="18" r="2.5"/></svg>Settings</button>
     </nav>
     <button class="keychip" id="keyChip" data-act="open-settings"></button>
@@ -269,12 +362,12 @@ details.jefit .hint{margin:8px 0 12px}
 <div class="banner" id="banner"></div>
 <main id="main"></main>
 
+<div class="resume" id="resume" hidden><button class="resume-btn" data-act="resume"><span>Workout in progress</span><span><b id="resEl">0:00</b></span></button></div>
 <div class="scrim" id="scrim"><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="./data.js?v=20260920-3" onerror="window.__JEFIT_LOAD_ERROR=true"></script>
 <script>
-// External JEFIT library diagnostics. The data file must be loaded before app initialization.
 window.__JEFIT_DATA_COUNT = Array.isArray(window.JEFIT_SCRAPED) ? window.JEFIT_SCRAPED.length : 0;
 "use strict";
 
@@ -284,33 +377,31 @@ window.__JEFIT_DATA_COUNT = Array.isArray(window.JEFIT_SCRAPED) ? window.JEFIT_S
 const $ = (s, r = document) => r.querySelector(s);
 const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const uid = () => "x" + Math.random().toString(36).slice(2, 10);
+const num = v => parseFloat(String(v ?? "").replace(",", ".")) || 0;
+const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+const fmtNum = n => Math.round(n).toLocaleString();
 const CDN = "https://cdn.jefit.com/assets/img/exercises/gifs/";
 const TEST_GIF = CDN + "2.gif";
 const PROXY_BASE = "https://image-cors-proxy.pranay9506k.workers.dev/";
 const KEY_STORE = "indiegym_proxy_key";
 const STATE_STORE = "indiegym_state_v1";
+const SPLIT = /[\/|,\\]+/;
+const DAY_MS = 864e5;
+const DEFAULT_SETS = "3 × 8–12", DEFAULT_REST = "60–90 sec";
 
 /* =========================================================
-   Exercise library (from the original plan's JEFIT entries)
-   [name, muscle, sets, rest, difficulty, JEFIT GIF id, instructions]
+   Exercise library (loaded from data.js)
    ========================================================= */
-/* =========================================================
-   Exercise library
-   Loaded from external data.js.
-   Expected format: const JEFIT_SCRAPED = [{
-     name, muscle, muscles, sets, rest, difficulty,
-     instructions, gif, equipment, sourceUrl, jefitId, source
-   }, ...]
-   ========================================================= */
+function cleanHow(t){
+  // JEFIT pages append "Alternative … Exercises" lists and menus to the instructions; drop them.
+  return String(t || "").split(/\s*(?:Alternative [A-Za-z\- ]+ Exercises|Explore by Muscle)/)[0].replace(/\r\n/g, "\n").trim();
+}
 function normalizeScrapedExercise(e){
   const muscles = Array.isArray(e.muscles)
     ? e.muscles.map(x => String(x).trim()).filter(Boolean)
-    : String(e.muscles || e.muscle || "").split(/[\\/|,]+/).map(x => x.trim()).filter(Boolean);
-  const rawDifficulty = String(e.difficulty || "").toLowerCase();
-  const difficulty = rawDifficulty === "beginner" ? "Easy"
-    : rawDifficulty === "intermediate" ? "Medium"
-    : rawDifficulty === "advanced" ? "Difficult"
-    : (e.difficulty || "");
+    : String(e.muscles || e.muscle || "").split(SPLIT).map(x => x.trim()).filter(Boolean);
+  const rd = String(e.difficulty || "").toLowerCase();
+  const difficulty = rd === "beginner" ? "Easy" : rd === "intermediate" ? "Medium" : rd === "advanced" ? "Difficult" : (e.difficulty || "");
   const equipment = Array.isArray(e.equipment)
     ? e.equipment.map(x => String(x).trim()).filter(Boolean).join(" / ")
     : String(e.equipment || "").trim();
@@ -318,34 +409,18 @@ function normalizeScrapedExercise(e){
     ...e,
     name: String(e.name || "").trim(),
     muscle: String(e.muscle || muscles.join(" / ")).trim(),
-    muscles,
-    sets: e.sets ?? "",
-    rest: e.rest ?? "",
-    difficulty,
-    instructions: String(e.instructions || "").trim(),
-    gif: String(e.gif || "").trim(),
-    equipment,
-    sourceUrl: String(e.sourceUrl || "").trim(),
-    jefitId: e.jefitId ?? "",
-    source: e.source || "JEFIT"
+    muscles, sets: e.sets ?? "", rest: e.rest ?? "", difficulty,
+    instructions: cleanHow(e.instructions),
+    gif: String(e.gif || "").trim(), equipment,
+    sourceUrl: String(e.sourceUrl || "").trim(), jefitId: e.jefitId ?? "", source: e.source || "JEFIT"
   };
 }
-
 let RAW_JEFIT_DATA = Array.isArray(window.JEFIT_SCRAPED) ? window.JEFIT_SCRAPED : [];
 let LIB = RAW_JEFIT_DATA.map(normalizeScrapedExercise).filter(e => e.name);
-let LIB_BY_NAME = new Map(LIB.map(e => [e.name, e]));
-
-function installJefitData(data){
-  if(!Array.isArray(data)) throw new Error("JEFIT data must be an array");
-  RAW_JEFIT_DATA = data;
-  window.JEFIT_SCRAPED = data;
-  LIB = data.map(normalizeScrapedExercise).filter(e => e.name);
-  LIB_BY_NAME = new Map(LIB.map(e => [e.name, e]));
-  window.__JEFIT_DATA_COUNT = LIB.length;
-}
+let LIB_BY_NAME = new Map(LIB.map(e => [e.name.toLowerCase(), e]));
 
 function normalizeLibraryEntry(e){
-  if(!e.muscles || !Array.isArray(e.muscles)) e.muscles = String(e.muscle || "").split(/[\\/|,]+/).map(x=>x.trim()).filter(Boolean);
+  if(!Array.isArray(e.muscles)) e.muscles = String(e.muscle || "").split(SPLIT).map(x => x.trim()).filter(Boolean);
   if(!e.muscle) e.muscle = e.muscles.join(" / ");
   if(!e.equipment){
     const n = String(e.name || "").toLowerCase();
@@ -354,8 +429,9 @@ function normalizeLibraryEntry(e){
   return e;
 }
 LIB.forEach(normalizeLibraryEntry);
+const findLib = name => LIB_BY_NAME.get(String(name || "").toLowerCase()) || null;
 
-/* Original 6-day plan: [exercise, sets × reps, rest]. Everything else comes from the library. */
+/* Original 6-day plan: [exercise, sets × reps, rest] */
 const PLAN_SEED = [
  ["Day 1 — Chest + Triceps + Abs",[
   ["Barbell Bench Press","4 × 6–10","2 min"],["Incline Dumbbell Press","4 × 8–12","90 sec"],["Machine Chest Press","3 × 8–12","90 sec"],
@@ -385,33 +461,42 @@ const PLAN_SEED = [
   ["Cable Curl","3 × 12–15","45 sec"],["Rope Pushdown","3 × 12–15","45 sec"],["Hanging Knee Raise","3 × 10–15","45 sec"],
   ["Dead Bug","3 × 8–12/side","45 sec"],["Plank","2 × 45–60 sec","45 sec"]]]
 ];
+const BLANK_EX = {muscle:"", muscles:[], difficulty:"", instructions:"", gif:"", equipment:""};
 
 function buildDefault(){
   const days = PLAN_SEED.map(([title, rows]) => ({
     id: uid(), title,
-    exercises: rows.map(([name, sets, rest]) => ({id: uid(), ...LIB_BY_NAME.get(name), sets, rest}))
+    exercises: rows.map(([name, sets, rest]) => ({id: uid(), ...(findLib(name) || {...BLANK_EX, name}), sets, rest}))
   }));
-  return {days, custom: [], activeDay: days[0].id};
+  return ensureState({days, custom: [], activeDay: days[0].id});
 }
 
 /* =========================================================
    State (saved in this browser)
    ========================================================= */
 let S;
-const UI = {tab: "plan", q: "", group: "All", muscles: [], difficulty: "All", equipment: "All", matchAll: false};
+const UI = {tab: "plan", q: "", muscles: [], difficulty: "All", equipment: "All", matchAll: false};
+let SHEET = "";
 
+function ensureState(s){
+  s.custom = Array.isArray(s.custom) ? s.custom : [];
+  s.logs = Array.isArray(s.logs) ? s.logs : [];
+  s.active = s.active && Array.isArray(s.active.exercises) ? s.active : null;
+  s.profile = Object.assign({goal: 4, unit: "kg"}, s.profile || {});
+  s.badges = s.badges && typeof s.badges === "object" ? s.badges : {};
+  if(!Array.isArray(s.days)) s.days = [];
+  if(!s.days.some(d => d.id === s.activeDay)) s.activeDay = s.days[0]?.id || null;
+  // Fill exercises that were saved before the library finished loading
+  s.days.forEach(d => d.exercises.forEach(x => {
+    if(!x.gif && !x.instructions){ const l = findLib(x.name); if(l) Object.assign(x, {...l, id: x.id, sets: x.sets, rest: x.rest}); }
+  }));
+  return s;
+}
 function loadState(){
   try{
     const raw = localStorage.getItem(STATE_STORE);
-    if(raw){
-      const s = JSON.parse(raw);
-      if(s && Array.isArray(s.days)){
-        s.custom = Array.isArray(s.custom) ? s.custom : [];
-        if(!s.days.some(d => d.id === s.activeDay)) s.activeDay = s.days[0]?.id || null;
-        return s;
-      }
-    }
-  }catch(e){ /* fall through to default */ }
+    if(raw){ const s = JSON.parse(raw); if(s && Array.isArray(s.days)) return ensureState(s); }
+  }catch(e){}
   return buildDefault();
 }
 function save(){ try{ localStorage.setItem(STATE_STORE, JSON.stringify(S)); }catch(e){} }
@@ -423,6 +508,7 @@ function setKey(v){ memKey = v; try{ v ? localStorage.setItem(KEY_STORE, v) : lo
 const getDay = id => S.days.find(d => d.id === id);
 const curDay = () => getDay(S.activeDay) || S.days[0] || null;
 const getEx = (dayId, exId) => getDay(dayId)?.exercises.find(e => e.id === exId);
+const unit = () => S.profile.unit;
 function libItems(){
   const seen = new Set(LIB.map(e => e.name.toLowerCase()));
   return LIB.concat(S.custom.filter(c => !seen.has(c.name.toLowerCase())).map(normalizeLibraryEntry));
@@ -436,25 +522,106 @@ function splitTitle(title, i){
   return m ? {label: m[1], focus: m[2] || title} : {label: "Day " + (i + 1), focus: title};
 }
 function overallDiff(day){
-  if(!day.exercises.length) return "";
+  const known = day.exercises.filter(e => e.difficulty);
+  if(!known.length) return "";
   const c = {easy:0, medium:0, difficult:0};
-  day.exercises.forEach(e => c[diffClass(e.difficulty)]++);
+  known.forEach(e => c[diffClass(e.difficulty)]++);
   if(c.difficult >= c.medium && c.difficult >= c.easy) return "difficult";
   return c.medium >= c.easy ? "medium" : "easy";
 }
 
 /* =========================================================
+   Dates and formatting
+   ========================================================= */
+const startOfDay = t => { const d = new Date(t); d.setHours(0,0,0,0); return d.getTime(); };
+const startOfWeek = t => { const d = new Date(startOfDay(t)); d.setDate(d.getDate() - (d.getDay() + 6) % 7); return d.getTime(); };
+const mmss = ms => { const s = Math.max(0, Math.round(ms / 1000)); const h = Math.floor(s / 3600); const m = Math.floor(s % 3600 / 60); const r = s % 60; return (h ? h + ":" + String(m).padStart(2, "0") : m) + ":" + String(r).padStart(2, "0"); };
+const fmtMin = ms => { const m = Math.max(1, Math.round(ms / 60000)); return m >= 60 ? Math.floor(m / 60) + "h " + String(m % 60).padStart(2, "0") + "m" : m + " min"; };
+const fmtDate = t => new Date(t).toLocaleDateString(undefined, {weekday: "short", day: "numeric", month: "short"});
+
+/* =========================================================
+   Gamification: XP, levels, streaks, badges, PRs
+   ========================================================= */
+const MAX_GAP_DAYS = 3;            // streak survives up to 2 rest days
+const BADGE_XP = 50;
+const TITLES = ["Rookie", "Regular", "Grinder", "Lifter", "Iron Head", "Beast", "Titan", "Legend"];
+const lvlOf = xp => Math.floor(Math.sqrt(Math.max(0, xp) / 100)) + 1;
+const xpAt = L => 100 * (L - 1) * (L - 1);
+const titleOf = L => TITLES[Math.min(Math.floor((L - 1) / 3), TITLES.length - 1)];
+const totalXp = () => S.logs.reduce((a, l) => a + (l.xp || 0), 0) + Object.keys(S.badges).length * BADGE_XP;
+
+const nkey = n => String(n || "").trim().toLowerCase();
+const metric = (w, r) => w > 0 ? w * (1 + r / 30) : r;   // estimated 1RM, or reps for bodyweight moves
+const logsAsc = () => S.logs.slice().sort((a, b) => a.end - b.end);
+
+function bestFor(name){
+  let best = 0, top = null;
+  S.logs.forEach(l => l.exercises.forEach(e => {
+    if(nkey(e.name) !== nkey(name)) return;
+    e.sets.forEach(s => { const m = metric(num(s.w), num(s.r)); if(m > best){ best = m; top = s; } });
+  }));
+  return {best, top};
+}
+function lastSets(name){
+  const L = logsAsc();
+  for(let i = L.length - 1; i >= 0; i--){
+    const e = L[i].exercises.find(x => nkey(x.name) === nkey(name));
+    if(e && e.sets.length) return e.sets.map(s => ({w: num(s.w), r: num(s.r)}));
+  }
+  return [];
+}
+function streakInfo(){
+  const days = [...new Set(S.logs.map(l => startOfDay(l.end)))].sort((a, b) => b - a);
+  if(!days.length) return {cur: 0, best: 0};
+  const gap = (a, b) => Math.round((a - b) / DAY_MS);
+  let best = 1, run = 1, cur = 0;
+  for(let i = 1; i < days.length; i++){
+    if(gap(days[i - 1], days[i]) <= MAX_GAP_DAYS){ run++; best = Math.max(best, run); } else run = 1;
+  }
+  if(gap(startOfDay(Date.now()), days[0]) <= MAX_GAP_DAYS){
+    cur = 1;
+    for(let i = 1; i < days.length && gap(days[i - 1], days[i]) <= MAX_GAP_DAYS; i++) cur++;
+  }
+  return {cur, best: Math.max(best, cur)};
+}
+function progressStats(){
+  const L = S.logs, wk = startOfWeek(Date.now()), st = streakInfo();
+  return {
+    workouts: L.length,
+    sets: L.reduce((a, l) => a + l.sets, 0),
+    volume: L.reduce((a, l) => a + l.volume, 0),
+    prs: L.reduce((a, l) => a + (l.prs ? l.prs.length : 0), 0),
+    week: L.filter(l => l.end >= wk).length,
+    goal: S.profile.goal, cur: st.cur, best: st.best,
+    early: L.some(l => new Date(l.start).getHours() < 8),
+    night: L.some(l => new Date(l.start).getHours() >= 21)
+  };
+}
+const BADGES = [
+  {id:"first", g:"1",   name:"First rep",        desc:"Finish your first workout",   ok:s => s.workouts >= 1},
+  {id:"w5",    g:"5",   name:"Getting serious",  desc:"Finish 5 workouts",           ok:s => s.workouts >= 5},
+  {id:"w25",   g:"25",  name:"Regular",          desc:"Finish 25 workouts",          ok:s => s.workouts >= 25},
+  {id:"w100",  g:"100", name:"Centurion",        desc:"Finish 100 workouts",         ok:s => s.workouts >= 100},
+  {id:"s3",    g:"3d",  name:"Warming up",       desc:"3-day streak",                ok:s => s.best >= 3},
+  {id:"s7",    g:"7d",  name:"On a roll",        desc:"7-day streak",                ok:s => s.best >= 7},
+  {id:"s14",   g:"14d", name:"Unstoppable",      desc:"14-day streak",               ok:s => s.best >= 14},
+  {id:"pr1",   g:"PR",  name:"Record breaker",   desc:"Set your first PR",           ok:s => s.prs >= 1},
+  {id:"pr10",  g:"10",  name:"PR hunter",        desc:"Set 10 PRs",                  ok:s => s.prs >= 10},
+  {id:"v10k",  g:"10K", name:"Ten-ton club",     desc:"Lift 10,000 total volume",    ok:s => s.volume >= 10000},
+  {id:"v100k", g:"100K",name:"Heavy hitter",     desc:"Lift 100,000 total volume",   ok:s => s.volume >= 100000},
+  {id:"goal",  g:"✓",   name:"Goal getter",      desc:"Hit your weekly goal",        ok:s => s.goal > 0 && s.week >= s.goal},
+  {id:"early", g:"AM",  name:"Early bird",       desc:"Start a workout before 8 am", ok:s => s.early},
+  {id:"night", g:"PM",  name:"Night owl",        desc:"Start a workout after 9 pm",  ok:s => s.night}
+];
+
+/* =========================================================
    GIF loading through the image CORS proxy
-   fetch -> blob -> saved in IndexedDB -> object URL -> <img>
    ========================================================= */
 const proxyUrl = (target, key) => PROXY_BASE + "?url=" + encodeURIComponent(target) + "&key=" + encodeURIComponent(key);
-
 class GifError extends Error{ constructor(kind, msg){ super(msg); this.kind = kind; } }
 const GIF = {mem: new Map(), pending: new Map(), dead: new Set(), keyBad: false, coolUntil: 0, active: 0, queue: [], MAX: 4};
 
-function enqueue(task){
-  return new Promise((resolve, reject) => { GIF.queue.push({task, resolve, reject}); pump(); });
-}
+function enqueue(task){ return new Promise((resolve, reject) => { GIF.queue.push({task, resolve, reject}); pump(); }); }
 function pump(){
   while(GIF.active < GIF.MAX && GIF.queue.length){
     const j = GIF.queue.shift();
@@ -462,8 +629,6 @@ function pump(){
     j.task().then(j.resolve, j.reject).finally(() => { GIF.active--; pump(); });
   }
 }
-
-/* IndexedDB cache so each GIF is only fetched through the proxy once */
 let dbPromise;
 function openDb(){
   if(!dbPromise) dbPromise = new Promise((res, rej) => {
@@ -492,36 +657,25 @@ function remember(url, blob){
   GIF.mem.set(url, o);
   return o;
 }
-
 async function fetchBlob(target, key){
   let res;
   try{ res = await fetch(proxyUrl(target, key)); }
   catch(e){ throw new GifError("network", "Could not reach the image proxy. Check your connection."); }
-
   if(!res.ok){
     const text = (await res.text().catch(() => "")).trim();
     const snippet = text.slice(0, 140);
     if(res.status === 401 || ((res.status === 402 || res.status === 403) && /key|unauthori[sz]ed/i.test(text))){
-      GIF.keyBad = true;
-      throw new GifError("key", "The proxy rejected the key.");
+      GIF.keyBad = true; throw new GifError("key", "The proxy rejected the key.");
     }
-    if(res.status === 429){
-      GIF.coolUntil = Date.now() + 30000;
-      throw new GifError("rate", "The proxy says you have hit a rate limit. Wait a moment, then retry.");
-    }
-    if(res.status === 404){
-      GIF.dead.add(target);
-      throw new GifError("missing", "No GIF found at this link (404).");
-    }
+    if(res.status === 429){ GIF.coolUntil = Date.now() + 30000; throw new GifError("rate", "The proxy says you have hit a rate limit. Wait a moment, then retry."); }
+    if(res.status === 404){ GIF.dead.add(target); throw new GifError("missing", "No GIF found at this link (404)."); }
     throw new GifError("http", "The proxy returned " + res.status + (snippet ? ": " + snippet : "."));
   }
-
   let blob = await res.blob();
   if(!/^image\//.test(blob.type)){
     const head = await blob.slice(0, 6).text().catch(() => "");
-    if(head.startsWith("GIF8")){
-      blob = new Blob([blob], {type: "image/gif"});
-    }else{
+    if(head.startsWith("GIF8")) blob = new Blob([blob], {type: "image/gif"});
+    else{
       const text = await blob.text().catch(() => "");
       if(text.length < 500 && /\bkey\b/i.test(text)){ GIF.keyBad = true; throw new GifError("key", "The proxy rejected the key."); }
       throw new GifError("type", "The response was not an image.");
@@ -529,7 +683,6 @@ async function fetchBlob(target, key){
   }
   return blob;
 }
-
 function loadGif(url){
   if(GIF.mem.has(url)) return Promise.resolve(GIF.mem.get(url));
   if(GIF.pending.has(url)) return GIF.pending.get(url);
@@ -549,8 +702,6 @@ function loadGif(url){
   p.then(() => GIF.pending.delete(url), () => GIF.pending.delete(url));
   return p;
 }
-
-/* GIF slot: an empty frame that fills with the fetched image */
 function gifSlot(url, {size = "md", alt = ""} = {}){
   if(!url) return `<div class="gif ${size} empty"><span class="gif-msg">No GIF</span></div>`;
   return `<div class="gif ${size} loading" data-gif="${esc(url)}" data-alt="${esc(alt)}"></div>`;
@@ -574,7 +725,7 @@ function showErr(el, e){
     ? `<button class="gif-btn k" type="button" data-act="open-settings">${kind === "nokey" ? "Add key" : "Update key"}</button>`
     : kind === "missing" ? "" : `<button class="gif-btn" type="button" data-act="retry-gif">Retry</button>`;
   el.innerHTML = `<span class="gif-msg">${esc(SHORT[kind] || SHORT.http)}</span>${btn}`;
-  if(kind === "key") renderHeader();   // show the "key rejected" banner right away
+  if(kind === "key") renderHeader();
 }
 async function startSlot(el){
   const url = el.dataset.gif;
@@ -584,14 +735,10 @@ async function startSlot(el){
   try{
     const src = await loadGif(url);
     if(el.isConnected && el.dataset.gif === url) showImg(el, src);
-  }catch(e){
-    if(el.isConnected) showErr(el, e);
-  }
+  }catch(e){ if(el.isConnected) showErr(el, e); }
 }
 const io = "IntersectionObserver" in window
-  ? new IntersectionObserver(entries => entries.forEach(en => {
-      if(en.isIntersecting){ io.unobserve(en.target); startSlot(en.target); }
-    }), {rootMargin: "300px"})
+  ? new IntersectionObserver(entries => entries.forEach(en => { if(en.isIntersecting){ io.unobserve(en.target); startSlot(en.target); } }), {rootMargin: "300px"})
   : null;
 function hydrate(root = document){
   root.querySelectorAll(".gif[data-gif]").forEach(el => {
@@ -602,29 +749,26 @@ function hydrate(root = document){
     io ? io.observe(el) : startSlot(el);
   });
 }
-function retryErrored(){
-  document.querySelectorAll(".gif.err[data-gif]").forEach(el => { if(!GIF.dead.has(el.dataset.gif)) startSlot(el); });
-}
+function retryErrored(){ document.querySelectorAll(".gif.err[data-gif]").forEach(el => { if(!GIF.dead.has(el.dataset.gif)) startSlot(el); }); }
 
 /* =========================================================
    Views
    ========================================================= */
 function pips(d){
+  if(!d) return "";
   const lv = {easy:1, medium:2, difficult:3}[diffClass(d)];
   return `<span class="pips"><span class="sr">Difficulty:</span>${[1,2,3].map(i => `<i class="${i <= lv ? "on" : ""}"></i>`).join("")}<em>${esc(d)}</em></span>`;
 }
 function stats(ex){
-  return `<div class="ex-stats"><div><b>${esc(ex.sets)}</b><span>sets × reps</span></div><div><b>${esc(ex.rest)}</b><span>rest</span></div></div>`;
+  if(!ex.sets && !ex.rest) return "";
+  return `<div class="ex-stats"><div><b>${esc(ex.sets || "–")}</b><span>sets × reps</span></div><div><b>${esc(ex.rest || "–")}</b><span>rest</span></div></div>`;
 }
-
-/* Header chip, key banner and tab state. The banner shows on every tab whenever GIFs can't load. */
 function renderHeader(){
   const key = getKey();
   const st = !key ? "none" : GIF.keyBad ? "bad" : "ok";
   const chip = $("#keyChip");
   chip.className = "keychip " + st;
   chip.textContent = st === "none" ? "Add key" : st === "bad" ? "Fix key" : "Key saved";
-
   const banner = $("#banner");
   if(banner.dataset.st !== st){
     banner.dataset.st = st;
@@ -632,12 +776,18 @@ function renderHeader(){
       <p>${st === "none" ? "<b>Exercise GIFs need your proxy key.</b> Add it once and it stays on this device." : "<b>The proxy rejected your key.</b> Update it to load GIFs."}</p>
       <button class="btn signal sm" data-act="open-settings">${st === "none" ? "Add key" : "Update key"}</button></div>`;
   }
-
   document.querySelectorAll(".tab[data-tab]").forEach(b => {
     const on = b.dataset.tab === UI.tab;
     b.classList.toggle("on", on);
     b.setAttribute("aria-current", on ? "page" : "false");
   });
+}
+function refreshChrome(){
+  renderHeader();
+  const A = S.active;
+  document.body.classList.toggle("has-active", !!A);
+  $("#resume").hidden = !A;
+  if(A) tickUI();
 }
 
 function exRow(ex, dayId){
@@ -651,116 +801,189 @@ function exRow(ex, dayId){
     <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
   </article>`;
 }
-
 function planView(){
   const rail = S.days.map((d, i) => {
     const {label, focus} = splitTitle(d.title, i);
     return `<button class="dchip ${d.id === S.activeDay ? "on" : ""}" data-act="pick-day" data-id="${d.id}"><b>${esc(label)}</b><span>${esc(focus)}</span></button>`;
-  }).join("") + `<button class="dchip add" data-act="add-day" aria-label="Add a training day"><b>+</b><span>Add day</span></button>`;
-
+  }).join("") + `<button class="dchip add" data-act="add-day" aria-label="Add a workout"><b>+</b><span>Add workout</span></button>`;
   const day = curDay();
   let body;
   if(!day){
-    body = `<p class="empty">No training days yet. Tap “Add day” above to start building your plan.</p>`;
+    body = `<p class="empty">No workouts yet. Tap “Add workout” above to build your first one.</p>`;
   }else{
     const {focus} = splitTitle(day.title, S.days.indexOf(day));
     const n = day.exercises.length, od = overallDiff(day);
+    const A = S.active;
+    const startLabel = A && A.dayId === day.id ? "Resume workout" : "Start workout";
     body = `<section>
       <div class="day-head">
         <div><h2>${esc(focus)}</h2><p class="meta">${n} exercise${n === 1 ? "" : "s"}${od ? ", " + od + " overall" : ""}</p></div>
-        <button class="btn sm" data-act="edit-day">Edit day</button>
+        <button class="btn sm" data-act="edit-day">Edit workout</button>
       </div>
-      ${n ? `<div class="ex-list">${day.exercises.map(e => exRow(e, day.id)).join("")}</div>` : `<p class="empty">Nothing here yet. Add your first exercise to this day.</p>`}
+      ${n ? `<button class="btn signal wide start-btn" data-act="start-day">${startLabel}</button>` : ""}
+      ${n ? `<div class="ex-list">${day.exercises.map(e => exRow(e, day.id)).join("")}</div>` : `<p class="empty">Nothing here yet. Add your first exercise to this workout.</p>`}
       <button class="btn primary wide add-ex" data-act="add-ex">Add exercise</button>
     </section>`;
   }
-  return `<div class="rail" role="tablist" aria-label="Training days">${rail}</div>${body}`;
+  return `<div class="rail" role="tablist" aria-label="Workouts">${rail}</div>${body}`;
 }
 
-const MUSCLES = ["Abs","Back","Biceps","Chest","Forearms","Glutes","Shoulders","Triceps","Upper Legs","Lower Legs","Cardio"];
-const EQUIPMENT = ["All","Body Only","Bands","Barbell","Bench","Dumbbell","EZ-Bar","Exercise Ball","Kettlebell","Strength Machine","Pull Bar","Weight Plate","Other"];
-const GROUPS = [["All", null], ...MUSCLES.map(m => [m, [m.toLowerCase()]])];
-function muscleKeys(e){ return (e.muscles || String(e.muscle || "").split(/[\\/|,]+/)).map(x=>x.trim().toLowerCase()).filter(Boolean); }
-function inGroup(e){
-  if(UI.group === "All") return true;
-  const keys = GROUPS.find(g => g[0] === UI.group)?.[1] || [];
-  const ms = muscleKeys(e);
-  return keys.some(k => ms.includes(k) || ms.some(m => m.includes(k)));
+/* ----- Library and filters ----- */
+const DEFAULT_EQ = ["Body Only","Bands","Barbell","Bench","Dumbbell","EZ-Bar","Exercise Ball","Kettlebell","Strength Machine","Pull Bar","Weight Plate"];
+const canon = s => String(s || "").trim().toLowerCase();
+const titleCase = s => String(s).replace(/\b\w/g, c => c.toUpperCase());
+function muscleKeys(e){
+  const arr = Array.isArray(e.muscles) && e.muscles.length ? e.muscles : String(e.muscle || "").split(SPLIT);
+  return [...new Set(arr.map(canon).filter(Boolean))];
 }
-function passesAdvancedFilters(e){
+function equipList(e){
+  const raw = Array.isArray(e.equipment) ? e.equipment : String(e.equipment || "").split(/\s*[\/|,]\s*/);
+  const l = raw.map(x => String(x).trim()).filter(Boolean);
+  return l.length ? l : ["Body Only"];
+}
+const diffOf = e => e.difficulty ? diffClass(e.difficulty) : "";
+
+/* Filter options come from the data, so they always match what exists */
+function facets(){
+  const mus = new Map(), eq = new Map();
+  libItems().forEach(e => {
+    (Array.isArray(e.muscles) && e.muscles.length ? e.muscles : String(e.muscle || "").split(SPLIT)).forEach(m => {
+      const k = canon(m); if(!k) return;
+      const o = mus.get(k) || {key: k, label: titleCase(String(m).trim()), n: 0}; o.n++; mus.set(k, o);
+    });
+    equipList(e).forEach(x => { const k = canon(x); const o = eq.get(k) || {key: k, label: x, n: 0}; o.n++; eq.set(k, o); });
+  });
+  return {muscles: [...mus.values()], equipment: [...eq.values()].sort((a, b) => a.label.localeCompare(b.label))};
+}
+function passes(e, tokens){
   const ms = muscleKeys(e);
   if(UI.muscles.length){
-    const selected = UI.muscles.map(x=>x.toLowerCase());
-    const ok = UI.matchAll ? selected.every(m => ms.includes(m) || ms.some(x=>x.includes(m))) : selected.some(m => ms.includes(m) || ms.some(x=>x.includes(m)));
+    const ok = UI.matchAll ? UI.muscles.every(k => ms.includes(k)) : UI.muscles.some(k => ms.includes(k));
     if(!ok) return false;
   }
-  if(UI.difficulty !== "All" && e.difficulty !== UI.difficulty) return false;
-  if(UI.equipment !== "All" && e.equipment !== UI.equipment) return false;
+  if(UI.difficulty !== "All" && diffOf(e) !== UI.difficulty.toLowerCase()) return false;
+  if(UI.equipment !== "All" && !equipList(e).map(canon).includes(UI.equipment)) return false;
+  if(tokens.length){
+    const hay = (e.name + " " + ms.join(" ") + " " + equipList(e).join(" ")).toLowerCase();
+    if(!tokens.every(t => hay.includes(t))) return false;
+  }
   return true;
 }
 function filterCount(){ return UI.muscles.length + (UI.difficulty !== "All" ? 1 : 0) + (UI.equipment !== "All" ? 1 : 0); }
 function filterSummary(){
-  const bits=[];
-  if(UI.muscles.length) bits.push((UI.matchAll ? "All: " : "") + UI.muscles.join(", "));
+  const F = facets(), lab = k => F.muscles.find(m => m.key === k)?.label || titleCase(k);
+  const bits = [];
+  if(UI.muscles.length) bits.push((UI.matchAll && UI.muscles.length > 1 ? "All of " : "") + UI.muscles.map(lab).join(", "));
   if(UI.difficulty !== "All") bits.push(UI.difficulty);
-  if(UI.equipment !== "All") bits.push(UI.equipment);
+  if(UI.equipment !== "All") bits.push(F.equipment.find(x => x.key === UI.equipment)?.label || UI.equipment);
   return bits.length ? bits.join(" · ") : "No filters applied";
 }
 function libSkeleton(){
   return `<div class="lib-head"><div><h2>Library</h2><p id="libCount"></p></div><div class="lib-head-actions"><button class="btn primary sm" data-act="add-lib-ex">Add exercise</button></div></div>
     <div class="lib-tools">
       <div class="search"><label class="sr" for="libSearch">Search exercises</label><input id="libSearch" type="search" enterkeyhint="search" placeholder="Search by name, muscle or equipment" value="${esc(UI.q)}" autocomplete="off"></div>
-      <div class="lib-filter-row"><button class="btn sm" data-act="open-lib-filters">Filters${filterCount() ? " ("+filterCount()+")" : ""}</button><span class="filter-summary">${esc(filterSummary())}</span></div>
+      <div class="lib-filter-row"><button class="btn sm" id="filterBtn" data-act="open-lib-filters"></button><span class="filter-summary" id="filterSum"></span></div>
       <div class="chips" id="libChips"></div>
     </div>
     <div class="lib-grid" id="libGrid"></div>`;
 }
-function renderChips(){
-  $("#libChips").innerHTML = GROUPS.map(([g]) => `<button class="gchip ${g === UI.group ? "on" : ""}" data-act="group" data-g="${esc(g)}">${esc(g)}</button>`).join("");
+function syncFilterUI(){
+  const fb = $("#filterBtn"); if(!fb) return;
+  fb.textContent = "Filters" + (filterCount() ? " (" + filterCount() + ")" : "");
+  $("#filterSum").textContent = filterSummary();
+  const chips = [{key: "", label: "All", on: !UI.muscles.length}]
+    .concat(facets().muscles.sort((a, b) => b.n - a.n || a.label.localeCompare(b.label)).map(m => ({key: m.key, label: m.label, on: UI.muscles.includes(m.key)})));
+  $("#libChips").innerHTML = chips.map(c => `<button class="gchip ${c.on ? "on" : ""}" data-act="group" data-g="${esc(c.key)}" aria-pressed="${c.on}">${esc(c.label)}</button>`).join("");
 }
 function tile(e){
   return `<div class="tile" role="button" tabindex="0" data-act="open-lib" data-name="${esc(e.name)}" aria-label="${esc(e.name)}, open details">
     ${gifSlot(e.gif, {alt: e.name})}
-    <div><span class="tile-name">${esc(e.name)}</span><span class="tile-meta">${esc((e.muscles || [e.muscle]).join(" / "))} · ${esc(e.equipment || "Body Only")}${e.custom ? ", yours" : ""}</span></div>
+    <div><span class="tile-name">${esc(e.name)}</span><span class="tile-meta">${esc((e.muscles && e.muscles.length ? e.muscles : [e.muscle]).join(" / "))} · ${esc(equipList(e).join(" / "))}${e.custom ? ", yours" : ""}</span></div>
   </div>`;
 }
 function updateLib(){
-  const q = UI.q.trim().toLowerCase();
-  const list = libItems().filter(e => inGroup(e) && passesAdvancedFilters(e) && (!q || (e.name + " " + (e.muscles || []).join(" ") + " " + (e.equipment || "")).toLowerCase().includes(q)));
+  const tokens = UI.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const list = libItems().filter(e => passes(e, tokens));
   $("#libCount").textContent = list.length + " exercise" + (list.length === 1 ? "" : "s");
   $("#libGrid").innerHTML = list.length ? list.map(tile).join("") : `<p class="empty">No exercises match. Clear a filter or try another search.</p>`;
   hydrate($("#libGrid"));
 }
 function libraryFilterSheet(){
-  const checks = MUSCLES.map(m => `<label><input type="checkbox" data-filter-muscle="${esc(m)}" ${UI.muscles.includes(m) ? "checked" : ""}>${esc(m)}</label>`).join("");
-  const diffs = ["All","Easy","Medium","Difficult"].map(d => `<option ${UI.difficulty===d?"selected":""}>${d}</option>`).join("");
-  const eqs = EQUIPMENT.map(e => `<option ${UI.equipment===e?"selected":""}>${esc(e)}</option>`).join("");
-  openSheet(sheetHtml({title:"Library filters",body:`
-    <div class="set"><h4>Target muscle groups</h4><p class="hint">Select one or several. “Match all” only shows exercises that target every selected muscle.</p><label class="check"><input type="checkbox" id="filterMatchAll" ${UI.matchAll?"checked":""}> Match all selected muscles</label><div class="filter-grid">${checks}</div></div>
+  const F = facets();
+  const checks = F.muscles.slice().sort((a, b) => a.label.localeCompare(b.label)).map(m => `<label><input type="checkbox" data-filter-muscle="${esc(m.key)}" ${UI.muscles.includes(m.key) ? "checked" : ""}>${esc(m.label)}</label>`).join("");
+  const diffs = ["All","Easy","Medium","Difficult"].map(d => `<option ${UI.difficulty === d ? "selected" : ""}>${d}</option>`).join("");
+  const eqs = `<option value="All">All</option>` + F.equipment.map(x => `<option value="${esc(x.key)}" ${UI.equipment === x.key ? "selected" : ""}>${esc(x.label)}</option>`).join("");
+  openSheet(sheetHtml({title: "Library filters", body: `
+    <div class="set"><h4>Target muscle groups</h4><p class="hint">Pick one or several. Turn on “Match all” to see only exercises that hit every muscle you picked.</p><label class="check"><input type="checkbox" id="filterMatchAll" ${UI.matchAll ? "checked" : ""}> Match all selected muscles</label><div class="filter-grid">${checks}</div></div>
     <div class="set"><h4>Difficulty</h4><div class="field"><select id="filterDifficulty">${diffs}</select></div></div>
-    <div class="set"><h4>Equipment / machine</h4><div class="field"><select id="filterEquipment">${eqs}</select></div></div>`,foot:`<div class="actions" style="margin-top:0"><button class="btn" data-act="reset-lib-filters">Reset</button><button class="btn primary" data-act="apply-lib-filters">Apply filters</button></div>`}));
+    <div class="set"><h4>Equipment / machine</h4><div class="field"><select id="filterEquipment">${eqs}</select></div></div>`,
+    foot: `<div class="actions" style="margin-top:0"><button class="btn" data-act="reset-lib-filters">Reset</button><button class="btn primary" data-act="apply-lib-filters">Apply filters</button></div>`}));
+}
+
+/* ----- Progress ----- */
+function progressView(){
+  const xp = totalXp(), L = lvlOf(xp), a = xpAt(L), b = xpAt(L + 1);
+  const pct = clamp(Math.round((xp - a) / (b - a) * 100), 0, 100);
+  const s = progressStats();
+  const wk = startOfWeek(Date.now()), today = startOfDay(Date.now());
+  const trained = new Set(S.logs.map(l => startOfDay(l.end)));
+  const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map((n, i) => {
+    const d = new Date(wk); d.setDate(d.getDate() + i);
+    const t = d.getTime();
+    return `<div class="wd ${trained.has(t) ? "on" : ""} ${t === today ? "today" : ""}">${n}<i></i></div>`;
+  }).join("");
+  const goalPct = S.profile.goal ? clamp(Math.round(s.week / S.profile.goal * 100), 0, 100) : 0;
+  const got = BADGES.filter(x => S.badges[x.id]).length;
+  const badges = BADGES.map(x => {
+    const at = S.badges[x.id];
+    return `<div class="bd ${at ? "" : "locked"}"><div class="g">${esc(x.g)}</div><b>${esc(x.name)}</b><small>${at ? "Unlocked " + esc(fmtDate(at)) : esc(x.desc)}</small></div>`;
+  }).join("");
+  const hist = logsAsc().reverse().slice(0, 60).map(l => `<button class="hrow" data-act="open-log" data-id="${l.id}">
+      <span><b>${esc(l.title)}</b><small>${esc(fmtDate(l.end))} · ${fmtMin(l.end - l.start)} · ${l.sets} sets · ${fmtNum(l.volume)} ${esc(unit())}</small></span>
+      ${l.prs && l.prs.length ? `<span class="pill">${l.prs.length} PR</span>` : ""}</button>`).join("");
+  return `<section class="hero">
+      <div class="hero-top"><div class="lv-wrap"><span>Level</span><b>${L}</b></div><div><h2>${esc(titleOf(L))}</h2><p>${fmtNum(xp)} XP total</p></div></div>
+      <div class="bar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Progress to next level"><i style="width:${pct}%"></i></div>
+      <p>${fmtNum(b - xp)} XP to level ${L + 1}</p>
+    </section>
+    <div class="stat-row">
+      <div class="stat"><b>${s.cur}</b><span>day streak</span></div>
+      <div class="stat"><b>${s.workouts}</b><span>workouts</span></div>
+      <div class="stat"><b>${s.prs}</b><span>personal records</span></div>
+    </div>
+    <section class="card">
+      <div class="card-head"><b>This week</b><span>${s.week} of ${S.profile.goal || "–"} workouts</span></div>
+      <div class="bar dark" style="margin-top:10px"><i style="width:${goalPct}%"></i></div>
+      <div class="week">${days}</div>
+      <p class="hint" style="margin-top:12px">Your streak survives up to 2 rest days in a row. Change your weekly goal in Settings.</p>
+    </section>
+    <button class="btn primary wide" style="margin-top:12px" data-act="start-empty">Start an empty workout</button>
+    <h2 class="sec">Badges (${got}/${BADGES.length})</h2>
+    <div class="badges">${badges}</div>
+    <h2 class="sec">History</h2>
+    ${hist ? `<div class="hist">${hist}</div>` : `<p class="hint">No workouts logged yet. Start one from the Plan tab and it will show up here.</p>`}`;
 }
 
 function render(){
-  renderHeader();
+  refreshChrome();
   const main = $("#main");
   if(UI.tab === "plan"){
     main.innerHTML = planView();
     hydrate(main);
     const rail = $(".rail", main), on = $(".dchip.on", main);
     if(rail && on) rail.scrollLeft = on.offsetLeft - (rail.clientWidth - on.offsetWidth) / 2;
+  }else if(UI.tab === "prog"){
+    main.innerHTML = progressView();
   }else{
     main.innerHTML = libSkeleton();
-    renderChips();
+    syncFilterUI();
     updateLib();
   }
 }
-function refresh(){ UI.tab === "plan" ? render() : (renderHeader(), updateLib()); }
+function refresh(){ UI.tab === "lib" ? (refreshChrome(), syncFilterUI(), updateLib()) : render(); }
 
 /* =========================================================
    Sheets
-   Layout: grab handle + title (fixed), scrolling body, action footer (fixed).
-   Back button and swipe-down both close the sheet.
    ========================================================= */
 const scrim = $("#scrim"), sheetEl = $("#sheet");
 let pendingYes = null, EDIT = null, DAYEDIT = null, sheetOpen = false;
@@ -771,12 +994,9 @@ function sheetHtml({title, body, foot = "", close = true}){
     <div class="sheet-body" id="sheetBody">${body}</div>
     ${foot ? `<div class="sheet-foot">${foot}</div>` : ""}`;
 }
-function resetSheetMotion(){
-  sheetEl.style.transform = "";
-  sheetEl.style.transition = "";
-  sheetEl.style.animation = "";
-}
+function resetSheetMotion(){ sheetEl.style.transform = ""; sheetEl.style.transition = ""; sheetEl.style.animation = ""; }
 function openSheet(html){
+  SHEET = "";
   sheetEl.innerHTML = html;
   resetSheetMotion();
   scrim.classList.add("open");
@@ -784,28 +1004,34 @@ function openSheet(html){
   const b = $("#sheetBody"); if(b) b.scrollTop = 0;
   if(!sheetOpen){
     sheetOpen = true;
-    try{ history.pushState({sheet: 1}, ""); }catch(e){}   // lets the phone's Back button close the sheet
+    try{ history.pushState({sheet: 1}, ""); }catch(e){}
   }
   hydrate(sheetEl);
 }
 function closeSheet(fromPop){
   if(!sheetOpen) return;
-  sheetOpen = false;
+  sheetOpen = false; SHEET = "";
   scrim.classList.remove("open");
   document.body.classList.remove("noscroll");
   sheetEl.innerHTML = "";
   resetSheetMotion();
   pendingYes = null;
-  if(fromPop !== true){
-    try{ if(history.state && history.state.sheet) history.back(); }catch(e){}
-  }
+  if(fromPop !== true){ try{ if(history.state && history.state.sheet) history.back(); }catch(e){} }
+}
+/* Close, wait for the browser's history step, then run fn (safe when fn opens another sheet) */
+function closeThen(fn){
+  if(!sheetOpen) return fn();
+  let done = false;
+  const go = () => { if(done) return; done = true; window.removeEventListener("popstate", go); fn(); };
+  window.addEventListener("popstate", go);
+  setTimeout(go, 250);
+  closeSheet();
 }
 window.addEventListener("popstate", () => { if(sheetOpen) closeSheet(true); });
 
-/* Swipe down on the handle or title to dismiss */
 let drag = null;
 sheetEl.addEventListener("pointerdown", e => {
-  if(e.pointerType === "mouse" || !e.target.closest(".grab,.sheet-head")) return;
+  if(e.pointerType === "mouse" || !e.target.closest(".grab,.sheet-head") || e.target.closest("button")) return;
   drag = {y: e.clientY, dy: 0, id: e.pointerId, on: false};
 });
 sheetEl.addEventListener("pointermove", e => {
@@ -814,15 +1040,13 @@ sheetEl.addEventListener("pointermove", e => {
   if(!drag.on && Math.abs(dy) > 6){
     drag.on = true;
     try{ sheetEl.setPointerCapture(e.pointerId); }catch(_){}
-    sheetEl.style.animation = "none";
-    sheetEl.style.transition = "none";
+    sheetEl.style.animation = "none"; sheetEl.style.transition = "none";
   }
   if(drag.on){ drag.dy = Math.max(0, dy); sheetEl.style.transform = "translateY(" + drag.dy + "px)"; }
 });
 function endDrag(e){
   if(!drag || e.pointerId !== drag.id) return;
-  const {dy, on} = drag;
-  drag = null;
+  const {dy, on} = drag; drag = null;
   if(!on) return;
   if(dy > 110) return closeSheet();
   sheetEl.style.transition = "transform .18s ease-out";
@@ -835,15 +1059,11 @@ sheetEl.addEventListener("pointercancel", endDrag);
 let toastT;
 function toast(msg){
   const t = $("#toast");
-  t.textContent = msg;
-  t.classList.add("show");
+  t.textContent = msg; t.classList.add("show");
   clearTimeout(toastT);
   toastT = setTimeout(() => t.classList.remove("show"), 2400);
 }
-function say(sel, msg, cls = ""){
-  const el = $(sel);
-  if(el){ el.className = "status " + cls; el.textContent = msg; }
-}
+function say(sel, msg, cls = ""){ const el = $(sel); if(el){ el.className = "status " + cls; el.textContent = msg; } }
 function ask(msg, label, fn){
   pendingYes = fn;
   openSheet(sheetHtml({
@@ -853,6 +1073,12 @@ function ask(msg, label, fn){
   }));
 }
 
+function bestText(name, timed){
+  const {top} = bestFor(name);
+  if(!top) return "";
+  const w = num(top.w), r = num(top.r);
+  return w > 0 ? `${w} ${unit()} × ${r}` : `${r} ${timed ? "sec" : "reps"}`;
+}
 function detailSheet(ex, ctx){
   let foot = "", extra = "";
   if(ctx.mode === "plan"){
@@ -860,19 +1086,21 @@ function detailSheet(ex, ctx){
   }else if(S.days.length){
     const opts = S.days.map(d => `<option value="${d.id}" ${d.id === S.activeDay ? "selected" : ""}>${esc(d.title)}</option>`).join("");
     foot = `<label class="add-label" for="addDay">Add to</label>
-      <div class="add-row"><select id="addDay">${opts}</select><button class="btn primary" data-act="add-from-lib" data-name="${esc(ex.name)}">Add to plan</button></div>`;
+      <div class="add-row"><select id="addDay">${opts}</select><button class="btn primary" data-act="add-from-lib" data-name="${esc(ex.name)}">Add to workout</button></div>`;
     if(ex.custom) extra = `<div class="danger-zone"><button class="link danger" data-act="del-custom" data-name="${esc(ex.name)}">Remove from my library</button></div>`;
   }else{
-    foot = `<p class="hint">Create a training day in Plan first, then add exercises to it.</p>`;
+    foot = `<p class="hint">Create a workout in Plan first, then add exercises to it.</p>`;
   }
+  const best = bestText(ex.name);
   openSheet(sheetHtml({
     title: ex.name,
     body: `${gifSlot(ex.gif, {size: "lg", alt: ex.name})}
-      <div class="ex-sub"><span class="ex-muscle">${esc((ex.muscles || [ex.muscle]).join(" / "))}</span><span class="ex-muscle">${esc(ex.equipment || "Body Only")}</span>${pips(ex.difficulty)}</div>
+      <div class="ex-sub"><span class="ex-muscle">${esc((ex.muscles && ex.muscles.length ? ex.muscles : [ex.muscle]).join(" / "))}</span><span class="ex-muscle">${esc(equipList(ex).join(" / "))}</span>${pips(ex.difficulty)}</div>
       ${stats(ex)}
+      ${best ? `<p class="hint" style="margin-top:10px"><b>Your best:</b> ${esc(best)}</p>` : ""}
       <h4>How to do it</h4>
       <p class="how">${esc(ex.instructions || "No instructions added yet.")}</p>${ex.sourceUrl ? `<p class="hint"><a href="${esc(ex.sourceUrl)}" target="_blank" rel="noopener">Open JEFIT exercise page ↗</a></p>` : ""}
-       ${ex.source === "JEFIT" ? `<p class="hint" style="margin-top:8px">Source: JEFIT exercise database.</p>` : ""}
+      ${ex.source === "JEFIT" ? `<p class="hint" style="margin-top:8px">Source: JEFIT exercise database.</p>` : ""}
       ${extra}`,
     foot
   }));
@@ -880,11 +1108,12 @@ function detailSheet(ex, ctx){
 
 function editorSheet(mode, dayId, exId){
   EDIT = {mode, dayId, exId};
-  const ex = mode === "edit" ? getEx(dayId, exId) : {name:"", muscle:"", muscles:[], equipment:"Body Only", sets:"3 × 8–12", rest:"60–90 sec", difficulty:"Medium", instructions:"", gif:""};
+  const ex = mode === "edit" ? getEx(dayId, exId) : {name:"", muscle:"", muscles:[], equipment:"Body Only", sets: DEFAULT_SETS, rest: DEFAULT_REST, difficulty:"Medium", instructions:"", gif:""};
   const diffs = ["Easy", "Medium", "Difficult", "Easy–Medium", "Medium–Difficult"];
-  if(!diffs.includes(ex.difficulty)) diffs.push(ex.difficulty);
+  if(ex.difficulty && !diffs.includes(ex.difficulty)) diffs.push(ex.difficulty);
   const isLib = mode === "lib-add";
-  const selectedMuscles = ex.muscles || String(ex.muscle || "").split(/[\\/|,]+/).map(x=>x.trim()).filter(Boolean);
+  const selectedMuscles = ex.muscles && ex.muscles.length ? ex.muscles : String(ex.muscle || "").split(SPLIT).map(x => x.trim()).filter(Boolean);
+  const eqOpts = [...new Set(DEFAULT_EQ.concat(facets().equipment.map(x => x.label), ex.equipment ? [ex.equipment] : []))];
   openSheet(sheetHtml({
     title: isLib ? "Add to library" : mode === "edit" ? "Edit exercise" : "Add exercise",
     body: `${mode === "add" ? `<div class="field"><label for="pickSearch">Start from the library</label><input id="pickSearch" type="search" enterkeyhint="search" placeholder="Search by name or muscle" autocomplete="off"><div class="pick-list" id="pickList" hidden></div></div>` : ""}
@@ -892,10 +1121,10 @@ function editorSheet(mode, dayId, exId){
     <div class="grid2">
       <div class="field"><label for="f_sets">Sets × reps</label><input id="f_sets" type="text" value="${esc(ex.sets)}" placeholder="e.g. 3 × 8–12"></div>
       <div class="field"><label for="f_rest">Rest</label><input id="f_rest" type="text" value="${esc(ex.rest)}" placeholder="e.g. 90 sec"></div>
-      <div class="field"><label for="f_muscle">Target muscle groups</label><input id="f_muscle" type="text" value="${esc(selectedMuscles.join(" / "))}" placeholder="e.g. Chest / Triceps / Shoulders"></div>
+      <div class="field"><label for="f_muscle">Target muscle groups</label><input id="f_muscle" type="text" value="${esc(selectedMuscles.join(" / "))}" placeholder="e.g. Chest / Triceps"></div>
       <div class="field"><label for="f_diff">Difficulty</label><select id="f_diff">${diffs.map(d => `<option ${d === ex.difficulty ? "selected" : ""}>${esc(d)}</option>`).join("")}</select></div>
     </div>
-    <div class="field"><label for="f_equipment">Equipment / machine</label><select id="f_equipment">${EQUIPMENT.filter(x=>x!=="All").map(d => `<option ${d === (ex.equipment||"Body Only") ? "selected" : ""}>${esc(d)}</option>`).join("")}</select></div>
+    <div class="field"><label for="f_equipment">Equipment / machine</label><select id="f_equipment">${eqOpts.map(d => `<option ${d === (ex.equipment || "Body Only") ? "selected" : ""}>${esc(d)}</option>`).join("")}</select></div>
     <div class="field"><label for="f_how">How to do it</label><textarea id="f_how" placeholder="Step-by-step instructions">${esc(ex.instructions)}</textarea></div>
     <div class="field"><label for="f_gif">GIF link</label><input id="f_gif" type="text" inputmode="url" value="${esc(ex.gif)}" placeholder="https://… or a JEFIT GIF number like 2"><div class="preview" id="gifPreview"></div></div>
     <details class="jefit"><summary>Import from a JEFIT page</summary>
@@ -910,27 +1139,46 @@ function editorSheet(mode, dayId, exId){
   previewGif();
 }
 
+/* Workout editor: rename, reorder or remove exercises, duplicate, delete */
+function dayExListHtml(d){
+  if(!d.exercises.length) return `<p class="hint">No exercises yet. Close this and tap “Add exercise”.</p>`;
+  return d.exercises.map((e, i) => `<div class="edit-ex"><span>${esc(e.name)}</span>
+    <button class="icon-btn" data-act="mv-ex" data-dir="-1" data-id="${e.id}" aria-label="Move ${esc(e.name)} up" ${i === 0 ? "disabled" : ""}>▲</button>
+    <button class="icon-btn" data-act="mv-ex" data-dir="1" data-id="${e.id}" aria-label="Move ${esc(e.name)} down" ${i === d.exercises.length - 1 ? "disabled" : ""}>▼</button>
+    <button class="icon-btn danger" data-act="rm-ex" data-id="${e.id}" aria-label="Remove ${esc(e.name)}">✕</button></div>`).join("");
+}
 function daySheet(dayId){
   DAYEDIT = dayId;
   const d = dayId ? getDay(dayId) : null;
   const n = d ? d.exercises.length : 0;
   openSheet(sheetHtml({
-    title: d ? "Edit day" : "Add day",
-    body: `<div class="field"><label for="d_title">Day title</label><input id="d_title" type="text" enterkeyhint="done" value="${esc(d ? d.title : "Day " + (S.days.length + 1) + " — ")}" placeholder="Day 7 — Legs + Core">
+    title: d ? "Edit workout" : "Add workout",
+    body: `<div class="field"><label for="d_title">Workout title</label><input id="d_title" type="text" enterkeyhint="done" value="${esc(d ? d.title : "Day " + (S.days.length + 1) + " — ")}" placeholder="Day 7 — Legs + Core">
       <p class="hint" style="margin-top:6px">Write it as “Day 7 — Legs + Core” to show the day number and focus on its tab.</p></div>
-      ${d ? `<div class="danger-zone"><h4>Delete this day</h4><p class="hint">Removes the day and its ${n} exercise${n === 1 ? "" : "s"}. This can’t be undone.</p><button class="btn danger wide" data-act="del-day">Delete day</button></div>` : ""}`,
+      ${d ? `<h4>Exercises</h4><div id="dayExList">${dayExListHtml(d)}</div>
+      <div class="danger-zone"><h4>More</h4><div class="actions" style="margin-top:0"><button class="btn" data-act="dup-day">Duplicate</button><button class="btn danger" data-act="del-day">Delete</button></div>
+      <p class="hint" style="margin-top:10px">Deleting removes the workout and its ${n} exercise${n === 1 ? "" : "s"}. Logged history stays.</p></div>` : ""}`,
     foot: `<p class="status err" id="dMsg" role="alert"></p>
-      <div class="actions" style="margin-top:0"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="save-day">Save day</button></div>`
+      <div class="actions" style="margin-top:0"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="save-day">Save workout</button></div>`
   }));
-  const i = $("#d_title"); i.focus(); i.setSelectionRange(i.value.length, i.value.length);
+  const i = $("#d_title"); if(!d){ i.focus(); i.setSelectionRange(i.value.length, i.value.length); }
 }
 
 async function settingsSheet(){
   const key = getKey();
   const n = await dbCount();
+  const goals = [1,2,3,4,5,6,7].map(g => `<option ${g === S.profile.goal ? "selected" : ""}>${g}</option>`).join("");
   openSheet(sheetHtml({
     title: "Settings",
     body: `<section class="set">
+      <h4>Training</h4>
+      <div class="grid2">
+        <div class="field"><label for="setGoal">Workouts per week</label><select id="setGoal">${goals}</select></div>
+        <div class="field"><label for="setUnit">Weight unit</label><select id="setUnit"><option ${unit() === "kg" ? "selected" : ""}>kg</option><option ${unit() === "lb" ? "selected" : ""}>lb</option></select></div>
+      </div>
+      <p class="hint">Changing the unit only changes the label. Existing numbers are not converted.</p>
+    </section>
+    <section class="set">
       <h4>Proxy key</h4>
       <p class="hint" style="margin-bottom:10px">Indiegym loads exercise GIFs through an image proxy, which needs a key. Paste yours here. It is saved only in this browser.</p>
       <div class="keyrow field"><label class="sr" for="keyInput">Proxy key</label><input id="keyInput" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Paste your key" value="${esc(key)}"><button class="btn" type="button" data-act="toggle-key">Show</button></div>
@@ -943,13 +1191,203 @@ async function settingsSheet(){
       <button class="btn" data-act="clear-cache">Clear saved GIFs</button>
     </section>
     <section class="set">
-      <h4>Plan</h4>
-      <p class="hint" style="margin-bottom:10px">Go back to the original 6-day upper-body plan. Your saved key and library additions are kept.</p>
-      <button class="btn danger" data-act="reset-plan">Reset plan</button>
+      <h4>Backup</h4>
+      <p class="hint" style="margin-bottom:10px">Your plan, workout history and badges live in this browser. Download a backup file so you can restore them later or move to another device.</p>
+      <div class="actions" style="margin-top:0"><button class="btn" data-act="export-data">Download backup</button><button class="btn" data-act="import-data">Restore backup</button></div>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </section>
+    <section class="set">
+      <h4>Reset</h4>
+      <p class="hint" style="margin-bottom:10px">Reset the plan to the original 6-day workouts, or wipe your history, XP and badges. Your key and library additions are kept.</p>
+      <div class="actions" style="margin-top:0"><button class="btn danger" data-act="reset-plan">Reset plan</button><button class="btn danger" data-act="reset-progress">Reset progress</button></div>
     </section>`
   }));
 }
 const cacheText = n => n ? `${n} GIF${n === 1 ? "" : "s"} saved on this device. They load without another proxy request.` : "No GIFs saved yet. GIFs you view are kept on this device so they load without another proxy request.";
+
+/* =========================================================
+   Workout logging
+   ========================================================= */
+function restSecs(str){
+  const m = String(str || "").match(/(\d+)/);
+  if(!m) return 60;
+  return clamp(+m[1] * (/min/i.test(str) ? 60 : 1), 10, 600);
+}
+function makeLogEx(ex){
+  const target = String(ex.sets || DEFAULT_SETS);
+  const m = target.match(/^\s*(\d+)/);
+  const n = clamp(m ? +m[1] : 3, 1, 10);
+  const r = target.match(/[×x]\s*(\d+)/i);
+  const timed = /\b(sec|secs|seconds|min)\b/i.test(target);
+  const prev = lastSets(ex.name);
+  const sets = Array.from({length: n}, (_, i) => {
+    const p = prev[i] || prev[prev.length - 1];
+    return {w: p && p.w ? String(p.w) : "", r: p && p.r ? String(p.r) : "", done: false};
+  });
+  return {name: ex.name, gif: ex.gif || "", muscle: ex.muscle || "", target, rest: ex.rest || "", timed, rl: r ? r[1] : "", prev, sets};
+}
+function startWorkout(dayId){
+  const d = dayId ? getDay(dayId) : null;
+  S.active = {
+    id: uid(), dayId: d ? d.id : null,
+    title: d ? splitTitle(d.title, S.days.indexOf(d)).focus : "Quick workout",
+    start: Date.now(), restEnd: 0,
+    exercises: d ? d.exercises.map(makeLogEx) : []
+  };
+  save(); refreshChrome();
+  if(UI.tab === "plan") render();
+  sessionSheet();
+}
+function prevText(e, si){
+  const p = e.prev[si];
+  if(!p) return "–";
+  return p.w > 0 ? `${p.w} × ${p.r}` : `${p.r}${e.timed ? "s" : ""}`;
+}
+function sessionBodyHtml(){
+  const A = S.active, u = unit();
+  const cards = A.exercises.map((e, ei) => `<section class="lx">
+    <div class="lx-head">${gifSlot(e.gif, {size: "sm", alt: e.name})}<div><h4>${esc(e.name)}</h4><p class="hint">${esc(e.target)}${e.rest ? " · rest " + esc(e.rest) : ""}</p></div></div>
+    <div class="srow head"><span>Set</span><span>Previous</span><span>${esc(u)}</span><span>${e.timed ? "Secs" : "Reps"}</span><span class="sr">Done</span></div>
+    ${e.sets.map((s, si) => `<div class="srow ${s.done ? "done" : ""}">
+      <span class="sn">${si + 1}</span><span class="prev">${esc(prevText(e, si))}</span>
+      <input inputmode="decimal" data-f="w" data-ei="${ei}" data-si="${si}" value="${esc(s.w)}" placeholder="0" aria-label="Set ${si + 1} weight">
+      <input inputmode="numeric" data-f="r" data-ei="${ei}" data-si="${si}" value="${esc(s.r)}" placeholder="${esc(e.rl)}" aria-label="Set ${si + 1} ${e.timed ? "seconds" : "reps"}">
+      <button class="tick" data-act="tick" data-ei="${ei}" data-si="${si}" aria-pressed="${!!s.done}" aria-label="Mark set ${si + 1} done"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+    </div>`).join("")}
+    <div class="lx-actions"><button class="link" data-act="add-set" data-ei="${ei}">Add set</button>${e.sets.length > 1 ? `<button class="link" data-act="del-set" data-ei="${ei}">Remove last set</button>` : ""}<button class="link danger" data-act="rm-lx" data-ei="${ei}">Remove exercise</button></div>
+  </section>`).join("");
+  return `<div class="sstat"><div><b id="sElapsed">0:00</b><span>time</span></div><div><b id="sSets">0</b><span>sets done</span></div><div><b id="sVol">0</b><span>volume (${esc(u)})</span></div></div>
+    <p class="hint">Closing this window keeps your workout running. Tick a set when you finish it.</p>
+    ${cards || `<p class="empty" style="padding:16px 0">No exercises yet. Add one to start logging.</p>`}
+    <button class="btn wide" data-act="sess-add-ex">Add exercise</button>`;
+}
+function sessionFootHtml(){
+  return `<div class="restbar" id="restBar" hidden><span>Rest <b id="restLeft">0:00</b></span><span><button class="link" data-act="rest-add">+15s</button><button class="link" data-act="rest-skip">Skip</button></span></div>
+    <div class="actions" style="margin-top:0"><button class="btn danger" data-act="discard-session">Discard</button><button class="btn primary" data-act="finish-session">Finish workout</button></div>`;
+}
+function sessionSheet(){
+  const A = S.active; if(!A) return;
+  openSheet(sheetHtml({title: A.title, body: sessionBodyHtml(), foot: sessionFootHtml()}));
+  SHEET = "session";
+  updateSessionStats(); tickUI();
+}
+function refreshSession(){
+  if(SHEET !== "session" || !S.active) return;
+  const b = $("#sheetBody"), y = b.scrollTop;
+  b.innerHTML = sessionBodyHtml();
+  b.scrollTop = y;
+  hydrate(b); updateSessionStats(); tickUI();
+}
+function sessionTotals(A){
+  let sets = 0, volume = 0;
+  A.exercises.forEach(e => e.sets.forEach(s => { if(s.done){ sets++; volume += num(s.w) * num(s.r); } }));
+  return {sets, volume};
+}
+function updateSessionStats(){
+  const A = S.active; if(!A || SHEET !== "session") return;
+  const t = sessionTotals(A);
+  $("#sSets").textContent = t.sets;
+  $("#sVol").textContent = fmtNum(t.volume);
+}
+function tickUI(){
+  const A = S.active; if(!A) return;
+  const now = Date.now();
+  const re = $("#resEl"); if(re) re.textContent = mmss(now - A.start);
+  const se = $("#sElapsed"); if(se) se.textContent = mmss(now - A.start);
+  const rb = $("#restBar");
+  if(rb && SHEET === "session"){
+    const left = A.restEnd - now;
+    if(left > 0){ rb.hidden = false; $("#restLeft").textContent = mmss(left); }
+    else{ rb.hidden = true; }
+  }
+  if(A.restEnd && A.restEnd <= now){
+    A.restEnd = 0; save();
+    toast("Rest over. Next set!");
+    try{ navigator.vibrate && navigator.vibrate([200, 100, 200]); }catch(e){}
+  }
+}
+setInterval(tickUI, 1000);
+
+function pickerSheet(){
+  openSheet(sheetHtml({
+    title: "Add exercise",
+    body: `<div class="field"><label class="sr" for="spSearch">Search exercises</label><input id="spSearch" type="search" placeholder="Search by name or muscle" autocomplete="off"></div><div class="pick-list" id="spList" style="max-height:none"></div>`,
+    foot: `<button class="btn wide" data-act="sess-back">Back to workout</button>`
+  }));
+  SHEET = "picker";
+  renderSessPicks();
+}
+function renderSessPicks(){
+  const tokens = ($("#spSearch").value || "").trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const list = libItems().filter(e => { const hay = (e.name + " " + muscleKeys(e).join(" ") + " " + equipList(e).join(" ")).toLowerCase(); return tokens.every(t => hay.includes(t)); }).slice(0, 40);
+  const box = $("#spList");
+  box.innerHTML = list.length
+    ? list.map(e => `<div class="pick" role="button" tabindex="0" data-act="sess-pick" data-name="${esc(e.name)}">${gifSlot(e.gif, {size: "sm", alt: e.name})}<span><b>${esc(e.name)}</b><small>${esc((e.muscles && e.muscles.length ? e.muscles : [e.muscle]).join(" / "))} · ${esc(equipList(e).join(" / "))}</small></span></div>`).join("")
+    : `<p class="hint" style="padding:10px 12px">No match. Try another word.</p>`;
+  hydrate(box);
+}
+
+function finishSession(){
+  const A = S.active; if(!A) return;
+  const ex = A.exercises.map(e => ({...e, sets: e.sets.filter(s => s.done)})).filter(e => e.sets.length);
+  if(!ex.length){
+    return ask("No sets are ticked yet, so there is nothing to save. Discard this workout?", "Discard", () => { S.active = null; save(); refresh(); });
+  }
+  const end = Date.now();
+  const xpBefore = totalXp(), lvBefore = lvlOf(xpBefore);
+  let volume = 0, setsDone = 0;
+  const prs = [];
+  ex.forEach(e => {
+    let top = 0;
+    e.sets.forEach(s => { const w = num(s.w), r = num(s.r); volume += w * r; setsDone++; top = Math.max(top, metric(w, r)); });
+    const prev = bestFor(e.name);
+    if(prev.best > 0 && top > prev.best + 1e-9) prs.push(e.name);
+  });
+  const log = {
+    id: A.id, dayId: A.dayId, title: A.title, start: A.start, end,
+    exercises: ex.map(e => ({name: e.name, gif: e.gif, muscle: e.muscle, timed: e.timed, sets: e.sets.map(s => ({w: num(s.w), r: num(s.r)}))})),
+    sets: setsDone, volume, prs, xp: 0
+  };
+  S.logs.push(log);
+  const st = streakInfo();
+  log.xp = setsDone * 10 + Math.min(150, Math.floor(volume / 200)) + 50 + prs.length * 30 + Math.min(st.cur, 7) * 5;
+  const ps = progressStats(), unlocked = [];
+  BADGES.forEach(b => { if(!S.badges[b.id] && b.ok(ps)){ S.badges[b.id] = end; unlocked.push(b); } });
+  S.active = null;
+  save(); refreshChrome();
+  if(UI.tab !== "lib") render();
+  summarySheet({log, prs, unlocked, xpBefore, xpAfter: totalXp(), lvBefore, streak: st.cur});
+}
+function summarySheet({log, prs, unlocked, xpBefore, xpAfter, lvBefore, streak}){
+  const L = lvlOf(xpAfter), a = xpAt(L), b = xpAt(L + 1);
+  const pct = clamp(Math.round((xpAfter - a) / (b - a) * 100), 0, 100);
+  const party = prs.length || unlocked.length || L > lvBefore;
+  const colors = ["#1B2CC1", "#FF5B1F", "#1F9D55", "#101A4A", "#FFC933"];
+  const confetti = party ? Array.from({length: 28}, (_, i) => `<i style="left:${Math.round(Math.random() * 100)}%;background:${colors[i % colors.length]};animation-delay:${(Math.random() * .5).toFixed(2)}s"></i>`).join("") : "";
+  openSheet(sheetHtml({
+    title: "Workout complete",
+    body: `<div class="confetti" aria-hidden="true">${confetti}</div>
+      <div class="win"><span>You earned</span><b>+${log.xp} XP</b></div>
+      <div class="lvline"><div class="card-head"><b>Level ${L} · ${esc(titleOf(L))}</b><span>${fmtNum(b - xpAfter)} XP to next</span></div>
+        <div class="bar dark" style="margin-top:8px"><i style="width:${pct}%"></i></div>
+        ${L > lvBefore ? `<p class="hint"><b>Level up!</b> You went from level ${lvBefore} to level ${L}.</p>` : ""}
+        ${streak > 1 ? `<p class="hint">${streak}-day streak. Keep it going.</p>` : ""}</div>
+      <div class="sstat"><div><b>${fmtMin(log.end - log.start)}</b><span>time</span></div><div><b>${log.sets}</b><span>sets</span></div><div><b>${fmtNum(log.volume)}</b><span>volume (${esc(unit())})</span></div></div>
+      ${prs.length ? `<h4>New personal records</h4><ul class="plist">${prs.map(n => `<li>${esc(n)}<span>+30 XP</span></li>`).join("")}</ul>` : ""}
+      ${unlocked.length ? `<h4>Badges unlocked (+${BADGE_XP} XP each)</h4><div class="mini-badges">${unlocked.map(x => `<div class="bd"><div class="g">${esc(x.g)}</div><b>${esc(x.name)}</b><small>${esc(x.desc)}</small></div>`).join("")}</div>` : ""}`,
+    foot: `<button class="btn primary wide" data-act="close">Done</button>`
+  }));
+}
+function logSheet(id){
+  const l = S.logs.find(x => x.id === id); if(!l) return;
+  openSheet(sheetHtml({
+    title: l.title,
+    body: `<p class="hint">${esc(fmtDate(l.end))} · ${fmtMin(l.end - l.start)} · ${l.sets} sets · ${fmtNum(l.volume)} ${esc(unit())} · +${l.xp || 0} XP</p>
+      ${l.prs && l.prs.length ? `<p style="margin-top:8px"><span class="pill">PR</span> <span class="hint">${esc(l.prs.join(", "))}</span></p>` : ""}
+      ${l.exercises.map(e => `<h4>${esc(e.name)}</h4><ul class="plist">${e.sets.map((s, i) => `<li>Set ${i + 1}<span>${num(s.w) > 0 ? esc(s.w + " " + unit() + " × " + s.r) : esc(s.r + (e.timed ? " sec" : " reps"))}</span></li>`).join("")}</ul>`).join("")}`,
+    foot: `<div class="actions" style="margin-top:0"><button class="btn danger" data-act="del-log" data-id="${l.id}">Delete log</button><button class="btn" data-act="close">Close</button></div>`
+  }));
+}
 
 /* =========================================================
    Editor helpers
@@ -961,24 +1399,20 @@ function normalizeGif(v){
 function previewGif(){
   const box = $("#gifPreview"); if(!box) return;
   const url = normalizeGif($("#f_gif").value);
-  if(!/^https?:\/\//i.test(url)){
-    box.innerHTML = `<p class="hint">Paste a GIF link or a JEFIT GIF number and it will show here.</p>`;
-    return;
-  }
+  if(!/^https?:\/\//i.test(url)){ box.innerHTML = `<p class="hint">Paste a GIF link or a JEFIT GIF number and it will show here.</p>`; return; }
   box.innerHTML = gifSlot(url, {alt: $("#f_name").value || "Exercise"}) + `<p class="hint">Preview</p>`;
   hydrate(box);
 }
 function renderPicks(){
-  const q = $("#pickSearch").value.trim().toLowerCase(), box = $("#pickList");
-  if(!q){ box.hidden = true; box.innerHTML = ""; return; }
-  const list = libItems().filter(e => (e.name + " " + e.muscle).toLowerCase().includes(q)).slice(0, 8);
+  const tokens = $("#pickSearch").value.trim().toLowerCase().split(/\s+/).filter(Boolean), box = $("#pickList");
+  if(!tokens.length){ box.hidden = true; box.innerHTML = ""; return; }
+  const list = libItems().filter(e => { const h = (e.name + " " + e.muscle).toLowerCase(); return tokens.every(t => h.includes(t)); }).slice(0, 8);
   box.hidden = false;
   box.innerHTML = list.length
-    ? list.map(e => `<div class="pick" role="button" tabindex="0" data-act="pick-lib" data-name="${esc(e.name)}">${gifSlot(e.gif, {size: "sm", alt: e.name})}<span><b>${esc(e.name)}</b><small>${esc((e.muscles || [e.muscle]).join(" / "))} · ${esc(e.equipment || "Body Only")} · ${esc(e.difficulty)}</small></span></div>`).join("")
+    ? list.map(e => `<div class="pick" role="button" tabindex="0" data-act="pick-lib" data-name="${esc(e.name)}">${gifSlot(e.gif, {size: "sm", alt: e.name})}<span><b>${esc(e.name)}</b><small>${esc((e.muscles && e.muscles.length ? e.muscles : [e.muscle]).join(" / "))} · ${esc(equipList(e).join(" / "))}${e.difficulty ? " · " + esc(e.difficulty) : ""}</small></span></div>`).join("")
     : `<p class="hint" style="padding:10px 12px">No match in the library. Fill in the fields below to make your own.</p>`;
   hydrate(box);
 }
-
 async function importJefit(){
   const url = $("#jUrl").value.trim();
   if(!/^https?:\/\/(www\.)?jefit\.com\//i.test(url)) return say("#jStatus", "That doesn’t look like a jefit.com link.", "err");
@@ -990,20 +1424,17 @@ async function importJefit(){
     if(!res.ok) throw new Error("the proxy returned " + res.status);
     const doc = new DOMParser().parseFromString(await res.text(), "text/html");
     const name = (doc.querySelector("h1")?.textContent || "").trim();
-
     let how = "";
     const ih = [...doc.querySelectorAll("h1,h2,h3,h4")].find(h => /instructions/i.test(h.textContent || ""));
     if(ih){
       const parts = [];
       for(let n = ih.nextElementSibling; n && !/^H[1-4]$/i.test(n.tagName); n = n.nextElementSibling){
-        const t = (n.textContent || "").trim();
-        if(t) parts.push(t);
+        const t = (n.textContent || "").trim(); if(t) parts.push(t);
       }
-      how = parts.join("\n\n");
+      how = cleanHow(parts.join("\n\n"));
     }
-
     let gif = "";
-    const idm = url.match(/\/exercises\/(\d+)/i);          // JEFIT GIFs are named after the exercise id
+    const idm = url.match(/\/exercises\/(\d+)/i);
     if(idm) gif = CDN + idm[1] + ".gif";
     if(!gif){
       const img = [...doc.querySelectorAll("img")].find(i => /view\s*\d/i.test(i.alt || "") || /\/images\/exercises\//i.test(i.getAttribute("src") || ""));
@@ -1022,6 +1453,10 @@ async function importJefit(){
     say("#jStatus", "Import failed: " + err.message + ". You can fill the fields in by hand.", "err");
   }
 }
+function libToPlan(e){
+  const {custom, id, ...base} = e;
+  return {...base, id: uid(), sets: e.sets || DEFAULT_SETS, rest: e.rest || DEFAULT_REST};
+}
 
 /* =========================================================
    Actions (click delegation)
@@ -1029,16 +1464,24 @@ async function importJefit(){
 const ACT = {
   tab(t){ UI.tab = t.dataset.tab; render(); window.scrollTo(0, 0); },
   close(){ closeSheet(); },
-  "confirm-yes"(){ const f = pendingYes; closeSheet(); if(f) f(); },
+  "confirm-yes"(){ const f = pendingYes; closeThen(() => { if(f) f(); }); },
   "open-settings"(){ settingsSheet(); },
   "retry-gif"(t){ GIF.coolUntil = 0; const el = t.closest(".gif"); if(el) startSlot(el); },
 
+  /* workouts */
   "pick-day"(t){ S.activeDay = t.dataset.id; save(); render(); window.scrollTo(0, 0); },
   "add-day"(){ daySheet(null); },
   "edit-day"(){ if(S.activeDay) daySheet(S.activeDay); },
+  "dup-day"(){
+    const d = getDay(DAYEDIT); if(!d) return;
+    const copy = {id: uid(), title: d.title + " (copy)", exercises: d.exercises.map(e => ({...e, id: uid()}))};
+    S.days.splice(S.days.indexOf(d) + 1, 0, copy);
+    S.activeDay = copy.id;
+    save(); closeThen(() => { refresh(); toast("Workout duplicated"); });
+  },
   "del-day"(){
     const d = (DAYEDIT && getDay(DAYEDIT)) || curDay(); if(!d) return;
-    ask(`Delete “${d.title}” and its ${d.exercises.length} exercise${d.exercises.length === 1 ? "" : "s"}?`, "Delete day", () => {
+    ask(`Delete “${d.title}” and its ${d.exercises.length} exercise${d.exercises.length === 1 ? "" : "s"}?`, "Delete workout", () => {
       const i = S.days.indexOf(d);
       S.days.splice(i, 1);
       S.activeDay = (S.days[i] || S.days[i - 1] || {}).id || null;
@@ -1047,29 +1490,46 @@ const ACT = {
   },
   "save-day"(){
     const title = $("#d_title").value.trim();
-    if(!title) return say("#dMsg", "Give the day a title.", "err");
+    if(!title) return say("#dMsg", "Give the workout a title.", "err");
     if(DAYEDIT){ getDay(DAYEDIT).title = title; }
     else{ const d = {id: uid(), title, exercises: []}; S.days.push(d); S.activeDay = d.id; }
+    const isNew = !DAYEDIT;
     save(); closeSheet(); refresh();
-    if(!DAYEDIT) window.scrollTo(0, 0);
+    if(isNew) window.scrollTo(0, 0);
+    toast(isNew ? "Workout added" : "Workout saved");
+  },
+  "mv-ex"(t){
+    const d = getDay(DAYEDIT); if(!d) return;
+    const i = d.exercises.findIndex(e => e.id === t.dataset.id), j = i + (+t.dataset.dir);
+    if(i < 0 || j < 0 || j >= d.exercises.length) return;
+    [d.exercises[i], d.exercises[j]] = [d.exercises[j], d.exercises[i]];
+    save(); $("#dayExList").innerHTML = dayExListHtml(d); refresh();
+  },
+  "rm-ex"(t){
+    const d = getDay(DAYEDIT); if(!d) return;
+    const ex = d.exercises.find(e => e.id === t.dataset.id);
+    d.exercises = d.exercises.filter(e => e.id !== t.dataset.id);
+    save(); $("#dayExList").innerHTML = dayExListHtml(d); refresh();
+    if(ex) toast("Removed “" + ex.name + "”");
   },
 
+  /* exercises */
   "add-ex"(){ if(S.activeDay) editorSheet("add", S.activeDay); },
   "add-lib-ex"(){ editorSheet("lib-add", null, null); },
   "open-lib-filters"(){ libraryFilterSheet(); },
-  "reset-lib-filters"(){ UI.muscles=[]; UI.difficulty="All"; UI.equipment="All"; UI.matchAll=false; closeSheet(); refresh(); },
+  "reset-lib-filters"(){ UI.muscles = []; UI.difficulty = "All"; UI.equipment = "All"; UI.matchAll = false; closeSheet(); syncFilterUI(); updateLib(); },
   "apply-lib-filters"(){
-    UI.muscles = [...sheetEl.querySelectorAll("[data-filter-muscle]:checked")].map(x=>x.dataset.filterMuscle);
+    UI.muscles = [...sheetEl.querySelectorAll("[data-filter-muscle]:checked")].map(x => x.dataset.filterMuscle);
     UI.difficulty = $("#filterDifficulty")?.value || "All";
     UI.equipment = $("#filterEquipment")?.value || "All";
     UI.matchAll = !!$("#filterMatchAll")?.checked;
-    closeSheet(); refresh();
+    closeSheet(); syncFilterUI(); updateLib();
   },
   "open-ex"(t){ const ex = getEx(t.dataset.day, t.dataset.id); if(ex) detailSheet(ex, {mode: "plan", dayId: t.dataset.day}); },
   "edit-ex"(t){ editorSheet("edit", t.dataset.day, t.dataset.id); },
   "del-ex"(t){
     const ex = getEx(t.dataset.day, t.dataset.id); if(!ex) return;
-    ask(`Remove “${ex.name}” from this day?`, "Remove", () => {
+    ask(`Remove “${ex.name}” from this workout?`, "Remove", () => {
       const d = getDay(t.dataset.day);
       d.exercises = d.exercises.filter(e => e.id !== ex.id);
       save(); refresh();
@@ -1077,8 +1537,10 @@ const ACT = {
   },
   "pick-lib"(t){
     const e = libItems().find(x => x.name === t.dataset.name); if(!e) return;
-    $("#f_name").value = e.name; $("#f_muscle").value = (e.muscles || [e.muscle]).join(" / "); $("#f_sets").value = e.sets; $("#f_rest").value = e.rest;
-    $("#f_diff").value = e.difficulty; $("#f_equipment").value = e.equipment || "Body Only"; $("#f_how").value = e.instructions; $("#f_gif").value = e.gif;
+    $("#f_name").value = e.name; $("#f_muscle").value = (e.muscles && e.muscles.length ? e.muscles : [e.muscle]).join(" / ");
+    $("#f_sets").value = e.sets || DEFAULT_SETS; $("#f_rest").value = e.rest || DEFAULT_REST;
+    if(e.difficulty) $("#f_diff").value = e.difficulty;
+    $("#f_equipment").value = e.equipment || "Body Only"; $("#f_how").value = e.instructions; $("#f_gif").value = e.gif;
     $("#pickSearch").value = ""; renderPicks(); previewGif();
     $("#f_name").scrollIntoView({block: "nearest", behavior: "smooth"});
   },
@@ -1086,7 +1548,7 @@ const ACT = {
   "save-ex"(){
     const name = $("#f_name").value.trim();
     if(!name){ say("#formMsg", "Give the exercise a name.", "err"); $("#f_name").focus(); return; }
-    const muscles = $("#f_muscle").value.split(/[\\/|,]+/).map(x=>x.trim()).filter(Boolean);
+    const muscles = $("#f_muscle").value.split(SPLIT).map(x => x.trim()).filter(Boolean);
     const data = {
       name, muscle: muscles.join(" / "), muscles, equipment: $("#f_equipment").value,
       sets: $("#f_sets").value.trim(), rest: $("#f_rest").value.trim(),
@@ -1108,21 +1570,77 @@ const ACT = {
     save(); closeSheet(); refresh();
   },
 
-  group(t){ UI.group = t.dataset.g; renderChips(); updateLib(); },
+  /* library */
+  group(t){
+    const k = t.dataset.g;
+    UI.muscles = !k ? [] : UI.muscles.includes(k) ? UI.muscles.filter(x => x !== k) : [...UI.muscles, k];
+    syncFilterUI(); updateLib();
+  },
   "open-lib"(t){ const e = libItems().find(x => x.name === t.dataset.name); if(e) detailSheet(e, {mode: "lib"}); },
   "add-from-lib"(t){
     const e = libItems().find(x => x.name === t.dataset.name);
     const day = getDay($("#addDay")?.value);
     if(!e || !day) return;
-    day.exercises.push({id: uid(), name: e.name, muscle: e.muscle, sets: e.sets, rest: e.rest, difficulty: e.difficulty, instructions: e.instructions, gif: e.gif});
+    day.exercises.push(libToPlan(e));
     save(); closeSheet(); refresh();
     toast("Added to " + splitTitle(day.title, S.days.indexOf(day)).label);
   },
-  "del-custom"(t){
-    S.custom = S.custom.filter(c => c.name !== t.dataset.name);
-    save(); closeSheet(); refresh();
+  "del-custom"(t){ S.custom = S.custom.filter(c => c.name !== t.dataset.name); save(); closeSheet(); refresh(); },
+
+  /* logging */
+  "start-day"(){
+    const d = curDay(); if(!d) return;
+    if(S.active && S.active.dayId === d.id) return sessionSheet();
+    if(S.active) return ask("You already have a workout in progress. Discard it and start this one instead?", "Discard and start", () => startWorkout(d.id));
+    startWorkout(d.id);
+  },
+  "start-empty"(){
+    if(S.active) return sessionSheet();
+    startWorkout(null);
+  },
+  resume(){ sessionSheet(); },
+  tick(t){
+    const A = S.active; if(!A) return;
+    const e = A.exercises[+t.dataset.ei], s = e && e.sets[+t.dataset.si];
+    if(!s) return;
+    if(!s.done){
+      if(!(num(s.r) > 0)){
+        if(e.rl) s.r = String(e.rl);
+        else return toast(e.timed ? "Enter the seconds first" : "Enter your reps first");
+      }
+      s.done = true;
+      A.restEnd = Date.now() + restSecs(e.rest) * 1000;
+    }else s.done = false;
+    save(); refreshSession();
+  },
+  "add-set"(t){
+    const e = S.active.exercises[+t.dataset.ei]; if(!e) return;
+    const last = e.sets[e.sets.length - 1] || {w: "", r: ""};
+    e.sets.push({w: last.w, r: last.r, done: false});
+    save(); refreshSession();
+  },
+  "del-set"(t){ const e = S.active.exercises[+t.dataset.ei]; if(e && e.sets.length > 1){ e.sets.pop(); save(); refreshSession(); } },
+  "rm-lx"(t){ S.active.exercises.splice(+t.dataset.ei, 1); save(); refreshSession(); },
+  "rest-add"(){ const A = S.active; if(A){ A.restEnd = Math.max(A.restEnd, Date.now()) + 15000; save(); tickUI(); } },
+  "rest-skip"(){ const A = S.active; if(A){ A.restEnd = 0; save(); tickUI(); } },
+  "sess-add-ex"(){ pickerSheet(); },
+  "sess-back"(){ sessionSheet(); },
+  "sess-pick"(t){
+    const e = libItems().find(x => x.name === t.dataset.name); if(!e || !S.active) return;
+    S.active.exercises.push(makeLogEx({...e, sets: e.sets || DEFAULT_SETS, rest: e.rest || DEFAULT_REST}));
+    save(); sessionSheet(); toast("Added “" + e.name + "”");
+  },
+  "discard-session"(){
+    ask("Discard this workout? Nothing you logged will be saved.", "Discard", () => { S.active = null; save(); refresh(); });
+  },
+  "finish-session"(){ finishSession(); },
+  "open-log"(t){ logSheet(t.dataset.id); },
+  "del-log"(t){
+    const id = t.dataset.id;
+    ask("Delete this workout from your history? The XP it earned is removed too.", "Delete log", () => { S.logs = S.logs.filter(l => l.id !== id); save(); refresh(); });
   },
 
+  /* settings */
   "toggle-key"(t){
     const i = $("#keyInput"), show = i.type === "password";
     i.type = show ? "text" : "password";
@@ -1142,10 +1660,8 @@ const ACT = {
       say("#keyStatus", "Key works. GIFs will load now.", "ok");
       retryErrored();
     }catch(e){
-      say("#keyStatus", e.kind === "key"
-        ? "The proxy rejected this key. Check it and paste it again."
-        : e.message + " Your key is saved. Try again in a moment.", "err");
-      retryErrored();   // slots that said "Needs your key" now show the real reason
+      say("#keyStatus", e.kind === "key" ? "The proxy rejected this key. Check it and paste it again." : e.message + " Your key is saved. Try again in a moment.", "err");
+      retryErrored();
     }
     renderHeader();
     dbCount().then(n => { const c = $("#cacheInfo"); if(c) c.textContent = cacheText(n); });
@@ -1161,11 +1677,26 @@ const ACT = {
     GIF.mem.clear(); GIF.dead.clear();
     const c = $("#cacheInfo"); if(c) c.textContent = cacheText(0);
   },
+  "export-data"(){
+    const blob = new Blob([JSON.stringify(S, null, 2)], {type: "application/json"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "indiegym-backup-" + new Date().toISOString().slice(0, 10) + ".json";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+  },
+  "import-data"(){ $("#importFile").click(); },
   "reset-plan"(){
-    ask("Reset to the original 6-day plan? Your changes to days and exercises will be discarded.", "Reset plan", () => {
+    ask("Reset to the original 6-day plan? Your changes to workouts and exercises will be discarded. History is kept.", "Reset plan", () => {
       const d = buildDefault();
       S.days = d.days; S.activeDay = d.activeDay;
       save(); refresh(); toast("Plan reset");
+    });
+  },
+  "reset-progress"(){
+    ask("Delete all logged workouts, XP and badges? This can’t be undone.", "Reset progress", () => {
+      S.logs = []; S.badges = {}; S.active = null;
+      save(); refresh(); toast("Progress reset");
     });
   }
 };
@@ -1185,12 +1716,30 @@ document.addEventListener("keydown", e => {
 });
 let previewTimer;
 document.addEventListener("input", e => {
-  const id = e.target.id;
+  const el = e.target, id = el.id;
+  if(el.dataset && el.dataset.f && S.active){
+    const ex = S.active.exercises[+el.dataset.ei], s = ex && ex.sets[+el.dataset.si];
+    if(s){ s[el.dataset.f] = el.value; save(); updateSessionStats(); }
+    return;
+  }
   if(id === "f_gif"){ clearTimeout(previewTimer); previewTimer = setTimeout(previewGif, 600); }
-  else if(id === "libSearch"){ UI.q = e.target.value; updateLib(); }
+  else if(id === "libSearch"){ UI.q = el.value; updateLib(); }
   else if(id === "pickSearch"){ renderPicks(); }
+  else if(id === "spSearch"){ renderSessPicks(); }
 });
-/* Hide the bottom tab bar while the library search has the keyboard open */
+document.addEventListener("change", e => {
+  const id = e.target.id;
+  if(id === "setGoal"){ S.profile.goal = +e.target.value; save(); toast("Weekly goal: " + S.profile.goal); if(UI.tab === "prog") render(); }
+  else if(id === "setUnit"){ S.profile.unit = e.target.value; save(); if(UI.tab === "prog") render(); }
+  else if(id === "importFile"){
+    const f = e.target.files && e.target.files[0]; if(!f) return;
+    f.text().then(txt => {
+      let data; try{ data = JSON.parse(txt); }catch(_){ data = null; }
+      if(!data || !Array.isArray(data.days)) return toast("That file isn’t an Indiegym backup");
+      ask("Replace your current plan and history with this backup?", "Restore backup", () => { S = ensureState(data); save(); render(); toast("Backup restored"); });
+    }).catch(() => toast("Could not read that file"));
+  }
+});
 document.addEventListener("focusin", e => { if(e.target.id === "libSearch") document.body.classList.add("kb"); });
 document.addEventListener("focusout", e => { if(e.target.id === "libSearch") document.body.classList.remove("kb"); });
 
@@ -1206,16 +1755,7 @@ window.addEventListener("resize", syncTop);
 S = loadState();
 render();
 syncTop();
-
-function showJefitStatus(){
-  if(LIB.length){
-    console.log(`JEFIT library loaded: ${LIB.length} exercises.`);
-  } else {
-    console.warn("JEFIT library JS was not loaded.");
-    console.log("Load data.js");
-  }
-}
-showJefitStatus();
+console.log(LIB.length ? `JEFIT library loaded: ${LIB.length} exercises.` : "JEFIT library JS was not loaded. Check that data.js sits next to this file.");
 </script>
 </body>
 </html>
