@@ -816,6 +816,7 @@ const LIB_EXTRA = JEFIT_CATALOG.map(([name,muscles,equipment,difficulty]) => ({
   gif: "", source: "JEFIT"
 }));
 const LIB = LIB_SEED_BASE.concat(LIB_EXTRA);
+LIB.forEach(e => { if(!e.source) e.source = "JEFIT"; });
 const LIB_BY_NAME = new Map(LIB.map(e => [e.name, e]));
 
 function normalizeLibraryEntry(e){
@@ -1339,6 +1340,7 @@ function detailSheet(ex, ctx){
   }else{
     foot = `<p class="hint">Create a training day in Plan first, then add exercises to it.</p>`;
   }
+  applyJefitCache(ex);
   openSheet(sheetHtml({
     title: ex.name,
     body: `${gifSlot(ex.gif, {size: "lg", alt: ex.name})}
@@ -1346,10 +1348,11 @@ function detailSheet(ex, ctx){
       ${stats(ex)}
       <h4>How to do it</h4>
       <p class="how">${esc(ex.instructions || "No instructions added yet.")}</p>
-       ${ex.source === "JEFIT" ? `<p class="hint" style="margin-top:8px">Source: JEFIT exercise database.</p>` : ""}
+       ${ex.source === "JEFIT" ? `<p class="hint" style="margin-top:8px">Source: JEFIT exercise database.${ex.jefitUrl ? ` <a href="${esc(ex.jefitUrl)}" target="_blank" rel="noopener">Open JEFIT page</a>` : ""}</p>` : ""}
       ${extra}`,
     foot
   }));
+  if(ex.source === "JEFIT" && !cachedJefit(ex.name)){ hydrateJefitEntry(ex, true); }
 }
 
 function editorSheet(mode, dayId, exId){
@@ -1453,6 +1456,52 @@ function renderPicks(){
   hydrate(box);
 }
 
+const JEFIT_CACHE_STORE = "indiegym_jefit_cache_v1";
+let JEFIT_CACHE = {};
+try{ JEFIT_CACHE = JSON.parse(localStorage.getItem(JEFIT_CACHE_STORE) || "{}"); }catch(e){ JEFIT_CACHE = {}; }
+function saveJefitCache(){ try{ localStorage.setItem(JEFIT_CACHE_STORE, JSON.stringify(JEFIT_CACHE)); }catch(e){} }
+function cachedJefit(name){ return JEFIT_CACHE[String(name).toLowerCase()] || null; }
+function applyJefitCache(ex){ const c = cachedJefit(ex.name); if(c) Object.assign(ex,c); return ex; }
+function jefitSearchUrl(name){ return "https://www.jefit.com/exercises/bodypart.php?exercises=" + encodeURIComponent(name); }
+async function fetchJefitData(ex){
+  const cached = cachedJefit(ex.name); if(cached){ Object.assign(ex,cached); return ex; }
+  const key = getKey(); if(!key) throw new Error("Add your proxy key in Settings first.");
+  const searchUrl = jefitSearchUrl(ex.name);
+  const r = await fetch(proxyUrl(searchUrl,key));
+  if(!r.ok) throw new Error("JEFIT search returned " + r.status);
+  const html = await r.text();
+  const doc = new DOMParser().parseFromString(html,"text/html");
+  const links = [...doc.querySelectorAll('a[href*="/exercises/"]')].map(a=>({a,href:a.href,text:(a.textContent||"").replace(/\s+/g," ").trim()}));
+  const wanted = ex.name.toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
+  let hit = links.find(x=>x.text.toLowerCase().replace(/[^a-z0-9]+/g," ").trim()===wanted) || links.find(x=>x.text.toLowerCase().includes(wanted));
+  if(!hit) throw new Error("Exercise not found in JEFIT database");
+  const pageUrl = new URL(hit.href,searchUrl).href;
+  const p = await fetch(proxyUrl(pageUrl,key));
+  if(!p.ok) throw new Error("JEFIT exercise page returned " + p.status);
+  const pdoc = new DOMParser().parseFromString(await p.text(),"text/html");
+  const name = (pdoc.querySelector("h1")?.textContent||hit.text||ex.name).trim();
+  const ih = [...pdoc.querySelectorAll("h1,h2,h3,h4")].find(h=>/instructions/i.test(h.textContent||""));
+  let instructions="";
+  if(ih){ const parts=[]; for(let n=ih.nextElementSibling;n && !/^H[1-4]$/i.test(n.tagName);n=n.nextElementSibling){ const t=(n.textContent||"").replace(/\s+/g," ").trim(); if(t) parts.push(t); } instructions=parts.join("\n\n"); }
+  const idm=pageUrl.match(/\/exercises\/(\d+)/i);
+  const gif=idm ? CDN+idm[1]+".gif" : ex.gif;
+  const bodyText=(pdoc.body?.textContent||"").replace(/\s+/g," ");
+  const targetMatch=bodyText.match(/Target Muscle Groups\s+Main\s+(.+?)\s+Equipment\s+Main/i);
+  const equipMatch=bodyText.match(/Equipment\s+Main\s+(.+?)\s+Difficulty/i);
+  const diffMatch=bodyText.match(/Difficulty\s+(beginner|intermediate|expert)/i);
+  const muscles=targetMatch ? targetMatch[1].replace(/Main/g," ").trim().split(/(?=[A-Z][a-z])/).map(x=>x.trim()).filter(Boolean) : (ex.muscles||[ex.muscle]);
+  const equipment=equipMatch ? equipMatch[1].replace(/Main/g," ").trim().split(/(?=[A-Z][a-z])/).map(x=>x.trim()).filter(Boolean).join(" / ") : ex.equipment;
+  const difficulty=diffMatch ? ({beginner:"Easy",intermediate:"Medium",expert:"Difficult"}[diffMatch[1].toLowerCase()]||ex.difficulty) : ex.difficulty;
+  const data={name,muscles,muscle:muscles.join(" / "),equipment,difficulty,instructions:instructions||ex.instructions,gif,source:"JEFIT",jefitUrl:pageUrl};
+  JEFIT_CACHE[ex.name.toLowerCase()] = data; saveJefitCache(); Object.assign(ex,data); return ex;
+}
+async function hydrateJefitEntry(ex, rerender=true){
+  if(!ex || ex.source!=="JEFIT") return ex;
+  const c=cachedJefit(ex.name); if(c){ Object.assign(ex,c); return ex; }
+  try{ await fetchJefitData(ex); if(rerender && sheetOpen){ detailSheet(ex,{mode:"lib"}); } }catch(e){ console.warn("JEFIT hydration failed",ex.name,e); }
+  return ex;
+}
+
 async function importJefit(){
   const url = $("#jUrl").value.trim();
   if(!/^https?:\/\/(www\.)?jefit\.com\//i.test(url)) return say("#jStatus", "That doesn’t look like a jefit.com link.", "err");
@@ -1491,6 +1540,7 @@ async function importJefit(){
     if(name) $("#f_name").value = name;
     if(how) $("#f_how").value = how;
     if(gif){ $("#f_gif").value = gif; previewGif(); }
+    if(name) { JEFIT_CACHE[name.toLowerCase()] = {name, instructions:how || "", gif:gif || "", source:"JEFIT", jefitUrl:url}; saveJefitCache(); }
     say("#jStatus", "Filled in " + [name && "the name", how && "instructions", gif && "the GIF"].filter(Boolean).join(", ") + ". Check the fields, then set your sets and rest.", "ok");
   }catch(err){
     say("#jStatus", "Import failed: " + err.message + ". You can fill the fields in by hand.", "err");
@@ -1564,7 +1614,7 @@ const ACT = {
     const data = {
       name, muscle: muscles.join(" / "), muscles, equipment: $("#f_equipment").value,
       sets: $("#f_sets").value.trim(), rest: $("#f_rest").value.trim(),
-      difficulty: $("#f_diff").value, instructions: $("#f_how").value.trim(), gif: normalizeGif($("#f_gif").value)
+      difficulty: $("#f_diff").value, instructions: $("#f_how").value.trim(), gif: normalizeGif($("#f_gif").value), source: "JEFIT"
     };
     if(EDIT.mode === "lib-add"){
       if(libItems().some(e => e.name.toLowerCase() === name.toLowerCase())) return say("#formMsg", "That exercise is already in the library.", "err");
