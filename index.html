@@ -6,13 +6,19 @@
 <title>6-Day Upper Body + Abs Gym Plan — Editable</title>
 <style>
 :root{
-  --bg:#f4f7fb; --card:#ffffff; --ink:#172033; --muted:#64748b;
+  --bg:#f4f7fb; --card:#ffffff; --surface:#f8fafc; --ink:#172033; --muted:#64748b;
   --line:#dbe3ef; --accent:#1d4ed8; --accent-ink:#ffffff; --accent2:#dbeafe;
-  --easy:#dcfce7; --medium:#fef3c7; --difficult:#fee2e2;
+  --easy:#dcfce7; --easy-ink:#166534; --medium:#fef3c7; --medium-ink:#92400e; --difficult:#fee2e2; --difficult-ink:#991b1b;
   --danger:#dc2626; --danger2:#fee2e2;
 }
+:root[data-theme="dark"]{
+  --bg:#0b1220; --card:#161f32; --surface:#101a2c; --ink:#e5e9f0; --muted:#94a3b8;
+  --line:#2a3650; --accent:#3b82f6; --accent-ink:#ffffff; --accent2:#1e3a5f;
+  --easy:#123524; --easy-ink:#4ade80; --medium:#3a2a0d; --medium-ink:#fbbf24; --difficult:#3a1414; --difficult-ink:#f87171;
+  --danger:#f87171; --danger2:#3a1414;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45;transition:background-color .15s ease, color .15s ease}
 header{background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;padding:36px 24px}
 .container{max-width:1500px;margin:0 auto}
 header h1{margin:0 0 8px;font-size:30px}
@@ -23,29 +29,29 @@ header p{margin:0;color:#dbeafe}
 .stat b{display:block;font-size:18px}
 .stat span{color:var(--muted);font-size:13px}
 .day{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:24px 0;overflow:hidden;box-shadow:0 4px 18px rgba(15,23,42,.06)}
-.day h2{margin:0;padding:16px 20px;background:#eff6ff;border-bottom:1px solid var(--line);font-size:20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.day h2{margin:0;padding:16px 20px;background:var(--accent2);border-bottom:1px solid var(--line);font-size:20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .day h2 .title{flex:1}
 .day-actions{display:flex;gap:6px;flex-shrink:0}
 .table-wrap{overflow:auto}
 table{width:100%;border-collapse:collapse;min-width:1200px}
 th,td{padding:12px 11px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
-th{background:#f8fafc;font-size:13px;position:sticky;top:0;z-index:1}
+th{background:var(--surface);color:var(--ink);font-size:13px;position:sticky;top:0;z-index:1}
 td{font-size:13px}
 .exercise{font-weight:700;white-space:nowrap}
 .muscle{font-weight:600;color:#334155;white-space:nowrap}
 .diff{font-weight:700;padding:4px 8px;border-radius:999px;display:inline-block;font-size:12px;white-space:nowrap}
-.easy{background:var(--easy);color:#166534}.medium{background:var(--medium);color:#92400e}.difficult{background:var(--difficult);color:#991b1b}
+.easy{background:var(--easy);color:var(--easy-ink)}.medium{background:var(--medium);color:var(--medium-ink)}.difficult{background:var(--difficult);color:var(--difficult-ink)}
 .gif{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 .gif img{width:140px;height:110px;object-fit:contain;background:#fff;border:1px solid #cbd5e1;border-radius:10px}
 .gif a{font-weight:700;color:var(--accent);text-decoration:none;font-size:12px}
 .gif a:hover{text-decoration:underline}
 .row-actions{white-space:nowrap}
-.note{padding:16px 20px;background:#f8fafc;border-top:1px solid var(--line);color:#475569;font-size:13px}
+.note{padding:16px 20px;background:var(--surface);border-top:1px solid var(--line);color:var(--muted);font-size:13px}
 .footer{padding:30px 0 60px;color:var(--muted);font-size:13px}
 
 /* Buttons */
-.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:9px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-.btn:hover{background:#f1f5f9}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:9px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn:hover{background:var(--surface)}
 .btn-primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .btn-primary:hover{background:#1743b0}
 .btn-danger{color:var(--danger);border-color:#fecaca}
@@ -54,25 +60,25 @@ td{font-size:13px}
 .btn-ghost{background:transparent;border-color:transparent;color:#fff}
 .btn-ghost:hover{background:rgba(255,255,255,.15)}
 .icon-btn{padding:5px 8px;font-size:12px;border-radius:7px}
-.add-row{padding:14px 20px;background:#f8fafc}
+.add-row{padding:14px 20px;background:var(--surface)}
 
 /* Modal */
 .overlay{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow:auto;z-index:50}
 .overlay.open{display:flex}
-.modal{background:#fff;border-radius:16px;max-width:640px;width:100%;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal{background:var(--card);color:var(--ink);border-radius:16px;max-width:640px;width:100%;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
 .modal h3{margin:0 0 16px;font-size:19px}
 .field{margin-bottom:14px}
 .field label{display:block;font-size:12px;font-weight:700;color:#475569;margin-bottom:5px;text-transform:uppercase;letter-spacing:.03em}
-.field input[type=text], .field textarea, .field select{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;font-size:14px;font-family:inherit}
+.field input[type=text], .field textarea, .field select{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;font-size:14px;font-family:inherit;background:var(--card);color:var(--ink)}
 .field textarea{min-height:70px;resize:vertical}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
 .hint{color:var(--muted);font-size:12px;margin-top:4px}
 .search-wrap{position:relative;margin-bottom:6px}
-.search-results{border:1px solid var(--line);border-radius:9px;margin-top:6px;max-height:220px;overflow:auto;background:#fff}
+.search-results{border:1px solid var(--line);border-radius:9px;margin-top:6px;max-height:220px;overflow:auto;background:var(--card)}
 .search-results div.result{padding:9px 11px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px}
 .search-results div.result:last-child{border-bottom:none}
-.search-results div.result:hover{background:#eff6ff}
+.search-results div.result:hover{background:var(--accent2)}
 .result .muted{color:var(--muted);font-size:12px}
 .divider{border:none;border-top:1px solid var(--line);margin:16px 0}
 .preview-gif{display:flex;align-items:center;gap:10px;margin-top:6px}
@@ -80,6 +86,8 @@ td{font-size:13px}
 .small-link{font-size:12px;color:var(--accent);text-decoration:none;font-weight:600}
 .small-link:hover{text-decoration:underline}
 .empty-day{padding:24px 20px;color:var(--muted);font-size:13px;text-align:center}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:9px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transform:translateY(8px);transition:opacity .2s ease, transform .2s ease;pointer-events:none;z-index:100}
+.toast.show{opacity:1;transform:translateY(0)}
 
 @media (max-width:800px){
   header h1{font-size:24px}
@@ -96,6 +104,8 @@ td{font-size:13px}
     <div class="toolbar">
       <button class="btn btn-ghost" style="border:1px solid rgba(255,255,255,.4)" onclick="addDay()">+ Add Day</button>
       <button class="btn btn-ghost" style="border:1px solid rgba(255,255,255,.4)" onclick="resetToDefault()">Reset to Original Plan</button>
+      <button class="btn btn-ghost" id="themeToggleBtn" style="border:1px solid rgba(255,255,255,.4)" onclick="toggleTheme()">🌙 Dark Mode</button>
+      <button class="btn btn-ghost" style="border:1px solid rgba(255,255,255,.4)" onclick="openSettings()">⚙ Settings</button>
     </div>
   </div>
 </header>
@@ -125,6 +135,7 @@ td{font-size:13px}
     Prepared from the exercise plan in this conversation. GIF URLs are kept unchanged from the original table where applicable.
   </div>
 </main>
+<div class="toast" id="toast"></div>
 
 <!-- Exercise Add/Edit Modal -->
 <div class="overlay" id="exerciseOverlay">
@@ -199,6 +210,27 @@ td{font-size:13px}
     <div class="modal-actions">
       <button class="btn" onclick="closeDayModal()">Cancel</button>
       <button class="btn btn-primary" onclick="saveDay()">Save Day</button>
+    </div>
+  </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="overlay" id="settingsOverlay">
+  <div class="modal">
+    <h3>Settings</h3>
+    <div class="field">
+      <label>corsproxy.io API Key</label>
+      <input type="text" id="corsProxyKeyInput" placeholder="e.g. 7461b7b8">
+      <div class="hint">
+        JEFIT's server blocks direct cross-origin requests from this page. Routing the "Fetch From a JEFIT Exercise Page" request through
+        <a class="small-link" href="https://corsproxy.io" target="_blank" rel="noopener noreferrer">corsproxy.io</a>
+        gets around that. Paste your corsproxy.io API key here — it's saved only in this browser's local storage and is sent solely to corsproxy.io as part of the fetch request, never anywhere else. Leave blank to try corsproxy.io's free/keyless tier instead.
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeSettingsModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="clearCorsProxyKey()">Clear Key</button>
+      <button class="btn btn-primary" onclick="saveSettings()">Save</button>
     </div>
   </div>
 </div>
@@ -340,9 +372,23 @@ function loadState(){
   }catch(e){ console.warn('Could not read saved plan, using default.', e); }
   STATE = buildDefaultData();
 }
+let toastTimer = null;
+function showToast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 1800);
+}
 function saveState(){
-  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE)); }
-  catch(e){ console.warn('Could not save plan locally.', e); }
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE));
+    showToast('✓ Saved to this browser');
+  }
+  catch(e){
+    console.warn('Could not save plan locally.', e);
+    showToast('⚠ Could not save — storage may be full or disabled');
+  }
 }
 function resetToDefault(){
   if(!confirm('Reset the whole plan back to the original 6-day layout? This discards all your edits.')) return;
@@ -465,6 +511,43 @@ function editDay(dayId){
   setTimeout(()=>document.getElementById('d_title').focus(), 30);
 }
 function closeDayModal(){ document.getElementById('dayOverlay').classList.remove('open'); }
+
+/* ---------- Settings: corsproxy.io API key ---------- */
+const CORS_KEY_STORAGE = 'corsProxyApiKey_v1';
+function getCorsProxyKey(){
+  try{ return (localStorage.getItem(CORS_KEY_STORAGE) || '').trim(); }
+  catch(e){ return ''; }
+}
+function buildProxiedUrl(targetUrl){
+  const key = getCorsProxyKey();
+  const params = new URLSearchParams();
+  if(key) params.set('key', key);
+  params.set('url', targetUrl);
+  return 'https://corsproxy.io/?' + params.toString();
+}
+function openSettings(){
+  document.getElementById('corsProxyKeyInput').value = getCorsProxyKey();
+  document.getElementById('settingsOverlay').classList.add('open');
+}
+function closeSettingsModal(){ document.getElementById('settingsOverlay').classList.remove('open'); }
+function saveSettings(){
+  const key = document.getElementById('corsProxyKeyInput').value.trim();
+  try{
+    if(key) localStorage.setItem(CORS_KEY_STORAGE, key);
+    else localStorage.removeItem(CORS_KEY_STORAGE);
+    showToast(key ? '✓ CORS proxy key saved' : 'CORS proxy key cleared');
+  }catch(e){
+    showToast('⚠ Could not save key');
+  }
+  closeSettingsModal();
+}
+function clearCorsProxyKey(){
+  document.getElementById('corsProxyKeyInput').value = '';
+  try{ localStorage.removeItem(CORS_KEY_STORAGE); }catch(e){ /* ignore */ }
+  showToast('CORS proxy key cleared');
+  closeSettingsModal();
+}
+
 function saveDay(){
   const title = document.getElementById('d_title').value.trim();
   if(!title){ alert('Please enter a day title.'); return; }
@@ -517,11 +600,13 @@ async function fetchFromJefit(){
     return;
   }
   statusEl.style.color = '';
-  statusEl.textContent = 'Fetching from JEFIT…';
+  statusEl.textContent = 'Fetching from JEFIT via corsproxy.io…';
+
+  const proxiedUrl = buildProxiedUrl(url);
 
   try{
-    const res = await fetch(url, {mode:'cors'});
-    if(!res.ok) throw new Error('JEFIT responded with status ' + res.status);
+    const res = await fetch(proxiedUrl);
+    if(!res.ok) throw new Error('corsproxy.io/JEFIT responded with status ' + res.status);
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
 
@@ -570,7 +655,7 @@ async function fetchFromJefit(){
   }catch(err){
     console.error(err);
     statusEl.style.color = 'var(--danger)';
-    statusEl.textContent = 'Fetch failed (' + err.message + '). This usually means JEFIT\'s server is blocking cross-origin requests from this page — fill the fields in manually instead.';
+    statusEl.textContent = 'Fetch failed (' + err.message + "). Check that your corsproxy.io API key is entered correctly in Settings (⚙), or try again without a key in case corsproxy.io's free tier is rate-limited — otherwise fill the fields in manually.";
   }
 }
 function addExercise(dayId){
@@ -674,10 +759,30 @@ function updateGifPreview(){
   else { wrap.style.display = 'none'; img.src = ''; }
 }
 
+/* ---------- Theme (dark mode) ---------- */
+const THEME_KEY = 'gymPlanTheme_v1';
+function applyTheme(theme){
+  document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
+  const btn = document.getElementById('themeToggleBtn');
+  if(btn) btn.textContent = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+  try{ localStorage.setItem(THEME_KEY, theme); }catch(e){ /* ignore */ }
+}
+function toggleTheme(){
+  const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+}
+function loadTheme(){
+  let saved = 'light';
+  try{ saved = localStorage.getItem(THEME_KEY) || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+  catch(e){ /* ignore */ }
+  applyTheme(saved);
+}
+
 /* ---------- Init ---------- */
 document.addEventListener('click', (e) => {
   if(e.target.classList.contains('overlay')) e.target.classList.remove('open');
 });
+loadTheme();
 loadState();
 renderAll();
 </script>
