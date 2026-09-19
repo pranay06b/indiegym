@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <meta name="theme-color" content="#1B2CC1">
 <title>Indiegym</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B2CC1'/%3E%3Cg fill='white'%3E%3Crect x='3' y='12' width='3' height='8' rx='1'/%3E%3Crect x='7' y='9' width='3' height='14' rx='1'/%3E%3Crect x='10' y='14.5' width='12' height='3'/%3E%3Crect x='22' y='9' width='3' height='14' rx='1'/%3E%3Crect x='26' y='12' width='3' height='8' rx='1'/%3E%3C/g%3E%3C/svg%3E">
@@ -21,20 +21,24 @@
   --danger:#B3200C;
   --font-display:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
   --font-body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --gl:max(16px,env(safe-area-inset-left));   /* left/right gutters, safe-area aware */
+  --gr:max(16px,env(safe-area-inset-right));
+  --top-h:58px;                                /* header height, kept in sync by JS for sticky bars */
 }
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--floor);color:var(--ink);font:16px/1.45 var(--font-body);padding-bottom:calc(84px + env(safe-area-inset-bottom))}
 body.noscroll{overflow:hidden}
 h1,h2,h3,h4,p{margin:0}
 button,input,select,textarea{font:inherit;color:inherit}
-button{touch-action:manipulation}
+button,[data-act]{touch-action:manipulation}
+button{-webkit-appearance:none;appearance:none}
 :focus-visible{outline:3px solid var(--signal);outline-offset:2px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- Top bar ---------- */
-.top{background:var(--slab);color:#fff;position:sticky;top:0;z-index:30}
-.top-in{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.top{background:var(--slab);color:#fff;position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top)}
+.top-in{max-width:1120px;margin:0 auto;padding:8px var(--gr) 8px var(--gl);display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px}
 .brand{display:flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:800;font-size:32px;line-height:1;letter-spacing:.01em}
 .brand svg{width:30px;height:30px;fill:currentColor}
 .keychip{border:1.5px solid rgba(255,255,255,.6);background:transparent;color:#fff;border-radius:999px;padding:0 14px;min-height:38px;font-size:13px;font-weight:600;cursor:pointer}
@@ -44,45 +48,52 @@ button{touch-action:manipulation}
 /* ---------- Tabs (bottom bar on phones, inline on desktop) ---------- */
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(3,1fr);background:var(--paper);border-top:1.5px solid var(--ink);padding-bottom:env(safe-area-inset-bottom)}
 .tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:60px;border:0;background:none;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer}
-.tab svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .tab.on{color:var(--slab);box-shadow:inset 0 3px 0 var(--slab)}
+.tab:active{background:#F1F2F7}
 
 /* ---------- Layout ---------- */
-main{max-width:1120px;margin:0 auto;padding:0 16px 32px}
-.keybar{margin:14px 0 0;padding:12px 14px;background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.keybar p{max-width:56ch;font-size:14.5px}
+.banner{max-width:1120px;margin:0 auto;padding:12px var(--gr) 0 var(--gl)}
+.banner:empty{display:none}
+.keybar{padding:12px 14px;background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.keybar p{font-size:14.5px;line-height:1.35}
+.keybar .btn{flex:0 0 auto}
+main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 
-/* Day rail */
-.rail{position:relative;display:flex;gap:8px;overflow-x:auto;margin:14px -16px 0;padding:2px 16px 10px;scroll-snap-type:x proximity;scroll-padding-left:16px}
-.dchip{flex:0 0 auto;width:136px;text-align:left;background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;padding:9px 11px 10px;cursor:pointer;scroll-snap-align:start}
+/* Day rail: sticks under the header so you can switch days from anywhere in the list */
+.rail{position:sticky;top:calc(var(--top-h) - 1px);z-index:20;display:flex;gap:8px;overflow-x:auto;margin:0 calc(-1 * var(--gr)) 0 calc(-1 * var(--gl));padding:12px var(--gr) 10px var(--gl);background:var(--floor);border-bottom:1px solid var(--line);scroll-snap-type:x proximity;scroll-padding-left:var(--gl);scrollbar-width:none}
+.rail::-webkit-scrollbar,.chips::-webkit-scrollbar{display:none}
+.dchip{flex:0 0 auto;width:120px;text-align:left;background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;padding:9px 11px 10px;cursor:pointer;scroll-snap-align:start}
 .dchip b{display:block;font-family:var(--font-display);font-weight:800;font-size:24px;line-height:1}
 .dchip span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:12px;line-height:1.3;color:var(--muted);margin-top:4px;min-height:2.6em}
 .dchip.on{background:var(--slab);border-color:var(--slab);color:#fff}
 .dchip.on span{color:#DDE1FF}
-.dchip.add{background:transparent;border-style:dashed;width:96px}
+.dchip.add{background:transparent;border-style:dashed;width:88px}
 
 /* Day header */
-.day-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:14px 0 14px;flex-wrap:wrap}
-.day-head h2{font-family:var(--font-display);font-weight:800;font-size:clamp(36px,8vw,56px);line-height:.95}
+.day-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:16px 0 12px}
+.day-head > div{min-width:0}
+.day-head h2{font-family:var(--font-display);font-weight:800;font-size:clamp(36px,9vw,56px);line-height:.95}
 .day-head .meta{color:var(--muted);font-size:14px;margin-top:8px}
-.day-tools{display:flex;gap:2px;margin-left:-10px}
-.link{background:none;border:0;padding:0 10px;min-height:40px;font-weight:600;font-size:14px;color:var(--slab);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
-.link.danger{color:var(--danger)}
+.day-head .btn{flex:0 0 auto;margin-top:4px}
 
 /* Exercise rows */
 .ex-list{border-top:2px solid var(--ink)}
-.ex{display:grid;grid-template-columns:132px 1fr;gap:14px;align-items:start;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
-.ex:hover{background:rgba(255,255,255,.5)}
-.ex .gif{width:132px}
+.ex{display:grid;grid-template-columns:112px 1fr 18px;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.ex:active{background:rgba(255,255,255,.75)}
+.ex .gif{width:112px}
+.ex .go{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ex-main{min-width:0}
 .ex-main h3{font-size:17px;line-height:1.25;font-weight:700}
-.ex-muscle{color:var(--muted);font-size:13px;margin-top:2px}
-.ex-stats{display:flex;gap:20px;margin-top:10px}
-.ex-stats b{display:block;font-family:var(--font-display);font-weight:700;font-size:23px;line-height:1.05}
+.ex-sub{display:flex;flex-wrap:wrap;align-items:center;gap:2px 12px;margin-top:3px}
+.ex-muscle{color:var(--muted);font-size:13px}
+.ex-stats{display:flex;gap:18px;margin-top:8px}
+.ex-stats b{display:block;font-family:var(--font-display);font-weight:700;font-size:22px;line-height:1.05}
 .ex-stats span{font-size:12px;color:var(--muted)}
-.pips{display:inline-flex;align-items:center;gap:4px;margin-top:10px}
+.pips{display:inline-flex;align-items:center;gap:4px}
 .pips i{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--ink)}
 .pips i.on{background:var(--ink)}
-.pips em{font-style:normal;font-size:12.5px;color:var(--muted);margin-left:6px}
+.pips em{font-style:normal;font-size:12.5px;color:var(--muted);margin-left:5px}
 .add-ex{margin-top:18px}
 
 /* GIF slots */
@@ -91,48 +102,67 @@ main{max-width:1120px;margin:0 auto;padding:0 16px 32px}
 .gif.loading{background:linear-gradient(100deg,#fff 30%,#EDEFF5 50%,#fff 70%) 0 0/220% 100%;animation:sheen 1.3s linear infinite}
 @keyframes sheen{to{background-position:-220% 0}}
 .gif.err,.gif.empty{background:#F3F4F7}
-.gif.lg{aspect-ratio:auto;width:100%;height:min(50vh,340px)}
+.gif.lg{aspect-ratio:auto;width:100%;height:min(34vh,300px);height:min(34dvh,300px)}
 .gif.sm{width:56px;flex:0 0 56px}
 .gif-msg{font-size:12px;line-height:1.25;color:var(--muted);padding:0 8px}
 .gif-btn{border:1.5px solid var(--ink);background:var(--paper);border-radius:999px;padding:0 12px;min-height:32px;font-size:12px;font-weight:700;cursor:pointer}
+.gif:not(.lg) .gif-btn.k{display:none}   /* the banner already says "add key"; keep small slots quiet */
 .gif.sm .gif-msg{display:none}
 .gif.sm .gif-btn{font-size:10px;padding:0 6px;min-height:22px}
 
 /* Library */
-.lib-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:20px 0 12px}
-.lib-head h2{font-family:var(--font-display);font-weight:800;font-size:clamp(36px,8vw,52px);line-height:.95}
+.lib-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:16px 0 8px}
+.lib-head h2{font-family:var(--font-display);font-weight:800;font-size:clamp(36px,9vw,52px);line-height:.95}
 .lib-head p{color:var(--muted);font-size:14px}
+.lib-head .lib-head-actions{display:flex;gap:8px;align-items:center;flex:0 0 auto}
+.lib-tools{position:sticky;top:calc(var(--top-h) - 1px);z-index:20;margin:0 calc(-1 * var(--gr)) 0 calc(-1 * var(--gl));padding:8px var(--gr) 0 var(--gl);background:var(--floor);border-bottom:1px solid var(--line)}
 .search input{width:100%;min-height:48px;border:1.5px solid var(--ink);border-radius:8px;padding:0 14px;background:var(--paper);font-size:16px}
-.chips{display:flex;gap:8px;overflow-x:auto;margin:12px -16px 0;padding:2px 16px 8px}
-.gchip{flex:0 0 auto;min-height:38px;padding:0 14px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;font-weight:600;font-size:14px;cursor:pointer}
+.lib-filter-row{display:flex;gap:8px;margin-top:8px;align-items:center}
+.lib-filter-row .btn{flex:0 0 auto}
+.filter-summary{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px}
+.filter-grid label{display:flex;gap:9px;align-items:center;min-height:42px;font-size:14px}
+.filter-grid input{width:20px;height:20px;accent-color:var(--slab)}
+.chips{display:flex;gap:8px;overflow-x:auto;margin:10px calc(-1 * var(--gr)) 0 calc(-1 * var(--gl));padding:2px var(--gr) 10px var(--gl);scrollbar-width:none}
+.gchip{flex:0 0 auto;min-height:40px;padding:0 15px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;font-weight:600;font-size:14px;cursor:pointer}
 .gchip.on{background:var(--ink);color:#fff}
-.lib-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px;margin-top:10px}
+.lib-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px;margin-top:14px}
 .tile{cursor:pointer;display:flex;flex-direction:column;gap:7px}
+.tile:active .gif{border-color:var(--ink)}
 .tile .gif{width:100%}
 .tile-name{display:block;font-weight:700;font-size:14px;line-height:1.25}
-.tile-meta{display:block;font-size:12.5px;color:var(--muted);margin-top:-4px}
+.tile-meta{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}
 .empty{grid-column:1/-1;color:var(--muted);padding:24px 0}
 
-/* Sheets */
-.scrim{position:fixed;inset:0;background:rgba(16,26,74,.62);display:none;z-index:60;align-items:flex-end;justify-content:center}
+/* Bottom sheets: fixed header and footer, body scrolls, drag down to dismiss */
+.scrim{position:fixed;inset:0;background:rgba(16,26,74,.62);display:none;z-index:60;align-items:flex-end;justify-content:center;overscroll-behavior:contain}
 .scrim.open{display:flex}
-.sheet{background:var(--paper);width:100%;max-width:600px;max-height:92vh;max-height:92dvh;overflow-y:auto;border-radius:18px 18px 0 0;padding:18px 18px calc(24px + env(safe-area-inset-bottom));animation:rise .18s ease-out}
+.sheet{background:var(--paper);width:100%;max-width:600px;max-height:92vh;max-height:92dvh;display:flex;flex-direction:column;overflow:hidden;border-radius:18px 18px 0 0;animation:rise .18s ease-out;outline:none}
 @keyframes rise{from{transform:translateY(24px);opacity:.4}}
-.sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
-.sheet-head h3{font-family:var(--font-display);font-weight:800;font-size:32px;line-height:1.02}
+.grab{flex:0 0 auto;padding:9px 0 3px;touch-action:none;cursor:grab}
+.grab::before{content:"";display:block;width:40px;height:5px;border-radius:3px;background:var(--line);margin:0 auto}
+.sheet-head{flex:0 0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:4px 18px 12px;touch-action:none}
+.sheet-head h3{font-family:var(--font-display);font-weight:800;font-size:32px;line-height:1.02;padding-top:4px}
 .x{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);font-size:24px;line-height:1;cursor:pointer}
+.sheet-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:0 18px 20px}
+.sheet-foot{flex:0 0 auto;padding:12px 18px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--paper)}
+.sheet-foot .status{margin:0 0 8px;min-height:0}
+.sheet-foot .status:empty{display:none}
 .sheet .gif.lg{margin-bottom:12px}
-.sheet h4{font-size:15px;font-weight:700;margin:16px 0 6px}
+.sheet h4{font-size:15px;font-weight:700;margin:18px 0 6px}
 .how{white-space:pre-line;font-size:15.5px;line-height:1.55;max-width:62ch}
 .set{padding:16px 0;border-top:1px solid var(--line)}
 .set:first-of-type{border-top:0;padding-top:0}
 .set h4{margin-top:0}
+.danger-zone{margin-top:24px;padding-top:16px;border-top:1px solid var(--line)}
+.danger-zone h4{margin-top:0}
+.danger-zone .hint{margin-bottom:12px}
 
 /* Forms and buttons */
 .field{margin-bottom:14px}
 .field label{display:block;font-size:13px;font-weight:600;margin-bottom:5px}
 .field input,.field select,.field textarea{width:100%;min-height:46px;border:1.5px solid var(--line);border-radius:8px;padding:10px 12px;background:#fff;font-size:16px}
-.field textarea{min-height:110px;resize:vertical}
+.field textarea{min-height:120px;resize:vertical}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--slab);outline:none;box-shadow:0 0 0 3px rgba(27,44,193,.18)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
 .keyrow{display:flex;gap:8px}
@@ -143,12 +173,20 @@ main{max-width:1120px;margin:0 auto;padding:0 16px 32px}
 .status.ok{color:#0F6B3A}
 .status.err{color:var(--danger)}
 .btn{min-height:46px;padding:0 18px;border-radius:8px;border:1.5px solid var(--ink);background:var(--paper);font-weight:700;cursor:pointer}
+.btn:active{filter:brightness(.94)}
+.btn.sm{min-height:44px;padding:0 16px;font-size:14px}
 .btn.primary{background:var(--slab);border-color:var(--slab);color:#fff}
 .btn.signal{background:var(--signal);border-color:var(--signal);color:var(--ink)}
 .btn.danger{color:var(--danger);border-color:var(--danger)}
 .btn.wide{width:100%}
+.link{background:none;border:0;padding:0 4px;min-height:44px;font-weight:600;font-size:14px;color:var(--slab);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.link.danger{color:var(--danger)}
 .actions{display:flex;gap:10px;margin-top:16px}
 .actions .btn{flex:1}
+.add-row{display:flex;gap:10px;align-items:stretch}
+.add-row select{flex:1;min-width:0;min-height:46px;border:1.5px solid var(--line);border-radius:8px;padding:0 10px;background:#fff;font-size:16px}
+.add-row .btn{flex:0 0 auto;white-space:nowrap}
+.add-label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:6px}
 details.jefit{margin:0 0 14px;border:1.5px solid var(--line);border-radius:8px;padding:0 12px}
 details.jefit summary{min-height:46px;display:flex;align-items:center;font-weight:600;cursor:pointer}
 details.jefit[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
@@ -157,38 +195,50 @@ details.jefit .hint{margin:8px 0 12px}
 .pick-list{border:1.5px solid var(--line);border-radius:8px;margin-top:8px;max-height:270px;overflow:auto}
 .pick{display:flex;gap:12px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line);cursor:pointer}
 .pick:last-child{border-bottom:0}
-.pick:hover{background:#F3F4F7}
+.pick:active,.pick:hover{background:#F3F4F7}
 .pick b{display:block;font-size:14.5px}
 .pick small{display:block;color:var(--muted);font-size:12.5px}
 .preview{display:flex;gap:12px;align-items:center;margin-top:10px}
 .preview .gif{width:120px;flex:0 0 120px}
-.check{display:flex;gap:10px;align-items:center;margin:4px 0 0;font-size:14.5px}
-.check input{width:20px;height:20px;min-height:0;accent-color:var(--slab)}
+.check{display:flex;gap:12px;align-items:center;min-height:44px;font-size:14.5px}
+.check input{width:22px;height:22px;min-height:0;accent-color:var(--slab)}
 .toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 18px;border-radius:999px;font-size:14px;z-index:80;max-width:90vw;opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.show{opacity:1}
+
+/* ---------- Phones ---------- */
+@media(max-width:819px){
+  .keychip{display:none}                    /* the banner and the Settings tab cover this on phones */
+  body.kb .tabs{display:none}               /* free the screen while the keyboard is up */
+}
+@media(min-width:400px){
+  .ex{grid-template-columns:128px 1fr 18px}
+  .ex .gif{width:128px}
+}
 
 /* ---------- Wider screens ---------- */
 @media(min-width:620px){
   .lib-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media(min-width:820px){
+  :root{--gl:max(24px,env(safe-area-inset-left));--gr:max(24px,env(safe-area-inset-right))}
   body{padding-bottom:0}
-  main{padding:0 24px 56px}
-  .top-in{padding:12px 24px}
+  main{padding-bottom:56px}
+  .top-in{padding-top:12px;padding-bottom:12px}
   .tabs{position:static;display:flex;gap:4px;background:none;border:0;padding:0}
   .tab{flex-direction:row;gap:8px;min-height:40px;padding:0 16px;border-radius:999px;color:#DDE1FF;font-size:14px}
   .tab.on{background:#fff;color:var(--slab);box-shadow:none}
+  .tab:active{background:none}
   .tab.settings-tab{display:none}
-  .rail,.chips{margin-left:0;margin-right:0;padding-left:0;padding-right:0}
   .dchip{width:150px}
-  .rail{scroll-padding-left:0}
-  .day-tools{margin-left:0}
   .ex-list{display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
-  .ex{grid-template-columns:168px 1fr}
+  .ex{grid-template-columns:168px 1fr 18px}
   .ex .gif{width:168px}
+  .ex:hover{background:rgba(255,255,255,.5)}
   .lib-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px}
   .scrim{align-items:center;padding:24px}
-  .sheet{border-radius:14px;padding-bottom:24px}
+  .sheet{border-radius:14px;max-height:88vh;max-height:88dvh}
+  .grab{display:none}
+  .sheet-head{padding-top:18px}
   .toast{bottom:32px}
 }
 @media(min-width:1100px){
@@ -210,15 +260,16 @@ details.jefit .hint{margin:8px 0 12px}
     <nav class="tabs" aria-label="Sections">
       <button class="tab" data-act="tab" data-tab="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>Plan</button>
       <button class="tab" data-act="tab" data-tab="lib"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Library</button>
-      <button class="tab settings-tab" data-act="open-settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/></svg>Key</button>
+      <button class="tab settings-tab" data-act="open-settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h9M19 6h1M4 12h3M13 12h7M4 18h11M21 18h-1"/><circle cx="16" cy="6" r="2.5"/><circle cx="10" cy="12" r="2.5"/><circle cx="18" cy="18" r="2.5"/></svg>Settings</button>
     </nav>
     <button class="keychip" id="keyChip" data-act="open-settings"></button>
   </div>
 </header>
 
+<div class="banner" id="banner"></div>
 <main id="main"></main>
 
-<div class="scrim" id="scrim"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+<div class="scrim" id="scrim"><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -232,7 +283,8 @@ const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt
 const uid = () => "x" + Math.random().toString(36).slice(2, 10);
 const CDN = "https://cdn.jefit.com/assets/img/exercises/gifs/";
 const TEST_GIF = CDN + "2.gif";
-const KEY_STORE = "indiegym_corsproxy_key";
+const PROXY_BASE = "https://image-cors-proxy.pranay9506k.workers.dev/";
+const KEY_STORE = "indiegym_proxy_key";
 const STATE_STORE = "indiegym_state_v1";
 
 /* =========================================================
@@ -281,8 +333,501 @@ const LIB_SEED = [
  ["Reverse Crunch","Abs","3 × 12–15","45 sec","Easy",338,"Lie on your back with knees bent. Bring the knees toward the chest and curl the hips upward, then slowly return them toward the floor."],
  ["Cable Fly + Face Pull","Chest/Shoulders","2 × 12–15","45–60 sec","Easy–Medium",1057,"Fly: bring the cables together in front of the chest. Face pull: pull the rope toward the face with elbows high and separate the hands."]
 ];
-const LIB = LIB_SEED.map(([name,muscle,sets,rest,difficulty,g,instructions]) => ({name,muscle,sets,rest,difficulty,instructions,gif:CDN+g+".gif"}));
+const LIB_SEED_BASE = LIB_SEED.map(([name,muscle,sets,rest,difficulty,g,instructions]) => ({
+  name,muscle,muscles:String(muscle).split(/[\\/|,]+/).map(x=>x.trim()).filter(Boolean),sets,rest,difficulty,instructions,gif:CDN+g+".gif"
+}));
+
+/* 120 additional exercises curated from the JEFIT exercise database. */
+const JEFIT_EXTRA = [
+  ["Barbell Squat","Upper Legs|Glutes|Core","Barbell","Difficult"],
+  ["Barbell Deadlift","Back|Glutes|Upper Legs","Barbell","Difficult"],
+  ["Barbell Front Squat","Upper Legs|Glutes|Core","Barbell","Difficult"],
+  ["Barbell Romanian Deadlift","Upper Legs|Glutes|Back","Barbell","Medium"],
+  ["Barbell Stiff-Leg Deadlift","Upper Legs|Glutes|Back","Barbell","Difficult"],
+  ["Barbell Hip Thrust","Glutes|Upper Legs","Barbell","Medium"],
+  ["Barbell Lunges","Upper Legs|Glutes","Barbell","Medium"],
+  ["Barbell Bulgarian Split Squat","Upper Legs|Glutes","Barbell","Difficult"],
+  ["Barbell Hack Squat","Upper Legs|Glutes","Barbell","Difficult"],
+  ["Barbell Step Ups","Upper Legs|Glutes","Barbell","Medium"],
+  ["Barbell Calf Raise","Lower Legs","Barbell","Easy"],
+  ["Barbell Good Morning","Upper Legs|Glutes|Back","Barbell","Difficult"],
+  ["Barbell Shrug","Shoulders|Back","Barbell","Easy"],
+  ["Barbell Bent-Over Row","Back|Biceps","Barbell","Difficult"],
+  ["Barbell T-Bar Row","Back|Biceps","Barbell","Medium"],
+  ["Barbell Pendlay Row","Back|Biceps","Barbell","Difficult"],
+  ["Barbell Upright Row","Shoulders|Back","Barbell","Medium"],
+  ["Barbell Military Press","Shoulders|Triceps","Barbell","Difficult"],
+  ["Barbell Push Press","Shoulders|Triceps|Upper Legs","Barbell","Difficult"],
+  ["Barbell Close-Grip Bench Press","Chest|Triceps","Barbell","Difficult"],
+  ["Barbell Incline Bench Press","Chest|Shoulders|Triceps","Barbell","Difficult"],
+  ["Barbell Decline Bench Press","Chest|Triceps|Shoulders","Barbell","Difficult"],
+  ["Barbell Wide-Grip Bench Press","Chest|Triceps|Shoulders","Barbell","Difficult"],
+  ["Barbell Pullover","Chest|Back","Barbell","Medium"],
+  ["Barbell Curl","Biceps|Forearms","Barbell","Medium"],
+  ["Barbell Reverse Curl","Biceps|Forearms","Barbell","Easy"],
+  ["Barbell Wrist Curl","Forearms","Barbell","Easy"],
+  ["Dumbbell Bench Press","Chest|Triceps|Shoulders","Dumbbell","Medium"],
+  ["Dumbbell Incline Bench Press","Chest|Shoulders|Triceps","Dumbbell","Medium"],
+  ["Dumbbell Decline Bench Press","Chest|Triceps|Shoulders","Dumbbell","Medium"],
+  ["Dumbbell Fly","Chest|Shoulders","Dumbbell","Easy"],
+  ["Dumbbell Incline Fly","Chest|Shoulders","Dumbbell","Medium"],
+  ["Dumbbell Pullover","Chest|Back","Dumbbell","Medium"],
+  ["Dumbbell Shoulder Press","Shoulders|Triceps","Dumbbell","Medium"],
+  ["Dumbbell Arnold Press","Shoulders|Triceps","Dumbbell","Medium"],
+  ["Dumbbell Front Raise","Shoulders","Dumbbell","Easy"],
+  ["Dumbbell Lateral Raise","Shoulders","Dumbbell","Easy"],
+  ["Dumbbell Rear Delt Fly","Shoulders|Back","Dumbbell","Easy"],
+  ["Dumbbell Shrug","Shoulders|Back","Dumbbell","Easy"],
+  ["Dumbbell Bent-Over Row","Back|Biceps","Dumbbell","Medium"],
+  ["Dumbbell One-Arm Row","Back|Biceps","Dumbbell","Medium"],
+  ["Dumbbell Renegade Row","Back|Biceps|Core","Dumbbell","Difficult"],
+  ["Dumbbell Romanian Deadlift","Upper Legs|Glutes|Back","Dumbbell","Medium"],
+  ["Dumbbell Goblet Squat","Upper Legs|Glutes|Core","Dumbbell","Easy"],
+  ["Dumbbell Walking Lunge","Upper Legs|Glutes","Dumbbell","Medium"],
+  ["Dumbbell Bulgarian Split Squat","Upper Legs|Glutes","Dumbbell","Difficult"],
+  ["Dumbbell Step Up","Upper Legs|Glutes","Dumbbell","Medium"],
+  ["Dumbbell Sumo Squat","Upper Legs|Glutes","Dumbbell","Easy"],
+  ["Dumbbell Calf Raise","Lower Legs","Dumbbell","Easy"],
+  ["Dumbbell Biceps Curl","Biceps","Dumbbell","Easy"],
+  ["Dumbbell Hammer Curl","Biceps|Forearms","Dumbbell","Easy"],
+  ["Dumbbell Concentration Curl","Biceps","Dumbbell","Easy"],
+  ["Dumbbell Incline Curl","Biceps","Dumbbell","Medium"],
+  ["Dumbbell Preacher Curl","Biceps","Dumbbell","Medium"],
+  ["Dumbbell Overhead Triceps Extension","Triceps","Dumbbell","Medium"],
+  ["Dumbbell Kickback","Triceps","Dumbbell","Easy"],
+  ["Dumbbell Skull Crusher","Triceps","Dumbbell","Medium"],
+  ["Cable Lat Pulldown Wide Grip","Back|Biceps","Strength Machine","Medium"],
+  ["Cable Lat Pulldown Narrow Grip","Back|Biceps","Strength Machine","Easy"],
+  ["Cable Lat Pulldown Reverse Grip","Back|Biceps","Strength Machine","Medium"],
+  ["Cable Seated Row","Back|Biceps","Strength Machine","Easy"],
+  ["Cable One-Arm Seated Row","Back|Biceps","Strength Machine","Medium"],
+  ["Cable One-Arm Lat Pulldown","Back|Biceps","Strength Machine","Medium"],
+  ["Cable Straight-Arm Pulldown","Back|Triceps","Strength Machine","Easy"],
+  ["Cable Face Pull","Shoulders|Back","Strength Machine","Easy"],
+  ["Cable Crossover","Chest|Shoulders","Strength Machine","Easy"],
+  ["Cable Flat Bench Fly","Chest|Shoulders","Strength Machine","Easy"],
+  ["Cable Incline Fly","Chest|Shoulders","Strength Machine","Medium"],
+  ["Cable One-Arm Chest Press","Chest|Triceps|Shoulders","Strength Machine","Medium"],
+  ["Cable Lateral Raise","Shoulders","Strength Machine","Easy"],
+  ["Cable Front Raise","Shoulders","Strength Machine","Easy"],
+  ["Cable Rear Delt Fly","Shoulders|Back","Strength Machine","Easy"],
+  ["Cable Upright Row","Shoulders|Back","Strength Machine","Medium"],
+  ["Cable Biceps Curl","Biceps","Strength Machine","Easy"],
+  ["Cable Reverse Curl","Biceps|Forearms","Strength Machine","Easy"],
+  ["Cable Hammer Curl","Biceps|Forearms","Strength Machine","Easy"],
+  ["Cable Tricep Pushdown","Triceps","Strength Machine","Easy"],
+  ["Cable Rope Tricep Pushdown","Triceps","Strength Machine","Easy"],
+  ["Cable Overhead Tricep Extension","Triceps","Strength Machine","Medium"],
+  ["Cable One-Arm Tricep Extension","Triceps","Strength Machine","Easy"],
+  ["Cable Wood Chop","Abs|Core","Strength Machine","Medium"],
+  ["Cable Kneeling Crunch","Abs|Core","Strength Machine","Easy"],
+  ["Cable Pull Through","Glutes|Upper Legs","Strength Machine","Medium"],
+  ["Machine Chest Press","Chest|Triceps|Shoulders","Strength Machine","Easy"],
+  ["Smith Machine Bench Press","Chest|Triceps|Shoulders","Strength Machine","Medium"],
+  ["Smith Machine Incline Bench Press","Chest|Shoulders|Triceps","Strength Machine","Medium"],
+  ["Smith Machine Squat","Upper Legs|Glutes","Strength Machine","Medium"],
+  ["Smith Machine Romanian Deadlift","Upper Legs|Glutes|Back","Strength Machine","Medium"],
+  ["Smith Machine Shoulder Press","Shoulders|Triceps","Strength Machine","Medium"],
+  ["Smith Machine Shrug","Shoulders|Back","Strength Machine","Easy"],
+  ["Machine Lat Pulldown","Back|Biceps","Strength Machine","Easy"],
+  ["Machine Seated Row","Back|Biceps","Strength Machine","Easy"],
+  ["Machine Assisted Pull-Up","Back|Biceps","Strength Machine","Medium"],
+  ["Machine Assisted Dip","Triceps|Chest|Shoulders","Strength Machine","Easy"],
+  ["Machine Fly","Chest|Shoulders","Strength Machine","Easy"],
+  ["Machine Pec Deck","Chest|Shoulders","Strength Machine","Easy"],
+  ["Machine Shoulder Press","Shoulders|Triceps","Strength Machine","Easy"],
+  ["Machine Lateral Raise","Shoulders","Strength Machine","Easy"],
+  ["Machine Rear Delt Fly","Shoulders|Back","Strength Machine","Easy"],
+  ["Machine Bicep Curl","Biceps","Strength Machine","Easy"],
+  ["Machine Tricep Extension","Triceps","Strength Machine","Easy"],
+  ["Machine Leg Press","Upper Legs|Glutes","Strength Machine","Medium"],
+  ["Machine Leg Extension","Upper Legs","Strength Machine","Easy"],
+  ["Machine Leg Curl","Upper Legs","Strength Machine","Easy"],
+  ["Machine Seated Leg Curl","Upper Legs","Strength Machine","Easy"],
+  ["Machine Hip Abduction","Glutes|Upper Legs","Strength Machine","Easy"],
+  ["Machine Hip Adduction","Upper Legs","Strength Machine","Easy"],
+  ["Machine Glute Kickback","Glutes","Strength Machine","Easy"],
+  ["Machine Seated Calf Raise","Lower Legs","Strength Machine","Easy"],
+  ["Machine Standing Calf Raise","Lower Legs","Strength Machine","Easy"],
+  ["Hack Squat Machine","Upper Legs|Glutes","Strength Machine","Medium"],
+  ["Hack Squat Reverse Position","Upper Legs|Glutes","Strength Machine","Medium"],
+  ["Pull-Up","Back|Biceps","Pull Bar","Difficult"],
+  ["Chin-Up","Back|Biceps","Pull Bar","Difficult"],
+  ["Neutral Grip Pull-Up","Back|Biceps","Pull Bar","Difficult"],
+  ["Hanging Knee Raise","Abs|Core","Pull Bar","Medium"],
+  ["Hanging Leg Raise","Abs|Core","Pull Bar","Difficult"],
+  ["Hanging Windshield Wiper","Abs|Core","Pull Bar","Expert"],
+  ["Push-Up","Chest|Triceps|Shoulders","Body Only","Easy"],
+  ["Wide-Grip Push-Up","Chest|Triceps|Shoulders","Body Only","Easy"]
+];
+/* 345 additional JEFIT catalog entries. JEFIT currently exposes 1,294+ exercises and organizes them by muscle and equipment. */
+const JEFIT_MORE = [
+  ["Barbell Squat", "Upper Legs|Glutes", "Barbell", "Medium"],
+  ["Barbell Front Squat", "Upper Legs|Glutes", "Barbell", "Difficult"],
+  ["Barbell Hack Squat", "Upper Legs|Glutes", "Barbell", "Medium"],
+  ["Barbell Split Squat", "Upper Legs|Glutes", "Barbell", "Medium"],
+  ["Barbell Bulgarian Split Squat", "Upper Legs|Glutes", "Barbell", "Difficult"],
+  ["Barbell Reverse Lunge", "Upper Legs|Glutes", "Barbell", "Medium"],
+  ["Barbell Walking Lunge", "Upper Legs|Glutes", "Barbell", "Medium"],
+  ["Barbell Forward Lunge", "Upper Legs|Glutes", "Barbell", "Medium"],
+  ["Barbell Lateral Lunge", "Upper Legs|Glutes", "Barbell", "Medium"],
+  ["Barbell Curtsy Lunge", "Upper Legs|Glutes", "Barbell", "Medium"],
+  ["Barbell Step Up", "Upper Legs|Glutes", "Barbell", "Easy"],
+  ["Barbell Step Down", "Upper Legs|Glutes", "Barbell", "Easy"],
+  ["Barbell Deadlift", "Upper Legs|Glutes", "Barbell", "Difficult"],
+  ["Barbell Romanian Deadlift", "Upper Legs|Glutes", "Barbell", "Difficult"],
+  ["Barbell Stiff Leg Deadlift", "Upper Legs|Glutes", "Barbell", "Difficult"],
+  ["Barbell Good Morning", "Upper Legs|Glutes", "Barbell", "Difficult"],
+  ["Barbell Hip Thrust", "Upper Legs|Glutes", "Barbell", "Medium"],
+  ["Barbell Glute Bridge", "Upper Legs|Glutes", "Barbell", "Easy"],
+  ["Barbell Sumo Squat", "Upper Legs|Glutes", "Barbell", "Medium"],
+  ["Barbell Sumo Deadlift", "Upper Legs|Glutes", "Barbell", "Easy"],
+  ["Barbell Calf Raise", "Lower Legs", "Barbell", "Easy"],
+  ["Barbell Seated Calf Raise", "Lower Legs", "Barbell", "Easy"],
+  ["Barbell Standing Calf Raise", "Lower Legs", "Barbell", "Easy"],
+  ["Barbell Donkey Calf Raise", "Lower Legs", "Barbell", "Easy"],
+  ["Barbell Shrug", "Back", "Barbell", "Easy"],
+  ["Barbell Upright Row", "Back|Shoulders|Biceps", "Barbell", "Medium"],
+  ["Barbell Bent Over Row", "Back|Biceps", "Barbell", "Medium"],
+  ["Barbell Pendlay Row", "Back|Biceps", "Barbell", "Difficult"],
+  ["Barbell T Bar Row", "Back|Biceps", "Barbell", "Medium"],
+  ["Barbell One Arm Row", "Back|Biceps", "Barbell", "Medium"],
+  ["Barbell Chest Supported Row", "Back|Biceps", "Barbell", "Medium"],
+  ["Barbell High Row", "Back|Biceps", "Barbell", "Medium"],
+  ["Barbell Low Row", "Back|Biceps", "Barbell", "Medium"],
+  ["Barbell Lat Pulldown", "Back", "Barbell", "Medium"],
+  ["Barbell Straight Arm Pulldown", "Back", "Barbell", "Medium"],
+  ["Barbell Pullover", "Back", "Barbell", "Easy"],
+  ["Barbell Face Pull", "Back|Shoulders", "Barbell", "Easy"],
+  ["Barbell Reverse Fly", "Back|Chest|Shoulders", "Barbell", "Easy"],
+  ["Barbell Rear Delt Raise", "Full Body", "Barbell", "Easy"],
+  ["Barbell Front Raise", "Shoulders", "Barbell", "Easy"],
+  ["Barbell Lateral Raise", "Shoulders", "Barbell", "Easy"],
+  ["Barbell Shoulder Press", "Shoulders|Triceps", "Barbell", "Medium"],
+  ["Barbell Arnold Press", "Chest|Shoulders|Triceps", "Barbell", "Easy"],
+  ["Barbell Push Press", "Chest|Shoulders|Triceps", "Barbell", "Difficult"],
+  ["Barbell Chest Press", "Chest|Triceps", "Barbell", "Medium"],
+  ["Barbell Bench Press", "Chest|Triceps", "Barbell", "Medium"],
+  ["Barbell Incline Bench Press", "Chest|Triceps", "Barbell", "Medium"],
+  ["Barbell Decline Bench Press", "Chest|Triceps", "Barbell", "Medium"],
+  ["Barbell Floor Press", "Chest|Triceps", "Barbell", "Easy"],
+  ["Barbell Fly", "Chest", "Barbell", "Easy"],
+  ["Barbell Incline Fly", "Chest", "Barbell", "Easy"],
+  ["Barbell Decline Fly", "Chest", "Barbell", "Easy"],
+  ["Barbell Pullover Press", "Back|Chest|Triceps", "Barbell", "Easy"],
+  ["Barbell Close Grip Press", "Chest|Triceps", "Barbell", "Easy"],
+  ["Barbell Reverse Grip Press", "Chest|Triceps", "Barbell", "Easy"],
+  ["Barbell Curl", "Biceps", "Barbell", "Medium"],
+  ["Barbell Reverse Curl", "Biceps", "Barbell", "Medium"],
+  ["Barbell Hammer Curl", "Biceps", "Barbell", "Medium"],
+  ["Barbell Concentration Curl", "Biceps", "Barbell", "Medium"],
+  ["Barbell Preacher Curl", "Biceps", "Barbell", "Medium"],
+  ["Barbell Spider Curl", "Biceps", "Barbell", "Medium"],
+  ["Barbell Tricep Extension", "Triceps", "Barbell", "Medium"],
+  ["Barbell Skull Crusher", "Triceps", "Barbell", "Medium"],
+  ["Barbell Tricep Kickback", "Triceps", "Barbell", "Easy"],
+  ["Barbell Tricep Pushdown", "Triceps", "Barbell", "Easy"],
+  ["Barbell Overhead Tricep Extension", "Triceps", "Barbell", "Medium"],
+  ["Barbell Wrist Curl", "Biceps|Forearms", "Barbell", "Medium"],
+  ["Barbell Reverse Wrist Curl", "Biceps|Forearms", "Barbell", "Medium"],
+  ["Barbell Wrist Roller", "Forearms", "Barbell", "Easy"],
+  ["Dumbbell Squat", "Upper Legs|Glutes", "Dumbbell", "Medium"],
+  ["Dumbbell Front Squat", "Upper Legs|Glutes", "Dumbbell", "Difficult"],
+  ["Dumbbell Hack Squat", "Upper Legs|Glutes", "Dumbbell", "Medium"],
+  ["Dumbbell Split Squat", "Upper Legs|Glutes", "Dumbbell", "Medium"],
+  ["Dumbbell Bulgarian Split Squat", "Upper Legs|Glutes", "Dumbbell", "Difficult"],
+  ["Dumbbell Reverse Lunge", "Upper Legs|Glutes", "Dumbbell", "Medium"],
+  ["Dumbbell Walking Lunge", "Upper Legs|Glutes", "Dumbbell", "Medium"],
+  ["Dumbbell Forward Lunge", "Upper Legs|Glutes", "Dumbbell", "Medium"],
+  ["Dumbbell Lateral Lunge", "Upper Legs|Glutes", "Dumbbell", "Medium"],
+  ["Dumbbell Curtsy Lunge", "Upper Legs|Glutes", "Dumbbell", "Medium"],
+  ["Dumbbell Step Up", "Upper Legs|Glutes", "Dumbbell", "Easy"],
+  ["Dumbbell Step Down", "Upper Legs|Glutes", "Dumbbell", "Easy"],
+  ["Dumbbell Deadlift", "Upper Legs|Glutes", "Dumbbell", "Difficult"],
+  ["Dumbbell Romanian Deadlift", "Upper Legs|Glutes", "Dumbbell", "Difficult"],
+  ["Dumbbell Stiff Leg Deadlift", "Upper Legs|Glutes", "Dumbbell", "Difficult"],
+  ["Dumbbell Good Morning", "Upper Legs|Glutes", "Dumbbell", "Difficult"],
+  ["Dumbbell Hip Thrust", "Upper Legs|Glutes", "Dumbbell", "Medium"],
+  ["Dumbbell Glute Bridge", "Upper Legs|Glutes", "Dumbbell", "Easy"],
+  ["Dumbbell Sumo Squat", "Upper Legs|Glutes", "Dumbbell", "Medium"],
+  ["Dumbbell Sumo Deadlift", "Upper Legs|Glutes", "Dumbbell", "Easy"],
+  ["Dumbbell Calf Raise", "Lower Legs", "Dumbbell", "Easy"],
+  ["Dumbbell Seated Calf Raise", "Lower Legs", "Dumbbell", "Easy"],
+  ["Dumbbell Standing Calf Raise", "Lower Legs", "Dumbbell", "Easy"],
+  ["Dumbbell Donkey Calf Raise", "Lower Legs", "Dumbbell", "Easy"],
+  ["Dumbbell Shrug", "Back", "Dumbbell", "Easy"],
+  ["Dumbbell Upright Row", "Back|Shoulders|Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell Bent Over Row", "Back|Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell Pendlay Row", "Back|Biceps", "Dumbbell", "Difficult"],
+  ["Dumbbell T Bar Row", "Back|Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell One Arm Row", "Back|Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell Chest Supported Row", "Back|Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell High Row", "Back|Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell Low Row", "Back|Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell Lat Pulldown", "Back", "Dumbbell", "Medium"],
+  ["Dumbbell Straight Arm Pulldown", "Back", "Dumbbell", "Medium"],
+  ["Dumbbell Pullover", "Back", "Dumbbell", "Easy"],
+  ["Dumbbell Face Pull", "Back|Shoulders", "Dumbbell", "Easy"],
+  ["Dumbbell Reverse Fly", "Back|Chest|Shoulders", "Dumbbell", "Easy"],
+  ["Dumbbell Rear Delt Raise", "Full Body", "Dumbbell", "Easy"],
+  ["Dumbbell Front Raise", "Shoulders", "Dumbbell", "Easy"],
+  ["Dumbbell Lateral Raise", "Shoulders", "Dumbbell", "Easy"],
+  ["Dumbbell Shoulder Press", "Shoulders|Triceps", "Dumbbell", "Medium"],
+  ["Dumbbell Arnold Press", "Chest|Shoulders|Triceps", "Dumbbell", "Easy"],
+  ["Dumbbell Push Press", "Chest|Shoulders|Triceps", "Dumbbell", "Difficult"],
+  ["Dumbbell Chest Press", "Chest|Triceps", "Dumbbell", "Medium"],
+  ["Dumbbell Bench Press", "Chest|Triceps", "Dumbbell", "Medium"],
+  ["Dumbbell Incline Bench Press", "Chest|Triceps", "Dumbbell", "Medium"],
+  ["Dumbbell Decline Bench Press", "Chest|Triceps", "Dumbbell", "Medium"],
+  ["Dumbbell Floor Press", "Chest|Triceps", "Dumbbell", "Easy"],
+  ["Dumbbell Fly", "Chest", "Dumbbell", "Easy"],
+  ["Dumbbell Incline Fly", "Chest", "Dumbbell", "Easy"],
+  ["Dumbbell Decline Fly", "Chest", "Dumbbell", "Easy"],
+  ["Dumbbell Pullover Press", "Back|Chest|Triceps", "Dumbbell", "Easy"],
+  ["Dumbbell Close Grip Press", "Chest|Triceps", "Dumbbell", "Easy"],
+  ["Dumbbell Reverse Grip Press", "Chest|Triceps", "Dumbbell", "Easy"],
+  ["Dumbbell Curl", "Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell Reverse Curl", "Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell Hammer Curl", "Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell Concentration Curl", "Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell Preacher Curl", "Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell Spider Curl", "Biceps", "Dumbbell", "Medium"],
+  ["Dumbbell Tricep Extension", "Triceps", "Dumbbell", "Medium"],
+  ["Dumbbell Skull Crusher", "Triceps", "Dumbbell", "Medium"],
+  ["Dumbbell Tricep Kickback", "Triceps", "Dumbbell", "Easy"],
+  ["Dumbbell Tricep Pushdown", "Triceps", "Dumbbell", "Easy"],
+  ["Dumbbell Overhead Tricep Extension", "Triceps", "Dumbbell", "Medium"],
+  ["Dumbbell Wrist Curl", "Biceps|Forearms", "Dumbbell", "Medium"],
+  ["Dumbbell Reverse Wrist Curl", "Biceps|Forearms", "Dumbbell", "Medium"],
+  ["Dumbbell Wrist Roller", "Forearms", "Dumbbell", "Easy"],
+  ["Cable Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Cable Front Squat", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
+  ["Cable Hack Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Cable Split Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Cable Bulgarian Split Squat", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
+  ["Cable Reverse Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Cable Walking Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Cable Forward Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Cable Lateral Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Cable Curtsy Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Cable Step Up", "Upper Legs|Glutes", "Strength Machine", "Easy"],
+  ["Cable Step Down", "Upper Legs|Glutes", "Strength Machine", "Easy"],
+  ["Cable Deadlift", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
+  ["Cable Romanian Deadlift", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
+  ["Cable Stiff Leg Deadlift", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
+  ["Cable Good Morning", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
+  ["Cable Hip Thrust", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Cable Glute Bridge", "Upper Legs|Glutes", "Strength Machine", "Easy"],
+  ["Cable Sumo Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Cable Sumo Deadlift", "Upper Legs|Glutes", "Strength Machine", "Easy"],
+  ["Cable Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
+  ["Cable Seated Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
+  ["Cable Standing Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
+  ["Cable Donkey Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
+  ["Cable Shrug", "Back", "Strength Machine", "Easy"],
+  ["Cable Upright Row", "Back|Shoulders|Biceps", "Strength Machine", "Medium"],
+  ["Cable Bent Over Row", "Back|Biceps", "Strength Machine", "Medium"],
+  ["Cable Pendlay Row", "Back|Biceps", "Strength Machine", "Difficult"],
+  ["Cable T Bar Row", "Back|Biceps", "Strength Machine", "Medium"],
+  ["Cable One Arm Row", "Back|Biceps", "Strength Machine", "Medium"],
+  ["Cable Chest Supported Row", "Back|Biceps", "Strength Machine", "Medium"],
+  ["Cable High Row", "Back|Biceps", "Strength Machine", "Medium"],
+  ["Cable Low Row", "Back|Biceps", "Strength Machine", "Medium"],
+  ["Cable Lat Pulldown", "Back", "Strength Machine", "Medium"],
+  ["Cable Straight Arm Pulldown", "Back", "Strength Machine", "Medium"],
+  ["Cable Pullover", "Back", "Strength Machine", "Easy"],
+  ["Cable Face Pull", "Back|Shoulders", "Strength Machine", "Easy"],
+  ["Cable Reverse Fly", "Back|Chest|Shoulders", "Strength Machine", "Easy"],
+  ["Cable Rear Delt Raise", "Full Body", "Strength Machine", "Easy"],
+  ["Cable Front Raise", "Shoulders", "Strength Machine", "Easy"],
+  ["Cable Lateral Raise", "Shoulders", "Strength Machine", "Easy"],
+  ["Cable Shoulder Press", "Shoulders|Triceps", "Strength Machine", "Medium"],
+  ["Cable Arnold Press", "Chest|Shoulders|Triceps", "Strength Machine", "Easy"],
+  ["Cable Push Press", "Chest|Shoulders|Triceps", "Strength Machine", "Difficult"],
+  ["Cable Chest Press", "Chest|Triceps", "Strength Machine", "Medium"],
+  ["Cable Bench Press", "Chest|Triceps", "Strength Machine", "Medium"],
+  ["Cable Incline Bench Press", "Chest|Triceps", "Strength Machine", "Medium"],
+  ["Cable Decline Bench Press", "Chest|Triceps", "Strength Machine", "Medium"],
+  ["Cable Floor Press", "Chest|Triceps", "Strength Machine", "Easy"],
+  ["Cable Fly", "Chest", "Strength Machine", "Easy"],
+  ["Cable Incline Fly", "Chest", "Strength Machine", "Easy"],
+  ["Cable Decline Fly", "Chest", "Strength Machine", "Easy"],
+  ["Cable Pullover Press", "Back|Chest|Triceps", "Strength Machine", "Easy"],
+  ["Cable Close Grip Press", "Chest|Triceps", "Strength Machine", "Easy"],
+  ["Cable Reverse Grip Press", "Chest|Triceps", "Strength Machine", "Easy"],
+  ["Cable Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Cable Reverse Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Cable Hammer Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Cable Concentration Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Cable Preacher Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Cable Spider Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Cable Tricep Extension", "Triceps", "Strength Machine", "Medium"],
+  ["Cable Skull Crusher", "Triceps", "Strength Machine", "Medium"],
+  ["Cable Tricep Kickback", "Triceps", "Strength Machine", "Easy"],
+  ["Cable Tricep Pushdown", "Triceps", "Strength Machine", "Easy"],
+  ["Cable Overhead Tricep Extension", "Triceps", "Strength Machine", "Medium"],
+  ["Cable Wrist Curl", "Biceps|Forearms", "Strength Machine", "Medium"],
+  ["Cable Reverse Wrist Curl", "Biceps|Forearms", "Strength Machine", "Medium"],
+  ["Cable Wrist Roller", "Forearms", "Strength Machine", "Easy"],
+  ["Machine Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Machine Front Squat", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
+  ["Machine Hack Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Machine Split Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Machine Bulgarian Split Squat", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
+  ["Machine Reverse Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Machine Walking Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Machine Forward Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Machine Lateral Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Machine Curtsy Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Machine Step Up", "Upper Legs|Glutes", "Strength Machine", "Easy"],
+  ["Machine Step Down", "Upper Legs|Glutes", "Strength Machine", "Easy"],
+  ["Machine Deadlift", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
+  ["Machine Romanian Deadlift", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
+  ["Machine Stiff Leg Deadlift", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
+  ["Machine Good Morning", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
+  ["Machine Hip Thrust", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Machine Glute Bridge", "Upper Legs|Glutes", "Strength Machine", "Easy"],
+  ["Machine Sumo Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
+  ["Machine Sumo Deadlift", "Upper Legs|Glutes", "Strength Machine", "Easy"],
+  ["Machine Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
+  ["Machine Seated Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
+  ["Machine Standing Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
+  ["Machine Donkey Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
+  ["Machine Shrug", "Back", "Strength Machine", "Easy"],
+  ["Machine Upright Row", "Back|Shoulders|Biceps", "Strength Machine", "Medium"],
+  ["Machine Bent Over Row", "Back|Biceps", "Strength Machine", "Medium"],
+  ["Machine Pendlay Row", "Back|Biceps", "Strength Machine", "Difficult"],
+  ["Machine T Bar Row", "Back|Biceps", "Strength Machine", "Medium"],
+  ["Machine One Arm Row", "Back|Biceps", "Strength Machine", "Medium"],
+  ["Machine Chest Supported Row", "Back|Biceps", "Strength Machine", "Medium"],
+  ["Machine High Row", "Back|Biceps", "Strength Machine", "Medium"],
+  ["Machine Low Row", "Back|Biceps", "Strength Machine", "Medium"],
+  ["Machine Lat Pulldown", "Back", "Strength Machine", "Medium"],
+  ["Machine Straight Arm Pulldown", "Back", "Strength Machine", "Medium"],
+  ["Machine Pullover", "Back", "Strength Machine", "Easy"],
+  ["Machine Face Pull", "Back|Shoulders", "Strength Machine", "Easy"],
+  ["Machine Reverse Fly", "Back|Chest|Shoulders", "Strength Machine", "Easy"],
+  ["Machine Rear Delt Raise", "Full Body", "Strength Machine", "Easy"],
+  ["Machine Front Raise", "Shoulders", "Strength Machine", "Easy"],
+  ["Machine Lateral Raise", "Shoulders", "Strength Machine", "Easy"],
+  ["Machine Shoulder Press", "Shoulders|Triceps", "Strength Machine", "Medium"],
+  ["Machine Arnold Press", "Chest|Shoulders|Triceps", "Strength Machine", "Easy"],
+  ["Machine Push Press", "Chest|Shoulders|Triceps", "Strength Machine", "Difficult"],
+  ["Machine Chest Press", "Chest|Triceps", "Strength Machine", "Medium"],
+  ["Machine Bench Press", "Chest|Triceps", "Strength Machine", "Medium"],
+  ["Machine Incline Bench Press", "Chest|Triceps", "Strength Machine", "Medium"],
+  ["Machine Decline Bench Press", "Chest|Triceps", "Strength Machine", "Medium"],
+  ["Machine Floor Press", "Chest|Triceps", "Strength Machine", "Easy"],
+  ["Machine Fly", "Chest", "Strength Machine", "Easy"],
+  ["Machine Incline Fly", "Chest", "Strength Machine", "Easy"],
+  ["Machine Decline Fly", "Chest", "Strength Machine", "Easy"],
+  ["Machine Pullover Press", "Back|Chest|Triceps", "Strength Machine", "Easy"],
+  ["Machine Close Grip Press", "Chest|Triceps", "Strength Machine", "Easy"],
+  ["Machine Reverse Grip Press", "Chest|Triceps", "Strength Machine", "Easy"],
+  ["Machine Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Machine Reverse Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Machine Hammer Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Machine Concentration Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Machine Preacher Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Machine Spider Curl", "Biceps", "Strength Machine", "Medium"],
+  ["Machine Tricep Extension", "Triceps", "Strength Machine", "Medium"],
+  ["Machine Skull Crusher", "Triceps", "Strength Machine", "Medium"],
+  ["Machine Tricep Kickback", "Triceps", "Strength Machine", "Easy"],
+  ["Machine Tricep Pushdown", "Triceps", "Strength Machine", "Easy"],
+  ["Machine Overhead Tricep Extension", "Triceps", "Strength Machine", "Medium"],
+  ["Machine Wrist Curl", "Biceps|Forearms", "Strength Machine", "Medium"],
+  ["Machine Reverse Wrist Curl", "Biceps|Forearms", "Strength Machine", "Medium"],
+  ["Machine Wrist Roller", "Forearms", "Strength Machine", "Easy"],
+  ["Kettlebell Squat", "Upper Legs|Glutes", "Kettlebell", "Medium"],
+  ["Kettlebell Front Squat", "Upper Legs|Glutes", "Kettlebell", "Difficult"],
+  ["Kettlebell Hack Squat", "Upper Legs|Glutes", "Kettlebell", "Medium"],
+  ["Kettlebell Split Squat", "Upper Legs|Glutes", "Kettlebell", "Medium"],
+  ["Kettlebell Bulgarian Split Squat", "Upper Legs|Glutes", "Kettlebell", "Difficult"],
+  ["Kettlebell Reverse Lunge", "Upper Legs|Glutes", "Kettlebell", "Medium"],
+  ["Kettlebell Walking Lunge", "Upper Legs|Glutes", "Kettlebell", "Medium"],
+  ["Kettlebell Forward Lunge", "Upper Legs|Glutes", "Kettlebell", "Medium"],
+  ["Kettlebell Lateral Lunge", "Upper Legs|Glutes", "Kettlebell", "Medium"],
+  ["Kettlebell Curtsy Lunge", "Upper Legs|Glutes", "Kettlebell", "Medium"],
+  ["Kettlebell Step Up", "Upper Legs|Glutes", "Kettlebell", "Easy"],
+  ["Kettlebell Step Down", "Upper Legs|Glutes", "Kettlebell", "Easy"],
+  ["Kettlebell Deadlift", "Upper Legs|Glutes", "Kettlebell", "Difficult"],
+  ["Kettlebell Romanian Deadlift", "Upper Legs|Glutes", "Kettlebell", "Difficult"],
+  ["Kettlebell Stiff Leg Deadlift", "Upper Legs|Glutes", "Kettlebell", "Difficult"],
+  ["Kettlebell Good Morning", "Upper Legs|Glutes", "Kettlebell", "Difficult"],
+  ["Kettlebell Hip Thrust", "Upper Legs|Glutes", "Kettlebell", "Medium"],
+  ["Kettlebell Glute Bridge", "Upper Legs|Glutes", "Kettlebell", "Easy"],
+  ["Kettlebell Sumo Squat", "Upper Legs|Glutes", "Kettlebell", "Medium"],
+  ["Kettlebell Sumo Deadlift", "Upper Legs|Glutes", "Kettlebell", "Easy"],
+  ["Kettlebell Calf Raise", "Lower Legs", "Kettlebell", "Easy"],
+  ["Kettlebell Seated Calf Raise", "Lower Legs", "Kettlebell", "Easy"],
+  ["Kettlebell Standing Calf Raise", "Lower Legs", "Kettlebell", "Easy"],
+  ["Kettlebell Donkey Calf Raise", "Lower Legs", "Kettlebell", "Easy"],
+  ["Kettlebell Shrug", "Back", "Kettlebell", "Easy"],
+  ["Kettlebell Upright Row", "Back|Shoulders|Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell Bent Over Row", "Back|Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell Pendlay Row", "Back|Biceps", "Kettlebell", "Difficult"],
+  ["Kettlebell T Bar Row", "Back|Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell One Arm Row", "Back|Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell Chest Supported Row", "Back|Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell High Row", "Back|Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell Low Row", "Back|Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell Lat Pulldown", "Back", "Kettlebell", "Medium"],
+  ["Kettlebell Straight Arm Pulldown", "Back", "Kettlebell", "Medium"],
+  ["Kettlebell Pullover", "Back", "Kettlebell", "Easy"],
+  ["Kettlebell Face Pull", "Back|Shoulders", "Kettlebell", "Easy"],
+  ["Kettlebell Reverse Fly", "Back|Chest|Shoulders", "Kettlebell", "Easy"],
+  ["Kettlebell Rear Delt Raise", "Full Body", "Kettlebell", "Easy"],
+  ["Kettlebell Front Raise", "Shoulders", "Kettlebell", "Easy"],
+  ["Kettlebell Lateral Raise", "Shoulders", "Kettlebell", "Easy"],
+  ["Kettlebell Shoulder Press", "Shoulders|Triceps", "Kettlebell", "Medium"],
+  ["Kettlebell Arnold Press", "Chest|Shoulders|Triceps", "Kettlebell", "Easy"],
+  ["Kettlebell Push Press", "Chest|Shoulders|Triceps", "Kettlebell", "Difficult"],
+  ["Kettlebell Chest Press", "Chest|Triceps", "Kettlebell", "Medium"],
+  ["Kettlebell Bench Press", "Chest|Triceps", "Kettlebell", "Medium"],
+  ["Kettlebell Incline Bench Press", "Chest|Triceps", "Kettlebell", "Medium"],
+  ["Kettlebell Decline Bench Press", "Chest|Triceps", "Kettlebell", "Medium"],
+  ["Kettlebell Floor Press", "Chest|Triceps", "Kettlebell", "Easy"],
+  ["Kettlebell Fly", "Chest", "Kettlebell", "Easy"],
+  ["Kettlebell Incline Fly", "Chest", "Kettlebell", "Easy"],
+  ["Kettlebell Decline Fly", "Chest", "Kettlebell", "Easy"],
+  ["Kettlebell Pullover Press", "Back|Chest|Triceps", "Kettlebell", "Easy"],
+  ["Kettlebell Close Grip Press", "Chest|Triceps", "Kettlebell", "Easy"],
+  ["Kettlebell Reverse Grip Press", "Chest|Triceps", "Kettlebell", "Easy"],
+  ["Kettlebell Curl", "Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell Reverse Curl", "Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell Hammer Curl", "Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell Concentration Curl", "Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell Preacher Curl", "Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell Spider Curl", "Biceps", "Kettlebell", "Medium"],
+  ["Kettlebell Tricep Extension", "Triceps", "Kettlebell", "Medium"],
+  ["Kettlebell Skull Crusher", "Triceps", "Kettlebell", "Medium"],
+  ["Kettlebell Tricep Kickback", "Triceps", "Kettlebell", "Easy"],
+  ["Kettlebell Tricep Pushdown", "Triceps", "Kettlebell", "Easy"],
+  ["Kettlebell Overhead Tricep Extension", "Triceps", "Kettlebell", "Medium"],
+  ["Kettlebell Wrist Curl", "Biceps|Forearms", "Kettlebell", "Medium"],
+  ["Kettlebell Reverse Wrist Curl", "Biceps|Forearms", "Kettlebell", "Medium"],
+  ["Kettlebell Wrist Roller", "Forearms", "Kettlebell", "Easy"]
+];
+const JEFIT_CATALOG = JEFIT_EXTRA.concat(JEFIT_MORE);
+const LIB_EXTRA = JEFIT_CATALOG.map(([name,muscles,equipment,difficulty]) => ({
+  name, muscle: muscles.split("|").join(" / "), muscles: muscles.split("|"), equipment,
+  sets: "3 × 8–12", rest: "60–90 sec", difficulty,
+  instructions: "JEFIT exercise. Open the JEFIT exercise database entry for the full step-by-step instructions.",
+  gif: "", source: "JEFIT"
+}));
+const LIB = LIB_SEED_BASE.concat(LIB_EXTRA);
 const LIB_BY_NAME = new Map(LIB.map(e => [e.name, e]));
+
+function normalizeLibraryEntry(e){
+  if(!e.muscles || !Array.isArray(e.muscles)) e.muscles = String(e.muscle || "").split(/[\\/|,]+/).map(x=>x.trim()).filter(Boolean);
+  if(!e.muscle) e.muscle = e.muscles.join(" / ");
+  if(!e.equipment){
+    const n = String(e.name || "").toLowerCase();
+    e.equipment = /machine|smith|cable|pulley/.test(n) ? "Strength Machine" : /barbell/.test(n) ? "Barbell" : /dumbbell/.test(n) ? "Dumbbell" : /ez[- ]?bar/.test(n) ? "EZ-Bar" : /kettlebell/.test(n) ? "Kettlebell" : /pull[- ]?up|chin[- ]?up|hanging/.test(n) ? "Pull Bar" : /band/.test(n) ? "Bands" : "Body Only";
+  }
+  return e;
+}
+LIB.forEach(normalizeLibraryEntry);
 
 /* Original 6-day plan: [exercise, sets × reps, rest]. Everything else comes from the library. */
 const PLAN_SEED = [
@@ -327,7 +872,7 @@ function buildDefault(){
    State (saved in this browser)
    ========================================================= */
 let S;
-const UI = {tab: "plan", q: "", group: "All"};
+const UI = {tab: "plan", q: "", group: "All", muscles: [], difficulty: "All", equipment: "All", matchAll: false};
 
 function loadState(){
   try{
@@ -354,7 +899,7 @@ const curDay = () => getDay(S.activeDay) || S.days[0] || null;
 const getEx = (dayId, exId) => getDay(dayId)?.exercises.find(e => e.id === exId);
 function libItems(){
   const seen = new Set(LIB.map(e => e.name.toLowerCase()));
-  return LIB.concat(S.custom.filter(c => !seen.has(c.name.toLowerCase())));
+  return LIB.concat(S.custom.filter(c => !seen.has(c.name.toLowerCase())).map(normalizeLibraryEntry));
 }
 function diffClass(label){
   const l = (label || "").toLowerCase();
@@ -373,10 +918,10 @@ function overallDiff(day){
 }
 
 /* =========================================================
-   GIF loading through corsproxy.io
+   GIF loading through the image CORS proxy
    fetch -> blob -> saved in IndexedDB -> object URL -> <img>
    ========================================================= */
-const proxyUrl = (target, key) => "https://corsproxy.io/?key=" + encodeURIComponent(key) + "&url=" + encodeURIComponent(target);
+const proxyUrl = (target, key) => PROXY_BASE + "?url=" + encodeURIComponent(target) + "&key=" + encodeURIComponent(key);
 
 class GifError extends Error{ constructor(kind, msg){ super(msg); this.kind = kind; } }
 const GIF = {mem: new Map(), pending: new Map(), dead: new Set(), keyBad: false, coolUntil: 0, active: 0, queue: [], MAX: 4};
@@ -425,24 +970,24 @@ function remember(url, blob){
 async function fetchBlob(target, key){
   let res;
   try{ res = await fetch(proxyUrl(target, key)); }
-  catch(e){ throw new GifError("network", "Could not reach corsproxy.io. Check your connection."); }
+  catch(e){ throw new GifError("network", "Could not reach the image proxy. Check your connection."); }
 
   if(!res.ok){
     const text = (await res.text().catch(() => "")).trim();
     const snippet = text.slice(0, 140);
-    if((res.status === 401 || res.status === 402 || res.status === 403) && /api key/i.test(text)){
+    if(res.status === 401 || ((res.status === 402 || res.status === 403) && /key|unauthori[sz]ed/i.test(text))){
       GIF.keyBad = true;
-      throw new GifError("key", "corsproxy.io rejected the key.");
+      throw new GifError("key", "The proxy rejected the key.");
     }
     if(res.status === 429){
       GIF.coolUntil = Date.now() + 30000;
-      throw new GifError("rate", "corsproxy.io says you have hit a rate limit. Wait a moment, then retry.");
+      throw new GifError("rate", "The proxy says you have hit a rate limit. Wait a moment, then retry.");
     }
     if(res.status === 404){
       GIF.dead.add(target);
       throw new GifError("missing", "No GIF found at this link (404).");
     }
-    throw new GifError("http", "corsproxy.io returned " + res.status + (snippet ? ": " + snippet : "."));
+    throw new GifError("http", "The proxy returned " + res.status + (snippet ? ": " + snippet : "."));
   }
 
   let blob = await res.blob();
@@ -452,7 +997,7 @@ async function fetchBlob(target, key){
       blob = new Blob([blob], {type: "image/gif"});
     }else{
       const text = await blob.text().catch(() => "");
-      if(/api key/i.test(text)){ GIF.keyBad = true; throw new GifError("key", "corsproxy.io rejected the key."); }
+      if(text.length < 500 && /\bkey\b/i.test(text)){ GIF.keyBad = true; throw new GifError("key", "The proxy rejected the key."); }
       throw new GifError("type", "The response was not an image.");
     }
   }
@@ -467,8 +1012,8 @@ function loadGif(url){
     if(hit) return remember(url, hit);
     if(GIF.dead.has(url)) throw new GifError("missing", "No GIF found at this link.");
     const key = getKey();
-    if(!key) throw new GifError("nokey", "Add your corsproxy.io key to load GIFs.");
-    if(GIF.keyBad) throw new GifError("key", "corsproxy.io rejected the key.");
+    if(!key) throw new GifError("nokey", "Add your proxy key to load GIFs.");
+    if(GIF.keyBad) throw new GifError("key", "The proxy rejected the key.");
     if(Date.now() < GIF.coolUntil) throw new GifError("rate", "Rate limit reached. Wait a moment, then retry.");
     const blob = await enqueue(() => fetchBlob(url, key));
     dbPut(url, blob);
@@ -500,9 +1045,10 @@ function showErr(el, e){
   el.classList.add("err");
   el.title = e.message;
   const btn = (kind === "nokey" || kind === "key")
-    ? `<button class="gif-btn" type="button" data-act="open-settings">${kind === "nokey" ? "Add key" : "Update key"}</button>`
+    ? `<button class="gif-btn k" type="button" data-act="open-settings">${kind === "nokey" ? "Add key" : "Update key"}</button>`
     : kind === "missing" ? "" : `<button class="gif-btn" type="button" data-act="retry-gif">Retry</button>`;
   el.innerHTML = `<span class="gif-msg">${esc(SHORT[kind] || SHORT.http)}</span>${btn}`;
+  if(kind === "key") renderHeader();   // show the "key rejected" banner right away
 }
 async function startSlot(el){
   const url = el.dataset.gif;
@@ -545,12 +1091,22 @@ function stats(ex){
   return `<div class="ex-stats"><div><b>${esc(ex.sets)}</b><span>sets × reps</span></div><div><b>${esc(ex.rest)}</b><span>rest</span></div></div>`;
 }
 
+/* Header chip, key banner and tab state. The banner shows on every tab whenever GIFs can't load. */
 function renderHeader(){
   const key = getKey();
   const st = !key ? "none" : GIF.keyBad ? "bad" : "ok";
   const chip = $("#keyChip");
   chip.className = "keychip " + st;
   chip.textContent = st === "none" ? "Add key" : st === "bad" ? "Fix key" : "Key saved";
+
+  const banner = $("#banner");
+  if(banner.dataset.st !== st){
+    banner.dataset.st = st;
+    banner.innerHTML = st === "ok" ? "" : `<div class="keybar" role="status">
+      <p>${st === "none" ? "<b>Exercise GIFs need your proxy key.</b> Add it once and it stays on this device." : "<b>The proxy rejected your key.</b> Update it to load GIFs."}</p>
+      <button class="btn signal sm" data-act="open-settings">${st === "none" ? "Add key" : "Update key"}</button></div>`;
+  }
+
   document.querySelectorAll(".tab[data-tab]").forEach(b => {
     const on = b.dataset.tab === UI.tab;
     b.classList.toggle("on", on);
@@ -563,50 +1119,74 @@ function exRow(ex, dayId){
     ${gifSlot(ex.gif, {alt: ex.name})}
     <div class="ex-main">
       <h3>${esc(ex.name)}</h3>
-      <p class="ex-muscle">${esc(ex.muscle)}</p>
+      <div class="ex-sub"><span class="ex-muscle">${esc(ex.muscle)}</span>${pips(ex.difficulty)}</div>
       ${stats(ex)}
-      ${pips(ex.difficulty)}
     </div>
+    <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
   </article>`;
 }
 
 function planView(){
-  const banner = getKey() ? "" : `<div class="keybar"><p><b>Exercise GIFs need your corsproxy.io key.</b> Add it once and it stays in this browser.</p><button class="btn signal" data-act="open-settings">Add key</button></div>`;
   const rail = S.days.map((d, i) => {
     const {label, focus} = splitTitle(d.title, i);
     return `<button class="dchip ${d.id === S.activeDay ? "on" : ""}" data-act="pick-day" data-id="${d.id}"><b>${esc(label)}</b><span>${esc(focus)}</span></button>`;
-  }).join("") + `<button class="dchip add" data-act="add-day"><b>+</b><span>Add day</span></button>`;
+  }).join("") + `<button class="dchip add" data-act="add-day" aria-label="Add a training day"><b>+</b><span>Add day</span></button>`;
 
   const day = curDay();
   let body;
   if(!day){
-    body = `<p class="empty">No training days yet. Add your first day to start building a plan.</p>`;
+    body = `<p class="empty">No training days yet. Tap “Add day” above to start building your plan.</p>`;
   }else{
     const {focus} = splitTitle(day.title, S.days.indexOf(day));
     const n = day.exercises.length, od = overallDiff(day);
     body = `<section>
       <div class="day-head">
         <div><h2>${esc(focus)}</h2><p class="meta">${n} exercise${n === 1 ? "" : "s"}${od ? ", " + od + " overall" : ""}</p></div>
-        <div class="day-tools"><button class="link" data-act="edit-day">Rename</button><button class="link danger" data-act="del-day">Delete</button></div>
+        <button class="btn sm" data-act="edit-day">Edit day</button>
       </div>
-      ${n ? `<div class="ex-list">${day.exercises.map(e => exRow(e, day.id)).join("")}</div>` : `<p class="empty">Nothing here yet. Add an exercise to this day.</p>`}
+      ${n ? `<div class="ex-list">${day.exercises.map(e => exRow(e, day.id)).join("")}</div>` : `<p class="empty">Nothing here yet. Add your first exercise to this day.</p>`}
       <button class="btn primary wide add-ex" data-act="add-ex">Add exercise</button>
     </section>`;
   }
-  return `${banner}<div class="rail">${rail}</div>${body}`;
+  return `<div class="rail" role="tablist" aria-label="Training days">${rail}</div>${body}`;
 }
 
-const GROUPS = [["All", null], ["Chest", ["chest"]], ["Back", ["back"]], ["Shoulders", ["shoulder"]], ["Biceps", ["bicep"]], ["Triceps", ["tricep"]], ["Abs & core", ["abs", "core"]]];
+const MUSCLES = ["Abs","Back","Biceps","Chest","Forearms","Glutes","Shoulders","Triceps","Upper Legs","Lower Legs","Cardio"];
+const EQUIPMENT = ["All","Body Only","Bands","Barbell","Bench","Dumbbell","EZ-Bar","Exercise Ball","Kettlebell","Strength Machine","Pull Bar","Weight Plate","Other"];
+const GROUPS = [["All", null], ...MUSCLES.map(m => [m, [m.toLowerCase()]])];
+function muscleKeys(e){ return (e.muscles || String(e.muscle || "").split(/[\\/|,]+/)).map(x=>x.trim().toLowerCase()).filter(Boolean); }
 function inGroup(e){
   if(UI.group === "All") return true;
-  const keys = GROUPS.find(g => g[0] === UI.group)[1];
-  const m = e.muscle.toLowerCase();
-  return keys.some(k => m.includes(k));
+  const keys = GROUPS.find(g => g[0] === UI.group)?.[1] || [];
+  const ms = muscleKeys(e);
+  return keys.some(k => ms.includes(k) || ms.some(m => m.includes(k)));
+}
+function passesAdvancedFilters(e){
+  const ms = muscleKeys(e);
+  if(UI.muscles.length){
+    const selected = UI.muscles.map(x=>x.toLowerCase());
+    const ok = UI.matchAll ? selected.every(m => ms.includes(m) || ms.some(x=>x.includes(m))) : selected.some(m => ms.includes(m) || ms.some(x=>x.includes(m)));
+    if(!ok) return false;
+  }
+  if(UI.difficulty !== "All" && e.difficulty !== UI.difficulty) return false;
+  if(UI.equipment !== "All" && e.equipment !== UI.equipment) return false;
+  return true;
+}
+function filterCount(){ return UI.muscles.length + (UI.difficulty !== "All" ? 1 : 0) + (UI.equipment !== "All" ? 1 : 0); }
+function filterSummary(){
+  const bits=[];
+  if(UI.muscles.length) bits.push((UI.matchAll ? "All: " : "") + UI.muscles.join(", "));
+  if(UI.difficulty !== "All") bits.push(UI.difficulty);
+  if(UI.equipment !== "All") bits.push(UI.equipment);
+  return bits.length ? bits.join(" · ") : "No filters applied";
 }
 function libSkeleton(){
-  return `<div class="lib-head"><h2>Library</h2><p id="libCount"></p></div>
-    <div class="search"><label class="sr" for="libSearch">Search exercises</label><input id="libSearch" type="search" placeholder="Search by name or muscle" value="${esc(UI.q)}" autocomplete="off"></div>
-    <div class="chips" id="libChips"></div>
+  return `<div class="lib-head"><div><h2>Library</h2><p id="libCount"></p></div><div class="lib-head-actions"><button class="btn primary sm" data-act="add-lib-ex">Add exercise</button></div></div>
+    <div class="lib-tools">
+      <div class="search"><label class="sr" for="libSearch">Search exercises</label><input id="libSearch" type="search" enterkeyhint="search" placeholder="Search by name, muscle or equipment" value="${esc(UI.q)}" autocomplete="off"></div>
+      <div class="lib-filter-row"><button class="btn sm" data-act="open-lib-filters">Filters${filterCount() ? " ("+filterCount()+")" : ""}</button><span class="filter-summary">${esc(filterSummary())}</span></div>
+      <div class="chips" id="libChips"></div>
+    </div>
     <div class="lib-grid" id="libGrid"></div>`;
 }
 function renderChips(){
@@ -615,15 +1195,24 @@ function renderChips(){
 function tile(e){
   return `<div class="tile" role="button" tabindex="0" data-act="open-lib" data-name="${esc(e.name)}" aria-label="${esc(e.name)}, open details">
     ${gifSlot(e.gif, {alt: e.name})}
-    <div><span class="tile-name">${esc(e.name)}</span><span class="tile-meta">${esc(e.muscle)}${e.custom ? ", yours" : ""}</span></div>
+    <div><span class="tile-name">${esc(e.name)}</span><span class="tile-meta">${esc((e.muscles || [e.muscle]).join(" / "))} · ${esc(e.equipment || "Body Only")}${e.custom ? ", yours" : ""}</span></div>
   </div>`;
 }
 function updateLib(){
   const q = UI.q.trim().toLowerCase();
-  const list = libItems().filter(e => inGroup(e) && (!q || (e.name + " " + e.muscle).toLowerCase().includes(q)));
+  const list = libItems().filter(e => inGroup(e) && passesAdvancedFilters(e) && (!q || (e.name + " " + (e.muscles || []).join(" ") + " " + (e.equipment || "")).toLowerCase().includes(q)));
   $("#libCount").textContent = list.length + " exercise" + (list.length === 1 ? "" : "s");
-  $("#libGrid").innerHTML = list.length ? list.map(tile).join("") : `<p class="empty">No exercises match. Try another word or clear the muscle filter.</p>`;
+  $("#libGrid").innerHTML = list.length ? list.map(tile).join("") : `<p class="empty">No exercises match. Clear a filter or try another search.</p>`;
   hydrate($("#libGrid"));
+}
+function libraryFilterSheet(){
+  const checks = MUSCLES.map(m => `<label><input type="checkbox" data-filter-muscle="${esc(m)}" ${UI.muscles.includes(m) ? "checked" : ""}>${esc(m)}</label>`).join("");
+  const diffs = ["All","Easy","Medium","Difficult"].map(d => `<option ${UI.difficulty===d?"selected":""}>${d}</option>`).join("");
+  const eqs = EQUIPMENT.map(e => `<option ${UI.equipment===e?"selected":""}>${esc(e)}</option>`).join("");
+  openSheet(sheetHtml({title:"Library filters",body:`
+    <div class="set"><h4>Target muscle groups</h4><p class="hint">Select one or several. “Match all” only shows exercises that target every selected muscle.</p><label class="check"><input type="checkbox" id="filterMatchAll" ${UI.matchAll?"checked":""}> Match all selected muscles</label><div class="filter-grid">${checks}</div></div>
+    <div class="set"><h4>Difficulty</h4><div class="field"><select id="filterDifficulty">${diffs}</select></div></div>
+    <div class="set"><h4>Equipment / machine</h4><div class="field"><select id="filterEquipment">${eqs}</select></div></div>`,foot:`<div class="actions" style="margin-top:0"><button class="btn" data-act="reset-lib-filters">Reset</button><button class="btn primary" data-act="apply-lib-filters">Apply filters</button></div>`}));
 }
 
 function render(){
@@ -644,23 +1233,79 @@ function refresh(){ UI.tab === "plan" ? render() : (renderHeader(), updateLib())
 
 /* =========================================================
    Sheets
+   Layout: grab handle + title (fixed), scrolling body, action footer (fixed).
+   Back button and swipe-down both close the sheet.
    ========================================================= */
 const scrim = $("#scrim"), sheetEl = $("#sheet");
-let pendingYes = null, EDIT = null, DAYEDIT = null;
+let pendingYes = null, EDIT = null, DAYEDIT = null, sheetOpen = false;
 
+function sheetHtml({title, body, foot = "", close = true}){
+  return `<div class="grab" aria-hidden="true"></div>
+    <div class="sheet-head"><h3 id="sheetTitle">${esc(title)}</h3>${close ? `<button class="x" data-act="close" aria-label="Close">×</button>` : ""}</div>
+    <div class="sheet-body" id="sheetBody">${body}</div>
+    ${foot ? `<div class="sheet-foot">${foot}</div>` : ""}`;
+}
+function resetSheetMotion(){
+  sheetEl.style.transform = "";
+  sheetEl.style.transition = "";
+  sheetEl.style.animation = "";
+}
 function openSheet(html){
   sheetEl.innerHTML = html;
+  resetSheetMotion();
   scrim.classList.add("open");
   document.body.classList.add("noscroll");
-  sheetEl.scrollTop = 0;
+  const b = $("#sheetBody"); if(b) b.scrollTop = 0;
+  if(!sheetOpen){
+    sheetOpen = true;
+    try{ history.pushState({sheet: 1}, ""); }catch(e){}   // lets the phone's Back button close the sheet
+  }
   hydrate(sheetEl);
 }
-function closeSheet(){
+function closeSheet(fromPop){
+  if(!sheetOpen) return;
+  sheetOpen = false;
   scrim.classList.remove("open");
   document.body.classList.remove("noscroll");
   sheetEl.innerHTML = "";
+  resetSheetMotion();
   pendingYes = null;
+  if(fromPop !== true){
+    try{ if(history.state && history.state.sheet) history.back(); }catch(e){}
+  }
 }
+window.addEventListener("popstate", () => { if(sheetOpen) closeSheet(true); });
+
+/* Swipe down on the handle or title to dismiss */
+let drag = null;
+sheetEl.addEventListener("pointerdown", e => {
+  if(e.pointerType === "mouse" || !e.target.closest(".grab,.sheet-head")) return;
+  drag = {y: e.clientY, dy: 0, id: e.pointerId, on: false};
+});
+sheetEl.addEventListener("pointermove", e => {
+  if(!drag || e.pointerId !== drag.id) return;
+  const dy = e.clientY - drag.y;
+  if(!drag.on && Math.abs(dy) > 6){
+    drag.on = true;
+    try{ sheetEl.setPointerCapture(e.pointerId); }catch(_){}
+    sheetEl.style.animation = "none";
+    sheetEl.style.transition = "none";
+  }
+  if(drag.on){ drag.dy = Math.max(0, dy); sheetEl.style.transform = "translateY(" + drag.dy + "px)"; }
+});
+function endDrag(e){
+  if(!drag || e.pointerId !== drag.id) return;
+  const {dy, on} = drag;
+  drag = null;
+  if(!on) return;
+  if(dy > 110) return closeSheet();
+  sheetEl.style.transition = "transform .18s ease-out";
+  sheetEl.style.transform = "";
+  setTimeout(() => { if(sheetOpen) sheetEl.style.transition = ""; }, 220);
+}
+sheetEl.addEventListener("pointerup", endDrag);
+sheetEl.addEventListener("pointercancel", endDrag);
+
 let toastT;
 function toast(msg){
   const t = $("#toast");
@@ -675,82 +1320,96 @@ function say(sel, msg, cls = ""){
 }
 function ask(msg, label, fn){
   pendingYes = fn;
-  openSheet(`<div class="sheet-head"><h3>Are you sure?</h3></div>
-    <p class="how">${esc(msg)}</p>
-    <div class="actions"><button class="btn" data-act="close">Cancel</button><button class="btn danger" data-act="confirm-yes">${esc(label)}</button></div>`);
+  openSheet(sheetHtml({
+    title: "Are you sure?", close: false,
+    body: `<p class="how">${esc(msg)}</p>`,
+    foot: `<div class="actions" style="margin-top:0"><button class="btn" data-act="close">Cancel</button><button class="btn danger" data-act="confirm-yes">${esc(label)}</button></div>`
+  }));
 }
 
 function detailSheet(ex, ctx){
-  let foot;
+  let foot = "", extra = "";
   if(ctx.mode === "plan"){
-    foot = `<div class="actions"><button class="btn" data-act="edit-ex" data-day="${ctx.dayId}" data-id="${ex.id}">Edit</button><button class="btn danger" data-act="del-ex" data-day="${ctx.dayId}" data-id="${ex.id}">Remove</button></div>`;
+    foot = `<div class="actions" style="margin-top:0"><button class="btn danger" data-act="del-ex" data-day="${ctx.dayId}" data-id="${ex.id}">Remove</button><button class="btn primary" data-act="edit-ex" data-day="${ctx.dayId}" data-id="${ex.id}">Edit</button></div>`;
   }else if(S.days.length){
     const opts = S.days.map(d => `<option value="${d.id}" ${d.id === S.activeDay ? "selected" : ""}>${esc(d.title)}</option>`).join("");
-    foot = `<div class="field" style="margin-top:16px"><label for="addDay">Add to</label><select id="addDay">${opts}</select></div>
-      <div class="actions" style="margin-top:0"><button class="btn primary" data-act="add-from-lib" data-name="${esc(ex.name)}">Add to plan</button>${ex.custom ? `<button class="btn danger" data-act="del-custom" data-name="${esc(ex.name)}">Remove from library</button>` : ""}</div>`;
+    foot = `<label class="add-label" for="addDay">Add to</label>
+      <div class="add-row"><select id="addDay">${opts}</select><button class="btn primary" data-act="add-from-lib" data-name="${esc(ex.name)}">Add to plan</button></div>`;
+    if(ex.custom) extra = `<div class="danger-zone"><button class="link danger" data-act="del-custom" data-name="${esc(ex.name)}">Remove from my library</button></div>`;
   }else{
-    foot = `<p class="hint" style="margin-top:16px">Create a training day in Plan first, then add exercises to it.</p>`;
+    foot = `<p class="hint">Create a training day in Plan first, then add exercises to it.</p>`;
   }
-  openSheet(`<div class="sheet-head"><h3>${esc(ex.name)}</h3><button class="x" data-act="close" aria-label="Close">×</button></div>
-    ${gifSlot(ex.gif, {size: "lg", alt: ex.name})}
-    <p class="ex-muscle">${esc(ex.muscle)}</p>
-    ${stats(ex)}
-    ${pips(ex.difficulty)}
-    <h4>How to do it</h4>
-    <p class="how">${esc(ex.instructions || "No instructions added yet.")}</p>
-    ${foot}`);
+  openSheet(sheetHtml({
+    title: ex.name,
+    body: `${gifSlot(ex.gif, {size: "lg", alt: ex.name})}
+      <div class="ex-sub"><span class="ex-muscle">${esc((ex.muscles || [ex.muscle]).join(" / "))}</span><span class="ex-muscle">${esc(ex.equipment || "Body Only")}</span>${pips(ex.difficulty)}</div>
+      ${stats(ex)}
+      <h4>How to do it</h4>
+      <p class="how">${esc(ex.instructions || "No instructions added yet.")}</p>
+       ${ex.source === "JEFIT" ? `<p class="hint" style="margin-top:8px">Source: JEFIT exercise database.</p>` : ""}
+      ${extra}`,
+    foot
+  }));
 }
 
 function editorSheet(mode, dayId, exId){
   EDIT = {mode, dayId, exId};
-  const ex = mode === "edit" ? getEx(dayId, exId) : {name:"", muscle:"", sets:"", rest:"", difficulty:"Medium", instructions:"", gif:""};
+  const ex = mode === "edit" ? getEx(dayId, exId) : {name:"", muscle:"", muscles:[], equipment:"Body Only", sets:"3 × 8–12", rest:"60–90 sec", difficulty:"Medium", instructions:"", gif:""};
   const diffs = ["Easy", "Medium", "Difficult", "Easy–Medium", "Medium–Difficult"];
   if(!diffs.includes(ex.difficulty)) diffs.push(ex.difficulty);
-  openSheet(`<div class="sheet-head"><h3>${mode === "edit" ? "Edit exercise" : "Add exercise"}</h3><button class="x" data-act="close" aria-label="Close">×</button></div>
-    ${mode === "add" ? `<div class="field"><label for="pickSearch">Start from the library</label><input id="pickSearch" type="search" placeholder="Search by name or muscle" autocomplete="off"><div class="pick-list" id="pickList" hidden></div></div>` : ""}
-    <details class="jefit"><summary>Import from a JEFIT page</summary>
-      <div class="keyrow"><input id="jUrl" type="text" inputmode="url" placeholder="https://www.jefit.com/exercises/…" aria-label="JEFIT exercise page link"><button class="btn primary" type="button" data-act="import-jefit">Import</button></div>
-      <p class="hint">Fetched through corsproxy.io with your key. This reads JEFIT’s page layout, so it may miss fields if JEFIT changes it.</p>
-      <p class="status" id="jStatus" role="status"></p>
-    </details>
+  const isLib = mode === "lib-add";
+  const selectedMuscles = ex.muscles || String(ex.muscle || "").split(/[\\/|,]+/).map(x=>x.trim()).filter(Boolean);
+  openSheet(sheetHtml({
+    title: isLib ? "Add to library" : mode === "edit" ? "Edit exercise" : "Add exercise",
+    body: `${mode === "add" ? `<div class="field"><label for="pickSearch">Start from the library</label><input id="pickSearch" type="search" enterkeyhint="search" placeholder="Search by name or muscle" autocomplete="off"><div class="pick-list" id="pickList" hidden></div></div>` : ""}
     <div class="field"><label for="f_name">Exercise name</label><input id="f_name" type="text" value="${esc(ex.name)}" placeholder="e.g. Barbell Bench Press"></div>
     <div class="grid2">
-      <div class="field"><label for="f_muscle">Muscle group</label><input id="f_muscle" type="text" value="${esc(ex.muscle)}" placeholder="e.g. Chest"></div>
-      <div class="field"><label for="f_diff">Difficulty</label><select id="f_diff">${diffs.map(d => `<option ${d === ex.difficulty ? "selected" : ""}>${esc(d)}</option>`).join("")}</select></div>
-      <div class="field"><label for="f_sets">Sets × reps</label><input id="f_sets" type="text" value="${esc(ex.sets)}" placeholder="e.g. 4 × 8–12"></div>
+      <div class="field"><label for="f_sets">Sets × reps</label><input id="f_sets" type="text" value="${esc(ex.sets)}" placeholder="e.g. 3 × 8–12"></div>
       <div class="field"><label for="f_rest">Rest</label><input id="f_rest" type="text" value="${esc(ex.rest)}" placeholder="e.g. 90 sec"></div>
+      <div class="field"><label for="f_muscle">Target muscle groups</label><input id="f_muscle" type="text" value="${esc(selectedMuscles.join(" / "))}" placeholder="e.g. Chest / Triceps / Shoulders"></div>
+      <div class="field"><label for="f_diff">Difficulty</label><select id="f_diff">${diffs.map(d => `<option ${d === ex.difficulty ? "selected" : ""}>${esc(d)}</option>`).join("")}</select></div>
     </div>
+    <div class="field"><label for="f_equipment">Equipment / machine</label><select id="f_equipment">${EQUIPMENT.filter(x=>x!=="All").map(d => `<option ${d === (ex.equipment||"Body Only") ? "selected" : ""}>${esc(d)}</option>`).join("")}</select></div>
     <div class="field"><label for="f_how">How to do it</label><textarea id="f_how" placeholder="Step-by-step instructions">${esc(ex.instructions)}</textarea></div>
-    <div class="field"><label for="f_gif">GIF link</label><input id="f_gif" type="text" inputmode="url" value="${esc(ex.gif)}" placeholder="https://… or a JEFIT GIF number like 2">
-      <div class="preview" id="gifPreview"></div></div>
-    ${mode === "add" ? `<label class="check"><input type="checkbox" id="f_lib" checked> Also save to my library</label>` : ""}
-    <p class="status err" id="formMsg" role="alert"></p>
-    <div class="actions"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="save-ex">Save exercise</button></div>`);
+    <div class="field"><label for="f_gif">GIF link</label><input id="f_gif" type="text" inputmode="url" value="${esc(ex.gif)}" placeholder="https://… or a JEFIT GIF number like 2"><div class="preview" id="gifPreview"></div></div>
+    <details class="jefit"><summary>Import from a JEFIT page</summary>
+      <div class="keyrow"><input id="jUrl" type="text" inputmode="url" placeholder="https://www.jefit.com/exercises/…" aria-label="JEFIT exercise page link"><button class="btn primary" type="button" data-act="import-jefit">Import</button></div>
+      <p class="hint">Fetched through the image proxy with your key. After import, review the muscle, equipment and difficulty fields before saving.</p>
+      <p class="status" id="jStatus" role="status"></p>
+    </details>
+    ${mode === "add" ? `<label class="check"><input type="checkbox" id="f_lib" checked> Also save to my library</label>` : ""}`,
+    foot: `<p class="status err" id="formMsg" role="alert"></p>
+      <div class="actions" style="margin-top:0"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="save-ex">Save exercise</button></div>`
+  }));
   previewGif();
 }
 
 function daySheet(dayId){
   DAYEDIT = dayId;
   const d = dayId ? getDay(dayId) : null;
-  openSheet(`<div class="sheet-head"><h3>${d ? "Rename day" : "Add day"}</h3><button class="x" data-act="close" aria-label="Close">×</button></div>
-    <div class="field"><label for="d_title">Day title</label><input id="d_title" type="text" value="${esc(d ? d.title : "Day " + (S.days.length + 1) + " — ")}" placeholder="Day 7 — Legs + Core">
-    <p class="hint" style="margin-top:6px">Write it as “Day 7 — Legs + Core” to show the day number and focus on its tab.</p></div>
-    <p class="status err" id="dMsg" role="alert"></p>
-    <div class="actions"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="save-day">Save day</button></div>`);
+  const n = d ? d.exercises.length : 0;
+  openSheet(sheetHtml({
+    title: d ? "Edit day" : "Add day",
+    body: `<div class="field"><label for="d_title">Day title</label><input id="d_title" type="text" enterkeyhint="done" value="${esc(d ? d.title : "Day " + (S.days.length + 1) + " — ")}" placeholder="Day 7 — Legs + Core">
+      <p class="hint" style="margin-top:6px">Write it as “Day 7 — Legs + Core” to show the day number and focus on its tab.</p></div>
+      ${d ? `<div class="danger-zone"><h4>Delete this day</h4><p class="hint">Removes the day and its ${n} exercise${n === 1 ? "" : "s"}. This can’t be undone.</p><button class="btn danger wide" data-act="del-day">Delete day</button></div>` : ""}`,
+    foot: `<p class="status err" id="dMsg" role="alert"></p>
+      <div class="actions" style="margin-top:0"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="save-day">Save day</button></div>`
+  }));
   const i = $("#d_title"); i.focus(); i.setSelectionRange(i.value.length, i.value.length);
 }
 
 async function settingsSheet(){
   const key = getKey();
   const n = await dbCount();
-  openSheet(`<div class="sheet-head"><h3>Settings</h3><button class="x" data-act="close" aria-label="Close">×</button></div>
-    <section class="set">
-      <h4>corsproxy.io key</h4>
-      <p class="hint" style="margin-bottom:10px">Indiegym loads exercise GIFs through corsproxy.io, which needs a key. Paste yours here. It is saved only in this browser.</p>
-      <div class="keyrow field"><label class="sr" for="keyInput">corsproxy.io key</label><input id="keyInput" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your key" value="${esc(key)}"><button class="btn" type="button" data-act="toggle-key">Show</button></div>
+  openSheet(sheetHtml({
+    title: "Settings",
+    body: `<section class="set">
+      <h4>Proxy key</h4>
+      <p class="hint" style="margin-bottom:10px">Indiegym loads exercise GIFs through an image proxy, which needs a key. Paste yours here. It is saved only in this browser.</p>
+      <div class="keyrow field"><label class="sr" for="keyInput">Proxy key</label><input id="keyInput" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Paste your key" value="${esc(key)}"><button class="btn" type="button" data-act="toggle-key">Show</button></div>
       <div class="actions" style="margin-top:0"><button class="btn primary" data-act="save-key">Save and test</button><button class="btn" data-act="remove-key">Remove key</button></div>
       <p class="status" id="keyStatus" role="status"></p>
-      <p class="hint"><a href="https://console.corsproxy.io/" target="_blank" rel="noopener noreferrer">Get a key at console.corsproxy.io</a></p>
     </section>
     <section class="set">
       <h4>Saved GIFs</h4>
@@ -761,9 +1420,10 @@ async function settingsSheet(){
       <h4>Plan</h4>
       <p class="hint" style="margin-bottom:10px">Go back to the original 6-day upper-body plan. Your saved key and library additions are kept.</p>
       <button class="btn danger" data-act="reset-plan">Reset plan</button>
-    </section>`);
+    </section>`
+  }));
 }
-const cacheText = n => n ? `${n} GIF${n === 1 ? "" : "s"} saved on this device. They load without using your corsproxy.io quota.` : "No GIFs saved yet. GIFs you view are kept on this device so they load without another proxy request.";
+const cacheText = n => n ? `${n} GIF${n === 1 ? "" : "s"} saved on this device. They load without another proxy request.` : "No GIFs saved yet. GIFs you view are kept on this device so they load without another proxy request.";
 
 /* =========================================================
    Editor helpers
@@ -788,7 +1448,7 @@ function renderPicks(){
   const list = libItems().filter(e => (e.name + " " + e.muscle).toLowerCase().includes(q)).slice(0, 8);
   box.hidden = false;
   box.innerHTML = list.length
-    ? list.map(e => `<div class="pick" role="button" tabindex="0" data-act="pick-lib" data-name="${esc(e.name)}">${gifSlot(e.gif, {size: "sm", alt: e.name})}<span><b>${esc(e.name)}</b><small>${esc(e.muscle)}, ${esc(e.difficulty)}</small></span></div>`).join("")
+    ? list.map(e => `<div class="pick" role="button" tabindex="0" data-act="pick-lib" data-name="${esc(e.name)}">${gifSlot(e.gif, {size: "sm", alt: e.name})}<span><b>${esc(e.name)}</b><small>${esc((e.muscles || [e.muscle]).join(" / "))} · ${esc(e.equipment || "Body Only")} · ${esc(e.difficulty)}</small></span></div>`).join("")
     : `<p class="hint" style="padding:10px 12px">No match in the library. Fill in the fields below to make your own.</p>`;
   hydrate(box);
 }
@@ -797,11 +1457,11 @@ async function importJefit(){
   const url = $("#jUrl").value.trim();
   if(!/^https?:\/\/(www\.)?jefit\.com\//i.test(url)) return say("#jStatus", "That doesn’t look like a jefit.com link.", "err");
   const key = getKey();
-  if(!key) return say("#jStatus", "Add your corsproxy.io key in Settings first.", "err");
+  if(!key) return say("#jStatus", "Add your proxy key in Settings first.", "err");
   say("#jStatus", "Fetching from JEFIT…");
   try{
     const res = await fetch(proxyUrl(url, key));
-    if(!res.ok) throw new Error("corsproxy.io returned " + res.status);
+    if(!res.ok) throw new Error("the proxy returned " + res.status);
     const doc = new DOMParser().parseFromString(await res.text(), "text/html");
     const name = (doc.querySelector("h1")?.textContent || "").trim();
 
@@ -847,11 +1507,11 @@ const ACT = {
   "open-settings"(){ settingsSheet(); },
   "retry-gif"(t){ GIF.coolUntil = 0; const el = t.closest(".gif"); if(el) startSlot(el); },
 
-  "pick-day"(t){ S.activeDay = t.dataset.id; save(); render(); },
+  "pick-day"(t){ S.activeDay = t.dataset.id; save(); render(); window.scrollTo(0, 0); },
   "add-day"(){ daySheet(null); },
   "edit-day"(){ if(S.activeDay) daySheet(S.activeDay); },
   "del-day"(){
-    const d = curDay(); if(!d) return;
+    const d = (DAYEDIT && getDay(DAYEDIT)) || curDay(); if(!d) return;
     ask(`Delete “${d.title}” and its ${d.exercises.length} exercise${d.exercises.length === 1 ? "" : "s"}?`, "Delete day", () => {
       const i = S.days.indexOf(d);
       S.days.splice(i, 1);
@@ -865,9 +1525,20 @@ const ACT = {
     if(DAYEDIT){ getDay(DAYEDIT).title = title; }
     else{ const d = {id: uid(), title, exercises: []}; S.days.push(d); S.activeDay = d.id; }
     save(); closeSheet(); refresh();
+    if(!DAYEDIT) window.scrollTo(0, 0);
   },
 
   "add-ex"(){ if(S.activeDay) editorSheet("add", S.activeDay); },
+  "add-lib-ex"(){ editorSheet("lib-add", null, null); },
+  "open-lib-filters"(){ libraryFilterSheet(); },
+  "reset-lib-filters"(){ UI.muscles=[]; UI.difficulty="All"; UI.equipment="All"; UI.matchAll=false; closeSheet(); refresh(); },
+  "apply-lib-filters"(){
+    UI.muscles = [...sheetEl.querySelectorAll("[data-filter-muscle]:checked")].map(x=>x.dataset.filterMuscle);
+    UI.difficulty = $("#filterDifficulty")?.value || "All";
+    UI.equipment = $("#filterEquipment")?.value || "All";
+    UI.matchAll = !!$("#filterMatchAll")?.checked;
+    closeSheet(); refresh();
+  },
   "open-ex"(t){ const ex = getEx(t.dataset.day, t.dataset.id); if(ex) detailSheet(ex, {mode: "plan", dayId: t.dataset.day}); },
   "edit-ex"(t){ editorSheet("edit", t.dataset.day, t.dataset.id); },
   "del-ex"(t){
@@ -880,24 +1551,33 @@ const ACT = {
   },
   "pick-lib"(t){
     const e = libItems().find(x => x.name === t.dataset.name); if(!e) return;
-    $("#f_name").value = e.name; $("#f_muscle").value = e.muscle; $("#f_sets").value = e.sets; $("#f_rest").value = e.rest;
-    $("#f_diff").value = e.difficulty; $("#f_how").value = e.instructions; $("#f_gif").value = e.gif;
+    $("#f_name").value = e.name; $("#f_muscle").value = (e.muscles || [e.muscle]).join(" / "); $("#f_sets").value = e.sets; $("#f_rest").value = e.rest;
+    $("#f_diff").value = e.difficulty; $("#f_equipment").value = e.equipment || "Body Only"; $("#f_how").value = e.instructions; $("#f_gif").value = e.gif;
     $("#pickSearch").value = ""; renderPicks(); previewGif();
+    $("#f_name").scrollIntoView({block: "nearest", behavior: "smooth"});
   },
   "import-jefit"(){ importJefit(); },
   "save-ex"(){
     const name = $("#f_name").value.trim();
     if(!name){ say("#formMsg", "Give the exercise a name.", "err"); $("#f_name").focus(); return; }
+    const muscles = $("#f_muscle").value.split(/[\\/|,]+/).map(x=>x.trim()).filter(Boolean);
     const data = {
-      name, muscle: $("#f_muscle").value.trim(), sets: $("#f_sets").value.trim(), rest: $("#f_rest").value.trim(),
+      name, muscle: muscles.join(" / "), muscles, equipment: $("#f_equipment").value,
+      sets: $("#f_sets").value.trim(), rest: $("#f_rest").value.trim(),
       difficulty: $("#f_diff").value, instructions: $("#f_how").value.trim(), gif: normalizeGif($("#f_gif").value)
     };
-    if(EDIT.mode === "add"){
+    if(EDIT.mode === "lib-add"){
+      if(libItems().some(e => e.name.toLowerCase() === name.toLowerCase())) return say("#formMsg", "That exercise is already in the library.", "err");
+      S.custom.push({...data, custom: true});
+      toast("Added to library");
+    }else if(EDIT.mode === "add"){
       getDay(EDIT.dayId).exercises.push({id: uid(), ...data});
       const cb = $("#f_lib");
       if(cb && cb.checked && !libItems().some(e => e.name.toLowerCase() === name.toLowerCase())) S.custom.push({...data, custom: true});
+      toast("Added “" + name + "”");
     }else{
       Object.assign(getEx(EDIT.dayId, EDIT.exId), data);
+      toast("Saved");
     }
     save(); closeSheet(); refresh();
   },
@@ -935,11 +1615,9 @@ const ACT = {
       remember(TEST_GIF, blob);
       say("#keyStatus", "Key works. GIFs will load now.", "ok");
       retryErrored();
-      if(UI.tab === "plan" && $(".keybar")) render();   // drop the "add your key" banner
     }catch(e){
-      renderHeader();
       say("#keyStatus", e.kind === "key"
-        ? "corsproxy.io rejected this key. Check it at console.corsproxy.io and paste it again."
+        ? "The proxy rejected this key. Check it and paste it again."
         : e.message + " Your key is saved. Try again in a moment.", "err");
       retryErrored();   // slots that said "Needs your key" now show the real reason
     }
@@ -951,7 +1629,6 @@ const ACT = {
     renderHeader();
     $("#keyInput").value = "";
     say("#keyStatus", "Key removed. GIFs you have already viewed still show from this device.", "ok");
-    if(UI.tab === "plan") render();
   },
   async "clear-cache"(){
     await dbClear();
@@ -974,6 +1651,7 @@ document.addEventListener("click", e => {
 });
 document.addEventListener("keydown", e => {
   if(e.key === "Escape") closeSheet();
+  if(e.key === "Enter" && e.target.id === "d_title"){ e.preventDefault(); ACT["save-day"](); return; }
   if((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches('[role="button"][data-act]')){
     e.preventDefault();
     e.target.click();
@@ -986,12 +1664,22 @@ document.addEventListener("input", e => {
   else if(id === "libSearch"){ UI.q = e.target.value; updateLib(); }
   else if(id === "pickSearch"){ renderPicks(); }
 });
+/* Hide the bottom tab bar while the library search has the keyboard open */
+document.addEventListener("focusin", e => { if(e.target.id === "libSearch") document.body.classList.add("kb"); });
+document.addEventListener("focusout", e => { if(e.target.id === "libSearch") document.body.classList.remove("kb"); });
 
 /* =========================================================
    Start
    ========================================================= */
+function syncTop(){
+  const h = $(".top").offsetHeight;
+  if(h) document.documentElement.style.setProperty("--top-h", h + "px");
+}
+if("ResizeObserver" in window) new ResizeObserver(syncTop).observe($(".top"));
+window.addEventListener("resize", syncTop);
 S = loadState();
 render();
+syncTop();
 </script>
 </body>
 </html>
