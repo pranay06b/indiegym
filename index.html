@@ -272,7 +272,10 @@ details.jefit .hint{margin:8px 0 12px}
 <div class="scrim" id="scrim"><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="./data.js?v=20260920-3" onerror="window.__JEFIT_LOAD_ERROR=true"></script>
 <script>
+// External JEFIT library diagnostics. The data file must be loaded before app initialization.
+window.__JEFIT_DATA_COUNT = Array.isArray(window.JEFIT_SCRAPED) ? window.JEFIT_SCRAPED.length : 0;
 "use strict";
 
 /* =========================================================
@@ -282,570 +285,64 @@ const $ = (s, r = document) => r.querySelector(s);
 const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const uid = () => "x" + Math.random().toString(36).slice(2, 10);
 const CDN = "https://cdn.jefit.com/assets/img/exercises/gifs/";
-const JEFIT_DIRECT_FALLBACKS = {
-  "Barbell Bench Press": "https://cdn.jefit.com/assets/img/exercises/gifs/2.gif"
-};
 const TEST_GIF = CDN + "2.gif";
 const PROXY_BASE = "https://image-cors-proxy.pranay9506k.workers.dev/";
 const KEY_STORE = "indiegym_proxy_key";
-const DEFAULT_PROXY_KEY = "2381390123123djsndsk";
 const STATE_STORE = "indiegym_state_v1";
 
 /* =========================================================
    Exercise library (from the original plan's JEFIT entries)
    [name, muscle, sets, rest, difficulty, JEFIT GIF id, instructions]
    ========================================================= */
-const LIB_SEED = [
- ["Barbell Bench Press","Chest / Triceps / Shoulders","4 × 6–10","2 min","Medium",2,
-  "Set up on a flat bench with feet planted and your head, shoulders, and hips supported. Grip the bar slightly wider than shoulder width. Unrack the bar over your chest, lower it under control toward mid-chest with elbows slightly tucked, then press it back up while keeping the wrists straight and the movement controlled."],
- ["Incline Dumbbell Press","Chest","4 × 8–12","90 sec","Medium",31,"Set the bench around 30–45°. Hold dumbbells near your upper chest with palms forward. Press them upward until the arms are extended, then slowly bring them back to the sides of the chest."],
- ["Machine Chest Press","Chest","3 × 8–12","90 sec","Easy",163,"Adjust the seat so the handles are aligned with your chest. Grip the handles firmly, press forward until your arms are extended without locking the elbows, then return the handles slowly under control."],
- ["Pec Deck / Machine Fly","Chest","3 × 12–15","60 sec","Easy",45,"Adjust the seat so the handles are at chest level. Keep your back against the pad and elbows slightly bent. Bring the handles together in a wide arc, squeeze the chest, then return slowly under control."],
- ["Triceps Pushdown","Triceps","3 × 10–15","60 sec","Easy",159,"Stand facing the pulley with elbows close to the body. Push the handle downward until the arms are extended, contract the triceps, then slowly allow the handle to return upward."],
- ["Cable Rope Overhead Tricep Extension","Triceps","3 × 10–15","60 sec","Easy",155,"Stand with feet shoulder-width apart, hold the rope overhead with palms facing up, and keep the back straight. Lower the rope in an arc behind the head, then raise it back to the starting position by extending the elbows."],
- ["Machine Assisted Dip","Triceps","2 × 8–12","75 sec","Easy",1261,"Set the assistance weight and place your knees on the pad. Grip the handles and lower your body by bending the elbows, then press through the handles to return to the starting position."],
- ["Decline Crunch","Abs","3 × 12–15","45 sec","Easy",78,"Secure your feet on the decline bench. Curl your upper body toward your knees while contracting your abs, then slowly lower back down without using momentum."],
- ["Hanging Knee Raise","Abs","3 × 10–15","45 sec","Medium",690,"Hang from the bar with a firm grip. Slowly raise the knees toward the chest, hold briefly, then return to the starting position without swinging."],
- ["Machine Lat Pulldown","Back","4 × 8–12","2 min","Medium",1268,"Sit securely and grip the bar/handles. Pull downward by driving your elbows toward your sides until the bar reaches the upper chest area, then slowly return upward."],
- ["Neutral-Grip Lat Pulldown","Back","3 × 10–12","75 sec","Medium",1268,"Use the neutral handles and pull them downward by driving your elbows toward your sides. Bring the handles toward the upper chest area, then slowly release."],
- ["Dumbbell Incline Bench Row","Back","4 × 8–12","90 sec","Medium",1040,"Lie chest-down on an incline bench while holding dumbbells. Let the arms extend, then pull the dumbbells toward your sides by squeezing the back. Lower them slowly."],
- ["Cable Rope Seated Row","Back","3 × 8–12","90 sec","Easy",1050,"Sit upright with feet supported and arms extended. Pull the rope toward the abdomen while keeping the torso controlled, squeeze the back, then slowly extend the arms."],
- ["Cable One-Arm Lat Pulldown","Back","3 × 10–12","75 sec","Easy",825,"Sit in front of the low pulley with one handle attached. Pull the handle down with one arm while squeezing the lat, pause briefly, then return under control. Complete the prescribed repetitions and switch sides."],
- ["Cable Pullover (Supine)","Back","3 × 12–15","60 sec","Medium",760,"Set a flat bench beside the low pulley and attach a straight bar. Lie on the bench with your head near the machine, grip the bar, keep your arms straight, and pull the bar up and forward until the arms angle toward the feet. Return slowly."],
- ["EZ-Bar Curl","Biceps","3 × 8–12","75 sec","Medium",95,"Stand with the EZ bar and elbows close to the torso. Curl the bar toward the shoulders without swinging, squeeze the biceps, then lower slowly."],
- ["Dumbbell Incline Curl","Biceps","3 × 10–12","60 sec","Easy",106,"Set an incline bench to about 45°. Sit back with dumbbells hanging at your sides. Keeping the elbows controlled, curl the dumbbells toward the shoulders, squeeze the biceps, then lower slowly."],
- ["Dumbbell Hammer Curl","Biceps","2 × 10–15","60 sec","Easy",108,"Stand with a dumbbell in each hand using a neutral grip. Keep the elbows close to the body, curl the weights in an arc toward the shoulders without rotating the wrists, then lower under control."],
- ["Cable Bicep Curl","Biceps","3 × 10–15","60 sec","Easy",102,"Attach a short bar to the low pulley. Stand with feet shoulder-width apart, keep the elbows controlled, curl the bar toward the upper chest, squeeze the biceps, then lower slowly."],
- ["Preacher Curl Machine","Biceps","3 × 10–15","60 sec","Medium",271,"Position your upper arms on the pad and grip the handles. Curl the weight upward while keeping the arms supported, then lower slowly toward extension."],
- ["Plank","Core","3 × 45–60 sec","45 sec","Easy",631,"Support yourself on your forearms and toes, brace your core and maintain a straight body position throughout the hold."],
- ["Side Plank","Abs","2 × 30–45 sec/side","45 sec","Medium",633,"Support yourself on one forearm and the side of one foot. Keep the body straight, brace the core and hold the position without allowing the hips to drop."],
- ["Dead Bug","Core","3 × 8–12/side","45 sec","Easy",1338,"Lie on your back with arms raised and knees bent. Brace the abs and slowly lower the opposite arm and leg toward the floor, return and alternate sides."],
- ["Dumbbell Shoulder Press","Shoulders","4 × 8–12","90 sec","Medium",884,"Start with dumbbells at shoulder height. Press both weights overhead until the arms are extended, then lower them back to shoulder level under control."],
- ["Machine Shoulder Press","Shoulders","3 × 8–12","90 sec","Easy",46,"Sit with your back against the machine pad and grip the handles with palms facing forward. Keep your core stable, press the handles overhead without locking the elbows, then lower them slowly under control."],
- ["Dumbbell Lateral Raise","Shoulders","4 × 12–15","60 sec","Easy",32,"Stand with feet shoulder-width apart and dumbbells at your sides. Raise both arms out to shoulder height with a slight elbow bend, pause briefly, then lower slowly without swinging."],
- ["Dumbbell Lateral Raise","Shoulders","3 × 12–20","45 sec","Easy",32,"Hold dumbbells at your sides and raise them outward to shoulder level with controlled movement. Lower them slowly without swinging."],
- ["Cable Lateral Raise","Shoulders","4 × 12–15","60 sec","Easy",19,"Stand beside the low pulley and raise the working arm sideways to shoulder height. Keep the torso stable and lower the handle slowly."],
- ["Dumbbell Bent-Over Raise","Shoulders","4 × 12–15","60 sec","Easy",27,"Bend forward with a slight knee bend and let the dumbbells hang with palms facing each other. Raise the arms out to the sides until roughly parallel with the floor, squeeze the rear delts, then lower slowly."],
- ["Cable Rope Face Pull","Back/Shoulders","3 × 12–15","60 sec","Medium",874,"Face a high pulley with a rope or dual handles. Pull the weight directly toward your face while separating the hands and squeezing the upper back and shoulders, then return under control."],
- ["Incline Barbell Press","Chest","4 × 6–10","2 min","Difficult",8,"Lie on the incline bench with feet planted and shoulder blades retracted. Grip the bar, lower it toward the upper chest under control, then press it back upward."],
- ["Flat Dumbbell Press","Chest","3 × 8–12","90 sec","Medium",26,"Lie on the flat bench with dumbbells at chest level. Press the weights upward until the arms are extended, then lower them slowly to the sides of your chest."],
- ["Pec Deck (Machine Fly)","Chest","3 × 10–15","60 sec","Easy",45,"Adjust the seat so the handles are at chest level. Sit with your back against the pad and feet flat. Bring the handles together in a wide arc, squeeze the chest, then slowly return to the starting position."],
- ["Pull-up","Back","4 × 8–12","2 min","Difficult",83,"Grip the bar securely and hang under control. Pull your body upward by driving the elbows down until your chin approaches the bar, then slowly lower yourself."],
- ["Close-Grip Smith Bench Press","Triceps","3 × 8–12","90 sec","Difficult",248,"Lie on the bench and grip the bar narrower than a regular bench press. Lower the bar toward the lower chest/upper abdomen with elbows close to the body, then press back up."],
- ["Cable Tricep Pushdown (Rope)","Triceps","3 × 10–15","60 sec","Easy",159,"Stand at the high pulley with a rope and use an overhand grip. Keep the elbows at your sides, push the rope toward the thighs, split the rope at the bottom, squeeze the triceps, then return slowly."],
- ["Cable Overhead Tricep Extension","Triceps","2 × 12–15","60 sec","Medium",155,"Keep the elbows relatively fixed as the weight is lowered behind the head. Extend the elbows to return the weight overhead."],
- ["Weighted Crunch","Abs","3 × 12–15","45 sec","Easy–Medium",803,"Hold a weight against your chest and lie in the crunch position. Contract the abs to lift the upper torso, pause briefly, then lower with control."],
- ["Reverse Crunch","Abs","3 × 12–15","45 sec","Easy",338,"Lie on your back with knees bent. Bring the knees toward the chest and curl the hips upward, then slowly return them toward the floor."],
- ["Cable Mid Chest Crossover + Face Pull","Chest/Shoulders","2 × 12–15","45–60 sec","Easy–Medium",1057,"Cable crossover: stand between high pulleys and bring the handles down and together in front of the body while squeezing the chest. For the face-pull portion, use a separate rope attachment and pull toward the face with elbows elevated."]
-];
-const LIB_SEED_BASE = LIB_SEED.map(([name,muscle,sets,rest,difficulty,g,instructions]) => ({
-  name,muscle,muscles:String(muscle).split(/[\\/|,]+/).map(x=>x.trim()).filter(Boolean),sets,rest,difficulty,instructions,gif:CDN+g+".gif"
-}));
+/* =========================================================
+   Exercise library
+   Loaded from external data.js.
+   Expected format: const JEFIT_SCRAPED = [{
+     name, muscle, muscles, sets, rest, difficulty,
+     instructions, gif, equipment, sourceUrl, jefitId, source
+   }, ...]
+   ========================================================= */
+function normalizeScrapedExercise(e){
+  const muscles = Array.isArray(e.muscles)
+    ? e.muscles.map(x => String(x).trim()).filter(Boolean)
+    : String(e.muscles || e.muscle || "").split(/[\\/|,]+/).map(x => x.trim()).filter(Boolean);
+  const rawDifficulty = String(e.difficulty || "").toLowerCase();
+  const difficulty = rawDifficulty === "beginner" ? "Easy"
+    : rawDifficulty === "intermediate" ? "Medium"
+    : rawDifficulty === "advanced" ? "Difficult"
+    : (e.difficulty || "");
+  const equipment = Array.isArray(e.equipment)
+    ? e.equipment.map(x => String(x).trim()).filter(Boolean).join(" / ")
+    : String(e.equipment || "").trim();
+  return {
+    ...e,
+    name: String(e.name || "").trim(),
+    muscle: String(e.muscle || muscles.join(" / ")).trim(),
+    muscles,
+    sets: e.sets ?? "",
+    rest: e.rest ?? "",
+    difficulty,
+    instructions: String(e.instructions || "").trim(),
+    gif: String(e.gif || "").trim(),
+    equipment,
+    sourceUrl: String(e.sourceUrl || "").trim(),
+    jefitId: e.jefitId ?? "",
+    source: e.source || "JEFIT"
+  };
+}
 
-/* 120 additional exercises curated from the JEFIT exercise database. */
-const JEFIT_EXTRA = [
-  ["Barbell Squat","Upper Legs|Glutes|Core","Barbell","Difficult"],
-  ["Barbell Deadlift","Back|Glutes|Upper Legs","Barbell","Difficult"],
-  ["Barbell Front Squat","Upper Legs|Glutes|Core","Barbell","Difficult"],
-  ["Barbell Romanian Deadlift","Upper Legs|Glutes|Back","Barbell","Medium"],
-  ["Barbell Stiff-Leg Deadlift","Upper Legs|Glutes|Back","Barbell","Difficult"],
-  ["Barbell Hip Thrust","Glutes|Upper Legs","Barbell","Medium"],
-  ["Barbell Lunges","Upper Legs|Glutes","Barbell","Medium"],
-  ["Barbell Bulgarian Split Squat","Upper Legs|Glutes","Barbell","Difficult"],
-  ["Barbell Hack Squat","Upper Legs|Glutes","Barbell","Difficult"],
-  ["Barbell Step Ups","Upper Legs|Glutes","Barbell","Medium"],
-  ["Barbell Calf Raise","Lower Legs","Barbell","Easy"],
-  ["Barbell Good Morning","Upper Legs|Glutes|Back","Barbell","Difficult"],
-  ["Barbell Shrug","Shoulders|Back","Barbell","Easy"],
-  ["Barbell Bent-Over Row","Back|Biceps","Barbell","Difficult"],
-  ["Barbell T-Bar Row","Back|Biceps","Barbell","Medium"],
-  ["Barbell Pendlay Row","Back|Biceps","Barbell","Difficult"],
-  ["Barbell Upright Row","Shoulders|Back","Barbell","Medium"],
-  ["Barbell Military Press","Shoulders|Triceps","Barbell","Difficult"],
-  ["Barbell Push Press","Shoulders|Triceps|Upper Legs","Barbell","Difficult"],
-  ["Barbell Close-Grip Bench Press","Chest|Triceps","Barbell","Difficult"],
-  ["Barbell Incline Bench Press","Chest|Shoulders|Triceps","Barbell","Difficult"],
-  ["Barbell Decline Bench Press","Chest|Triceps|Shoulders","Barbell","Difficult"],
-  ["Barbell Wide-Grip Bench Press","Chest|Triceps|Shoulders","Barbell","Difficult"],
-  ["Barbell Pullover","Chest|Back","Barbell","Medium"],
-  ["Barbell Curl","Biceps|Forearms","Barbell","Medium"],
-  ["Barbell Reverse Curl","Biceps|Forearms","Barbell","Easy"],
-  ["Barbell Wrist Curl","Forearms","Barbell","Easy"],
-  ["Dumbbell Bench Press","Chest|Triceps|Shoulders","Dumbbell","Medium"],
-  ["Dumbbell Incline Bench Press","Chest|Shoulders|Triceps","Dumbbell","Medium"],
-  ["Dumbbell Decline Bench Press","Chest|Triceps|Shoulders","Dumbbell","Medium"],
-  ["Dumbbell Fly","Chest|Shoulders","Dumbbell","Easy"],
-  ["Dumbbell Incline Fly","Chest|Shoulders","Dumbbell","Medium"],
-  ["Dumbbell Pullover","Chest|Back","Dumbbell","Medium"],
-  ["Dumbbell Shoulder Press","Shoulders|Triceps","Dumbbell","Medium"],
-  ["Dumbbell Arnold Press","Shoulders|Triceps","Dumbbell","Medium"],
-  ["Dumbbell Front Raise","Shoulders","Dumbbell","Easy"],
-  ["Dumbbell Lateral Raise","Shoulders","Dumbbell","Easy"],
-  ["Dumbbell Rear Delt Fly","Shoulders|Back","Dumbbell","Easy"],
-  ["Dumbbell Shrug","Shoulders|Back","Dumbbell","Easy"],
-  ["Dumbbell Bent-Over Row","Back|Biceps","Dumbbell","Medium"],
-  ["Dumbbell One-Arm Row","Back|Biceps","Dumbbell","Medium"],
-  ["Dumbbell Renegade Row","Back|Biceps|Core","Dumbbell","Difficult"],
-  ["Dumbbell Romanian Deadlift","Upper Legs|Glutes|Back","Dumbbell","Medium"],
-  ["Dumbbell Goblet Squat","Upper Legs|Glutes|Core","Dumbbell","Easy"],
-  ["Dumbbell Walking Lunge","Upper Legs|Glutes","Dumbbell","Medium"],
-  ["Dumbbell Bulgarian Split Squat","Upper Legs|Glutes","Dumbbell","Difficult"],
-  ["Dumbbell Step Up","Upper Legs|Glutes","Dumbbell","Medium"],
-  ["Dumbbell Sumo Squat","Upper Legs|Glutes","Dumbbell","Easy"],
-  ["Dumbbell Calf Raise","Lower Legs","Dumbbell","Easy"],
-  ["Dumbbell Biceps Curl","Biceps","Dumbbell","Easy"],
-  ["Dumbbell Hammer Curl","Biceps|Forearms","Dumbbell","Easy"],
-  ["Dumbbell Concentration Curl","Biceps","Dumbbell","Easy"],
-  ["Dumbbell Incline Curl","Biceps","Dumbbell","Medium"],
-  ["Dumbbell Preacher Curl","Biceps","Dumbbell","Medium"],
-  ["Dumbbell Overhead Triceps Extension","Triceps","Dumbbell","Medium"],
-  ["Dumbbell Kickback","Triceps","Dumbbell","Easy"],
-  ["Dumbbell Skull Crusher","Triceps","Dumbbell","Medium"],
-  ["Cable Lat Pulldown Wide Grip","Back|Biceps","Strength Machine","Medium"],
-  ["Cable Lat Pulldown Narrow Grip","Back|Biceps","Strength Machine","Easy"],
-  ["Cable Lat Pulldown Reverse Grip","Back|Biceps","Strength Machine","Medium"],
-  ["Cable Seated Row","Back|Biceps","Strength Machine","Easy"],
-  ["Cable One-Arm Seated Row","Back|Biceps","Strength Machine","Medium"],
-  ["Cable One-Arm Lat Pulldown","Back|Biceps","Strength Machine","Medium"],
-  ["Cable Straight-Arm Pulldown","Back|Triceps","Strength Machine","Easy"],
-  ["Cable Face Pull","Shoulders|Back","Strength Machine","Easy"],
-  ["Cable Crossover","Chest|Shoulders","Strength Machine","Easy"],
-  ["Cable Flat Bench Fly","Chest|Shoulders","Strength Machine","Easy"],
-  ["Cable Incline Fly","Chest|Shoulders","Strength Machine","Medium"],
-  ["Cable One-Arm Chest Press","Chest|Triceps|Shoulders","Strength Machine","Medium"],
-  ["Cable Lateral Raise","Shoulders","Strength Machine","Easy"],
-  ["Cable Front Raise","Shoulders","Strength Machine","Easy"],
-  ["Cable Rear Delt Fly","Shoulders|Back","Strength Machine","Easy"],
-  ["Cable Upright Row","Shoulders|Back","Strength Machine","Medium"],
-  ["Cable Biceps Curl","Biceps","Strength Machine","Easy"],
-  ["Cable Reverse Curl","Biceps|Forearms","Strength Machine","Easy"],
-  ["Cable Hammer Curl","Biceps|Forearms","Strength Machine","Easy"],
-  ["Cable Tricep Pushdown","Triceps","Strength Machine","Easy"],
-  ["Cable Rope Tricep Pushdown","Triceps","Strength Machine","Easy"],
-  ["Cable Overhead Tricep Extension","Triceps","Strength Machine","Medium"],
-  ["Cable One-Arm Tricep Extension","Triceps","Strength Machine","Easy"],
-  ["Cable Wood Chop","Abs|Core","Strength Machine","Medium"],
-  ["Cable Kneeling Crunch","Abs|Core","Strength Machine","Easy"],
-  ["Cable Pull Through","Glutes|Upper Legs","Strength Machine","Medium"],
-  ["Machine Chest Press","Chest|Triceps|Shoulders","Strength Machine","Easy"],
-  ["Smith Machine Bench Press","Chest|Triceps|Shoulders","Strength Machine","Medium"],
-  ["Smith Machine Incline Bench Press","Chest|Shoulders|Triceps","Strength Machine","Medium"],
-  ["Smith Machine Squat","Upper Legs|Glutes","Strength Machine","Medium"],
-  ["Smith Machine Romanian Deadlift","Upper Legs|Glutes|Back","Strength Machine","Medium"],
-  ["Smith Machine Shoulder Press","Shoulders|Triceps","Strength Machine","Medium"],
-  ["Smith Machine Shrug","Shoulders|Back","Strength Machine","Easy"],
-  ["Machine Lat Pulldown","Back|Biceps","Strength Machine","Easy"],
-  ["Machine Seated Row","Back|Biceps","Strength Machine","Easy"],
-  ["Machine Assisted Pull-Up","Back|Biceps","Strength Machine","Medium"],
-  ["Machine Assisted Dip","Triceps|Chest|Shoulders","Strength Machine","Easy"],
-  ["Machine Fly","Chest|Shoulders","Strength Machine","Easy"],
-  ["Machine Pec Deck","Chest|Shoulders","Strength Machine","Easy"],
-  ["Machine Shoulder Press","Shoulders|Triceps","Strength Machine","Easy"],
-  ["Machine Lateral Raise","Shoulders","Strength Machine","Easy"],
-  ["Machine Rear Delt Fly","Shoulders|Back","Strength Machine","Easy"],
-  ["Machine Bicep Curl","Biceps","Strength Machine","Easy"],
-  ["Machine Tricep Extension","Triceps","Strength Machine","Easy"],
-  ["Machine Leg Press","Upper Legs|Glutes","Strength Machine","Medium"],
-  ["Machine Leg Extension","Upper Legs","Strength Machine","Easy"],
-  ["Machine Leg Curl","Upper Legs","Strength Machine","Easy"],
-  ["Machine Seated Leg Curl","Upper Legs","Strength Machine","Easy"],
-  ["Machine Hip Abduction","Glutes|Upper Legs","Strength Machine","Easy"],
-  ["Machine Hip Adduction","Upper Legs","Strength Machine","Easy"],
-  ["Machine Glute Kickback","Glutes","Strength Machine","Easy"],
-  ["Machine Seated Calf Raise","Lower Legs","Strength Machine","Easy"],
-  ["Machine Standing Calf Raise","Lower Legs","Strength Machine","Easy"],
-  ["Hack Squat Machine","Upper Legs|Glutes","Strength Machine","Medium"],
-  ["Hack Squat Reverse Position","Upper Legs|Glutes","Strength Machine","Medium"],
-  ["Pull-Up","Back|Biceps","Pull Bar","Difficult"],
-  ["Chin-Up","Back|Biceps","Pull Bar","Difficult"],
-  ["Neutral Grip Pull-Up","Back|Biceps","Pull Bar","Difficult"],
-  ["Hanging Knee Raise","Abs|Core","Pull Bar","Medium"],
-  ["Hanging Leg Raise","Abs|Core","Pull Bar","Difficult"],
-  ["Hanging Windshield Wiper","Abs|Core","Pull Bar","Expert"],
-  ["Push-Up","Chest|Triceps|Shoulders","Body Only","Easy"],
-  ["Wide-Grip Push-Up","Chest|Triceps|Shoulders","Body Only","Easy"]
-];
-/* 345 additional JEFIT catalog entries. JEFIT currently exposes 1,294+ exercises and organizes them by muscle and equipment. */
-const JEFIT_MORE = [
-  ["Barbell Squat", "Upper Legs|Glutes", "Barbell", "Medium"],
-  ["Barbell Front Squat", "Upper Legs|Glutes", "Barbell", "Difficult"],
-  ["Barbell Hack Squat", "Upper Legs|Glutes", "Barbell", "Medium"],
-  ["Barbell Split Squat", "Upper Legs|Glutes", "Barbell", "Medium"],
-  ["Barbell Bulgarian Split Squat", "Upper Legs|Glutes", "Barbell", "Difficult"],
-  ["Barbell Reverse Lunge", "Upper Legs|Glutes", "Barbell", "Medium"],
-  ["Barbell Walking Lunge", "Upper Legs|Glutes", "Barbell", "Medium"],
-  ["Barbell Forward Lunge", "Upper Legs|Glutes", "Barbell", "Medium"],
-  ["Barbell Lateral Lunge", "Upper Legs|Glutes", "Barbell", "Medium"],
-  ["Barbell Curtsy Lunge", "Upper Legs|Glutes", "Barbell", "Medium"],
-  ["Barbell Step Up", "Upper Legs|Glutes", "Barbell", "Easy"],
-  ["Barbell Step Down", "Upper Legs|Glutes", "Barbell", "Easy"],
-  ["Barbell Deadlift", "Upper Legs|Glutes", "Barbell", "Difficult"],
-  ["Barbell Romanian Deadlift", "Upper Legs|Glutes", "Barbell", "Difficult"],
-  ["Barbell Stiff Leg Deadlift", "Upper Legs|Glutes", "Barbell", "Difficult"],
-  ["Barbell Good Morning", "Upper Legs|Glutes", "Barbell", "Difficult"],
-  ["Barbell Hip Thrust", "Upper Legs|Glutes", "Barbell", "Medium"],
-  ["Barbell Glute Bridge", "Upper Legs|Glutes", "Barbell", "Easy"],
-  ["Barbell Sumo Squat", "Upper Legs|Glutes", "Barbell", "Medium"],
-  ["Barbell Sumo Deadlift", "Upper Legs|Glutes", "Barbell", "Easy"],
-  ["Barbell Calf Raise", "Lower Legs", "Barbell", "Easy"],
-  ["Barbell Seated Calf Raise", "Lower Legs", "Barbell", "Easy"],
-  ["Barbell Standing Calf Raise", "Lower Legs", "Barbell", "Easy"],
-  ["Barbell Donkey Calf Raise", "Lower Legs", "Barbell", "Easy"],
-  ["Barbell Shrug", "Back", "Barbell", "Easy"],
-  ["Barbell Upright Row", "Back|Shoulders|Biceps", "Barbell", "Medium"],
-  ["Barbell Bent Over Row", "Back|Biceps", "Barbell", "Medium"],
-  ["Barbell Pendlay Row", "Back|Biceps", "Barbell", "Difficult"],
-  ["Barbell T Bar Row", "Back|Biceps", "Barbell", "Medium"],
-  ["Barbell One Arm Row", "Back|Biceps", "Barbell", "Medium"],
-  ["Barbell Chest Supported Row", "Back|Biceps", "Barbell", "Medium"],
-  ["Barbell High Row", "Back|Biceps", "Barbell", "Medium"],
-  ["Barbell Low Row", "Back|Biceps", "Barbell", "Medium"],
-  ["Barbell Lat Pulldown", "Back", "Barbell", "Medium"],
-  ["Barbell Straight Arm Pulldown", "Back", "Barbell", "Medium"],
-  ["Barbell Pullover", "Back", "Barbell", "Easy"],
-  ["Barbell Face Pull", "Back|Shoulders", "Barbell", "Easy"],
-  ["Barbell Reverse Fly", "Back|Chest|Shoulders", "Barbell", "Easy"],
-  ["Barbell Rear Delt Raise", "Full Body", "Barbell", "Easy"],
-  ["Barbell Front Raise", "Shoulders", "Barbell", "Easy"],
-  ["Barbell Lateral Raise", "Shoulders", "Barbell", "Easy"],
-  ["Barbell Shoulder Press", "Shoulders|Triceps", "Barbell", "Medium"],
-  ["Barbell Arnold Press", "Chest|Shoulders|Triceps", "Barbell", "Easy"],
-  ["Barbell Push Press", "Chest|Shoulders|Triceps", "Barbell", "Difficult"],
-  ["Barbell Chest Press", "Chest|Triceps", "Barbell", "Medium"],
-  ["Barbell Bench Press", "Chest|Triceps", "Barbell", "Medium"],
-  ["Barbell Incline Bench Press", "Chest|Triceps", "Barbell", "Medium"],
-  ["Barbell Decline Bench Press", "Chest|Triceps", "Barbell", "Medium"],
-  ["Barbell Floor Press", "Chest|Triceps", "Barbell", "Easy"],
-  ["Barbell Fly", "Chest", "Barbell", "Easy"],
-  ["Barbell Incline Fly", "Chest", "Barbell", "Easy"],
-  ["Barbell Decline Fly", "Chest", "Barbell", "Easy"],
-  ["Barbell Pullover Press", "Back|Chest|Triceps", "Barbell", "Easy"],
-  ["Barbell Close Grip Press", "Chest|Triceps", "Barbell", "Easy"],
-  ["Barbell Reverse Grip Press", "Chest|Triceps", "Barbell", "Easy"],
-  ["Barbell Curl", "Biceps", "Barbell", "Medium"],
-  ["Barbell Reverse Curl", "Biceps", "Barbell", "Medium"],
-  ["Barbell Hammer Curl", "Biceps", "Barbell", "Medium"],
-  ["Barbell Concentration Curl", "Biceps", "Barbell", "Medium"],
-  ["Barbell Preacher Curl", "Biceps", "Barbell", "Medium"],
-  ["Barbell Spider Curl", "Biceps", "Barbell", "Medium"],
-  ["Barbell Tricep Extension", "Triceps", "Barbell", "Medium"],
-  ["Barbell Skull Crusher", "Triceps", "Barbell", "Medium"],
-  ["Barbell Tricep Kickback", "Triceps", "Barbell", "Easy"],
-  ["Barbell Tricep Pushdown", "Triceps", "Barbell", "Easy"],
-  ["Barbell Overhead Tricep Extension", "Triceps", "Barbell", "Medium"],
-  ["Barbell Wrist Curl", "Biceps|Forearms", "Barbell", "Medium"],
-  ["Barbell Reverse Wrist Curl", "Biceps|Forearms", "Barbell", "Medium"],
-  ["Barbell Wrist Roller", "Forearms", "Barbell", "Easy"],
-  ["Dumbbell Squat", "Upper Legs|Glutes", "Dumbbell", "Medium"],
-  ["Dumbbell Front Squat", "Upper Legs|Glutes", "Dumbbell", "Difficult"],
-  ["Dumbbell Hack Squat", "Upper Legs|Glutes", "Dumbbell", "Medium"],
-  ["Dumbbell Split Squat", "Upper Legs|Glutes", "Dumbbell", "Medium"],
-  ["Dumbbell Bulgarian Split Squat", "Upper Legs|Glutes", "Dumbbell", "Difficult"],
-  ["Dumbbell Reverse Lunge", "Upper Legs|Glutes", "Dumbbell", "Medium"],
-  ["Dumbbell Walking Lunge", "Upper Legs|Glutes", "Dumbbell", "Medium"],
-  ["Dumbbell Forward Lunge", "Upper Legs|Glutes", "Dumbbell", "Medium"],
-  ["Dumbbell Lateral Lunge", "Upper Legs|Glutes", "Dumbbell", "Medium"],
-  ["Dumbbell Curtsy Lunge", "Upper Legs|Glutes", "Dumbbell", "Medium"],
-  ["Dumbbell Step Up", "Upper Legs|Glutes", "Dumbbell", "Easy"],
-  ["Dumbbell Step Down", "Upper Legs|Glutes", "Dumbbell", "Easy"],
-  ["Dumbbell Deadlift", "Upper Legs|Glutes", "Dumbbell", "Difficult"],
-  ["Dumbbell Romanian Deadlift", "Upper Legs|Glutes", "Dumbbell", "Difficult"],
-  ["Dumbbell Stiff Leg Deadlift", "Upper Legs|Glutes", "Dumbbell", "Difficult"],
-  ["Dumbbell Good Morning", "Upper Legs|Glutes", "Dumbbell", "Difficult"],
-  ["Dumbbell Hip Thrust", "Upper Legs|Glutes", "Dumbbell", "Medium"],
-  ["Dumbbell Glute Bridge", "Upper Legs|Glutes", "Dumbbell", "Easy"],
-  ["Dumbbell Sumo Squat", "Upper Legs|Glutes", "Dumbbell", "Medium"],
-  ["Dumbbell Sumo Deadlift", "Upper Legs|Glutes", "Dumbbell", "Easy"],
-  ["Dumbbell Calf Raise", "Lower Legs", "Dumbbell", "Easy"],
-  ["Dumbbell Seated Calf Raise", "Lower Legs", "Dumbbell", "Easy"],
-  ["Dumbbell Standing Calf Raise", "Lower Legs", "Dumbbell", "Easy"],
-  ["Dumbbell Donkey Calf Raise", "Lower Legs", "Dumbbell", "Easy"],
-  ["Dumbbell Shrug", "Back", "Dumbbell", "Easy"],
-  ["Dumbbell Upright Row", "Back|Shoulders|Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell Bent Over Row", "Back|Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell Pendlay Row", "Back|Biceps", "Dumbbell", "Difficult"],
-  ["Dumbbell T Bar Row", "Back|Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell One Arm Row", "Back|Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell Chest Supported Row", "Back|Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell High Row", "Back|Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell Low Row", "Back|Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell Lat Pulldown", "Back", "Dumbbell", "Medium"],
-  ["Dumbbell Straight Arm Pulldown", "Back", "Dumbbell", "Medium"],
-  ["Dumbbell Pullover", "Back", "Dumbbell", "Easy"],
-  ["Dumbbell Face Pull", "Back|Shoulders", "Dumbbell", "Easy"],
-  ["Dumbbell Reverse Fly", "Back|Chest|Shoulders", "Dumbbell", "Easy"],
-  ["Dumbbell Rear Delt Raise", "Full Body", "Dumbbell", "Easy"],
-  ["Dumbbell Front Raise", "Shoulders", "Dumbbell", "Easy"],
-  ["Dumbbell Lateral Raise", "Shoulders", "Dumbbell", "Easy"],
-  ["Dumbbell Shoulder Press", "Shoulders|Triceps", "Dumbbell", "Medium"],
-  ["Dumbbell Arnold Press", "Chest|Shoulders|Triceps", "Dumbbell", "Easy"],
-  ["Dumbbell Push Press", "Chest|Shoulders|Triceps", "Dumbbell", "Difficult"],
-  ["Dumbbell Chest Press", "Chest|Triceps", "Dumbbell", "Medium"],
-  ["Dumbbell Bench Press", "Chest|Triceps", "Dumbbell", "Medium"],
-  ["Dumbbell Incline Bench Press", "Chest|Triceps", "Dumbbell", "Medium"],
-  ["Dumbbell Decline Bench Press", "Chest|Triceps", "Dumbbell", "Medium"],
-  ["Dumbbell Floor Press", "Chest|Triceps", "Dumbbell", "Easy"],
-  ["Dumbbell Fly", "Chest", "Dumbbell", "Easy"],
-  ["Dumbbell Incline Fly", "Chest", "Dumbbell", "Easy"],
-  ["Dumbbell Decline Fly", "Chest", "Dumbbell", "Easy"],
-  ["Dumbbell Pullover Press", "Back|Chest|Triceps", "Dumbbell", "Easy"],
-  ["Dumbbell Close Grip Press", "Chest|Triceps", "Dumbbell", "Easy"],
-  ["Dumbbell Reverse Grip Press", "Chest|Triceps", "Dumbbell", "Easy"],
-  ["Dumbbell Curl", "Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell Reverse Curl", "Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell Hammer Curl", "Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell Concentration Curl", "Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell Preacher Curl", "Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell Spider Curl", "Biceps", "Dumbbell", "Medium"],
-  ["Dumbbell Tricep Extension", "Triceps", "Dumbbell", "Medium"],
-  ["Dumbbell Skull Crusher", "Triceps", "Dumbbell", "Medium"],
-  ["Dumbbell Tricep Kickback", "Triceps", "Dumbbell", "Easy"],
-  ["Dumbbell Tricep Pushdown", "Triceps", "Dumbbell", "Easy"],
-  ["Dumbbell Overhead Tricep Extension", "Triceps", "Dumbbell", "Medium"],
-  ["Dumbbell Wrist Curl", "Biceps|Forearms", "Dumbbell", "Medium"],
-  ["Dumbbell Reverse Wrist Curl", "Biceps|Forearms", "Dumbbell", "Medium"],
-  ["Dumbbell Wrist Roller", "Forearms", "Dumbbell", "Easy"],
-  ["Cable Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Cable Front Squat", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
-  ["Cable Hack Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Cable Split Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Cable Bulgarian Split Squat", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
-  ["Cable Reverse Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Cable Walking Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Cable Forward Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Cable Lateral Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Cable Curtsy Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Cable Step Up", "Upper Legs|Glutes", "Strength Machine", "Easy"],
-  ["Cable Step Down", "Upper Legs|Glutes", "Strength Machine", "Easy"],
-  ["Cable Deadlift", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
-  ["Cable Romanian Deadlift", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
-  ["Cable Stiff Leg Deadlift", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
-  ["Cable Good Morning", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
-  ["Cable Hip Thrust", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Cable Glute Bridge", "Upper Legs|Glutes", "Strength Machine", "Easy"],
-  ["Cable Sumo Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Cable Sumo Deadlift", "Upper Legs|Glutes", "Strength Machine", "Easy"],
-  ["Cable Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
-  ["Cable Seated Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
-  ["Cable Standing Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
-  ["Cable Donkey Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
-  ["Cable Shrug", "Back", "Strength Machine", "Easy"],
-  ["Cable Upright Row", "Back|Shoulders|Biceps", "Strength Machine", "Medium"],
-  ["Cable Bent Over Row", "Back|Biceps", "Strength Machine", "Medium"],
-  ["Cable Pendlay Row", "Back|Biceps", "Strength Machine", "Difficult"],
-  ["Cable T Bar Row", "Back|Biceps", "Strength Machine", "Medium"],
-  ["Cable One Arm Row", "Back|Biceps", "Strength Machine", "Medium"],
-  ["Cable Chest Supported Row", "Back|Biceps", "Strength Machine", "Medium"],
-  ["Cable High Row", "Back|Biceps", "Strength Machine", "Medium"],
-  ["Cable Low Row", "Back|Biceps", "Strength Machine", "Medium"],
-  ["Cable Lat Pulldown", "Back", "Strength Machine", "Medium"],
-  ["Cable Straight Arm Pulldown", "Back", "Strength Machine", "Medium"],
-  ["Cable Pullover (Supine)", "Back", "Strength Machine", "Easy"],
-  ["Cable Face Pull", "Back|Shoulders", "Strength Machine", "Easy"],
-  ["Cable Reverse Fly", "Back|Chest|Shoulders", "Strength Machine", "Easy"],
-  ["Cable Rear Delt Raise", "Full Body", "Strength Machine", "Easy"],
-  ["Cable Front Raise", "Shoulders", "Strength Machine", "Easy"],
-  ["Cable Lateral Raise", "Shoulders", "Strength Machine", "Easy"],
-  ["Cable Shoulder Press", "Shoulders|Triceps", "Strength Machine", "Medium"],
-  ["Cable Arnold Press", "Chest|Shoulders|Triceps", "Strength Machine", "Easy"],
-  ["Cable Push Press", "Chest|Shoulders|Triceps", "Strength Machine", "Difficult"],
-  ["Cable Chest Press", "Chest|Triceps", "Strength Machine", "Medium"],
-  ["Cable Bench Press", "Chest|Triceps", "Strength Machine", "Medium"],
-  ["Cable Incline Bench Press", "Chest|Triceps", "Strength Machine", "Medium"],
-  ["Cable Decline Bench Press", "Chest|Triceps", "Strength Machine", "Medium"],
-  ["Cable Floor Press", "Chest|Triceps", "Strength Machine", "Easy"],
-  ["Cable Fly", "Chest", "Strength Machine", "Easy"],
-  ["Cable Incline Fly", "Chest", "Strength Machine", "Easy"],
-  ["Cable Decline Fly", "Chest", "Strength Machine", "Easy"],
-  ["Cable Pullover Press", "Back|Chest|Triceps", "Strength Machine", "Easy"],
-  ["Cable Close Grip Press", "Chest|Triceps", "Strength Machine", "Easy"],
-  ["Cable Reverse Grip Press", "Chest|Triceps", "Strength Machine", "Easy"],
-  ["Cable Bicep Curl", "Biceps", "Strength Machine", "Medium"],
-  ["Cable Reverse Curl", "Biceps", "Strength Machine", "Medium"],
-  ["Cable Hammer Curl", "Biceps", "Strength Machine", "Medium"],
-  ["Cable Concentration Curl", "Biceps", "Strength Machine", "Medium"],
-  ["Cable Preacher Curl", "Biceps", "Strength Machine", "Medium"],
-  ["Cable Spider Curl", "Biceps", "Strength Machine", "Medium"],
-  ["Cable Tricep Extension", "Triceps", "Strength Machine", "Medium"],
-  ["Cable Skull Crusher", "Triceps", "Strength Machine", "Medium"],
-  ["Cable Tricep Kickback", "Triceps", "Strength Machine", "Easy"],
-  ["Cable Tricep Pushdown", "Triceps", "Strength Machine", "Easy"],
-  ["Cable Overhead Tricep Extension", "Triceps", "Strength Machine", "Medium"],
-  ["Cable Wrist Curl", "Biceps|Forearms", "Strength Machine", "Medium"],
-  ["Cable Reverse Wrist Curl", "Biceps|Forearms", "Strength Machine", "Medium"],
-  ["Cable Wrist Roller", "Forearms", "Strength Machine", "Easy"],
-  ["Machine Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Machine Front Squat", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
-  ["Machine Hack Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Machine Split Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Machine Bulgarian Split Squat", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
-  ["Machine Reverse Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Machine Walking Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Machine Forward Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Machine Lateral Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Machine Curtsy Lunge", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Machine Step Up", "Upper Legs|Glutes", "Strength Machine", "Easy"],
-  ["Machine Step Down", "Upper Legs|Glutes", "Strength Machine", "Easy"],
-  ["Machine Deadlift", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
-  ["Machine Romanian Deadlift", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
-  ["Machine Stiff Leg Deadlift", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
-  ["Machine Good Morning", "Upper Legs|Glutes", "Strength Machine", "Difficult"],
-  ["Machine Hip Thrust", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Machine Glute Bridge", "Upper Legs|Glutes", "Strength Machine", "Easy"],
-  ["Machine Sumo Squat", "Upper Legs|Glutes", "Strength Machine", "Medium"],
-  ["Machine Sumo Deadlift", "Upper Legs|Glutes", "Strength Machine", "Easy"],
-  ["Machine Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
-  ["Machine Seated Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
-  ["Machine Standing Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
-  ["Machine Donkey Calf Raise", "Lower Legs", "Strength Machine", "Easy"],
-  ["Machine Shrug", "Back", "Strength Machine", "Easy"],
-  ["Machine Upright Row", "Back|Shoulders|Biceps", "Strength Machine", "Medium"],
-  ["Machine Bent Over Row", "Back|Biceps", "Strength Machine", "Medium"],
-  ["Machine Pendlay Row", "Back|Biceps", "Strength Machine", "Difficult"],
-  ["Machine T Bar Row", "Back|Biceps", "Strength Machine", "Medium"],
-  ["Machine One Arm Row", "Back|Biceps", "Strength Machine", "Medium"],
-  ["Machine Chest Supported Row", "Back|Biceps", "Strength Machine", "Medium"],
-  ["Machine High Row", "Back|Biceps", "Strength Machine", "Medium"],
-  ["Machine Low Row", "Back|Biceps", "Strength Machine", "Medium"],
-  ["Machine Lat Pulldown", "Back", "Strength Machine", "Medium"],
-  ["Machine Straight Arm Pulldown", "Back", "Strength Machine", "Medium"],
-  ["Machine Pullover", "Back", "Strength Machine", "Easy"],
-  ["Machine Face Pull", "Back|Shoulders", "Strength Machine", "Easy"],
-  ["Machine Reverse Fly", "Back|Chest|Shoulders", "Strength Machine", "Easy"],
-  ["Machine Rear Delt Raise", "Full Body", "Strength Machine", "Easy"],
-  ["Machine Front Raise", "Shoulders", "Strength Machine", "Easy"],
-  ["Machine Lateral Raise", "Shoulders", "Strength Machine", "Easy"],
-  ["Machine Shoulder Press", "Shoulders|Triceps", "Strength Machine", "Medium"],
-  ["Machine Arnold Press", "Chest|Shoulders|Triceps", "Strength Machine", "Easy"],
-  ["Machine Push Press", "Chest|Shoulders|Triceps", "Strength Machine", "Difficult"],
-  ["Machine Chest Press", "Chest|Triceps", "Strength Machine", "Medium"],
-  ["Machine Bench Press", "Chest|Triceps", "Strength Machine", "Medium"],
-  ["Machine Incline Bench Press", "Chest|Triceps", "Strength Machine", "Medium"],
-  ["Machine Decline Bench Press", "Chest|Triceps", "Strength Machine", "Medium"],
-  ["Machine Floor Press", "Chest|Triceps", "Strength Machine", "Easy"],
-  ["Machine Fly", "Chest", "Strength Machine", "Easy"],
-  ["Machine Incline Fly", "Chest", "Strength Machine", "Easy"],
-  ["Machine Decline Fly", "Chest", "Strength Machine", "Easy"],
-  ["Machine Pullover Press", "Back|Chest|Triceps", "Strength Machine", "Easy"],
-  ["Machine Close Grip Press", "Chest|Triceps", "Strength Machine", "Easy"],
-  ["Machine Reverse Grip Press", "Chest|Triceps", "Strength Machine", "Easy"],
-  ["Machine Curl", "Biceps", "Strength Machine", "Medium"],
-  ["Machine Reverse Curl", "Biceps", "Strength Machine", "Medium"],
-  ["Machine Hammer Curl", "Biceps", "Strength Machine", "Medium"],
-  ["Machine Concentration Curl", "Biceps", "Strength Machine", "Medium"],
-  ["Machine Preacher Curl", "Biceps", "Strength Machine", "Medium"],
-  ["Machine Spider Curl", "Biceps", "Strength Machine", "Medium"],
-  ["Machine Tricep Extension", "Triceps", "Strength Machine", "Medium"],
-  ["Machine Skull Crusher", "Triceps", "Strength Machine", "Medium"],
-  ["Machine Tricep Kickback", "Triceps", "Strength Machine", "Easy"],
-  ["Machine Tricep Pushdown", "Triceps", "Strength Machine", "Easy"],
-  ["Machine Overhead Tricep Extension", "Triceps", "Strength Machine", "Medium"],
-  ["Machine Wrist Curl", "Biceps|Forearms", "Strength Machine", "Medium"],
-  ["Machine Reverse Wrist Curl", "Biceps|Forearms", "Strength Machine", "Medium"],
-  ["Machine Wrist Roller", "Forearms", "Strength Machine", "Easy"],
-  ["Kettlebell Squat", "Upper Legs|Glutes", "Kettlebell", "Medium"],
-  ["Kettlebell Front Squat", "Upper Legs|Glutes", "Kettlebell", "Difficult"],
-  ["Kettlebell Hack Squat", "Upper Legs|Glutes", "Kettlebell", "Medium"],
-  ["Kettlebell Split Squat", "Upper Legs|Glutes", "Kettlebell", "Medium"],
-  ["Kettlebell Bulgarian Split Squat", "Upper Legs|Glutes", "Kettlebell", "Difficult"],
-  ["Kettlebell Reverse Lunge", "Upper Legs|Glutes", "Kettlebell", "Medium"],
-  ["Kettlebell Walking Lunge", "Upper Legs|Glutes", "Kettlebell", "Medium"],
-  ["Kettlebell Forward Lunge", "Upper Legs|Glutes", "Kettlebell", "Medium"],
-  ["Kettlebell Lateral Lunge", "Upper Legs|Glutes", "Kettlebell", "Medium"],
-  ["Kettlebell Curtsy Lunge", "Upper Legs|Glutes", "Kettlebell", "Medium"],
-  ["Kettlebell Step Up", "Upper Legs|Glutes", "Kettlebell", "Easy"],
-  ["Kettlebell Step Down", "Upper Legs|Glutes", "Kettlebell", "Easy"],
-  ["Kettlebell Deadlift", "Upper Legs|Glutes", "Kettlebell", "Difficult"],
-  ["Kettlebell Romanian Deadlift", "Upper Legs|Glutes", "Kettlebell", "Difficult"],
-  ["Kettlebell Stiff Leg Deadlift", "Upper Legs|Glutes", "Kettlebell", "Difficult"],
-  ["Kettlebell Good Morning", "Upper Legs|Glutes", "Kettlebell", "Difficult"],
-  ["Kettlebell Hip Thrust", "Upper Legs|Glutes", "Kettlebell", "Medium"],
-  ["Kettlebell Glute Bridge", "Upper Legs|Glutes", "Kettlebell", "Easy"],
-  ["Kettlebell Sumo Squat", "Upper Legs|Glutes", "Kettlebell", "Medium"],
-  ["Kettlebell Sumo Deadlift", "Upper Legs|Glutes", "Kettlebell", "Easy"],
-  ["Kettlebell Calf Raise", "Lower Legs", "Kettlebell", "Easy"],
-  ["Kettlebell Seated Calf Raise", "Lower Legs", "Kettlebell", "Easy"],
-  ["Kettlebell Standing Calf Raise", "Lower Legs", "Kettlebell", "Easy"],
-  ["Kettlebell Donkey Calf Raise", "Lower Legs", "Kettlebell", "Easy"],
-  ["Kettlebell Shrug", "Back", "Kettlebell", "Easy"],
-  ["Kettlebell Upright Row", "Back|Shoulders|Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell Bent Over Row", "Back|Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell Pendlay Row", "Back|Biceps", "Kettlebell", "Difficult"],
-  ["Kettlebell T Bar Row", "Back|Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell One Arm Row", "Back|Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell Chest Supported Row", "Back|Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell High Row", "Back|Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell Low Row", "Back|Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell Lat Pulldown", "Back", "Kettlebell", "Medium"],
-  ["Kettlebell Straight Arm Pulldown", "Back", "Kettlebell", "Medium"],
-  ["Kettlebell Pullover", "Back", "Kettlebell", "Easy"],
-  ["Kettlebell Face Pull", "Back|Shoulders", "Kettlebell", "Easy"],
-  ["Kettlebell Reverse Fly", "Back|Chest|Shoulders", "Kettlebell", "Easy"],
-  ["Kettlebell Rear Delt Raise", "Full Body", "Kettlebell", "Easy"],
-  ["Kettlebell Front Raise", "Shoulders", "Kettlebell", "Easy"],
-  ["Kettlebell Lateral Raise", "Shoulders", "Kettlebell", "Easy"],
-  ["Kettlebell Shoulder Press", "Shoulders|Triceps", "Kettlebell", "Medium"],
-  ["Kettlebell Arnold Press", "Chest|Shoulders|Triceps", "Kettlebell", "Easy"],
-  ["Kettlebell Push Press", "Chest|Shoulders|Triceps", "Kettlebell", "Difficult"],
-  ["Kettlebell Chest Press", "Chest|Triceps", "Kettlebell", "Medium"],
-  ["Kettlebell Bench Press", "Chest|Triceps", "Kettlebell", "Medium"],
-  ["Kettlebell Incline Bench Press", "Chest|Triceps", "Kettlebell", "Medium"],
-  ["Kettlebell Decline Bench Press", "Chest|Triceps", "Kettlebell", "Medium"],
-  ["Kettlebell Floor Press", "Chest|Triceps", "Kettlebell", "Easy"],
-  ["Kettlebell Fly", "Chest", "Kettlebell", "Easy"],
-  ["Kettlebell Incline Fly", "Chest", "Kettlebell", "Easy"],
-  ["Kettlebell Decline Fly", "Chest", "Kettlebell", "Easy"],
-  ["Kettlebell Pullover Press", "Back|Chest|Triceps", "Kettlebell", "Easy"],
-  ["Kettlebell Close Grip Press", "Chest|Triceps", "Kettlebell", "Easy"],
-  ["Kettlebell Reverse Grip Press", "Chest|Triceps", "Kettlebell", "Easy"],
-  ["Kettlebell Curl", "Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell Reverse Curl", "Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell Hammer Curl", "Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell Concentration Curl", "Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell Preacher Curl", "Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell Spider Curl", "Biceps", "Kettlebell", "Medium"],
-  ["Kettlebell Tricep Extension", "Triceps", "Kettlebell", "Medium"],
-  ["Kettlebell Skull Crusher", "Triceps", "Kettlebell", "Medium"],
-  ["Kettlebell Tricep Kickback", "Triceps", "Kettlebell", "Easy"],
-  ["Kettlebell Tricep Pushdown", "Triceps", "Kettlebell", "Easy"],
-  ["Kettlebell Overhead Tricep Extension", "Triceps", "Kettlebell", "Medium"],
-  ["Kettlebell Wrist Curl", "Biceps|Forearms", "Kettlebell", "Medium"],
-  ["Kettlebell Reverse Wrist Curl", "Biceps|Forearms", "Kettlebell", "Medium"],
-  ["Kettlebell Wrist Roller", "Forearms", "Kettlebell", "Easy"]
-];
-const JEFIT_CATALOG = JEFIT_EXTRA.concat(JEFIT_MORE);
-const LIB_EXTRA = JEFIT_CATALOG.map(([name,muscles,equipment,difficulty]) => ({
-  name, muscle: muscles.split("|").join(" / "), muscles: muscles.split("|"), equipment,
-  sets: "3 × 8–12", rest: "60–90 sec", difficulty,
-  instructions: "JEFIT exercise. Open the JEFIT exercise database entry for the full step-by-step instructions.",
-  gif: "", source: "JEFIT"
-}));
-const LIB = LIB_SEED_BASE.concat(LIB_EXTRA);
-LIB.forEach(e => { if(!e.source) e.source = "JEFIT"; });
+let RAW_JEFIT_DATA = Array.isArray(window.JEFIT_SCRAPED) ? window.JEFIT_SCRAPED : [];
+let LIB = RAW_JEFIT_DATA.map(normalizeScrapedExercise).filter(e => e.name);
+let LIB_BY_NAME = new Map(LIB.map(e => [e.name, e]));
 
-// Prefer the detailed, verified seed records over generic catalog duplicates.
-const LIB_BY_NAME = new Map();
-LIB_SEED_BASE.forEach(e => LIB_BY_NAME.set(e.name, e));
-LIB_EXTRA.forEach(e => { if(!LIB_BY_NAME.has(e.name)) LIB_BY_NAME.set(e.name, e); });
-// Backward-compatible aliases for the original 6-day plan names.
-[
-  ["Pec Deck / Machine Fly", "Pec Deck / Machine Fly"],
-  ["Cable Rope Overhead Tricep Extension", "Cable Rope Overhead Tricep Extension"],
-  ["Machine Assisted Dip", "Machine Assisted Dip"],
-  ["Cable One-Arm Lat Pulldown", "Cable One-Arm Lat Pulldown"],
-  ["Cable Pullover (Supine)", "Cable Pullover (Supine)"],
-  ["Dumbbell Incline Curl", "Dumbbell Incline Curl"],
-  ["Dumbbell Hammer Curl", "Dumbbell Hammer Curl"],
-  ["Lateral Raise", "Dumbbell Lateral Raise"],
-  ["Dumbbell Bent-Over Raise", "Dumbbell Bent-Over Raise"],
-  ["Cable Rope Face Pull", "Cable Rope Face Pull"],
-  ["Cable Bicep Curl", "Cable Bicep Curl"],
-  ["Cable Tricep Pushdown", "Cable Tricep Pushdown (Rope)"],
-  ["Machine Shoulder Press", "Machine Shoulder Press"],
-  ["Pec Deck / Machine Fly", "Pec Deck (Machine Fly)"]
-].forEach(([alias, canonical]) => {
-  if(LIB_BY_NAME.has(canonical)) LIB_BY_NAME.set(alias, LIB_BY_NAME.get(canonical));
-});
+function installJefitData(data){
+  if(!Array.isArray(data)) throw new Error("JEFIT data must be an array");
+  RAW_JEFIT_DATA = data;
+  window.JEFIT_SCRAPED = data;
+  LIB = data.map(normalizeScrapedExercise).filter(e => e.name);
+  LIB_BY_NAME = new Map(LIB.map(e => [e.name, e]));
+  window.__JEFIT_DATA_COUNT = LIB.length;
+}
 
 function normalizeLibraryEntry(e){
   if(!e.muscles || !Array.isArray(e.muscles)) e.muscles = String(e.muscle || "").split(/[\\/|,]+/).map(x=>x.trim()).filter(Boolean);
@@ -862,30 +359,30 @@ LIB.forEach(normalizeLibraryEntry);
 const PLAN_SEED = [
  ["Day 1 — Chest + Triceps + Abs",[
   ["Barbell Bench Press","4 × 6–10","2 min"],["Incline Dumbbell Press","4 × 8–12","90 sec"],["Machine Chest Press","3 × 8–12","90 sec"],
-  ["Pec Deck / Machine Fly","3 × 12–15","60 sec"],["Triceps Pushdown","3 × 10–15","60 sec"],["Cable Rope Overhead Tricep Extension","3 × 10–15","60 sec"],
-  ["Machine Assisted Dip","2 × 8–12","75 sec"],["Decline Crunch","3 × 12–15","45 sec"],["Hanging Knee Raise","3 × 10–15","45 sec"]]],
+  ["Pec Deck / Cable Fly","3 × 12–15","60 sec"],["Triceps Pushdown","3 × 10–15","60 sec"],["Overhead Rope Triceps Extension","3 × 10–15","60 sec"],
+  ["Assisted Dip","2 × 8–12","75 sec"],["Decline Crunch","3 × 12–15","45 sec"],["Hanging Knee Raise","3 × 10–15","45 sec"]]],
  ["Day 2 — Back + Biceps",[
   ["Machine Lat Pulldown","4 × 8–12","2 min"],["Dumbbell Incline Bench Row","4 × 8–12","90 sec"],["Cable Rope Seated Row","3 × 8–12","90 sec"],
-  ["Cable One-Arm Lat Pulldown","3 × 10–12","75 sec"],["Cable Pullover (Supine)","3 × 12–15","60 sec"],["EZ-Bar Curl","3 × 8–12","75 sec"],
-  ["Dumbbell Incline Curl","3 × 10–12","60 sec"],["Dumbbell Hammer Curl","2 × 10–15","60 sec"],["Plank","3 × 45–60 sec","45 sec"]]],
+  ["Single-Arm Lat Pulldown","3 × 10–12","75 sec"],["Cable Pullover","3 × 12–15","60 sec"],["EZ-Bar Curl","3 × 8–12","75 sec"],
+  ["Incline Dumbbell Curl","3 × 10–12","60 sec"],["Hammer Curl","2 × 10–15","60 sec"],["Plank","3 × 45–60 sec","45 sec"]]],
  ["Day 3 — Shoulders + Arms + Abs",[
-  ["Dumbbell Shoulder Press","4 × 8–12","90 sec"],["Lateral Raise","4 × 12–15","60 sec"],["Dumbbell Bent-Over Raise","4 × 12–15","60 sec"],
-  ["Cable Rope Face Pull","3 × 12–15","60 sec"],["Cable Bicep Curl","3 × 10–15","60 sec"],["Cable Tricep Pushdown","3 × 10–15","60 sec"],
-  ["Dumbbell Hammer Curl","2 × 10–15","60 sec"],["Cable Overhead Tricep Extension","2 × 10–15","60 sec"],["Dead Bug","3 × 8–12/side","45 sec"],
+  ["Dumbbell Shoulder Press","4 × 8–12","90 sec"],["Lateral Raise","4 × 12–15","60 sec"],["Rear-Delt Fly","4 × 12–15","60 sec"],
+  ["Face Pull","3 × 12–15","60 sec"],["Cable Curl","3 × 10–15","60 sec"],["Rope Pushdown","3 × 10–15","60 sec"],
+  ["Hammer Curl","2 × 10–15","60 sec"],["Overhead Triceps Extension","2 × 10–15","60 sec"],["Dead Bug","3 × 8–12/side","45 sec"],
   ["Side Plank","2 × 30–45 sec/side","45 sec"]]],
  ["Day 4 — Chest + Back",[
-  ["Incline Barbell Press","4 × 6–10","2 min"],["Flat Dumbbell Press","3 × 8–12","90 sec"],["Pec Deck / Machine Fly","3 × 10–15","60 sec"],
+  ["Incline Barbell Press","4 × 6–10","2 min"],["Flat Dumbbell Press","3 × 8–12","90 sec"],["Pec Deck","3 × 10–15","60 sec"],
   ["Pull-up","4 × 8–12","2 min"],["Dumbbell Incline Bench Row","4 × 8–12","90 sec"],["Cable Rope Seated Row","3 × 10–12","75 sec"],
-  ["Cable Pullover (Supine)","2 × 12–15","60 sec"],["Cable Fly + Face Pull","2 × 12–15","45–60 sec"]]],
+  ["Cable Pullover","2 × 12–15","60 sec"],["Cable Fly + Face Pull","2 × 12–15","45–60 sec"]]],
  ["Day 5 — Shoulders + Arms + Abs",[
-  ["Machine Shoulder Press","3 × 8–12","90 sec"],["Cable Lateral Raise","4 × 12–15","60 sec"],["Dumbbell Lateral Raise","3 × 12–20","45 sec"],
-  ["Dumbbell Bent-Over Raise","3 × 12–15","60 sec"],["EZ-Bar Curl","3 × 8–12","75 sec"],["Preacher Curl Machine","3 × 10–15","60 sec"],
-  ["Dumbbell Hammer Curl","2 × 10–15","60 sec"],["Close-Grip Smith Bench Press","3 × 8–12","90 sec"],["Cable Tricep Pushdown","3 × 10–15","60 sec"],
-  ["Cable Overhead Tricep Extension","2 × 12–15","60 sec"],["Weighted Crunch","3 × 12–15","45 sec"],["Reverse Crunch","3 × 12–15","45 sec"]]],
+  ["Seated Shoulder Press","3 × 8–12","90 sec"],["Cable Lateral Raise","4 × 12–15","60 sec"],["Dumbbell Lateral Raise","3 × 12–20","45 sec"],
+  ["Rear-Delt Fly","3 × 12–15","60 sec"],["EZ-Bar Curl","3 × 8–12","75 sec"],["Preacher Curl Machine","3 × 10–15","60 sec"],
+  ["Hammer Curl","2 × 10–15","60 sec"],["Close-Grip Smith Bench Press","3 × 8–12","90 sec"],["Rope Pushdown","3 × 10–15","60 sec"],
+  ["Overhead Triceps Extension","2 × 12–15","60 sec"],["Weighted Crunch","3 × 12–15","45 sec"],["Reverse Crunch","3 × 12–15","45 sec"]]],
  ["Day 6 — Upper-Body Hypertrophy + Core",[
   ["Machine Chest Press","3 × 10–12","75 sec"],["Incline Dumbbell Press","3 × 10–12","75 sec"],["Neutral-Grip Lat Pulldown","3 × 10–12","75 sec"],
-  ["Dumbbell Incline Bench Row","3 × 10–12","75 sec"],["Lateral Raise","3 × 12–20","45 sec"],["Dumbbell Bent-Over Raise","3 × 12–20","45 sec"],
-  ["Cable Bicep Curl","3 × 12–15","45 sec"],["Cable Tricep Pushdown","3 × 12–15","45 sec"],["Hanging Knee Raise","3 × 10–15","45 sec"],
+  ["Dumbbell Incline Bench Row","3 × 10–12","75 sec"],["Lateral Raise","3 × 12–20","45 sec"],["Rear-Delt Fly","3 × 12–20","45 sec"],
+  ["Cable Curl","3 × 12–15","45 sec"],["Rope Pushdown","3 × 12–15","45 sec"],["Hanging Knee Raise","3 × 10–15","45 sec"],
   ["Dead Bug","3 × 8–12/side","45 sec"],["Plank","2 × 45–60 sec","45 sec"]]]
 ];
 
@@ -903,46 +400,6 @@ function buildDefault(){
 let S;
 const UI = {tab: "plan", q: "", group: "All", muscles: [], difficulty: "All", equipment: "All", matchAll: false};
 
-function normalizePlanExercises(plan){
-  if(!plan || typeof plan !== "object") return plan;
-  const aliasMap = {
-    "Pec Deck / Cable Fly":"Pec Deck / Machine Fly",
-    "Overhead Rope Triceps Extension":"Cable Rope Overhead Tricep Extension",
-    "Assisted Dip":"Machine Assisted Dip",
-    "Single-Arm Lat Pulldown":"Cable One-Arm Lat Pulldown",
-    "Cable Pullover":"Cable Pullover (Supine)",
-    "Incline Dumbbell Curl":"Dumbbell Incline Curl",
-    "Hammer Curl":"Dumbbell Hammer Curl",
-    "Cable Curl":"Cable Bicep Curl",
-    "Rope Pushdown":"Cable Tricep Pushdown",
-    "Overhead Triceps Extension":"Cable Overhead Tricep Extension",
-    "Seated Shoulder Press":"Machine Shoulder Press",
-    "Pec Deck":"Pec Deck / Machine Fly",
-    "Rear-Delt Fly":"Dumbbell Bent-Over Raise",
-    "Face Pull":"Cable Rope Face Pull"
-  };
-  const days = Array.isArray(plan) ? plan : (plan.days || []);
-  days.forEach(day => {
-    if(!Array.isArray(day.exercises)) return;
-    day.exercises.forEach(ex => {
-      if(ex && aliasMap[ex.name]) ex.name = aliasMap[ex.name];
-      const canonical = ex && LIB_BY_NAME.get(ex.name);
-      if(canonical && ex){
-        ex.gif = canonical.gif;
-        ex.instructions = canonical.instructions;
-        ex.muscle = canonical.muscle;
-        ex.muscles = canonical.muscles;
-        ex.difficulty = canonical.difficulty;
-        if(canonical.equipment) ex.equipment = canonical.equipment;
-        if(ex.name === "Barbell Bench Press"){
-          ex.gif = JEFIT_DIRECT_FALLBACKS["Barbell Bench Press"];
-        }
-      }
-    });
-  });
-  return plan;
-}
-
 function loadState(){
   try{
     const raw = localStorage.getItem(STATE_STORE);
@@ -959,23 +416,9 @@ function loadState(){
 }
 function save(){ try{ localStorage.setItem(STATE_STORE, JSON.stringify(S)); }catch(e){} }
 
-let memKey = DEFAULT_PROXY_KEY;
-function getKey(){
-  try{
-    const saved = localStorage.getItem(KEY_STORE);
-    if(saved) return saved;
-    localStorage.setItem(KEY_STORE, DEFAULT_PROXY_KEY);
-    return DEFAULT_PROXY_KEY;
-  }catch(e){
-    return memKey || DEFAULT_PROXY_KEY;
-  }
-}
-function setKey(v){
-  memKey = v || DEFAULT_PROXY_KEY;
-  try{
-    localStorage.setItem(KEY_STORE, memKey);
-  }catch(e){}
-}
+let memKey = "";
+function getKey(){ try{ return localStorage.getItem(KEY_STORE) || memKey; }catch(e){ return memKey; } }
+function setKey(v){ memKey = v; try{ v ? localStorage.setItem(KEY_STORE, v) : localStorage.removeItem(KEY_STORE); }catch(e){} }
 
 const getDay = id => S.days.find(d => d.id === id);
 const curDay = () => getDay(S.activeDay) || S.days[0] || null;
@@ -1108,9 +551,9 @@ function loadGif(url){
 }
 
 /* GIF slot: an empty frame that fills with the fetched image */
-function gifSlot(url, {size = "md", alt = "", exercise = ""} = {}){
+function gifSlot(url, {size = "md", alt = ""} = {}){
   if(!url) return `<div class="gif ${size} empty"><span class="gif-msg">No GIF</span></div>`;
-  return `<div class="gif ${size} loading" data-gif="${esc(url)}" data-alt="${esc(alt)}" data-exercise="${esc(exercise || alt)}"></div>`;
+  return `<div class="gif ${size} loading" data-gif="${esc(url)}" data-alt="${esc(alt)}"></div>`;
 }
 function showImg(el, src){
   el.classList.remove("loading", "err");
@@ -1142,26 +585,6 @@ async function startSlot(el){
     const src = await loadGif(url);
     if(el.isConnected && el.dataset.gif === url) showImg(el, src);
   }catch(e){
-    // A JEFIT exercise can keep an old numeric GIF id even after its
-    // exercise record is updated. Re-resolve the exercise from JEFIT once.
-    if(e.kind === "missing" && el.dataset.exercise){
-      const directFallback = JEFIT_DIRECT_FALLBACKS[el.dataset.exercise];
-      if(directFallback && directFallback !== url && !el.dataset.directFallback){
-        el.dataset.directFallback = "1";
-        el.dataset.gif = directFallback;
-        return startSlot(el);
-      }
-      const ex = [...LIB, ...(S?.custom || [])].find(x => String(x.name).toLowerCase() === String(el.dataset.exercise).toLowerCase());
-      if(ex && ex.source === "JEFIT" && !el.dataset.repaired){
-        el.dataset.repaired = "1";
-        await repairJefitExercise(ex);
-        if(ex.gif && ex.gif !== url){
-          el.dataset.gif = ex.gif;
-          el.dataset.alt = ex.name || el.dataset.alt;
-          return startSlot(el);
-        }
-      }
-    }
     if(el.isConnected) showErr(el, e);
   }
 }
@@ -1442,19 +865,17 @@ function detailSheet(ex, ctx){
   }else{
     foot = `<p class="hint">Create a training day in Plan first, then add exercises to it.</p>`;
   }
-  applyJefitCache(ex);
   openSheet(sheetHtml({
     title: ex.name,
-    body: `${gifSlot(ex.gif, {size: "lg", alt: ex.name, exercise: ex.name})}
+    body: `${gifSlot(ex.gif, {size: "lg", alt: ex.name})}
       <div class="ex-sub"><span class="ex-muscle">${esc((ex.muscles || [ex.muscle]).join(" / "))}</span><span class="ex-muscle">${esc(ex.equipment || "Body Only")}</span>${pips(ex.difficulty)}</div>
       ${stats(ex)}
       <h4>How to do it</h4>
-      <p class="how">${esc(ex.instructions || "No instructions added yet.")}</p>
-       ${ex.source === "JEFIT" ? `<p class="hint" style="margin-top:8px">Source: JEFIT exercise database.${ex.jefitUrl ? ` <a href="${esc(ex.jefitUrl)}" target="_blank" rel="noopener">Open JEFIT page</a>` : ""}</p>` : ""}
+      <p class="how">${esc(ex.instructions || "No instructions added yet.")}</p>${ex.sourceUrl ? `<p class="hint"><a href="${esc(ex.sourceUrl)}" target="_blank" rel="noopener">Open JEFIT exercise page ↗</a></p>` : ""}
+       ${ex.source === "JEFIT" ? `<p class="hint" style="margin-top:8px">Source: JEFIT exercise database.</p>` : ""}
       ${extra}`,
     foot
   }));
-  if(ex.source === "JEFIT" && getKey() && !cachedJefit(ex.name)){ hydrateJefitEntry(ex, true); }
 }
 
 function editorSheet(mode, dayId, exId){
@@ -1533,16 +954,6 @@ const cacheText = n => n ? `${n} GIF${n === 1 ? "" : "s"} saved on this device. 
 /* =========================================================
    Editor helpers
    ========================================================= */
-async function repairJefitExercise(ex){
-  if(!ex || ex.source!=="JEFIT") return ex;
-  try{
-    await fetchJefitData(ex);
-    return ex;
-  }catch(e){
-    console.warn("JEFIT repair failed", ex.name, e);
-    return ex;
-  }
-}
 function normalizeGif(v){
   v = String(v || "").trim().replace(/^["']|["']$/g, "");
   return /^\d+$/.test(v) ? CDN + v + ".gif" : v;
@@ -1554,7 +965,7 @@ function previewGif(){
     box.innerHTML = `<p class="hint">Paste a GIF link or a JEFIT GIF number and it will show here.</p>`;
     return;
   }
-  box.innerHTML = gifSlot(url, {alt: $("#f_name").value || "Exercise", exercise: $("#f_name").value || "Exercise"}) + `<p class="hint">Preview</p>`;
+  box.innerHTML = gifSlot(url, {alt: $("#f_name").value || "Exercise"}) + `<p class="hint">Preview</p>`;
   hydrate(box);
 }
 function renderPicks(){
@@ -1563,74 +974,9 @@ function renderPicks(){
   const list = libItems().filter(e => (e.name + " " + e.muscle).toLowerCase().includes(q)).slice(0, 8);
   box.hidden = false;
   box.innerHTML = list.length
-    ? list.map(e => `<div class="pick" role="button" tabindex="0" data-act="pick-lib" data-name="${esc(e.name)}">${gifSlot(e.gif, {size: "sm", alt: e.name, exercise: e.name})}<span><b>${esc(e.name)}</b><small>${esc((e.muscles || [e.muscle]).join(" / "))} · ${esc(e.equipment || "Body Only")} · ${esc(e.difficulty)}</small></span></div>`).join("")
+    ? list.map(e => `<div class="pick" role="button" tabindex="0" data-act="pick-lib" data-name="${esc(e.name)}">${gifSlot(e.gif, {size: "sm", alt: e.name})}<span><b>${esc(e.name)}</b><small>${esc((e.muscles || [e.muscle]).join(" / "))} · ${esc(e.equipment || "Body Only")} · ${esc(e.difficulty)}</small></span></div>`).join("")
     : `<p class="hint" style="padding:10px 12px">No match in the library. Fill in the fields below to make your own.</p>`;
   hydrate(box);
-}
-
-const JEFIT_CACHE_STORE = "indiegym_jefit_cache_v1";
-let JEFIT_CACHE = {};
-try{ JEFIT_CACHE = JSON.parse(localStorage.getItem(JEFIT_CACHE_STORE) || "{}"); }catch(e){ JEFIT_CACHE = {}; }
-function saveJefitCache(){ try{ localStorage.setItem(JEFIT_CACHE_STORE, JSON.stringify(JEFIT_CACHE)); }catch(e){} }
-function cachedJefit(name){ return JEFIT_CACHE[String(name).toLowerCase()] || null; }
-function applyJefitCache(ex){ const c = cachedJefit(ex.name); if(c) Object.assign(ex,c); return ex; }
-const JEFIT_ALIASES = {
-  "pec deck / machine fly":"Machine Fly",
-  "pec deck (machine fly)":"Machine Fly",
-  "cable mid chest crossover + face pull":"Cable Mid Chest Crossover",
-  "machine shoulder press":"Machine Shoulder Press",
-  "cable one-arm lat pulldown":"Cable One-Arm Lat Pulldown",
-  "cable pullover (supine)":"Cable Pullover (Supine)",
-  "dumbbell incline curl":"Dumbbell Incline Curl",
-  "dumbbell hammer curl":"Dumbbell Hammer Curl",
-  "dumbbell bent-over raise":"Dumbbell Bent-Over Raise",
-  "cable rope face pull":"Cable Rope Face Pull",
-  "cable bicep curl":"Cable Bicep Curl",
-  "cable tricep pushdown (rope)":"Cable Tricep Pushdown (Rope)",
-  "cable rope overhead tricep extension":"Cable Rope Overhead Tricep Extension",
-  "machine assisted dip":"Machine Assisted Dip"
-};
-function jefitSearchUrl(name){
-  const q = JEFIT_ALIASES[String(name).toLowerCase()] || name;
-  return "https://www.jefit.com/exercises/bodypart.php?exercises=" + encodeURIComponent(q);
-}
-async function fetchJefitData(ex){
-  const cached = cachedJefit(ex.name); if(cached){ Object.assign(ex,cached); return ex; }
-  const key = getKey(); if(!key) throw new Error("Add your proxy key in Settings first.");
-  const searchUrl = jefitSearchUrl(ex.name);
-  const r = await fetch(proxyUrl(searchUrl,key));
-  if(!r.ok) throw new Error("JEFIT search returned " + r.status);
-  const html = await r.text();
-  const doc = new DOMParser().parseFromString(html,"text/html");
-  const links = [...doc.querySelectorAll('a[href*="/exercises/"]')].map(a=>({a,href:a.href,text:(a.textContent||"").replace(/\s+/g," ").trim()}));
-  const wanted = ex.name.toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
-  let hit = links.find(x=>x.text.toLowerCase().replace(/[^a-z0-9]+/g," ").trim()===wanted) || links.find(x=>x.text.toLowerCase().includes(wanted));
-  if(!hit) throw new Error("Exercise not found in JEFIT database");
-  const pageUrl = new URL(hit.href,searchUrl).href;
-  const p = await fetch(proxyUrl(pageUrl,key));
-  if(!p.ok) throw new Error("JEFIT exercise page returned " + p.status);
-  const pdoc = new DOMParser().parseFromString(await p.text(),"text/html");
-  const name = (pdoc.querySelector("h1")?.textContent||hit.text||ex.name).trim();
-  const ih = [...pdoc.querySelectorAll("h1,h2,h3,h4")].find(h=>/instructions/i.test(h.textContent||""));
-  let instructions="";
-  if(ih){ const parts=[]; for(let n=ih.nextElementSibling;n && !/^H[1-4]$/i.test(n.tagName);n=n.nextElementSibling){ const t=(n.textContent||"").replace(/\s+/g," ").trim(); if(t) parts.push(t); } instructions=parts.join("\n\n"); }
-  const idm=pageUrl.match(/\/exercises\/(\d+)/i);
-  const gif=idm ? CDN+idm[1]+".gif" : ex.gif;
-  const bodyText=(pdoc.body?.textContent||"").replace(/\s+/g," ");
-  const targetMatch=bodyText.match(/Target Muscle Groups\s+Main\s+(.+?)\s+Equipment\s+Main/i);
-  const equipMatch=bodyText.match(/Equipment\s+Main\s+(.+?)\s+Difficulty/i);
-  const diffMatch=bodyText.match(/Difficulty\s+(beginner|intermediate|expert)/i);
-  const muscles=targetMatch ? targetMatch[1].replace(/Main/g," ").trim().split(/(?=[A-Z][a-z])/).map(x=>x.trim()).filter(Boolean) : (ex.muscles||[ex.muscle]);
-  const equipment=equipMatch ? equipMatch[1].replace(/Main/g," ").trim().split(/(?=[A-Z][a-z])/).map(x=>x.trim()).filter(Boolean).join(" / ") : ex.equipment;
-  const difficulty=diffMatch ? ({beginner:"Easy",intermediate:"Medium",expert:"Difficult"}[diffMatch[1].toLowerCase()]||ex.difficulty) : ex.difficulty;
-  const data={name,muscles,muscle:muscles.join(" / "),equipment,difficulty,instructions:instructions||ex.instructions,gif,source:"JEFIT",jefitUrl:pageUrl};
-  JEFIT_CACHE[ex.name.toLowerCase()] = data; saveJefitCache(); Object.assign(ex,data); return ex;
-}
-async function hydrateJefitEntry(ex, rerender=true){
-  if(!ex || ex.source!=="JEFIT") return ex;
-  const c=cachedJefit(ex.name); if(c){ Object.assign(ex,c); return ex; }
-  try{ await fetchJefitData(ex); if(rerender && sheetOpen){ detailSheet(ex,{mode:"lib"}); } }catch(e){ console.warn("JEFIT hydration failed",ex.name,e); }
-  return ex;
 }
 
 async function importJefit(){
@@ -1671,7 +1017,6 @@ async function importJefit(){
     if(name) $("#f_name").value = name;
     if(how) $("#f_how").value = how;
     if(gif){ $("#f_gif").value = gif; previewGif(); }
-    if(name) { JEFIT_CACHE[name.toLowerCase()] = {name, instructions:how || "", gif:gif || "", source:"JEFIT", jefitUrl:url}; saveJefitCache(); }
     say("#jStatus", "Filled in " + [name && "the name", how && "instructions", gif && "the GIF"].filter(Boolean).join(", ") + ". Check the fields, then set your sets and rest.", "ok");
   }catch(err){
     say("#jStatus", "Import failed: " + err.message + ". You can fill the fields in by hand.", "err");
@@ -1745,7 +1090,7 @@ const ACT = {
     const data = {
       name, muscle: muscles.join(" / "), muscles, equipment: $("#f_equipment").value,
       sets: $("#f_sets").value.trim(), rest: $("#f_rest").value.trim(),
-      difficulty: $("#f_diff").value, instructions: $("#f_how").value.trim(), gif: normalizeGif($("#f_gif").value), source: "JEFIT"
+      difficulty: $("#f_diff").value, instructions: $("#f_how").value.trim(), gif: normalizeGif($("#f_gif").value)
     };
     if(EDIT.mode === "lib-add"){
       if(libItems().some(e => e.name.toLowerCase() === name.toLowerCase())) return say("#formMsg", "That exercise is already in the library.", "err");
@@ -1859,10 +1204,18 @@ function syncTop(){
 if("ResizeObserver" in window) new ResizeObserver(syncTop).observe($(".top"));
 window.addEventListener("resize", syncTop);
 S = loadState();
-normalizePlanExercises(S);
-save();
 render();
 syncTop();
+
+function showJefitStatus(){
+  if(LIB.length){
+    console.log(`JEFIT library loaded: ${LIB.length} exercises.`);
+  } else {
+    console.warn("JEFIT library JS was not loaded.");
+    console.log("Load data.js");
+  }
+}
+showJefitStatus();
 </script>
 </body>
 </html>
