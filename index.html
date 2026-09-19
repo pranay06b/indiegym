@@ -268,6 +268,8 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .btn.signal{background:var(--signal);border-color:var(--signal);color:var(--ink)}
 .btn.danger{color:var(--danger);border-color:var(--danger)}
 .btn.wide{width:100%}
+a.btn{display:flex;align-items:center;justify-content:center;text-decoration:none;color:inherit}
+.share-pre{white-space:pre-wrap;word-break:break-word;background:var(--floor);border-radius:8px;padding:12px;font:13.5px/1.5 var(--font-body);max-height:40vh;overflow:auto;margin:0}
 .link{background:none;border:0;padding:0 4px;min-height:44px;font-weight:600;font-size:14px;color:var(--slab);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .link.danger{color:var(--danger)}
 .actions{display:flex;gap:10px;margin-top:16px}
@@ -1156,7 +1158,7 @@ function daySheet(dayId){
     body: `<div class="field"><label for="d_title">Workout title</label><input id="d_title" type="text" enterkeyhint="done" value="${esc(d ? d.title : "Day " + (S.days.length + 1) + " — ")}" placeholder="Day 7 — Legs + Core">
       <p class="hint" style="margin-top:6px">Write it as “Day 7 — Legs + Core” to show the day number and focus on its tab.</p></div>
       ${d ? `<h4>Exercises</h4><div id="dayExList">${dayExListHtml(d)}</div>
-      <div class="danger-zone"><h4>More</h4><div class="actions" style="margin-top:0"><button class="btn" data-act="dup-day">Duplicate</button><button class="btn danger" data-act="del-day">Delete</button></div>
+      <div class="danger-zone"><h4>More</h4><div class="actions" style="margin-top:0"><button class="btn" data-act="dup-day">Duplicate</button><button class="btn" data-act="share-day">Share</button><button class="btn danger" data-act="del-day">Delete</button></div>
       <p class="hint" style="margin-top:10px">Deleting removes the workout and its ${n} exercise${n === 1 ? "" : "s"}. Logged history stays.</p></div>` : ""}`,
     foot: `<p class="status err" id="dMsg" role="alert"></p>
       <div class="actions" style="margin-top:0"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="save-day">Save workout</button></div>`
@@ -1191,10 +1193,11 @@ async function settingsSheet(){
       <button class="btn" data-act="clear-cache">Clear saved GIFs</button>
     </section>
     <section class="set">
-      <h4>Backup</h4>
-      <p class="hint" style="margin-bottom:10px">Your plan, workout history and badges live in this browser. Download a backup file so you can restore them later or move to another device.</p>
-      <div class="actions" style="margin-top:0"><button class="btn" data-act="export-data">Download backup</button><button class="btn" data-act="import-data">Restore backup</button></div>
-      <input type="file" id="importFile" accept="application/json,.json" hidden>
+      <h4>Backup and share</h4>
+      <p class="hint" style="margin-bottom:10px">Your plan, history and badges live in this browser. Export them as a JSON file to back up, move to another device, or send to a friend on WhatsApp or Telegram.</p>
+      <div class="field"><label for="expScope">What to include</label><select id="expScope"><option value="all">Everything</option><option value="plan">Workout plan only</option><option value="history">History and badges only</option></select></div>
+      <div class="actions" style="margin-top:0"><button class="btn" data-act="export-data">Download JSON</button><button class="btn" data-act="share-data">Share…</button></div>
+      <div class="actions" style="margin-top:10px"><button class="btn" data-act="copy-data">Copy JSON</button><button class="btn" data-act="import-data">Import…</button></div>
     </section>
     <section class="set">
       <h4>Reset</h4>
@@ -1375,7 +1378,7 @@ function summarySheet({log, prs, unlocked, xpBefore, xpAfter, lvBefore, streak})
       <div class="sstat"><div><b>${fmtMin(log.end - log.start)}</b><span>time</span></div><div><b>${log.sets}</b><span>sets</span></div><div><b>${fmtNum(log.volume)}</b><span>volume (${esc(unit())})</span></div></div>
       ${prs.length ? `<h4>New personal records</h4><ul class="plist">${prs.map(n => `<li>${esc(n)}<span>+30 XP</span></li>`).join("")}</ul>` : ""}
       ${unlocked.length ? `<h4>Badges unlocked (+${BADGE_XP} XP each)</h4><div class="mini-badges">${unlocked.map(x => `<div class="bd"><div class="g">${esc(x.g)}</div><b>${esc(x.name)}</b><small>${esc(x.desc)}</small></div>`).join("")}</div>` : ""}`,
-    foot: `<button class="btn primary wide" data-act="close">Done</button>`
+    foot: `<div class="actions" style="margin-top:0"><button class="btn" data-act="share-log" data-id="${log.id}">Share</button><button class="btn primary" data-act="close">Done</button></div>`
   }));
 }
 function logSheet(id){
@@ -1385,7 +1388,7 @@ function logSheet(id){
     body: `<p class="hint">${esc(fmtDate(l.end))} · ${fmtMin(l.end - l.start)} · ${l.sets} sets · ${fmtNum(l.volume)} ${esc(unit())} · +${l.xp || 0} XP</p>
       ${l.prs && l.prs.length ? `<p style="margin-top:8px"><span class="pill">PR</span> <span class="hint">${esc(l.prs.join(", "))}</span></p>` : ""}
       ${l.exercises.map(e => `<h4>${esc(e.name)}</h4><ul class="plist">${e.sets.map((s, i) => `<li>Set ${i + 1}<span>${num(s.w) > 0 ? esc(s.w + " " + unit() + " × " + s.r) : esc(s.r + (e.timed ? " sec" : " reps"))}</span></li>`).join("")}</ul>`).join("")}`,
-    foot: `<div class="actions" style="margin-top:0"><button class="btn danger" data-act="del-log" data-id="${l.id}">Delete log</button><button class="btn" data-act="close">Close</button></div>`
+    foot: `<div class="actions" style="margin-top:0"><button class="btn danger" data-act="del-log" data-id="${l.id}">Delete</button><button class="btn" data-act="share-log" data-id="${l.id}">Share</button><button class="btn primary" data-act="close">Close</button></div>`
   }));
 }
 
@@ -1456,6 +1459,117 @@ async function importJefit(){
 function libToPlan(e){
   const {custom, id, ...base} = e;
   return {...base, id: uid(), sets: e.sets || DEFAULT_SETS, rest: e.rest || DEFAULT_REST};
+}
+
+/* =========================================================
+   Export, import and sharing
+   ========================================================= */
+const slimEx = e => {
+  const l = findLib(e.name);
+  if(l && e.gif === l.gif) return {name: e.name, sets: e.sets, rest: e.rest};   // library details are restored on import
+  const {id, ...rest} = e; return rest;
+};
+function buildExport(scope){
+  const out = {app: "indiegym", version: 2, exported: new Date().toISOString(), scope};
+  if(scope !== "history") out.plan = {days: S.days.map(d => ({title: d.title, exercises: d.exercises.map(slimEx)})), custom: S.custom};
+  if(scope !== "plan") out.history = {logs: S.logs, badges: S.badges};
+  out.profile = S.profile;
+  return out;
+}
+function exportFile(obj, label){
+  const json = JSON.stringify(obj, null, 2);
+  const name = "indiegym-" + label + "-" + new Date().toISOString().slice(0, 10) + ".json";
+  return {json, file: new File([json], name, {type: "application/json"})};
+}
+function downloadFile(file){
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(file); a.download = file.name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+}
+async function copyText(t){
+  try{ await navigator.clipboard.writeText(t); }
+  catch(e){
+    const ta = document.createElement("textarea"); ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); try{ document.execCommand("copy"); }catch(_){} ta.remove();
+  }
+  toast("Copied");
+}
+function workoutText(d){
+  return "Indiegym workout: " + d.title + "\n\n" + d.exercises.map(e => "• " + e.name + (e.sets ? " — " + e.sets : "") + (e.rest ? ", rest " + e.rest : "")).join("\n");
+}
+function logText(l){
+  const u = unit();
+  const lines = l.exercises.map(e => e.name + ": " + e.sets.map(s => num(s.w) > 0 ? s.w + "×" + s.r : s.r + (e.timed ? "s" : "")).join(", "));
+  return "💪 Indiegym: " + l.title + "\n" + fmtDate(l.end) + " · " + fmtMin(l.end - l.start) + " · " + l.sets + " sets · " + fmtNum(l.volume) + " " + u + "\n\n" + lines.join("\n")
+    + (l.prs && l.prs.length ? "\n\nNew PRs: " + l.prs.join(", ") : "") + "\n+" + (l.xp || 0) + " XP";
+}
+let SHARE = null;
+function shareLinks(text){
+  const t = encodeURIComponent(text);
+  return {wa: "https://wa.me/?text=" + t, tg: "https://t.me/share/url?url=" + t, mail: "mailto:?subject=" + encodeURIComponent("Indiegym") + "&body=" + t};
+}
+function shareSheet({title, text, file = null, copy = null}){
+  SHARE = {title, text, file, copy: copy ?? text};
+  const l = shareLinks(text);
+  const size = file ? Math.max(1, Math.round(file.size / 1024)) : 0;
+  openSheet(sheetHtml({
+    title,
+    body: `<pre class="share-pre">${esc(text)}</pre>
+      ${file ? `<p class="hint" style="margin-top:10px"><b>Attachment:</b> ${esc(file.name)} (${size} KB)</p>
+      <p class="hint" style="margin-top:6px">A web page can’t attach a file through the WhatsApp or Telegram links. On a phone, “Share…” lets you pick the app and sends the file. Otherwise, download it and attach it in the chat. The other person opens Indiegym, then Settings, then Import.</p>` : ""}
+      <p class="status" id="shMsg" role="status"></p>`,
+    foot: `${navigator.share ? `<button class="btn primary wide" data-act="share-native" style="margin-bottom:10px">Share…</button>` : ""}
+      <div class="actions" style="margin-top:0"><a class="btn" href="${l.wa}" target="_blank" rel="noopener">WhatsApp</a><a class="btn" href="${l.tg}" target="_blank" rel="noopener">Telegram</a></div>
+      <div class="actions" style="margin-top:10px">${file ? `<button class="btn" data-act="dl-file">Download file</button>` : `<a class="btn" href="${l.mail}">Email</a>`}<button class="btn" data-act="copy-text">${file ? "Copy JSON" : "Copy"}</button></div>`
+  }));
+}
+
+function parseImport(data){
+  if(!data || typeof data !== "object") throw new Error("this isn’t a JSON object");
+  let plan = null, hist = null;
+  if(data.plan || data.history){ plan = data.plan || null; hist = data.history || null; }
+  else if(Array.isArray(data.days)){ plan = {days: data.days, custom: data.custom}; hist = Array.isArray(data.logs) ? {logs: data.logs, badges: data.badges} : null; }   // older full backups
+  const days = plan && Array.isArray(plan.days)
+    ? plan.days.filter(d => d && typeof d.title === "string" && Array.isArray(d.exercises))
+        .map(d => ({id: uid(), title: d.title, exercises: d.exercises.filter(x => x && x.name).map(x => ({...BLANK_EX, ...x, id: uid()}))})) : null;
+  const custom = plan && Array.isArray(plan.custom) ? plan.custom.filter(c => c && c.name) : [];
+  const logs = hist && Array.isArray(hist.logs)
+    ? hist.logs.filter(l => l && l.id && Array.isArray(l.exercises) && isFinite(l.start) && isFinite(l.end))
+        .map(l => ({...l, sets: num(l.sets), volume: num(l.volume), xp: num(l.xp), prs: Array.isArray(l.prs) ? l.prs : []})) : null;
+  const badges = hist && hist.badges && typeof hist.badges === "object" ? hist.badges : {};
+  if(!(days && days.length) && !(logs && logs.length)) throw new Error("no workouts or history found");
+  return {days, custom, logs, badges, profile: data.profile && typeof data.profile === "object" ? data.profile : null};
+}
+function applyImport(p, mode){
+  const r = {days: 0, logs: 0, custom: 0};
+  if(mode === "replace"){
+    if(p.days){ S.days = p.days; S.activeDay = null; S.custom = p.custom; r.days = p.days.length; r.custom = p.custom.length; }
+    if(p.logs){ S.logs = p.logs; S.badges = p.badges; r.logs = p.logs.length; }
+    if(p.profile) S.profile = Object.assign(S.profile, p.profile);
+  }else{
+    if(p.days){ S.days.push(...p.days); r.days = p.days.length; }
+    const names = new Set(S.custom.map(c => nkey(c.name)));
+    p.custom.forEach(c => { if(!names.has(nkey(c.name))){ S.custom.push(c); r.custom++; } });
+    if(p.logs){
+      const ids = new Set(S.logs.map(l => l.id));
+      p.logs.forEach(l => { if(!ids.has(l.id)){ S.logs.push(l); r.logs++; } });
+      Object.entries(p.badges).forEach(([k, v]) => { if(!S.badges[k] || v < S.badges[k]) S.badges[k] = v; });
+    }
+  }
+  ensureState(S); save();
+  const bits = [r.days && r.days + " workout" + (r.days === 1 ? "" : "s"), r.logs && r.logs + " log" + (r.logs === 1 ? "" : "s"), r.custom && r.custom + " exercise" + (r.custom === 1 ? "" : "s")].filter(Boolean);
+  return "Imported " + (bits.join(", ") || "nothing new");
+}
+function importSheet(){
+  openSheet(sheetHtml({
+    title: "Import data",
+    body: `<div class="field"><label for="impFile">Choose a JSON file</label><input id="impFile" type="file" accept="application/json,.json"></div>
+      <div class="field"><label for="impText">Or paste JSON</label><textarea id="impText" placeholder="Paste an Indiegym export here" spellcheck="false" autocapitalize="off"></textarea></div>
+      <div class="field"><label for="impMode">If you already have data</label><select id="impMode"><option value="merge">Merge: keep mine and add what’s new</option><option value="replace">Replace: overwrite with the imported data</option></select></div>
+      <p class="hint">Works with backups, a single shared workout, and older Indiegym backups.</p>`,
+    foot: `<p class="status err" id="impMsg" role="alert"></p><div class="actions" style="margin-top:0"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="do-import">Import</button></div>`
+  }));
 }
 
 /* =========================================================
@@ -1678,14 +1792,41 @@ const ACT = {
     const c = $("#cacheInfo"); if(c) c.textContent = cacheText(0);
   },
   "export-data"(){
-    const blob = new Blob([JSON.stringify(S, null, 2)], {type: "application/json"});
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "indiegym-backup-" + new Date().toISOString().slice(0, 10) + ".json";
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+    const sc = $("#expScope")?.value || "all";
+    downloadFile(exportFile(buildExport(sc), sc).file); toast("Backup downloaded");
   },
-  "import-data"(){ $("#importFile").click(); },
+  "share-data"(){
+    const sc = $("#expScope")?.value || "all", {json, file} = exportFile(buildExport(sc), sc);
+    const what = sc === "plan" ? S.days.length + " workouts" : sc === "history" ? S.logs.length + " logged workouts" : S.days.length + " workouts and " + S.logs.length + " logged workouts";
+    shareSheet({title: "Share backup", text: "My Indiegym data (" + what + "). Import it in Indiegym: Settings, then Import.", file, copy: json});
+  },
+  "copy-data"(){ copyText(exportFile(buildExport($("#expScope")?.value || "all"), "data").json); },
+  "import-data"(){ importSheet(); },
+  "do-import"(){
+    let p;
+    try{ p = parseImport(JSON.parse($("#impText").value.trim())); }
+    catch(e){ return say("#impMsg", $("#impText").value.trim() ? "Can’t import this: " + (e instanceof SyntaxError ? "it isn’t valid JSON." : e.message + ".") : "Choose a file or paste JSON first.", "err"); }
+    const mode = $("#impMode").value;
+    if(mode === "replace") return ask("Replace your current data with the imported data? What the file includes is overwritten.", "Replace", () => { const m = applyImport(p, mode); render(); toast(m); });
+    const m = applyImport(p, mode);
+    closeSheet(); render(); toast(m);
+  },
+  "share-day"(){
+    const d = getDay(DAYEDIT); if(!d) return;
+    const {file} = exportFile({app: "indiegym", version: 2, scope: "workout", plan: {days: [{title: d.title, exercises: d.exercises.map(slimEx)}], custom: []}}, "workout");
+    shareSheet({title: "Share workout", text: workoutText(d), file, copy: null});
+  },
+  "share-log"(t){ const l = S.logs.find(x => x.id === t.dataset.id); if(l) shareSheet({title: "Share workout", text: logText(l)}); },
+  async "share-native"(){
+    const s = SHARE; if(!s) return;
+    try{
+      const data = {title: s.title, text: s.text};
+      if(s.file && navigator.canShare && navigator.canShare({files: [s.file]})) data.files = [s.file];
+      await navigator.share(data);
+    }catch(e){ if(e.name !== "AbortError") say("#shMsg", "Sharing didn’t work here. Use the buttons below instead.", "err"); }
+  },
+  "dl-file"(){ if(SHARE && SHARE.file) downloadFile(SHARE.file); },
+  "copy-text"(){ if(SHARE) copyText(SHARE.file ? SHARE.copy : SHARE.text); },
   "reset-plan"(){
     ask("Reset to the original 6-day plan? Your changes to workouts and exercises will be discarded. History is kept.", "Reset plan", () => {
       const d = buildDefault();
@@ -1731,13 +1872,10 @@ document.addEventListener("change", e => {
   const id = e.target.id;
   if(id === "setGoal"){ S.profile.goal = +e.target.value; save(); toast("Weekly goal: " + S.profile.goal); if(UI.tab === "prog") render(); }
   else if(id === "setUnit"){ S.profile.unit = e.target.value; save(); if(UI.tab === "prog") render(); }
-  else if(id === "importFile"){
+  else if(id === "impFile"){
     const f = e.target.files && e.target.files[0]; if(!f) return;
-    f.text().then(txt => {
-      let data; try{ data = JSON.parse(txt); }catch(_){ data = null; }
-      if(!data || !Array.isArray(data.days)) return toast("That file isn’t an Indiegym backup");
-      ask("Replace your current plan and history with this backup?", "Restore backup", () => { S = ensureState(data); save(); render(); toast("Backup restored"); });
-    }).catch(() => toast("Could not read that file"));
+    f.text().then(txt => { $("#impText").value = txt; say("#impMsg", "Loaded " + f.name + ". Tap Import to continue.", "ok"); })
+      .catch(() => say("#impMsg", "Could not read that file.", "err"));
   }
 });
 document.addEventListener("focusin", e => { if(e.target.id === "libSearch") document.body.classList.add("kb"); });
