@@ -282,9 +282,13 @@ const $ = (s, r = document) => r.querySelector(s);
 const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const uid = () => "x" + Math.random().toString(36).slice(2, 10);
 const CDN = "https://cdn.jefit.com/assets/img/exercises/gifs/";
+const JEFIT_DIRECT_FALLBACKS = {
+  "Barbell Bench Press": "https://cdn.jefit.com/assets/img/exercises/gifs/2.gif"
+};
 const TEST_GIF = CDN + "2.gif";
 const PROXY_BASE = "https://image-cors-proxy.pranay9506k.workers.dev/";
 const KEY_STORE = "indiegym_proxy_key";
+const DEFAULT_PROXY_KEY = "2381390123123djsndsk";
 const STATE_STORE = "indiegym_state_v1";
 
 /* =========================================================
@@ -292,7 +296,8 @@ const STATE_STORE = "indiegym_state_v1";
    [name, muscle, sets, rest, difficulty, JEFIT GIF id, instructions]
    ========================================================= */
 const LIB_SEED = [
- ["Barbell Bench Press","Chest","4 × 6–10","2 min","Difficult",2,"Lie flat with feet firmly on the floor and shoulders/back supported by the bench. Grip the bar slightly wider than shoulder width. Unrack over the chest, lower it slowly toward the mid-chest, then press back up while keeping control."],
+ ["Barbell Bench Press","Chest / Triceps / Shoulders","4 × 6–10","2 min","Medium",2,
+  "Set up on a flat bench with feet planted and your head, shoulders, and hips supported. Grip the bar slightly wider than shoulder width. Unrack the bar over your chest, lower it under control toward mid-chest with elbows slightly tucked, then press it back up while keeping the wrists straight and the movement controlled."],
  ["Incline Dumbbell Press","Chest","4 × 8–12","90 sec","Medium",31,"Set the bench around 30–45°. Hold dumbbells near your upper chest with palms forward. Press them upward until the arms are extended, then slowly bring them back to the sides of the chest."],
  ["Machine Chest Press","Chest","3 × 8–12","90 sec","Easy",163,"Adjust the seat so the handles are aligned with your chest. Grip the handles firmly, press forward until your arms are extended without locking the elbows, then return the handles slowly under control."],
  ["Pec Deck / Machine Fly","Chest","3 × 12–15","60 sec","Easy",45,"Adjust the seat so the handles are at chest level. Keep your back against the pad and elbows slightly bent. Bring the handles together in a wide arc, squeeze the chest, then return slowly under control."],
@@ -817,7 +822,11 @@ const LIB_EXTRA = JEFIT_CATALOG.map(([name,muscles,equipment,difficulty]) => ({
 }));
 const LIB = LIB_SEED_BASE.concat(LIB_EXTRA);
 LIB.forEach(e => { if(!e.source) e.source = "JEFIT"; });
-const LIB_BY_NAME = new Map(LIB.map(e => [e.name, e]));
+
+// Prefer the detailed, verified seed records over generic catalog duplicates.
+const LIB_BY_NAME = new Map();
+LIB_SEED_BASE.forEach(e => LIB_BY_NAME.set(e.name, e));
+LIB_EXTRA.forEach(e => { if(!LIB_BY_NAME.has(e.name)) LIB_BY_NAME.set(e.name, e); });
 // Backward-compatible aliases for the original 6-day plan names.
 [
   ["Pec Deck / Machine Fly", "Pec Deck / Machine Fly"],
@@ -924,6 +933,10 @@ function normalizePlanExercises(plan){
         ex.muscle = canonical.muscle;
         ex.muscles = canonical.muscles;
         ex.difficulty = canonical.difficulty;
+        if(canonical.equipment) ex.equipment = canonical.equipment;
+        if(ex.name === "Barbell Bench Press"){
+          ex.gif = JEFIT_DIRECT_FALLBACKS["Barbell Bench Press"];
+        }
       }
     });
   });
@@ -946,9 +959,23 @@ function loadState(){
 }
 function save(){ try{ localStorage.setItem(STATE_STORE, JSON.stringify(S)); }catch(e){} }
 
-let memKey = "";
-function getKey(){ try{ return localStorage.getItem(KEY_STORE) || memKey; }catch(e){ return memKey; } }
-function setKey(v){ memKey = v; try{ v ? localStorage.setItem(KEY_STORE, v) : localStorage.removeItem(KEY_STORE); }catch(e){} }
+let memKey = DEFAULT_PROXY_KEY;
+function getKey(){
+  try{
+    const saved = localStorage.getItem(KEY_STORE);
+    if(saved) return saved;
+    localStorage.setItem(KEY_STORE, DEFAULT_PROXY_KEY);
+    return DEFAULT_PROXY_KEY;
+  }catch(e){
+    return memKey || DEFAULT_PROXY_KEY;
+  }
+}
+function setKey(v){
+  memKey = v || DEFAULT_PROXY_KEY;
+  try{
+    localStorage.setItem(KEY_STORE, memKey);
+  }catch(e){}
+}
 
 const getDay = id => S.days.find(d => d.id === id);
 const curDay = () => getDay(S.activeDay) || S.days[0] || null;
@@ -1118,6 +1145,12 @@ async function startSlot(el){
     // A JEFIT exercise can keep an old numeric GIF id even after its
     // exercise record is updated. Re-resolve the exercise from JEFIT once.
     if(e.kind === "missing" && el.dataset.exercise){
+      const directFallback = JEFIT_DIRECT_FALLBACKS[el.dataset.exercise];
+      if(directFallback && directFallback !== url && !el.dataset.directFallback){
+        el.dataset.directFallback = "1";
+        el.dataset.gif = directFallback;
+        return startSlot(el);
+      }
       const ex = [...LIB, ...(S?.custom || [])].find(x => String(x.name).toLowerCase() === String(el.dataset.exercise).toLowerCase());
       if(ex && ex.source === "JEFIT" && !el.dataset.repaired){
         el.dataset.repaired = "1";
@@ -1826,6 +1859,8 @@ function syncTop(){
 if("ResizeObserver" in window) new ResizeObserver(syncTop).observe($(".top"));
 window.addEventListener("resize", syncTop);
 S = loadState();
+normalizePlanExercises(S);
+save();
 render();
 syncTop();
 </script>
