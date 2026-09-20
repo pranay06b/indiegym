@@ -140,7 +140,8 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .start-btn{margin-bottom:14px}
 
 .ex-list{border-top:2px solid var(--edge)}
-.ex{display:grid;grid-template-columns:112px 1fr 18px;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+/* was: .ex{display:grid;grid-template-columns:112px 1fr 18px;... */
+.ex{display:grid;grid-template-columns:112px 1fr 28px 18px;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
 .ex:active{background:var(--tap)}
 .ex .gif{width:112px}
 .ex .go{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
@@ -288,8 +289,7 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .icon-btn.danger{color:var(--danger);border-color:var(--danger)}
 .drag-handle{flex:0 0 auto;width:32px;height:44px;display:grid;place-items:center;border:0;background:none;color:var(--muted);font-size:20px;line-height:1;cursor:grab;touch-action:none;padding:0}
 .drag-handle:active{cursor:grabbing}
-.edit-ex.dragging,.bx.dragging{opacity:.55;background:var(--soft);border-radius:8px}
-
+.edit-ex.dragging,.bx.dragging,.ex.dragging{opacity:.55;background:var(--soft);border-radius:8px}
 /* Bottom sheets */
 .scrim{position:fixed;inset:0;background:var(--scrim);display:none;z-index:60;align-items:flex-end;justify-content:center;overscroll-behavior:contain}
 .scrim.open{display:flex}
@@ -412,7 +412,7 @@ body.has-active .toast{bottom:calc(150px + env(safe-area-inset-bottom))}
   body.kb .tabs,body.kb .resume{display:none}
 }
 @media(min-width:400px){
-  .ex{grid-template-columns:128px 1fr 18px}
+  .ex{grid-template-columns:128px 1fr 28px 18px}
   .ex .gif{width:128px}
 }
 @media(min-width:620px){
@@ -430,8 +430,8 @@ body.has-active .toast{bottom:calc(150px + env(safe-area-inset-bottom))}
   .tab.on{background:#fff;color:var(--slab);box-shadow:none}
   .tab:active{background:none}
   .dchip{width:150px}
-  .ex-list{display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
-  .ex{grid-template-columns:168px 1fr 18px}
+    .ex-list{display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
+  .ex{grid-template-columns:168px 1fr 28px 18px}
   .ex .gif{width:168px}
   .ex:hover{background:var(--hover)}
   .lib-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px}
@@ -947,13 +947,14 @@ function refreshChrome(){
 }
 
 function exRow(ex, dayId){
-  return `<article class="ex" role="button" tabindex="0" data-act="open-ex" data-day="${dayId}" data-id="${ex.id}" aria-label="${esc(ex.name)}, open details">
+  return `<article class="ex" role="button" tabindex="0" data-act="open-ex" data-day="${dayId}" data-id="${ex.id}" data-sort-id="${ex.id}" aria-label="${esc(ex.name)}, open details">
     ${gifSlot(ex.gif, {alt: ex.name, video: hasVideo(ex)})}
     <div class="ex-main">
       <h3>${esc(ex.name)}</h3>
       <div class="ex-sub"><span class="ex-muscle">${esc(ex.muscle)}</span>${pips(ex.difficulty)}</div>
       ${stats(ex)}
     </div>
+    <button class="drag-handle" type="button" data-act="noop" aria-label="Drag to reorder ${esc(ex.name)}">⠿</button>
     <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
   </article>`;
 }
@@ -1142,11 +1143,13 @@ function coffeeView(){
 function render(){
   refreshChrome();
   const main = $("#main");
-  if(UI.tab === "plan"){
+   if(UI.tab === "plan"){
     main.innerHTML = planView();
     hydrate(main);
     const rail = $(".rail", main), on = $(".dchip.on", main);
     if(rail && on) rail.scrollLeft = on.offsetLeft - (rail.clientWidth - on.offsetWidth) / 2;
+    const pl = $(".ex-list", main);
+    if(pl && S.activeDay) initSortable(pl, order => reorderDayExercises(S.activeDay, order));
   }else if(UI.tab === "routines"){
     main.innerHTML = routineView();
     hydrate(main);
@@ -1435,18 +1438,8 @@ function initSortable(listEl, onReorder){
   if(!listEl) return;
   let drag = null;
   const items = () => [...listEl.querySelectorAll(":scope > [data-sort-id]")];
-  listEl.addEventListener("pointerdown", e => {
-    const handle = e.target.closest(".drag-handle");
-    if(!handle || !listEl.contains(handle)) return;
-    const row = handle.closest("[data-sort-id]");
-    if(!row) return;
-    e.preventDefault();
-    drag = {row, pid: e.pointerId};
-    row.classList.add("dragging");
-    try{ handle.setPointerCapture(e.pointerId); }catch(_){}
-  });
-  listEl.addEventListener("pointermove", e => {
-    if(!drag || e.pointerId !== drag.pid) return;
+  function move(e){
+    if(!drag) return;
     e.preventDefault();
     const y = e.clientY;
     let target = null;
@@ -1457,23 +1450,37 @@ function initSortable(listEl, onReorder){
     }
     if(target){ if(target !== drag.row.nextElementSibling) listEl.insertBefore(drag.row, target); }
     else if(listEl.lastElementChild !== drag.row) listEl.appendChild(drag.row);
-  });
+  }
   function end(e){
     if(!drag || e.pointerId !== drag.pid) return;
     drag.row.classList.remove("dragging");
+    document.removeEventListener("pointermove", move);
+    document.removeEventListener("pointerup", end);
+    document.removeEventListener("pointercancel", end);
     const order = items().map(el => el.dataset.sortId);
     drag = null;
     onReorder(order);
   }
-  listEl.addEventListener("pointerup", end);
-  listEl.addEventListener("pointercancel", end);
+  listEl.addEventListener("pointerdown", e => {
+    const handle = e.target.closest(".drag-handle");
+    if(!handle || !listEl.contains(handle)) return;
+    const row = handle.closest("[data-sort-id]");
+    if(!row) return;
+    e.preventDefault();
+    drag = {row, pid: e.pointerId};
+    row.classList.add("dragging");
+    document.addEventListener("pointermove", move);
+    document.addEventListener("pointerup", end);
+    document.addEventListener("pointercancel", end);
+  });
 }
 function reorderDayExercises(dayId, order){
   const d = getDay(dayId); if(!d) return;
   const map = new Map(d.exercises.map(e => [e.id, e]));
   d.exercises = order.map(id => map.get(id)).filter(Boolean);
   save();
-  $("#dayExList").innerHTML = dayExListHtml(d);
+  const list = $("#dayExList");
+  if(list) list.innerHTML = dayExListHtml(d);
   refresh();
 }
 function reorderBuilderExercises(order){
