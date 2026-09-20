@@ -49,7 +49,7 @@ button{-webkit-appearance:none;appearance:none}
 .keychip.ok::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#7CF2A6;margin-right:8px}
 
 /* ---------- Tabs ---------- */
-.tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(4,1fr);background:var(--paper);border-top:1.5px solid var(--ink);padding-bottom:env(safe-area-inset-bottom)}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(5,1fr);background:var(--paper);border-top:1.5px solid var(--ink);padding-bottom:env(safe-area-inset-bottom)}
 .tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:60px;border:0;background:none;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer}
 .tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .tab.on{color:var(--slab);box-shadow:inset 0 3px 0 var(--slab)}
@@ -268,6 +268,13 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .btn.signal{background:var(--signal);border-color:var(--signal);color:var(--ink)}
 .btn.danger{color:var(--danger);border-color:var(--danger)}
 .btn.wide{width:100%}
+.chips.wrap{flex-wrap:wrap;overflow:visible;margin:0;padding:0}
+.rt-label{font-size:13px;font-weight:600;color:var(--muted);margin:16px 0 8px}
+.rt-label:first-child{margin-top:0}
+.rt-selects{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0 12px;margin-top:16px}
+.rt-meta{color:var(--muted);font-size:14px;margin:-4px 0 12px}
+.rt-note{background:var(--paper);border:1.5px solid var(--signal);border-radius:8px;padding:10px 12px;font-size:14px;margin-bottom:12px}
+.rt-swap{margin-top:2px;margin-left:-4px}
 a.btn{display:flex;align-items:center;justify-content:center;text-decoration:none;color:inherit}
 .share-pre{white-space:pre-wrap;word-break:break-word;background:var(--floor);border-radius:8px;padding:12px;font:13.5px/1.5 var(--font-body);max-height:40vh;overflow:auto;margin:0}
 .link{background:none;border:0;padding:0 4px;min-height:44px;font-weight:600;font-size:14px;color:var(--slab);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
@@ -354,6 +361,7 @@ body.has-active .toast{bottom:calc(150px + env(safe-area-inset-bottom))}
     <nav class="tabs" aria-label="Sections">
       <button class="tab" data-act="tab" data-tab="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>Plan</button>
       <button class="tab" data-act="tab" data-tab="lib"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Library</button>
+      <button class="tab" data-act="tab" data-tab="routines"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 5.3L20 10l-4.4 3.6L17 19l-5-3-5 3 1.4-5.4L4 10l5.8-1.7z"/></svg>Routines</button>
       <button class="tab" data-act="tab" data-tab="prog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0V4zM8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3M12 13v4M8 20h8M10 17h4"/></svg>Progress</button>
       <button class="tab settings-tab" data-act="open-settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h9M19 6h1M4 12h3M13 12h7M4 18h11M21 18h-1"/><circle cx="16" cy="6" r="2.5"/><circle cx="10" cy="12" r="2.5"/><circle cx="18" cy="18" r="2.5"/></svg>Settings</button>
     </nav>
@@ -402,11 +410,11 @@ function normalizeScrapedExercise(e){
   const muscles = Array.isArray(e.muscles)
     ? e.muscles.map(x => String(x).trim()).filter(Boolean)
     : String(e.muscles || e.muscle || "").split(SPLIT).map(x => x.trim()).filter(Boolean);
-  const rd = String(e.difficulty || "").toLowerCase();
+  const rawEq = Array.isArray(e.equipment) ? e.equipment : String(e.equipment || "").split(/\s*[\/|,]\s*/);
+  const eqDiff = rawEq.map(x => String(x).match(/^difficulty\s+(\w+)/i)).find(Boolean);   // scraped data sometimes lists difficulty under equipment
+  const rd = String(e.difficulty || (eqDiff ? eqDiff[1] : "")).toLowerCase();
   const difficulty = rd === "beginner" ? "Easy" : rd === "intermediate" ? "Medium" : rd === "advanced" ? "Difficult" : (e.difficulty || "");
-  const equipment = Array.isArray(e.equipment)
-    ? e.equipment.map(x => String(x).trim()).filter(Boolean).join(" / ")
-    : String(e.equipment || "").trim();
+  const equipment = rawEq.map(x => String(x).trim()).filter(x => x && !/^difficulty\b/i.test(x)).join(" / ");
   return {
     ...e,
     name: String(e.name || "").trim(),
@@ -426,12 +434,21 @@ function normalizeLibraryEntry(e){
   if(!e.muscle) e.muscle = e.muscles.join(" / ");
   if(!e.equipment){
     const n = String(e.name || "").toLowerCase();
-    e.equipment = /machine|smith|cable|pulley/.test(n) ? "Strength Machine" : /barbell/.test(n) ? "Barbell" : /dumbbell/.test(n) ? "Dumbbell" : /ez[- ]?bar/.test(n) ? "EZ-Bar" : /kettlebell/.test(n) ? "Kettlebell" : /pull[- ]?up|chin[- ]?up|hanging/.test(n) ? "Pull Bar" : /band/.test(n) ? "Bands" : "Body Only";
+    e.equipment = /machine|smith|cable|pulley/.test(n) ? "Strength Machine" : /barbell/.test(n) ? "Barbell" : /dumbbell/.test(n) ? "Dumbbell" : /ez[- ]?bar/.test(n) ? "EZ-Bar" : /kettlebell/.test(n) ? "Kettlebell" : /pull[- ]?up|chin[- ]?up|hanging/.test(n) ? "Pull Bar" : /band/.test(n) ? "Bands" : "Body Weight";
   }
   return e;
 }
 LIB.forEach(normalizeLibraryEntry);
-const findLib = name => LIB_BY_NAME.get(String(name || "").toLowerCase()) || null;
+const SEED_ALIAS = {
+  "Incline Dumbbell Press":"Dumbbell Incline Bench Press","Machine Chest Press":"Leverage Chest Press","Pec Deck / Cable Fly":"Machine Fly","Pec Deck":"Machine Fly",
+  "Triceps Pushdown":"Cable Tricep Pushdown (V-Bar)","Overhead Rope Triceps Extension":"Cable Rope Overhead Tricep Extension","Assisted Dip":"Machine Assisted Dip",
+  "Single-Arm Lat Pulldown":"Cable One-Arm Lat Pulldown","Cable Pullover":"Cable Pullover (Supine)","EZ-Bar Curl":"EZ Bar Curl","Incline Dumbbell Curl":"Dumbbell Incline Curl",
+  "Hammer Curl":"Dumbbell Hammer Curl","Lateral Raise":"Dumbbell Lateral Raise","Rear-Delt Fly":"Dumbbell Reverse Fly","Face Pull":"Cable Rope Face Pull","Cable Curl":"Cable Bicep Curl",
+  "Rope Pushdown":"Cable Tricep Pushdown (Rope)","Overhead Triceps Extension":"Dumbbell Tricep Extension","Incline Barbell Press":"Barbell Incline Bench Press",
+  "Flat Dumbbell Press":"Dumbbell Bench Press","Cable Fly + Face Pull":"Cable Rope Face Pull","Seated Shoulder Press":"Dumbbell Seated Shoulder Press",
+  "Close-Grip Smith Bench Press":"Smith Machine Bench Press (Close Grip)","Neutral-Grip Lat Pulldown":"Cable V Bar Pulldown"
+};
+const findLib = name => LIB_BY_NAME.get(String(name || "").toLowerCase()) || LIB_BY_NAME.get(String(SEED_ALIAS[name] || "").toLowerCase()) || null;
 
 /* Original 6-day plan: [exercise, sets × reps, rest] */
 const PLAN_SEED = [
@@ -486,6 +503,8 @@ function ensureState(s){
   s.active = s.active && Array.isArray(s.active.exercises) ? s.active : null;
   s.profile = Object.assign({goal: 4, unit: "kg"}, s.profile || {});
   s.badges = s.badges && typeof s.badges === "object" ? s.badges : {};
+  s.routine = Object.assign({focus: ["chest"], level: "Any", equip: "All", count: 15, seed: 0}, s.routine || {});
+  if(!Array.isArray(s.routine.focus)) s.routine.focus = [];
   if(!Array.isArray(s.days)) s.days = [];
   if(!s.days.some(d => d.id === s.activeDay)) s.activeDay = s.days[0]?.id || null;
   // Fill exercises that were saved before the library finished loading
@@ -831,7 +850,7 @@ function planView(){
 }
 
 /* ----- Library and filters ----- */
-const DEFAULT_EQ = ["Body Only","Bands","Barbell","Bench","Dumbbell","EZ-Bar","Exercise Ball","Kettlebell","Strength Machine","Pull Bar","Weight Plate"];
+const DEFAULT_EQ = ["Body Weight","Bands","Barbell","Bench","Cardio Machine","Dumbbell","EZ Curl Bar","Exercise Ball","Kettlebell","Pullup Bar","Strength Machine","Weight Plate","Other"];
 const canon = s => String(s || "").trim().toLowerCase();
 const titleCase = s => String(s).replace(/\b\w/g, c => c.toUpperCase());
 function muscleKeys(e){
@@ -841,7 +860,7 @@ function muscleKeys(e){
 function equipList(e){
   const raw = Array.isArray(e.equipment) ? e.equipment : String(e.equipment || "").split(/\s*[\/|,]\s*/);
   const l = raw.map(x => String(x).trim()).filter(Boolean);
-  return l.length ? l : ["Body Only"];
+  return l.length ? l : ["Body Weight"];
 }
 const diffOf = e => e.difficulty ? diffClass(e.difficulty) : "";
 
@@ -974,6 +993,9 @@ function render(){
     hydrate(main);
     const rail = $(".rail", main), on = $(".dchip.on", main);
     if(rail && on) rail.scrollLeft = on.offsetLeft - (rail.clientWidth - on.offsetWidth) / 2;
+  }else if(UI.tab === "routines"){
+    main.innerHTML = routineView();
+    hydrate(main);
   }else if(UI.tab === "prog"){
     main.innerHTML = progressView();
   }else{
@@ -1110,7 +1132,7 @@ function detailSheet(ex, ctx){
 
 function editorSheet(mode, dayId, exId){
   EDIT = {mode, dayId, exId};
-  const ex = mode === "edit" ? getEx(dayId, exId) : {name:"", muscle:"", muscles:[], equipment:"Body Only", sets: DEFAULT_SETS, rest: DEFAULT_REST, difficulty:"Medium", instructions:"", gif:""};
+  const ex = mode === "edit" ? getEx(dayId, exId) : {name:"", muscle:"", muscles:[], equipment:"Body Weight", sets: DEFAULT_SETS, rest: DEFAULT_REST, difficulty:"Medium", instructions:"", gif:""};
   const diffs = ["Easy", "Medium", "Difficult", "Easy–Medium", "Medium–Difficult"];
   if(ex.difficulty && !diffs.includes(ex.difficulty)) diffs.push(ex.difficulty);
   const isLib = mode === "lib-add";
@@ -1126,7 +1148,7 @@ function editorSheet(mode, dayId, exId){
       <div class="field"><label for="f_muscle">Target muscle groups</label><input id="f_muscle" type="text" value="${esc(selectedMuscles.join(" / "))}" placeholder="e.g. Chest / Triceps"></div>
       <div class="field"><label for="f_diff">Difficulty</label><select id="f_diff">${diffs.map(d => `<option ${d === ex.difficulty ? "selected" : ""}>${esc(d)}</option>`).join("")}</select></div>
     </div>
-    <div class="field"><label for="f_equipment">Equipment / machine</label><select id="f_equipment">${eqOpts.map(d => `<option ${d === (ex.equipment || "Body Only") ? "selected" : ""}>${esc(d)}</option>`).join("")}</select></div>
+    <div class="field"><label for="f_equipment">Equipment / machine</label><select id="f_equipment">${eqOpts.map(d => `<option ${d === (ex.equipment || "Body Weight") ? "selected" : ""}>${esc(d)}</option>`).join("")}</select></div>
     <div class="field"><label for="f_how">How to do it</label><textarea id="f_how" placeholder="Step-by-step instructions">${esc(ex.instructions)}</textarea></div>
     <div class="field"><label for="f_gif">GIF link</label><input id="f_gif" type="text" inputmode="url" value="${esc(ex.gif)}" placeholder="https://… or a JEFIT GIF number like 2"><div class="preview" id="gifPreview"></div></div>
     <details class="jefit"><summary>Import from a JEFIT page</summary>
@@ -1250,7 +1272,7 @@ function sessionBodyHtml(){
   const A = S.active, u = unit();
   const cards = A.exercises.map((e, ei) => `<section class="lx">
     <div class="lx-head">${gifSlot(e.gif, {size: "sm", alt: e.name})}<div><h4>${esc(e.name)}</h4><p class="hint">${esc(e.target)}${e.rest ? " · rest " + esc(e.rest) : ""}</p></div></div>
-    <div class="srow head"><span>Set</span><span>Previous</span><span>${esc(u)}</span><span>${e.timed ? "Secs" : "Reps"}</span><span class="sr">Done</span></div>
+    <div class="srow head"><span>Set</span><span>Previous</span><span>${esc(u)}</span><span>${e.timed ? (/min/i.test(e.target) ? "Mins" : "Secs") : "Reps"}</span><span class="sr">Done</span></div>
     ${e.sets.map((s, si) => `<div class="srow ${s.done ? "done" : ""}">
       <span class="sn">${si + 1}</span><span class="prev">${esc(prevText(e, si))}</span>
       <input inputmode="decimal" data-f="w" data-ei="${ei}" data-si="${si}" value="${esc(s.w)}" placeholder="0" aria-label="Set ${si + 1} weight">
@@ -1462,6 +1484,200 @@ function libToPlan(e){
 }
 
 /* =========================================================
+   Routines: recommended exercises for the muscles you want to focus on
+   ========================================================= */
+const MUSCLE_ORDER = ["chest","back","shoulders","biceps","triceps","forearms","abs","upper legs","lower legs","glutes","cardio"];
+const PRESETS = [
+  ["Push", ["chest","shoulders","triceps"]], ["Pull", ["back","biceps","forearms"]], ["Legs", ["upper legs","lower legs","glutes"]],
+  ["Upper body", ["chest","back","shoulders","biceps","triceps"]], ["Core", ["abs"]], ["Full body", ["chest","back","upper legs","shoulders","abs"]]
+];
+const NOT_WORKOUT = /stretch|foam roll|mobility|warm[- ]?up|knee to chest|knee across|circles|stork|single-leg stance|cat[- ]?cow/i;
+const HOME_EQ = new Set(["body weight","bands","dumbbell","kettlebell","exercise ball","pullup bar","weight plate","bench","other"]);
+const BW_EQ = new Set(["body weight","pullup bar"]);
+const LEVEL_MAX = {Any: 3, Beginner: 1, Intermediate: 2, Advanced: 3};
+/* How much each difficulty is preferred for each level choice (index = rank 1..3) */
+const LEVEL_FIT = {Any: [0, 1.5, 0.5, -1.5], Beginner: [0, 1.5, -3, -3], Intermediate: [0, 1, 1.5, -1.5], Advanced: [0, 0.5, 1, 1.5]};
+/* Common, well-known movements float to the top; exotic ones sink */
+const STAPLES = /^(barbell (bench press|incline bench press|squat|deadlift|shoulder press|curl|row|bent-over row|romanian deadlift|hip thrust|military press)|dumbbell (bench press|incline bench press|shoulder press|lateral raise|curl|bicep curl|row|lunge|fly|incline fly|hammer curl|romanian deadlift|goblet squat|tricep extension|rear delt row|calf raise)|pull-up|push-up|dip|plank|crunch|hanging leg raise|reverse crunch|russian twist|bicycle crunch|cable lat pulldown \(wide grip\)|machine lat pulldown|cable seated row|cable rope face pull|cable tricep pushdown \(rope\)|cable bicep curl|cable cross-over|machine fly|leg press|leg extension|leg curl|machine leg press|lying leg curl|standing calf raise|seated calf raise|lunge|bodyweight squat|glute bridge|ez bar curl|ez bar skull crusher|running|walking|rowing|stationary bike|treadmill running|jump rope|elliptical training)$/i;
+const EXOTIC = /medicine ball|stability|single-leg|one-leg|jump|throw|plyo|clap|isometric|renegade|spider|zottman|tate|windshield|dragon flag|sissy|behind the back|kneeling jump|deep push-up/i;
+const EQ_PREF = {"barbell": 1.5, "dumbbell": 1.5, "strength machine": 1, "pullup bar": 1, "ez curl bar": 1, "bench": 0.5, "body weight": 0.5, "cardio machine": 0.5, "kettlebell": -0.5, "bands": -0.5, "exercise ball": -1.5, "weight plate": -1.5, "other": -1};
+const diffRank = e => ({easy: 1, medium: 2, difficult: 3}[diffOf(e)] || 2);
+function equipMatch(mode, e){
+  if(!mode || mode === "All") return true;
+  const eq = equipList(e).map(canon);
+  if(mode === "home") return eq.every(x => HOME_EQ.has(x));
+  if(mode === "bodyweight") return eq.every(x => BW_EQ.has(x));
+  return eq.includes(mode);
+}
+const EQ_WORDS = /\b(barbell|dumbbell|cable|machine|smith|ez|curl bar|bar|kettlebell|bands?|stability|ball|leverage|lever|sled|plate|weighted|assisted|bodyweight|body weight)\b/g;
+/* Same movement, different equipment (Barbell vs Dumbbell Bench Press) shares a key, so a routine gets variety */
+function moveKey(e){
+  const k = String(e.name).toLowerCase().replace(/\(.*?\)/g, " ").replace(EQ_WORDS, " ")
+    .replace(/\b(one|single|two)[- ](arm|leg)\b|\b(seated|standing|lying|alternating|alternate|wide|close|narrow|reverse|underhand|overhand|neutral|grip)\b/g, " ")
+    .replace(/[^a-z]+/g, " ").trim().replace(/\s+/g, " ");
+  return k || canon(e.name);
+}
+function exType(e){
+  const ms = muscleKeys(e), n = e.name.toLowerCase(), eq = equipList(e).map(canon);
+  if(ms[0] === "cardio" || eq.includes("cardio machine")) return "cardio";
+  if(/\b(plank|hold|isometric|wall sit)\b/.test(n)) return "timed";
+  if(/curl|raise|fly|flye|extension|kickback|pullover|shrug|crunch|pushdown|twist|rotation|cross-?over|pec deck|squeeze|wrist/.test(n)) return "isolation";
+  if(["abs","forearms","lower legs"].includes(ms[0])) return "isolation";
+  if(ms.length >= 3 || (ms.length === 2 && ["chest","back","upper legs","glutes","shoulders"].includes(ms[0]))) return "compound";
+  if(/press|row|squat|deadlift|lunge|pull-?up|dip|push-?up|thrust|clean|snatch/.test(n)) return "compound";
+  return "isolation";
+}
+function prescribe(e, type){
+  const ms = muscleKeys(e), eq = equipList(e).map(canon);
+  if(type === "cardio") return {sets: "1 × 10–20 min", rest: "–"};
+  if(type === "timed") return {sets: "3 × 30–60 sec", rest: "45 sec"};
+  if(type === "compound") return eq.includes("barbell") ? {sets: "4 × 6–10", rest: "2 min"} : {sets: "3 × 8–12", rest: "90 sec"};
+  if(ms[0] === "lower legs") return {sets: "4 × 12–20", rest: "45 sec"};
+  if(ms[0] === "abs" || ms[0] === "forearms" || eq.includes("body weight")) return {sets: "3 × 12–20", rest: "45 sec"};
+  return {sets: "3 × 10–15", rest: "60 sec"};
+}
+function jitter(name, seed){
+  if(!seed) return 0;
+  let h = 2166136261;
+  const s = name + "|" + seed;
+  for(let i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return ((h >>> 0) / 4294967295 - 0.5) * 5;
+}
+function scoreEx(e, focus, seed, level){
+  const ms = muscleKeys(e);
+  const idx = ms.findIndex(m => focus.includes(m));
+  if(idx < 0) return null;
+  const overlap = ms.filter(m => focus.includes(m)).length;
+  let s = (idx === 0 ? 10 : 4) - idx * 0.3 + (overlap - 1) * 2.5;    // primary muscle first, bonus for hitting several focus muscles
+  if(e.gif) s += 2;
+  if((e.instructions || "").length > 40) s += 1;
+  if(exType(e) === "compound") s += 2;
+  s += (LEVEL_FIT[level] || LEVEL_FIT.Any)[diffRank(e)];
+  const n = e.name;
+  if(STAPLES.test(n.trim())) s += 3;
+  if(EXOTIC.test(n)) s -= 2.5;
+  s -= Math.max(0, n.replace(/\(.*?\)/g, "").trim().split(/\s+/).length - 3) * 0.5;      // shorter names are usually the classic version
+  s += Math.max(...equipList(e).map(x => EQ_PREF[canon(x)] ?? 0));
+  return s + jitter(n, seed);
+}
+const groupOf = (e, focus) => muscleKeys(e).find(k => focus.includes(k));
+/* Round-robin across the focus muscles so every one gets its share; avoid repeats of the same movement and too much of one equipment */
+function pickBalanced(cand, focus, count){
+  const groups = focus.map(m => ({m, items: cand.filter(x => groupOf(x.e, focus) === m)}));
+  const chosen = [], keys = new Set(), eqN = {}, famN = {};
+  const cap = Math.ceil(count / 3) + 1;
+  const fam = x => x.key.split(" ").pop();
+  for(const ps of [{dup: false, cap: true}, {dup: false, cap: false}, {dup: true, cap: false}]){
+    let progress = true;
+    while(chosen.length < count && progress){
+      progress = false;
+      for(const g of groups){
+        if(chosen.length >= count) break;
+        const c = g.items.find(x => !chosen.includes(x) && (ps.dup || !keys.has(x.key)) && (!ps.cap || ((eqN[equipList(x.e)[0]] || 0) < cap && (famN[fam(x)] || 0) < cap)));
+        if(c){ chosen.push(c); keys.add(c.key); const q = equipList(c.e)[0]; eqN[q] = (eqN[q] || 0) + 1; famN[fam(c)] = (famN[fam(c)] || 0) + 1; progress = true; }
+      }
+    }
+    if(chosen.length >= count) break;
+  }
+  return chosen;
+}
+const TYPE_RANK = {compound: 0, isolation: 1, timed: 1, cardio: 2};
+function toItem(c, focus){
+  const type = exType(c.e);
+  return {e: c.e, key: c.key, type, rx: prescribe(c.e, type), group: groupOf(c.e, focus)};
+}
+function buildRoutine(P){
+  const focus = P.focus.map(canon), count = P.count, maxRank = LEVEL_MAX[P.level] || 3;
+  const res = {list: [], pool: [], out: new Set(), relaxed: "", focus};
+  if(!focus.length) return res;
+  const stages = [{lv: true, eq: true, note: ""}, {lv: false, eq: true, note: "Not enough matches at that level, so some exercises are from other levels."}, {lv: false, eq: false, note: "Not enough matches for your level and equipment, so I added the best remaining exercises."}];
+  const base = libItems().filter(e => !NOT_WORKOUT.test(e.name));
+  for(const st of stages){
+    const cand = base.filter(e => (!st.lv || diffRank(e) <= maxRank) && (!st.eq || equipMatch(P.equip, e)))
+      .map(e => ({e, s: scoreEx(e, focus, P.seed, P.level), key: moveKey(e)})).filter(x => x.s !== null).sort((a, b) => b.s - a.s);
+    const picked = pickBalanced(cand, focus, count);
+    res.pool = cand; res.relaxed = st.note;
+    res.list = picked.map(c => toItem(c, focus)).sort((a, b) => TYPE_RANK[a.type] - TYPE_RANK[b.type]);
+    if(picked.length >= count) break;
+  }
+  return res;
+}
+let RT = {key: "", res: null};
+function routineResult(){
+  const P = S.routine, key = JSON.stringify(P) + "|" + libItems().length;
+  if(RT.key !== key) RT = {key, res: buildRoutine(P)};
+  return RT.res;
+}
+function swapRoutine(i){
+  const res = routineResult(), cur = res.list[i]; if(!cur) return;
+  const focus = res.focus;
+  const used = new Set(res.list.map(x => x.e.name)), keys = new Set(res.list.map(x => x.key));
+  res.out.add(cur.e.name);
+  const ok = x => !used.has(x.e.name) && !res.out.has(x.e.name) && !keys.has(x.key);
+  const c = res.pool.find(x => ok(x) && groupOf(x.e, focus) === cur.group) || res.pool.find(ok);
+  if(!c){ res.out.delete(cur.e.name); return toast("No more alternatives"); }
+  res.list[i] = toItem(c, focus);
+}
+function routineMinutes(list){
+  let m = 0;
+  list.forEach(x => { if(x.type === "cardio"){ m += 15; return; } m += (parseInt(x.rx.sets) || 3) * (40 + restSecs(x.rx.rest)) / 60; });
+  return Math.max(5, Math.round(m / 5) * 5);
+}
+function routineTitle(){
+  const F = facets().muscles;
+  const labs = S.routine.focus.map(k => (F.find(m => m.key === k) || {}).label || titleCase(k));
+  return "Day " + (S.days.length + 1) + " — " + (labs.length > 3 ? "Custom mix" : labs.join(" + "));
+}
+function saveRoutine(){
+  const res = routineResult(); if(!res.list.length) return null;
+  const d = {id: uid(), title: routineTitle(), exercises: res.list.map(x => { const {custom, id, ...b} = x.e; return {...b, id: uid(), sets: x.rx.sets, rest: x.rx.rest}; })};
+  S.days.push(d); S.activeDay = d.id; save();
+  return d;
+}
+function routineView(){
+  const P = S.routine, F = facets();
+  const label = new Map(F.muscles.map(m => [m.key, m.label]));
+  const order = MUSCLE_ORDER.filter(k => label.has(k)).concat([...label.keys()].filter(k => !MUSCLE_ORDER.includes(k)));
+  const chips = order.map(k => `<button class="gchip ${P.focus.includes(k) ? "on" : ""}" data-act="rt-muscle" data-k="${esc(k)}" aria-pressed="${P.focus.includes(k)}">${esc(label.get(k))}</button>`).join("");
+  const presets = PRESETS.map(([n], i) => `<button class="gchip" data-act="rt-preset" data-i="${i}">${esc(n)}</button>`).join("");
+  const lv = ["Any", "Beginner", "Intermediate", "Advanced"].map(v => `<option ${P.level === v ? "selected" : ""}>${v}</option>`).join("");
+  const eqs = [["All", "Any equipment"], ["home", "Home (no machines or barbell)"], ["bodyweight", "Bodyweight only"]].concat(F.equipment.map(x => [x.key, x.label]))
+    .map(([v, t]) => `<option value="${esc(v)}" ${P.equip === v ? "selected" : ""}>${esc(t)}</option>`).join("");
+  const cnt = [12, 15, 20].map(n => `<option value="${n}" ${P.count === n ? "selected" : ""}>${n} exercises</option>`).join("");
+  let result;
+  if(!P.focus.length){
+    result = `<p class="hint" style="margin-top:20px">Pick at least one muscle above to get a routine.</p>`;
+  }else{
+    const res = routineResult(), n = res.list.length;
+    const cover = res.focus.map(k => [label.get(k) || titleCase(k), res.list.filter(x => x.group === k).length]).filter(x => x[1]).map(x => x[0] + " " + x[1]).join(" · ");
+    result = `<h2 class="sec">Your routine</h2>
+      <p class="rt-meta">${n} exercises · about ${routineMinutes(res.list)} min${cover ? " · " + esc(cover) : ""}</p>
+      ${res.relaxed ? `<p class="rt-note">${esc(res.relaxed)}</p>` : ""}
+      <div class="actions" style="margin:0 0 10px"><button class="btn" data-act="rt-shuffle">Shuffle</button><button class="btn primary" data-act="rt-save">Save to plan</button></div>
+      <button class="btn signal wide" style="margin-bottom:14px" data-act="rt-start">Save and start workout</button>
+      <div class="ex-list">${res.list.map((x, i) => `<article class="ex" role="button" tabindex="0" data-act="open-lib" data-name="${esc(x.e.name)}" aria-label="${esc(x.e.name)}, open details">
+        ${gifSlot(x.e.gif, {alt: x.e.name})}
+        <div class="ex-main"><h3>${i + 1}. ${esc(x.e.name)}</h3>
+          <div class="ex-sub"><span class="ex-muscle">${esc(muscleKeys(x.e).map(titleCase).join(" / "))} · ${esc(equipList(x.e).join(" / "))}</span>${pips(x.e.difficulty)}</div>
+          <div class="ex-stats"><div><b>${esc(x.rx.sets)}</b><span>sets × reps</span></div><div><b>${esc(x.rx.rest)}</b><span>rest</span></div></div>
+          <button class="link rt-swap" data-act="rt-swap" data-i="${i}">Swap for another</button></div>
+        <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></article>`).join("")}</div>`;
+  }
+  return `<div class="lib-head"><div><h2>Routines</h2><p>Choose the muscles to focus on and get a ready-made workout.</p></div></div>
+    <section class="card">
+      <div class="rt-label">Focus muscles</div><div class="chips wrap">${chips}</div>
+      <div class="rt-label">Quick picks</div><div class="chips wrap">${presets}</div>
+      <div class="rt-selects">
+        <div class="field"><label for="rtLevel">Level</label><select id="rtLevel">${lv}</select></div>
+        <div class="field"><label for="rtEquip">Equipment</label><select id="rtEquip">${eqs}</select></div>
+        <div class="field"><label for="rtCount">Length</label><select id="rtCount">${cnt}</select></div>
+      </div>
+    </section>
+    ${result}`;
+}
+function renderKeep(){ const y = window.scrollY; render(); window.scrollTo(0, y); }
+
+/* =========================================================
    Export, import and sharing
    ========================================================= */
 const slimEx = e => {
@@ -1654,7 +1870,7 @@ const ACT = {
     $("#f_name").value = e.name; $("#f_muscle").value = (e.muscles && e.muscles.length ? e.muscles : [e.muscle]).join(" / ");
     $("#f_sets").value = e.sets || DEFAULT_SETS; $("#f_rest").value = e.rest || DEFAULT_REST;
     if(e.difficulty) $("#f_diff").value = e.difficulty;
-    $("#f_equipment").value = e.equipment || "Body Only"; $("#f_how").value = e.instructions; $("#f_gif").value = e.gif;
+    $("#f_equipment").value = e.equipment || "Body Weight"; $("#f_how").value = e.instructions; $("#f_gif").value = e.gif;
     $("#pickSearch").value = ""; renderPicks(); previewGif();
     $("#f_name").scrollIntoView({block: "nearest", behavior: "smooth"});
   },
@@ -1713,6 +1929,23 @@ const ACT = {
     startWorkout(null);
   },
   resume(){ sessionSheet(); },
+  "rt-muscle"(t){
+    const k = t.dataset.k, f = S.routine.focus;
+    S.routine.focus = f.includes(k) ? f.filter(x => x !== k) : [...f, k];
+    S.routine.seed = 0; save(); renderKeep();
+  },
+  "rt-preset"(t){
+    const have = new Set(facets().muscles.map(m => m.key));
+    S.routine.focus = PRESETS[+t.dataset.i][1].filter(k => have.has(k));
+    S.routine.seed = 0; save(); renderKeep();
+  },
+  "rt-shuffle"(){ S.routine.seed++; save(); renderKeep(); },
+  "rt-swap"(t){ swapRoutine(+t.dataset.i); renderKeep(); },
+  "rt-save"(){ const d = saveRoutine(); if(d) toast("Saved to Plan as “" + d.title + "”"); },
+  "rt-start"(){
+    if(S.active) return ask("You already have a workout in progress. Discard it and start this routine instead?", "Discard and start", () => { const d = saveRoutine(); if(d) startWorkout(d.id); });
+    const d = saveRoutine(); if(d) startWorkout(d.id);
+  },
   tick(t){
     const A = S.active; if(!A) return;
     const e = A.exercises[+t.dataset.ei], s = e && e.sets[+t.dataset.si];
@@ -1872,6 +2105,9 @@ document.addEventListener("change", e => {
   const id = e.target.id;
   if(id === "setGoal"){ S.profile.goal = +e.target.value; save(); toast("Weekly goal: " + S.profile.goal); if(UI.tab === "prog") render(); }
   else if(id === "setUnit"){ S.profile.unit = e.target.value; save(); if(UI.tab === "prog") render(); }
+  else if(id === "rtLevel"){ S.routine.level = e.target.value; S.routine.seed = 0; save(); renderKeep(); }
+  else if(id === "rtEquip"){ S.routine.equip = e.target.value; S.routine.seed = 0; save(); renderKeep(); }
+  else if(id === "rtCount"){ S.routine.count = +e.target.value; save(); renderKeep(); }
   else if(id === "impFile"){
     const f = e.target.files && e.target.files[0]; if(!f) return;
     f.text().then(txt => { $("#impText").value = txt; say("#impMsg", "Loaded " + f.name + ". Tap Import to continue.", "ok"); })
