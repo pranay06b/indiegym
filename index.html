@@ -1534,9 +1534,9 @@ async function settingsSheet(){
     </section>
     <section class="set">
       <h4>Backup and share</h4>
-      <p class="hint" style="margin-bottom:10px">Your plan, history and badges live in this browser. Export them as a JSON file to back up, move to another device, or send to a friend on WhatsApp or Telegram.</p>
-      <div class="field"><label for="expScope">What to include</label><select id="expScope"><option value="all">Everything</option><option value="plan">Workout plan only</option><option value="history">History and badges only</option></select></div>
-      <div class="actions" style="margin-top:0"><button class="btn" data-act="export-data">Download JSON</button><button class="btn" data-act="share-data">Share…</button></div>
+      <p class="hint" style="margin-bottom:10px">Your plan, saved routines, history and badges live in this browser. Export them as a JSON file to back up, move to another device, or send to a friend on WhatsApp or Telegram.</p>
+            <div class="field"><label for="expScope">What to include</label><select id="expScope"><option value="all">Everything</option><option value="plan">Workout plan only</option><option value="routines">Saved routines only</option><option value="history">History and badges only</option></select></div>
+            <div class="actions" style="margin-top:0"><button class="btn" data-act="export-data">Download JSON</button><button class="btn" data-act="share-data">Share…</button></div>
       <div class="actions" style="margin-top:10px"><button class="btn" data-act="copy-data">Copy JSON</button><button class="btn" data-act="import-data">Import…</button></div>
     </section>
     <section class="set">
@@ -2156,8 +2156,9 @@ const slimEx = e => {
 };
 function buildExport(scope){
   const out = {app: "indiegym", version: 2, exported: new Date().toISOString(), scope};
-  if(scope !== "history") out.plan = {days: S.days.map(d => ({title: d.title, exercises: d.exercises.map(slimEx)})), custom: S.custom};
-  if(scope !== "plan") out.history = {logs: S.logs, badges: S.badges};
+  if(scope === "all" || scope === "plan") out.plan = {days: S.days.map(d => ({title: d.title, exercises: d.exercises.map(slimEx)})), custom: S.custom};
+  if(scope === "all" || scope === "routines") out.routines = S.routines.map(r => ({title: r.title, exercises: r.exercises.map(slimEx)}));
+  if(scope === "all" || scope === "history") out.history = {logs: S.logs, badges: S.badges};
   out.profile = S.profile;
   return out;
 }
@@ -2212,28 +2213,34 @@ function shareSheet({title, text, file = null, copy = null}){
 
 function parseImport(data){
   if(!data || typeof data !== "object") throw new Error("this isn’t a JSON object");
-  let plan = null, hist = null;
-  if(data.plan || data.history){ plan = data.plan || null; hist = data.history || null; }
+  let plan = null, hist = null, routinesRaw = null;
+  if(data.plan || data.history || data.routines){ plan = data.plan || null; hist = data.history || null; routinesRaw = data.routines || null; }
   else if(Array.isArray(data.days)){ plan = {days: data.days, custom: data.custom}; hist = Array.isArray(data.logs) ? {logs: data.logs, badges: data.badges} : null; }   // older full backups
   const days = plan && Array.isArray(plan.days)
     ? plan.days.filter(d => d && typeof d.title === "string" && Array.isArray(d.exercises))
         .map(d => ({id: uid(), title: d.title, exercises: d.exercises.filter(x => x && x.name).map(x => ({...BLANK_EX, ...x, id: uid()}))})) : null;
   const custom = plan && Array.isArray(plan.custom) ? plan.custom.filter(c => c && c.name) : [];
+  const routines = Array.isArray(routinesRaw)
+    ? routinesRaw.filter(r => r && typeof r.title === "string" && Array.isArray(r.exercises))
+        .map(r => ({id: uid(), title: r.title, exercises: r.exercises.filter(x => x && x.name).map(x => ({...BLANK_EX, ...x, id: uid()}))})) : null;
   const logs = hist && Array.isArray(hist.logs)
     ? hist.logs.filter(l => l && l.id && Array.isArray(l.exercises) && isFinite(l.start) && isFinite(l.end))
         .map(l => ({...l, sets: num(l.sets), volume: num(l.volume), xp: num(l.xp), prs: Array.isArray(l.prs) ? l.prs : []})) : null;
   const badges = hist && hist.badges && typeof hist.badges === "object" ? hist.badges : {};
-  if(!(days && days.length) && !(logs && logs.length)) throw new Error("no workouts or history found");
-  return {days, custom, logs, badges, profile: data.profile && typeof data.profile === "object" ? data.profile : null};
+  if(!(days && days.length) && !(routines && routines.length) && !(logs && logs.length)) throw new Error("no workouts, routines or history found");
+  return {days, custom, routines, logs, badges, profile: data.profile && typeof data.profile === "object" ? data.profile : null};
 }
+
 function applyImport(p, mode){
-  const r = {days: 0, logs: 0, custom: 0};
+  const r = {days: 0, logs: 0, custom: 0, routines: 0};
   if(mode === "replace"){
     if(p.days){ S.days = p.days; S.activeDay = null; S.custom = p.custom; r.days = p.days.length; r.custom = p.custom.length; }
+    if(p.routines){ S.routines = p.routines; r.routines = p.routines.length; }
     if(p.logs){ S.logs = p.logs; S.badges = p.badges; r.logs = p.logs.length; }
     if(p.profile) S.profile = Object.assign(S.profile, p.profile);
   }else{
     if(p.days){ S.days.push(...p.days); r.days = p.days.length; }
+    if(p.routines){ S.routines.push(...p.routines); r.routines = p.routines.length; }
     const names = new Set(S.custom.map(c => nkey(c.name)));
     p.custom.forEach(c => { if(!names.has(nkey(c.name))){ S.custom.push(c); r.custom++; } });
     if(p.logs){
@@ -2243,7 +2250,7 @@ function applyImport(p, mode){
     }
   }
   ensureState(S); save();
-  const bits = [r.days && r.days + " workout" + (r.days === 1 ? "" : "s"), r.logs && r.logs + " log" + (r.logs === 1 ? "" : "s"), r.custom && r.custom + " exercise" + (r.custom === 1 ? "" : "s")].filter(Boolean);
+  const bits = [r.days && r.days + " workout" + (r.days === 1 ? "" : "s"), r.routines && r.routines + " routine" + (r.routines === 1 ? "" : "s"), r.logs && r.logs + " log" + (r.logs === 1 ? "" : "s"), r.custom && r.custom + " exercise" + (r.custom === 1 ? "" : "s")].filter(Boolean);
   return "Imported " + (bits.join(", ") || "nothing new");
 }
 function importSheet(){
@@ -2568,9 +2575,9 @@ const ACT = {
     const sc = $("#expScope")?.value || "all";
     downloadFile(exportFile(buildExport(sc), sc).file); toast("Backup downloaded");
   },
-  "share-data"(){
+   "share-data"(){
     const sc = $("#expScope")?.value || "all", {json, file} = exportFile(buildExport(sc), sc);
-    const what = sc === "plan" ? S.days.length + " workouts" : sc === "history" ? S.logs.length + " logged workouts" : S.days.length + " workouts and " + S.logs.length + " logged workouts";
+    const what = sc === "plan" ? S.days.length + " workouts" : sc === "routines" ? S.routines.length + " routines" : sc === "history" ? S.logs.length + " logged workouts" : S.days.length + " workouts, " + S.routines.length + " routines and " + S.logs.length + " logged workouts";
     shareSheet({title: "Share backup", text: "My Indiegym data (" + what + "). Import it in Indiegym: Settings, then Import.", file, copy: json});
   },
   "copy-data"(){ copyText(exportFile(buildExport($("#expScope")?.value || "all"), "data").json); },
