@@ -265,6 +265,11 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .keyrow{display:flex;gap:8px}
 .keyrow input{flex:1;min-width:0;width:auto}
 .hint{font-size:13.5px;color:var(--muted)}
+.about-lead{font-size:18px;font-weight:700;line-height:1.35;margin:0 0 10px}
+.about-list{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.about-list li{padding:12px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.5}
+.about-list b{display:block}
+.about-list span{color:var(--muted)}
 .hint a{color:var(--slab);font-weight:600}
 .status{font-size:13.5px;margin-top:10px;min-height:1.4em}
 .status.ok{color:#0F6B3A}
@@ -1337,7 +1342,31 @@ async function settingsSheet(){
       <h4>Reset</h4>
       <p class="hint" style="margin-bottom:10px">Reset the plan to the original 6-day workouts, or wipe your history, XP and badges. Your key and library additions are kept.</p>
       <div class="actions" style="margin-top:0"><button class="btn danger" data-act="reset-plan">Reset plan</button><button class="btn danger" data-act="reset-progress">Reset progress</button></div>
+    </section>
+    <section class="set">
+      <h4>About</h4>
+      <p class="hint" style="margin-bottom:10px">What Indiegym does and how it works.</p>
+      <button class="btn" data-act="open-about">About Indiegym</button>
     </section>`
+  }));
+}
+function aboutSheet(){
+  const n = LIB.length ? fmtNum(LIB.length) + " exercises" : "Thousands of exercises";
+  const items = [
+    ["Plan", "It comes with a ready-made 6-day split (chest, back, shoulders, arms and abs). You can edit it, reorder exercises, duplicate or delete days, or add your own."],
+    ["Library", n + " with animated GIFs, written instructions and YouTube demo videos. The video sits in a collapsible panel that opens when you tap Watch demo. Search, filter by muscle, difficulty, equipment or media, and add your own exercises."],
+    ["Routines", "Pick the muscles you want to focus on, plus your level, equipment and workout length, and it builds a balanced routine. Shuffle or swap exercises, or build one from scratch, then save it to your plan."],
+    ["Workout logging", "Start a workout and log weight and reps for each set, with your previous numbers shown alongside. An automatic rest timer alerts you when rest is over, and you can add or remove sets and exercises mid-workout."],
+    ["Progress", "Earn XP and level up, build streaks (rest days don’t break them), unlock badges, and get alerted to personal records. A weekly goal tracker and full workout history are included."],
+    ["Backup and sharing", "Export or import your data as a JSON file, or share a workout through WhatsApp, Telegram or email."]
+  ];
+  openSheet(sheetHtml({
+    title: "About Indiegym",
+    body: `<p class="about-lead">A free, no-account workout planner and tracker that runs in your browser.</p>
+      <p class="how">Indiegym helps you plan your training, look up how to do each exercise, log every set, and see your progress over time. It’s designed for phones first, with a bottom tab bar, large touch targets and a rest timer, and it also works on desktop. Your plan and history are saved on your own device, with no sign-up.</p>
+      <h4>What it does</h4>
+      <ul class="about-list">${items.map(([t, d]) => `<li><b>${esc(t)}</b><span>${esc(d)}</span></li>`).join("")}</ul>`,
+    foot: `<button class="btn wide" data-act="open-settings">Back to settings</button>`
   }));
 }
 const cacheText = n => n ? `${n} GIF${n === 1 ? "" : "s"} saved on this device. They load without another proxy request.` : "No GIFs saved yet. GIFs you view are kept on this device so they load without another proxy request.";
@@ -2017,6 +2046,7 @@ const ACT = {
   close(){ closeSheet(); },
   "confirm-yes"(){ const f = pendingYes; closeThen(() => { if(f) f(); }); },
   "open-settings"(){ settingsSheet(); },
+  "open-about"(){ aboutSheet(); },
   "retry-gif"(t){ GIF.coolUntil = 0; const el = t.closest(".gif"); if(el) startSlot(el); },
   "toggle-demo"(){ const p = $("#demoPanel"); if(p) setDemo(!p.classList.contains("open")); },
 
