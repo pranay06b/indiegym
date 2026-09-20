@@ -621,7 +621,7 @@ function buildDefault(){
    State (saved in this browser)
    ========================================================= */
 let S;
-const UI = {tab: "plan", q: "", muscles: [], difficulty: "All", equipment: "All", media: "All", matchAll: false, libLimit: 120};
+const UI = {tab: "plan", q: "", muscles: [], difficulty: "All", equipment: "All", media: "All", matchAll: false, libLimit: 120, routineOpen: null}; 
 let SHEET = "";
 
 function ensureState(s){
@@ -954,10 +954,38 @@ function exRow(ex, dayId){
       <div class="ex-sub"><span class="ex-muscle">${esc(ex.muscle)}</span>${pips(ex.difficulty)}</div>
       ${stats(ex)}
     </div>
+        <button class="drag-handle" type="button" data-act="noop" aria-label="Drag to reorder ${esc(ex.name)}">⠿</button>
+    <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+  </article>`;
+}
+function routineExRow(ex, routineId){
+  return `<article class="ex" role="button" tabindex="0" data-act="open-routine-ex" data-routine="${routineId}" data-id="${ex.id}" data-sort-id="${ex.id}" aria-label="${esc(ex.name)}, open details">
+    ${gifSlot(ex.gif, {alt: ex.name, video: hasVideo(ex)})}
+    <div class="ex-main">
+      <h3>${esc(ex.name)}</h3>
+      <div class="ex-sub"><span class="ex-muscle">${esc(ex.muscle)}</span>${pips(ex.difficulty)}</div>
+      ${stats(ex)}
+    </div>
     <button class="drag-handle" type="button" data-act="noop" aria-label="Drag to reorder ${esc(ex.name)}">⠿</button>
     <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
   </article>`;
 }
+function routineDetailView(r){
+  const n = r.exercises.length, od = overallDiff(r);
+  const A = S.active;
+  const startLabel = A && A.dayId === r.id ? "Resume workout" : "Start workout";
+  return `<button class="link" type="button" data-act="routine-back" style="margin-bottom:12px;padding-left:0">← Back to routines</button>
+    <section>
+      <div class="day-head">
+        <div><h2>${esc(r.title)}</h2><p class="meta">${n} exercise${n === 1 ? "" : "s"}${od ? ", " + od + " overall" : ""}</p></div>
+        <button class="btn sm" data-act="routine-edit" data-id="${r.id}">Edit routine</button>
+      </div>
+      ${n ? `<button class="btn signal wide start-btn" data-act="routine-start" data-id="${r.id}">${startLabel}</button>` : ""}
+      ${n ? `<div class="ex-list" id="routineExList">${r.exercises.map(e => routineExRow(e, r.id)).join("")}</div>` : `<p class="empty">Nothing here yet. Add your first exercise.</p>`}
+      <button class="btn primary wide add-ex" data-act="add-routine-ex" data-id="${r.id}">Add exercise</button>
+    </section>`;
+}
+
 function planView(){
   const rail = S.days.map((d, i) => {
     const {label, focus} = splitTitle(d.title, i);
@@ -1150,11 +1178,13 @@ function render(){
     if(rail && on) rail.scrollLeft = on.offsetLeft - (rail.clientWidth - on.offsetWidth) / 2;
     const pl = $(".ex-list", main);
     if(pl && S.activeDay) initSortable(pl, order => reorderDayExercises(S.activeDay, order));
-  }else if(UI.tab === "routines"){
+    }else if(UI.tab === "routines"){
     main.innerHTML = routineView();
     hydrate(main);
     const bl = $("#builderExList");
     if(bl) initSortable(bl, order => reorderBuilderExercises(order));
+    const rl = $("#routineExList");
+    if(rl && UI.routineOpen) initSortable(rl, order => reorderRoutineExercises(UI.routineOpen, order));
   }else if(UI.tab === "prog"){
     main.innerHTML = progressView();
   }else if(UI.tab === "coffee"){
@@ -1414,8 +1444,7 @@ function editorSheet(mode, dayId, exId){
       <p class="hint">Fetched through the image proxy with your key. After import, review the muscle, equipment and difficulty fields before saving.</p>
       <p class="status" id="jStatus" role="status"></p>
     </details>
-    ${mode === "add" ? `<label class="check"><input type="checkbox" id="f_lib" checked> Also save to my library</label>` : ""}`,
-    foot: `<p class="status err" id="formMsg" role="alert"></p>
+    ${(mode === "add" || mode === "routine-add") ? `<label class="check"><input type="checkbox" id="f_lib" checked> Also save to my library</label>` : ""}`,    foot: `<p class="status err" id="formMsg" role="alert"></p>
       <div class="actions" style="margin-top:0"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="save-ex">Save exercise</button></div>`
   }));
   previewGif();
@@ -1486,6 +1515,13 @@ function reorderDayExercises(dayId, order){
 function reorderBuilderExercises(order){
   const map = new Map(S.builder.exercises.map(x => [x.id, x]));
   S.builder.exercises = order.map(id => map.get(id)).filter(Boolean);
+  save();
+  renderKeep();
+}
+function reorderRoutineExercises(routineId, order){
+  const r = getRoutine(routineId); if(!r) return;
+  const map = new Map(r.exercises.map(e => [e.id, e]));
+  r.exercises = order.map(id => map.get(id)).filter(Boolean);
   save();
   renderKeep();
 }
@@ -2036,14 +2072,19 @@ function autoView(){
   const rows = S.routines.map(r => {
     const n = r.exercises.length;
     const active = A && A.dayId === r.id;
-    return `<div class="edit-ex"><span>${esc(r.title)} · ${n} exercise${n === 1 ? "" : "s"}</span>
-      <button class="btn sm ${active ? "signal" : ""}" data-act="routine-start" data-id="${r.id}">${active ? "Resume" : "Start"}</button>
+        return `<div class="edit-ex"><span role="button" tabindex="0" data-act="routine-open" data-id="${r.id}" style="cursor:pointer">${esc(r.title)} · ${n} exercise${n === 1 ? "" : "s"}</span>
+          <button class="btn sm ${active ? "signal" : ""}" data-act="routine-start" data-id="${r.id}">${active ? "Resume" : "Start"}</button>
       <button class="icon-btn" data-act="routine-edit" data-id="${r.id}" aria-label="Edit ${esc(r.title)}">✎</button>
       <button class="icon-btn danger" data-act="routine-del" data-id="${r.id}" aria-label="Delete ${esc(r.title)}">✕</button></div>`;
   }).join("");
   return `<h2 class="sec">Saved routines (${S.routines.length})</h2><div class="ex-list" style="border-top:2px solid var(--edge)">${rows}</div>`;
 }
 function routineView(){
+  if(UI.routineOpen){
+    const r = getRoutine(UI.routineOpen);
+    if(r) return routineDetailView(r);
+    UI.routineOpen = null;
+  }
   const custom = S.routine.mode === "custom", n = S.builder.exercises.length;
   return `<div class="lib-head"><div><h2>Routines</h2><p>Build workout routines that live here, separate from your Plan.</p></div></div>
     <div class="seg" role="tablist" aria-label="Routine mode">
@@ -2376,8 +2417,13 @@ const ACT = {
       S.custom.push({...data, custom: true});
       if(EDIT.fromBuilder){ S.builder.exercises.push({...data, id: uid()}); toast("Added to your routine"); }
       else toast("Added to library");
-    }else if(EDIT.mode === "add"){
+       }else if(EDIT.mode === "add"){
       getDay(EDIT.dayId).exercises.push({id: uid(), ...data});
+      const cb = $("#f_lib");
+      if(cb && cb.checked && !libItems().some(e => e.name.toLowerCase() === name.toLowerCase())) S.custom.push({...data, custom: true});
+      toast("Added “" + name + "”");
+    }else if(EDIT.mode === "routine-add"){
+      getRoutine(EDIT.dayId).exercises.push({id: uid(), ...data});
       const cb = $("#f_lib");
       if(cb && cb.checked && !libItems().some(e => e.name.toLowerCase() === name.toLowerCase())) S.custom.push({...data, custom: true});
       toast("Added “" + name + "”");
@@ -2485,17 +2531,27 @@ const ACT = {
   "routine-edit"(t){
     const r = getRoutine(t.dataset.id); if(!r) return;
     const go = () => {
+      UI.routineOpen = null;
       S.builder = {title: r.title, editing: r.id, exercises: r.exercises.map(x => ({...x, id: uid()}))};
       S.routine.mode = "custom"; save(); render(); window.scrollTo(0, 0);
     };
     if(S.builder.exercises.length && S.builder.editing !== r.id) return ask("Replace your current unsaved draft with this routine?", "Replace draft", go);
     go();
   },
+  "routine-open"(t){ UI.routineOpen = t.dataset.id; render(); window.scrollTo(0, 0); },
+  "routine-back"(){ UI.routineOpen = null; render(); window.scrollTo(0, 0); },
+  "add-routine-ex"(t){ editorSheet("routine-add", t.dataset.id); },
+  "open-routine-ex"(t){
+    const r = getRoutine(t.dataset.routine);
+    const ex = r && r.exercises.find(e => e.id === t.dataset.id);
+    if(ex) detailSheet(ex, {mode: "lib"});
+  },
   "routine-del"(t){
     const r = getRoutine(t.dataset.id); if(!r) return;
     ask(`Delete “${r.title}” and its ${r.exercises.length} exercise${r.exercises.length === 1 ? "" : "s"}? This can’t be undone.`, "Delete routine", () => {
       S.routines = S.routines.filter(x => x.id !== r.id);
       if(S.builder.editing === r.id) S.builder = {title: "", editing: null, exercises: []};
+      if(UI.routineOpen === r.id) UI.routineOpen = null;
       save(); refresh();
     });
   },
