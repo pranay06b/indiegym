@@ -268,6 +268,20 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .btn.signal{background:var(--signal);border-color:var(--signal);color:var(--ink)}
 .btn.danger{color:var(--danger);border-color:var(--danger)}
 .btn.wide{width:100%}
+.vid{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+/* Collapsible embedded demo video (opens only when "Watch demo" is tapped) */
+.demo{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
+.demo.open{grid-template-rows:1fr}
+.demo-clip{min-height:0;overflow:hidden}
+.demo-inner{padding-bottom:12px}
+.demo-frame{position:relative;aspect-ratio:16/9;width:100%;background:var(--ink);border:1.5px solid var(--ink);border-radius:8px;overflow:hidden}
+.demo-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.demo-alt{margin-top:8px}
+.facts{margin:0;padding:0}
+.facts div{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.facts dt{color:var(--muted);flex:0 0 auto}
+.facts dd{margin:0;text-align:right;font-weight:600}
+.more{grid-column:1/-1}
 .chips.wrap{flex-wrap:wrap;overflow:visible;margin:0;padding:0}
 .rt-label{font-size:13px;font-weight:600;color:var(--muted);margin:16px 0 8px}
 .rt-label:first-child{margin-top:0}
@@ -392,7 +406,7 @@ body.has-active .toast{bottom:calc(150px + env(safe-area-inset-bottom))}
 <div class="scrim" id="scrim"><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="./data.js?v=20260920-3" onerror="window.__JEFIT_LOAD_ERROR=true"></script>
+<script src="./data.js?v=20260920-4" onerror="window.__JEFIT_LOAD_ERROR=true"></script>
 <script>
 window.__JEFIT_DATA_COUNT = Array.isArray(window.JEFIT_SCRAPED) ? window.JEFIT_SCRAPED.length : 0;
 "use strict";
@@ -511,7 +525,7 @@ function buildDefault(){
    State (saved in this browser)
    ========================================================= */
 let S;
-const UI = {tab: "plan", q: "", muscles: [], difficulty: "All", equipment: "All", matchAll: false};
+const UI = {tab: "plan", q: "", muscles: [], difficulty: "All", equipment: "All", media: "All", matchAll: false, libLimit: 120};
 let SHEET = "";
 
 function ensureState(s){
@@ -528,7 +542,9 @@ function ensureState(s){
   if(!s.days.some(d => d.id === s.activeDay)) s.activeDay = s.days[0]?.id || null;
   // Fill exercises that were saved before the library finished loading
   s.days.forEach(d => d.exercises.forEach(x => {
-    if(!x.gif && !x.instructions){ const l = findLib(x.name); if(l) Object.assign(x, {...l, id: x.id, sets: x.sets, rest: x.rest}); }
+    const l = findLib(x.name);
+    if(!x.gif && !x.instructions){ if(l) Object.assign(x, {...l, id: x.id, sets: x.sets, rest: x.rest}); }
+    else if(l && !x.sources) EXTRA_FIELDS.forEach(k => { if(l[k] != null && x[k] == null) x[k] = l[k]; });
   }));
   return s;
 }
@@ -742,8 +758,8 @@ function loadGif(url){
   p.then(() => GIF.pending.delete(url), () => GIF.pending.delete(url));
   return p;
 }
-function gifSlot(url, {size = "md", alt = ""} = {}){
-  if(!url) return `<div class="gif ${size} empty"><span class="gif-msg">No GIF</span></div>`;
+function gifSlot(url, {size = "md", alt = "", video = false} = {}){
+  if(!url) return `<div class="gif ${size} empty"><span class="gif-msg">${video ? "Video demo" : "No GIF"}</span></div>`;
   return `<div class="gif ${size} loading" data-gif="${esc(url)}" data-alt="${esc(alt)}"></div>`;
 }
 function showImg(el, src){
@@ -832,7 +848,7 @@ function refreshChrome(){
 
 function exRow(ex, dayId){
   return `<article class="ex" role="button" tabindex="0" data-act="open-ex" data-day="${dayId}" data-id="${ex.id}" aria-label="${esc(ex.name)}, open details">
-    ${gifSlot(ex.gif, {alt: ex.name})}
+    ${gifSlot(ex.gif, {alt: ex.name, video: hasVideo(ex)})}
     <div class="ex-main">
       <h3>${esc(ex.name)}</h3>
       <div class="ex-sub"><span class="ex-muscle">${esc(ex.muscle)}</span>${pips(ex.difficulty)}</div>
@@ -882,6 +898,10 @@ function equipList(e){
   return l.length ? l : ["Body Weight"];
 }
 const diffOf = e => e.difficulty ? diffClass(e.difficulty) : "";
+const hasVideo = e => !!(e.video || e.videoDeep);
+const searchHay = e => [e.name, (e.aliases || []).join(" "), muscleKeys(e).join(" "), equipList(e).join(" "), e.primeMover || "", (e.supportMuscles || []).join(" "), (e.movement || []).join(" ")].join(" ").toLowerCase();
+const EXTRA_FIELDS = ["video","videoDeep","primeMover","supportMuscles","movement","plane","bodyRegion","force","laterality","posture","grip","classification","mechanics","skillLevel","sources"];
+const isWorkout = e => !NOT_WORKOUT.test(e.name) && e.classification !== "Mobility";
 
 /* Filter options come from the data, so they always match what exists */
 function facets(){
@@ -903,19 +923,22 @@ function passes(e, tokens){
   }
   if(UI.difficulty !== "All" && diffOf(e) !== UI.difficulty.toLowerCase()) return false;
   if(UI.equipment !== "All" && !equipList(e).map(canon).includes(UI.equipment)) return false;
+  if(UI.media === "GIF" && !e.gif) return false;
+  if(UI.media === "Video" && !hasVideo(e)) return false;
   if(tokens.length){
-    const hay = (e.name + " " + ms.join(" ") + " " + equipList(e).join(" ")).toLowerCase();
+    const hay = searchHay(e);
     if(!tokens.every(t => hay.includes(t))) return false;
   }
   return true;
 }
-function filterCount(){ return UI.muscles.length + (UI.difficulty !== "All" ? 1 : 0) + (UI.equipment !== "All" ? 1 : 0); }
+function filterCount(){ return UI.muscles.length + (UI.difficulty !== "All" ? 1 : 0) + (UI.equipment !== "All" ? 1 : 0) + (UI.media !== "All" ? 1 : 0); }
 function filterSummary(){
   const F = facets(), lab = k => F.muscles.find(m => m.key === k)?.label || titleCase(k);
   const bits = [];
   if(UI.muscles.length) bits.push((UI.matchAll && UI.muscles.length > 1 ? "All of " : "") + UI.muscles.map(lab).join(", "));
   if(UI.difficulty !== "All") bits.push(UI.difficulty);
   if(UI.equipment !== "All") bits.push(F.equipment.find(x => x.key === UI.equipment)?.label || UI.equipment);
+  if(UI.media !== "All") bits.push(UI.media === "GIF" ? "Has GIF" : "Has video");
   return bits.length ? bits.join(" · ") : "No filters applied";
 }
 function libSkeleton(){
@@ -937,7 +960,7 @@ function syncFilterUI(){
 }
 function tile(e){
   return `<div class="tile" role="button" tabindex="0" data-act="open-lib" data-name="${esc(e.name)}" aria-label="${esc(e.name)}, open details">
-    ${gifSlot(e.gif, {alt: e.name})}
+    ${gifSlot(e.gif, {alt: e.name, video: hasVideo(e)})}
     <div><span class="tile-name">${esc(e.name)}</span><span class="tile-meta">${esc((e.muscles && e.muscles.length ? e.muscles : [e.muscle]).join(" / "))} · ${esc(equipList(e).join(" / "))}${e.custom ? ", yours" : ""}</span></div>
   </div>`;
 }
@@ -945,7 +968,10 @@ function updateLib(){
   const tokens = UI.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
   const list = libItems().filter(e => passes(e, tokens));
   $("#libCount").textContent = list.length + " exercise" + (list.length === 1 ? "" : "s");
-  $("#libGrid").innerHTML = list.length ? list.map(tile).join("") : `<p class="empty">No exercises match. Clear a filter or try another search.</p>`;
+  const shown = list.slice(0, UI.libLimit);
+  $("#libGrid").innerHTML = list.length
+    ? shown.map(tile).join("") + (list.length > shown.length ? `<div class="more"><button class="btn wide" data-act="lib-more">Show more (${list.length - shown.length} left)</button></div>` : "")
+    : `<p class="empty">No exercises match. Clear a filter or try another search.</p>`;
   hydrate($("#libGrid"));
 }
 function libraryFilterSheet(){
@@ -956,7 +982,8 @@ function libraryFilterSheet(){
   openSheet(sheetHtml({title: "Library filters", body: `
     <div class="set"><h4>Target muscle groups</h4><p class="hint">Pick one or several. Turn on “Match all” to see only exercises that hit every muscle you picked.</p><label class="check"><input type="checkbox" id="filterMatchAll" ${UI.matchAll ? "checked" : ""}> Match all selected muscles</label><div class="filter-grid">${checks}</div></div>
     <div class="set"><h4>Difficulty</h4><div class="field"><select id="filterDifficulty">${diffs}</select></div></div>
-    <div class="set"><h4>Equipment / machine</h4><div class="field"><select id="filterEquipment">${eqs}</select></div></div>`,
+    <div class="set"><h4>Equipment / machine</h4><div class="field"><select id="filterEquipment">${eqs}</select></div></div>
+    <div class="set"><h4>Demo</h4><div class="field"><select id="filterMedia">${["All","GIF","Video"].map(m => `<option value="${m}" ${UI.media === m ? "selected" : ""}>${m === "All" ? "Any" : m === "GIF" ? "Has an animated GIF" : "Has a YouTube video"}</option>`).join("")}</select></div></div>`,
     foot: `<div class="actions" style="margin-top:0"><button class="btn" data-act="reset-lib-filters">Reset</button><button class="btn primary" data-act="apply-lib-filters">Apply filters</button></div>`}));
 }
 
@@ -1122,6 +1149,52 @@ function bestText(name, timed){
   const w = num(top.w), r = num(top.r);
   return w > 0 ? `${w} ${unit()} × ${r}` : `${r} ${timed ? "sec" : "reps"}`;
 }
+/* Pull the 11-character video id out of youtu.be, watch?v=, embed, shorts and live links */
+function ytId(u){
+  const m = String(u || "").match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:[^#]*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/i);
+  return m ? m[1] : "";
+}
+/* "Watch demo" is a toggle. The video panel starts collapsed and the player is only created on click. */
+function videoLinks(e){
+  if(!hasVideo(e)) return "";
+  const id = ytId(e.video);
+  const demoBtn = !e.video ? ""
+    : id ? `<button class="btn sm signal" type="button" data-act="toggle-demo" aria-expanded="false" aria-controls="demoPanel"><span class="vid-ic" aria-hidden="true">▶</span> <span class="vid-lbl">Watch demo</span></button>`
+    : `<a class="btn sm signal" href="${esc(e.video)}" target="_blank" rel="noopener">▶ Watch demo</a>`;   // not a recognised YouTube link: keep the plain link
+  const deep = e.videoDeep ? `<a class="btn sm" href="${esc(e.videoDeep)}" target="_blank" rel="noopener">In-depth explanation</a>` : "";
+  const panel = id ? `<div class="demo" id="demoPanel" data-id="${esc(id)}" data-title="${esc(e.name)} demo video" data-href="${esc(e.video)}" inert>
+      <div class="demo-clip"><div class="demo-inner">
+        <div class="demo-frame"></div>
+        <p class="hint demo-alt">Video not playing? <a href="${esc(e.video)}" target="_blank" rel="noopener">Open it on YouTube ↗</a></p>
+      </div></div></div>` : "";
+  return `<div class="vid">${demoBtn}${deep}</div>${panel}`;
+}
+function setDemo(open){
+  const panel = $("#demoPanel"), btn = $('[data-act="toggle-demo"]');
+  if(!panel || !btn) return;
+  const frame = $(".demo-frame", panel);
+  panel.classList.toggle("open", open);
+  panel.inert = !open;
+  btn.setAttribute("aria-expanded", String(open));
+  $(".vid-lbl", btn).textContent = open ? "Hide demo" : "Watch demo";
+  $(".vid-ic", btn).textContent = open ? "▲" : "▶";
+  if(open){
+    const f = document.createElement("iframe");
+    f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(panel.dataset.id) + "?rel=0&playsinline=1&autoplay=1";
+    f.title = panel.dataset.title;
+    f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    f.allowFullscreen = true;
+    f.referrerPolicy = "strict-origin-when-cross-origin";
+    frame.replaceChildren(f);
+  }else{
+    frame.replaceChildren();   // removing the player also stops the video
+  }
+}
+function factsHtml(e){
+  const rows = [["Prime mover", e.primeMover], ["Also works", (e.supportMuscles || []).join(", ")], ["Movement", (e.movement || []).join(", ")], ["Posture", e.posture], ["Grip", e.grip],
+    ["Plane", (e.plane || []).join(", ")], ["Body region", e.bodyRegion], ["Type", [e.mechanics, e.force, e.laterality].filter(Boolean).join(" · ")], ["Style", e.classification]].filter(r => r[1]);
+  return rows.length ? `<h4>Details</h4><dl class="facts">${rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : "";
+}
 function detailSheet(ex, ctx){
   let foot = "", extra = "";
   if(ctx.mode === "plan"){
@@ -1137,13 +1210,15 @@ function detailSheet(ex, ctx){
   const best = bestText(ex.name);
   openSheet(sheetHtml({
     title: ex.name,
-    body: `${gifSlot(ex.gif, {size: "lg", alt: ex.name})}
+    body: `${gifSlot(ex.gif, {size: "lg", alt: ex.name, video: hasVideo(ex)})}
+      ${videoLinks(ex)}
       <div class="ex-sub"><span class="ex-muscle">${esc((ex.muscles && ex.muscles.length ? ex.muscles : [ex.muscle]).join(" / "))}</span><span class="ex-muscle">${esc(equipList(ex).join(" / "))}</span>${pips(ex.difficulty)}</div>
       ${stats(ex)}
       ${best ? `<p class="hint" style="margin-top:10px"><b>Your best:</b> ${esc(best)}</p>` : ""}
       <h4>How to do it</h4>
-      <p class="how">${esc(ex.instructions || "No instructions added yet.")}</p>${ex.sourceUrl ? `<p class="hint"><a href="${esc(ex.sourceUrl)}" target="_blank" rel="noopener">Open JEFIT exercise page ↗</a></p>` : ""}
-      ${ex.source === "JEFIT" ? `<p class="hint" style="margin-top:8px">Source: JEFIT exercise database.</p>` : ""}
+      <p class="how">${esc(ex.instructions || (hasVideo(ex) ? "No written steps for this exercise yet. Use the video above to see how it is done." : "No instructions added yet."))}</p>${factsHtml(ex)}${ex.sourceUrl ? `<p class="hint"><a href="${esc(ex.sourceUrl)}" target="_blank" rel="noopener">Open JEFIT exercise page ↗</a></p>` : ""}
+      ${ex.source === "JEFIT" ? `<p class="hint" style="margin-top:8px">GIF and steps: JEFIT exercise database.</p>` : ""}
+      ${(ex.sources || [ex.source]).includes("Functional Fitness DB") || ex.source === "Functional Fitness DB" ? `<p class="hint" style="margin-top:8px">Video and muscle details: Functional Fitness Exercise Database (Strength to Overcome).</p>` : ""}
       ${extra}`,
     foot
   }));
@@ -1363,7 +1438,7 @@ function pickerSheet(){
 }
 function renderSessPicks(){
   const tokens = ($("#spSearch").value || "").trim().toLowerCase().split(/\s+/).filter(Boolean);
-  const list = libItems().filter(e => { const hay = (e.name + " " + muscleKeys(e).join(" ") + " " + equipList(e).join(" ")).toLowerCase(); return tokens.every(t => hay.includes(t)); }).slice(0, 40);
+  const list = libItems().filter(e => { const hay = searchHay(e); return tokens.every(t => hay.includes(t)); }).slice(0, 40);
   const box = $("#spList");
   box.innerHTML = list.length
     ? list.map(e => `<div class="pick" role="button" tabindex="0" data-act="sess-pick" data-name="${esc(e.name)}">${gifSlot(e.gif, {size: "sm", alt: e.name})}<span><b>${esc(e.name)}</b><small>${esc((e.muscles && e.muscles.length ? e.muscles : [e.muscle]).join(" / "))} · ${esc(equipList(e).join(" / "))}</small></span></div>`).join("")
@@ -1450,7 +1525,7 @@ function previewGif(){
 function renderPicks(){
   const tokens = $("#pickSearch").value.trim().toLowerCase().split(/\s+/).filter(Boolean), box = $("#pickList");
   if(!tokens.length){ box.hidden = true; box.innerHTML = ""; return; }
-  const list = libItems().filter(e => { const h = (e.name + " " + e.muscle).toLowerCase(); return tokens.every(t => h.includes(t)); }).slice(0, 8);
+  const list = libItems().filter(e => { const h = searchHay(e); return tokens.every(t => h.includes(t)); }).slice(0, 8);
   box.hidden = false;
   box.innerHTML = list.length
     ? list.map(e => `<div class="pick" role="button" tabindex="0" data-act="pick-lib" data-name="${esc(e.name)}">${gifSlot(e.gif, {size: "sm", alt: e.name})}<span><b>${esc(e.name)}</b><small>${esc((e.muscles && e.muscles.length ? e.muscles : [e.muscle]).join(" / "))} · ${esc(equipList(e).join(" / "))}${e.difficulty ? " · " + esc(e.difficulty) : ""}</small></span></div>`).join("")
@@ -1511,7 +1586,7 @@ const PRESETS = [
   ["Upper body", ["chest","back","shoulders","biceps","triceps"]], ["Core", ["abs"]], ["Full body", ["chest","back","upper legs","shoulders","abs"]]
 ];
 const NOT_WORKOUT = /stretch|foam roll|mobility|warm[- ]?up|knee to chest|knee across|circles|stork|single-leg stance|cat[- ]?cow/i;
-const HOME_EQ = new Set(["body weight","bands","dumbbell","kettlebell","exercise ball","pullup bar","weight plate","bench","other"]);
+const HOME_EQ = new Set(["body weight","bands","dumbbell","kettlebell","exercise ball","pullup bar","weight plate","bench","other","medicine ball","sliders","gymnastic rings","suspension trainer","parallette bars","plyo box","slant board","ab wheel","sandbag"]);
 const BW_EQ = new Set(["body weight","pullup bar"]);
 const LEVEL_MAX = {Any: 3, Beginner: 1, Intermediate: 2, Advanced: 3};
 /* How much each difficulty is preferred for each level choice (index = rank 1..3) */
@@ -1519,7 +1594,7 @@ const LEVEL_FIT = {Any: [0, 1.5, 0.5, -1.5], Beginner: [0, 1.5, -3, -3], Interme
 /* Common, well-known movements float to the top; exotic ones sink */
 const STAPLES = /^(barbell (bench press|incline bench press|squat|deadlift|shoulder press|curl|row|bent-over row|romanian deadlift|hip thrust|military press)|dumbbell (bench press|incline bench press|shoulder press|lateral raise|curl|bicep curl|row|lunge|fly|incline fly|hammer curl|romanian deadlift|goblet squat|tricep extension|rear delt row|calf raise)|pull-up|push-up|dip|plank|crunch|hanging leg raise|reverse crunch|russian twist|bicycle crunch|cable lat pulldown \(wide grip\)|machine lat pulldown|cable seated row|cable rope face pull|cable tricep pushdown \(rope\)|cable bicep curl|cable cross-over|machine fly|leg press|leg extension|leg curl|machine leg press|lying leg curl|standing calf raise|seated calf raise|lunge|bodyweight squat|glute bridge|ez bar curl|ez bar skull crusher|running|walking|rowing|stationary bike|treadmill running|jump rope|elliptical training)$/i;
 const EXOTIC = /medicine ball|stability|single-leg|one-leg|jump|throw|plyo|clap|isometric|renegade|spider|zottman|tate|windshield|dragon flag|sissy|behind the back|kneeling jump|deep push-up/i;
-const EQ_PREF = {"barbell": 1.5, "dumbbell": 1.5, "strength machine": 1, "pullup bar": 1, "ez curl bar": 1, "bench": 0.5, "body weight": 0.5, "cardio machine": 0.5, "kettlebell": -0.5, "bands": -0.5, "exercise ball": -1.5, "weight plate": -1.5, "other": -1};
+const EQ_PREF = {"barbell": 1.5, "dumbbell": 1.5, "strength machine": 1, "pullup bar": 1, "ez curl bar": 1, "bench": 0.5, "body weight": 0.5, "cardio machine": 0.5, "kettlebell": -0.5, "bands": -0.5, "exercise ball": -1.5, "weight plate": -1.5, "other": -1, "medicine ball": -1, "sandbag": -1.5, "landmine": -1, "trap bar": 0, "clubbell": -2, "macebell": -2, "bulgarian bag": -2, "indian club": -2, "battle ropes": -1.5, "tire": -2, "climbing rope": -2, "gravity boots": -2, "sledge hammer": -2, "gymnastic rings": -0.5, "suspension trainer": -0.5, "sliders": -1, "parallette bars": -0.5, "plyo box": -0.5, "slant board": -1};
 const diffRank = e => ({easy: 1, medium: 2, difficult: 3}[diffOf(e)] || 2);
 function equipMatch(mode, e){
   if(!mode || mode === "All") return true;
@@ -1528,7 +1603,7 @@ function equipMatch(mode, e){
   if(mode === "bodyweight") return eq.every(x => BW_EQ.has(x));
   return eq.includes(mode);
 }
-const EQ_WORDS = /\b(barbell|dumbbell|cable|machine|smith|ez|curl bar|bar|kettlebell|bands?|stability|ball|leverage|lever|sled|plate|weighted|assisted|bodyweight|body weight)\b/g;
+const EQ_WORDS = /\b(barbell|dumbbell|cable|machine|smith|ez|curl bar|bar|kettlebell|bands?|stability|ball|leverage|lever|sled|plate|weighted|assisted|bodyweight|body weight|sliders?|clubbell|macebell|sandbag|rings?|suspension|landmine|parallettes?|superband|miniband|double|medicine|slam|wall|tire|trap)\b/g;
 /* Same movement, different equipment (Barbell vs Dumbbell Bench Press) shares a key, so a routine gets variety */
 function moveKey(e){
   const k = String(e.name).toLowerCase().replace(/\(.*?\)/g, " ").replace(EQ_WORDS, " ")
@@ -1539,7 +1614,8 @@ function moveKey(e){
 function exType(e){
   const ms = muscleKeys(e), n = e.name.toLowerCase(), eq = equipList(e).map(canon);
   if(ms[0] === "cardio" || eq.includes("cardio machine")) return "cardio";
-  if(/\b(plank|hold|isometric|wall sit)\b/.test(n)) return "timed";
+  if(/\b(plank|hold|isometric|wall sit)\b/.test(n) || (e.movement || []).includes("Isometric Hold")) return "timed";
+  if(e.mechanics === "Isolation") return "isolation";
   if(/curl|raise|fly|flye|extension|kickback|pullover|shrug|crunch|pushdown|twist|rotation|cross-?over|pec deck|squeeze|wrist/.test(n)) return "isolation";
   if(["abs","forearms","lower legs"].includes(ms[0])) return "isolation";
   if(ms.length >= 3 || (ms.length === 2 && ["chest","back","upper legs","glutes","shoulders"].includes(ms[0]))) return "compound";
@@ -1576,7 +1652,8 @@ function scoreEx(e, focus, seed, level){
   if(STAPLES.test(n.trim())) s += 3;
   if(EXOTIC.test(n)) s -= 2.5;
   s -= Math.max(0, n.replace(/\(.*?\)/g, "").trim().split(/\s+/).length - 3) * 0.5;      // shorter names are usually the classic version
-  s += Math.max(...equipList(e).map(x => EQ_PREF[canon(x)] ?? 0));
+  const ep = equipList(e).map(x => EQ_PREF[canon(x)] ?? -1);
+  s += Math.min(...ep) <= -1 ? Math.min(...ep) : Math.max(...ep);    // one exotic item (sliders, clubbell…) outweighs the rest
   return s + jitter(n, seed);
 }
 const groupOf = (e, focus) => muscleKeys(e).find(k => focus.includes(k));
@@ -1584,7 +1661,7 @@ const groupOf = (e, focus) => muscleKeys(e).find(k => focus.includes(k));
 function pickBalanced(cand, focus, count){
   const groups = focus.map(m => ({m, items: cand.filter(x => groupOf(x.e, focus) === m)}));
   const chosen = [], keys = new Set(), eqN = {}, famN = {};
-  const cap = Math.ceil(count / 3) + 1;
+  const cap = Math.ceil(count / 3) + 1, famCap = Math.ceil(count / 4);   // at most ~a quarter of a routine from one movement family (presses, lunges…)
   const fam = x => x.key.split(" ").pop();
   for(const ps of [{dup: false, cap: true}, {dup: false, cap: false}, {dup: true, cap: false}]){
     let progress = true;
@@ -1592,7 +1669,7 @@ function pickBalanced(cand, focus, count){
       progress = false;
       for(const g of groups){
         if(chosen.length >= count) break;
-        const c = g.items.find(x => !chosen.includes(x) && (ps.dup || !keys.has(x.key)) && (!ps.cap || ((eqN[equipList(x.e)[0]] || 0) < cap && (famN[fam(x)] || 0) < cap)));
+        const c = g.items.find(x => !chosen.includes(x) && (ps.dup || !keys.has(x.key)) && (!ps.cap || ((eqN[equipList(x.e)[0]] || 0) < cap && (famN[fam(x)] || 0) < famCap)));
         if(c){ chosen.push(c); keys.add(c.key); const q = equipList(c.e)[0]; eqN[q] = (eqN[q] || 0) + 1; famN[fam(c)] = (famN[fam(c)] || 0) + 1; progress = true; }
       }
     }
@@ -1610,7 +1687,7 @@ function buildRoutine(P){
   const res = {list: [], pool: [], out: new Set(), relaxed: "", focus};
   if(!focus.length) return res;
   const stages = [{lv: true, eq: true, note: ""}, {lv: false, eq: true, note: "Not enough matches at that level, so some exercises are from other levels."}, {lv: false, eq: false, note: "Not enough matches for your level and equipment, so I added the best remaining exercises."}];
-  const base = libItems().filter(e => !NOT_WORKOUT.test(e.name));
+  const base = libItems().filter(isWorkout);
   for(const st of stages){
     const cand = base.filter(e => (!st.lv || diffRank(e) <= maxRank) && (!st.eq || equipMatch(P.equip, e)))
       .map(e => ({e, s: scoreEx(e, focus, P.seed, P.level), key: moveKey(e)})).filter(x => x.s !== null).sort((a, b) => b.s - a.s);
@@ -1676,7 +1753,7 @@ function autoView(){
       <button class="btn wide" style="margin-bottom:10px" data-act="rt-customize">Customize this routine</button>
       <button class="btn signal wide" style="margin-bottom:14px" data-act="rt-start">Save and start workout</button>
       <div class="ex-list">${res.list.map((x, i) => `<article class="ex" role="button" tabindex="0" data-act="open-lib" data-name="${esc(x.e.name)}" aria-label="${esc(x.e.name)}, open details">
-        ${gifSlot(x.e.gif, {alt: x.e.name})}
+        ${gifSlot(x.e.gif, {alt: x.e.name, video: hasVideo(x.e)})}
         <div class="ex-main"><h3>${i + 1}. ${esc(x.e.name)}</h3>
           <div class="ex-sub"><span class="ex-muscle">${esc(muscleKeys(x.e).map(titleCase).join(" / "))} · ${esc(equipList(x.e).join(" / "))}</span>${pips(x.e.difficulty)}</div>
           <div class="ex-stats"><div><b>${esc(x.rx.sets)}</b><span>sets × reps</span></div><div><b>${esc(x.rx.rest)}</b><span>rest</span></div></div>
@@ -1729,7 +1806,7 @@ function builderView(){
   const isNew = B.target === "new" || !getDay(B.target);
   const targets = `<option value="new">A new workout</option>` + S.days.map(d => `<option value="${d.id}" ${B.target === d.id ? "selected" : ""}>${esc(d.title)}</option>`).join("");
   const rows = B.exercises.map((x, i) => `<div class="bx">
-      <div class="bx-top">${gifSlot(x.gif, {size: "sm", alt: x.name})}<div class="bx-name"><b>${i + 1}. ${esc(x.name)}</b><small>${esc(muscleKeys(x).map(titleCase).join(" / "))} · ${esc(equipList(x).join(" / "))}</small></div></div>
+      <div class="bx-top">${gifSlot(x.gif, {size: "sm", alt: x.name, video: hasVideo(x)})}<div class="bx-name"><b>${i + 1}. ${esc(x.name)}</b><small>${esc(muscleKeys(x).map(titleCase).join(" / "))} · ${esc(equipList(x).join(" / "))}</small></div></div>
       <div class="bx-fields"><div><label for="bs${i}">Sets × reps</label><input id="bs${i}" data-bf="sets" data-bi="${i}" value="${esc(x.sets)}" placeholder="3 × 8–12" autocomplete="off"></div>
         <div><label for="br${i}">Rest</label><input id="br${i}" data-bf="rest" data-bi="${i}" value="${esc(x.rest)}" placeholder="60 sec" autocomplete="off"></div></div>
       <div class="bx-ctrl"><button class="icon-btn" data-act="b-mv" data-i="${i}" data-dir="-1" aria-label="Move ${esc(x.name)} up" ${i === 0 ? "disabled" : ""}>▲</button>
@@ -1749,9 +1826,9 @@ function builderView(){
 }
 function builderPickList(){
   const tokens = BP.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
-  let items = libItems().filter(e => !NOT_WORKOUT.test(e.name));
+  let items = libItems().filter(isWorkout);
   if(BP.m) items = items.filter(e => muscleKeys(e).includes(BP.m));
-  if(tokens.length) items = items.filter(e => { const hay = (e.name + " " + muscleKeys(e).join(" ") + " " + equipList(e).join(" ")).toLowerCase(); return tokens.every(t => hay.includes(t)); });
+  if(tokens.length) items = items.filter(e => { const hay = searchHay(e); return tokens.every(t => hay.includes(t)); });
   else if(!BP.m) items = items.filter(e => STAPLES.test(e.name.trim()));
   const rank = e => (BP.m ? scoreEx(e, [BP.m], 0, "Any") : 0) + (STAPLES.test(e.name.trim()) ? 3 : 0) - e.name.length / 40;
   return items.map(e => [e, rank(e)]).sort((a, b) => b[1] - a[1]).map(x => x[0]).slice(0, 60);
@@ -1923,6 +2000,7 @@ const ACT = {
   "confirm-yes"(){ const f = pendingYes; closeThen(() => { if(f) f(); }); },
   "open-settings"(){ settingsSheet(); },
   "retry-gif"(t){ GIF.coolUntil = 0; const el = t.closest(".gif"); if(el) startSlot(el); },
+  "toggle-demo"(){ const p = $("#demoPanel"); if(p) setDemo(!p.classList.contains("open")); },
 
   /* workouts */
   "pick-day"(t){ S.activeDay = t.dataset.id; save(); render(); window.scrollTo(0, 0); },
@@ -1973,11 +2051,12 @@ const ACT = {
   "add-ex"(){ if(S.activeDay) editorSheet("add", S.activeDay); },
   "add-lib-ex"(){ editorSheet("lib-add", null, null); },
   "open-lib-filters"(){ libraryFilterSheet(); },
-  "reset-lib-filters"(){ UI.muscles = []; UI.difficulty = "All"; UI.equipment = "All"; UI.matchAll = false; closeSheet(); syncFilterUI(); updateLib(); },
+  "reset-lib-filters"(){ UI.muscles = []; UI.difficulty = "All"; UI.equipment = "All"; UI.media = "All"; UI.matchAll = false; UI.libLimit = 120; closeSheet(); syncFilterUI(); updateLib(); },
   "apply-lib-filters"(){
     UI.muscles = [...sheetEl.querySelectorAll("[data-filter-muscle]:checked")].map(x => x.dataset.filterMuscle);
     UI.difficulty = $("#filterDifficulty")?.value || "All";
     UI.equipment = $("#filterEquipment")?.value || "All";
+    UI.media = $("#filterMedia")?.value || "All"; UI.libLimit = 120;
     UI.matchAll = !!$("#filterMatchAll")?.checked;
     closeSheet(); syncFilterUI(); updateLib();
   },
@@ -2031,8 +2110,9 @@ const ACT = {
   group(t){
     const k = t.dataset.g;
     UI.muscles = !k ? [] : UI.muscles.includes(k) ? UI.muscles.filter(x => x !== k) : [...UI.muscles, k];
-    syncFilterUI(); updateLib();
+    UI.libLimit = 120; syncFilterUI(); updateLib();
   },
+  "lib-more"(){ UI.libLimit += 120; updateLib(); },
   "open-lib"(t){ const e = libItems().find(x => x.name === t.dataset.name); if(e) detailSheet(e, {mode: "lib"}); },
   "add-from-lib"(t){
     const e = libItems().find(x => x.name === t.dataset.name);
@@ -2266,7 +2346,7 @@ document.addEventListener("input", e => {
   }
   if(id === "bpSearch"){ BP.q = el.value; renderBuilderPicker(); return; }
   if(id === "f_gif"){ clearTimeout(previewTimer); previewTimer = setTimeout(previewGif, 600); }
-  else if(id === "libSearch"){ UI.q = el.value; updateLib(); }
+  else if(id === "libSearch"){ UI.q = el.value; UI.libLimit = 120; updateLib(); }
   else if(id === "pickSearch"){ renderPicks(); }
   else if(id === "spSearch"){ renderSessPicks(); }
 });
