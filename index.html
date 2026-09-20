@@ -275,6 +275,22 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .rt-meta{color:var(--muted);font-size:14px;margin:-4px 0 12px}
 .rt-note{background:var(--paper);border:1.5px solid var(--signal);border-radius:8px;padding:10px 12px;font-size:14px;margin-bottom:12px}
 .rt-swap{margin-top:2px;margin-left:-4px}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;margin-top:14px;background:var(--paper)}
+.seg button{min-height:48px;border:0;background:none;font-weight:700;cursor:pointer}
+.seg button.on{background:var(--ink);color:#fff}
+.bx{padding:14px 0;border-bottom:1px solid var(--line)}
+.bx-top{display:flex;gap:12px;align-items:center}
+.bx-name{flex:1;min-width:0}
+.bx-name b{display:block;font-size:16px;line-height:1.25}
+.bx-name small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.bx-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.bx-fields label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:3px}
+.bx-fields input{width:100%;min-height:44px;border:1.5px solid var(--line);border-radius:8px;padding:0 10px;font-size:16px;background:#fff}
+.bx-fields input:focus{border-color:var(--slab);outline:none;box-shadow:0 0 0 3px rgba(27,44,193,.18)}
+.bx-ctrl{display:flex;justify-content:flex-end;gap:6px;margin-top:8px}
+.pick .btn{margin-left:auto;flex:0 0 auto;min-height:40px;padding:0 14px}
+.btn.added{background:var(--good);border-color:var(--good);color:#fff}
+.builder-empty{text-align:center;padding:28px 12px}
 a.btn{display:flex;align-items:center;justify-content:center;text-decoration:none;color:inherit}
 .share-pre{white-space:pre-wrap;word-break:break-word;background:var(--floor);border-radius:8px;padding:12px;font:13.5px/1.5 var(--font-body);max-height:40vh;overflow:auto;margin:0}
 .link{background:none;border:0;padding:0 4px;min-height:44px;font-weight:600;font-size:14px;color:var(--slab);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
@@ -394,6 +410,7 @@ const CDN = "https://cdn.jefit.com/assets/img/exercises/gifs/";
 const TEST_GIF = CDN + "2.gif";
 const PROXY_BASE = "https://image-cors-proxy.pranay9506k.workers.dev/";
 const KEY_STORE = "indiegym_proxy_key";
+const DEFAULT_KEY = "2381390123123djsndsk";   // used until you save a different key in Settings
 const STATE_STORE = "indiegym_state_v1";
 const SPLIT = /[\/|,\\]+/;
 const DAY_MS = 864e5;
@@ -503,8 +520,10 @@ function ensureState(s){
   s.active = s.active && Array.isArray(s.active.exercises) ? s.active : null;
   s.profile = Object.assign({goal: 4, unit: "kg"}, s.profile || {});
   s.badges = s.badges && typeof s.badges === "object" ? s.badges : {};
-  s.routine = Object.assign({focus: ["chest"], level: "Any", equip: "All", count: 15, seed: 0}, s.routine || {});
+  s.routine = Object.assign({mode: "auto", focus: ["chest"], level: "Any", equip: "All", count: 15, seed: 0}, s.routine || {});
   if(!Array.isArray(s.routine.focus)) s.routine.focus = [];
+  s.builder = Object.assign({title: "", target: "new", exercises: []}, s.builder || {});
+  if(!Array.isArray(s.builder.exercises)) s.builder.exercises = [];
   if(!Array.isArray(s.days)) s.days = [];
   if(!s.days.some(d => d.id === s.activeDay)) s.activeDay = s.days[0]?.id || null;
   // Fill exercises that were saved before the library finished loading
@@ -523,7 +542,7 @@ function loadState(){
 function save(){ try{ localStorage.setItem(STATE_STORE, JSON.stringify(S)); }catch(e){} }
 
 let memKey = "";
-function getKey(){ try{ return localStorage.getItem(KEY_STORE) || memKey; }catch(e){ return memKey; } }
+function getKey(){ try{ return localStorage.getItem(KEY_STORE) || memKey || DEFAULT_KEY; }catch(e){ return memKey || DEFAULT_KEY; } }
 function setKey(v){ memKey = v; try{ v ? localStorage.setItem(KEY_STORE, v) : localStorage.removeItem(KEY_STORE); }catch(e){} }
 
 const getDay = id => S.days.find(d => d.id === id);
@@ -1204,7 +1223,7 @@ async function settingsSheet(){
     </section>
     <section class="set">
       <h4>Proxy key</h4>
-      <p class="hint" style="margin-bottom:10px">Indiegym loads exercise GIFs through an image proxy, which needs a key. Paste yours here. It is saved only in this browser.</p>
+      <p class="hint" style="margin-bottom:10px">Indiegym loads exercise GIFs through an image proxy, which needs a key. A default key is built in. To use a different one, paste it here. It is saved only in this browser.</p>
       <div class="keyrow field"><label class="sr" for="keyInput">Proxy key</label><input id="keyInput" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Paste your key" value="${esc(key)}"><button class="btn" type="button" data-act="toggle-key">Show</button></div>
       <div class="actions" style="margin-top:0"><button class="btn primary" data-act="save-key">Save and test</button><button class="btn" data-act="remove-key">Remove key</button></div>
       <p class="status" id="keyStatus" role="status"></p>
@@ -1634,7 +1653,7 @@ function saveRoutine(){
   S.days.push(d); S.activeDay = d.id; save();
   return d;
 }
-function routineView(){
+function autoView(){
   const P = S.routine, F = facets();
   const label = new Map(F.muscles.map(m => [m.key, m.label]));
   const order = MUSCLE_ORDER.filter(k => label.has(k)).concat([...label.keys()].filter(k => !MUSCLE_ORDER.includes(k)));
@@ -1654,6 +1673,7 @@ function routineView(){
       <p class="rt-meta">${n} exercises · about ${routineMinutes(res.list)} min${cover ? " · " + esc(cover) : ""}</p>
       ${res.relaxed ? `<p class="rt-note">${esc(res.relaxed)}</p>` : ""}
       <div class="actions" style="margin:0 0 10px"><button class="btn" data-act="rt-shuffle">Shuffle</button><button class="btn primary" data-act="rt-save">Save to plan</button></div>
+      <button class="btn wide" style="margin-bottom:10px" data-act="rt-customize">Customize this routine</button>
       <button class="btn signal wide" style="margin-bottom:14px" data-act="rt-start">Save and start workout</button>
       <div class="ex-list">${res.list.map((x, i) => `<article class="ex" role="button" tabindex="0" data-act="open-lib" data-name="${esc(x.e.name)}" aria-label="${esc(x.e.name)}, open details">
         ${gifSlot(x.e.gif, {alt: x.e.name})}
@@ -1663,8 +1683,7 @@ function routineView(){
           <button class="link rt-swap" data-act="rt-swap" data-i="${i}">Swap for another</button></div>
         <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></article>`).join("")}</div>`;
   }
-  return `<div class="lib-head"><div><h2>Routines</h2><p>Choose the muscles to focus on and get a ready-made workout.</p></div></div>
-    <section class="card">
+  return `<section class="card">
       <div class="rt-label">Focus muscles</div><div class="chips wrap">${chips}</div>
       <div class="rt-label">Quick picks</div><div class="chips wrap">${presets}</div>
       <div class="rt-selects">
@@ -1674,6 +1693,113 @@ function routineView(){
       </div>
     </section>
     ${result}`;
+}
+function routineView(){
+  const custom = S.routine.mode === "custom", n = S.builder.exercises.length;
+  return `<div class="lib-head"><div><h2>Routines</h2><p>${custom ? "Pick your own exercises and set the sets, reps and rest." : "Choose the muscles to focus on and get a ready-made workout."}</p></div></div>
+    <div class="seg" role="tablist" aria-label="Routine mode">
+      <button class="${custom ? "" : "on"}" role="tab" aria-selected="${!custom}" data-act="rt-mode" data-m="auto">Recommended</button>
+      <button class="${custom ? "on" : ""}" role="tab" aria-selected="${custom}" data-act="rt-mode" data-m="custom">Build your own${n ? " (" + n + ")" : ""}</button>
+    </div>
+    ${custom ? builderView() : autoView()}`;
+}
+
+/* ----- Build your own ----- */
+const BP = {q: "", m: ""};
+function draftItem(e, rx){
+  const {custom, id, ...b} = e;
+  const pr = rx || prescribe(e, exType(e));
+  return {...b, id: uid(), sets: rx ? rx.sets : (e.sets || pr.sets), rest: rx ? rx.rest : (e.rest || pr.rest)};
+}
+const inDraft = name => S.builder.exercises.some(x => nkey(x.name) === nkey(name));
+function draftMinutes(list){
+  let m = 0;
+  list.forEach(x => { if(exType(x) === "cardio"){ m += 15; return; } m += (parseInt(x.sets) || 3) * (40 + restSecs(x.rest)) / 60; });
+  return Math.max(5, Math.round(m / 5) * 5);
+}
+function draftSummary(){
+  const L = S.builder.exercises; if(!L.length) return "";
+  const c = {};
+  L.forEach(x => { const k = muscleKeys(x)[0]; if(k) c[k] = (c[k] || 0) + 1; });
+  const top = Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 4).map(([k, n]) => titleCase(k) + " " + n).join(" · ");
+  return L.length + " exercise" + (L.length === 1 ? "" : "s") + " · about " + draftMinutes(L) + " min" + (top ? " · " + top : "");
+}
+function builderView(){
+  const B = S.builder, n = B.exercises.length;
+  const isNew = B.target === "new" || !getDay(B.target);
+  const targets = `<option value="new">A new workout</option>` + S.days.map(d => `<option value="${d.id}" ${B.target === d.id ? "selected" : ""}>${esc(d.title)}</option>`).join("");
+  const rows = B.exercises.map((x, i) => `<div class="bx">
+      <div class="bx-top">${gifSlot(x.gif, {size: "sm", alt: x.name})}<div class="bx-name"><b>${i + 1}. ${esc(x.name)}</b><small>${esc(muscleKeys(x).map(titleCase).join(" / "))} · ${esc(equipList(x).join(" / "))}</small></div></div>
+      <div class="bx-fields"><div><label for="bs${i}">Sets × reps</label><input id="bs${i}" data-bf="sets" data-bi="${i}" value="${esc(x.sets)}" placeholder="3 × 8–12" autocomplete="off"></div>
+        <div><label for="br${i}">Rest</label><input id="br${i}" data-bf="rest" data-bi="${i}" value="${esc(x.rest)}" placeholder="60 sec" autocomplete="off"></div></div>
+      <div class="bx-ctrl"><button class="icon-btn" data-act="b-mv" data-i="${i}" data-dir="-1" aria-label="Move ${esc(x.name)} up" ${i === 0 ? "disabled" : ""}>▲</button>
+        <button class="icon-btn" data-act="b-mv" data-i="${i}" data-dir="1" aria-label="Move ${esc(x.name)} down" ${i === n - 1 ? "disabled" : ""}>▼</button>
+        <button class="icon-btn danger" data-act="b-rm" data-i="${i}" aria-label="Remove ${esc(x.name)}">✕</button></div></div>`).join("");
+  return `<section class="card">
+      <div class="field" style="margin-bottom:${isNew ? 14 : 0}px"><label for="bTarget">Save to</label><select id="bTarget">${targets}</select></div>
+      ${isNew ? `<div class="field" style="margin-bottom:0"><label for="bTitle">Workout name</label><input id="bTitle" type="text" value="${esc(B.title)}" placeholder="e.g. Push day" autocomplete="off"><p class="hint" style="margin-top:6px">“Day ${S.days.length + 1} —” is added in front automatically.</p></div>` : `<p class="hint" style="margin-top:8px">Your exercises will be added to the end of that workout.</p>`}
+    </section>
+    <h2 class="sec">Your exercises</h2>
+    ${n ? `<p class="rt-meta" id="bSummary">${esc(draftSummary())}</p>` : ""}
+    <button class="btn primary wide" data-act="b-add" style="margin-bottom:6px">${n ? "Add more exercises" : "Add exercises"}</button>
+    ${n ? `<div class="ex-list" style="margin-top:12px;border-top:2px solid var(--ink)">${rows}</div>
+      <div class="actions"><button class="btn" data-act="b-save">Save to plan</button><button class="btn signal" data-act="b-start">Save and start</button></div>
+      <button class="link danger" data-act="b-clear" style="margin-top:6px">Clear draft</button>`
+    : `<div class="builder-empty"><p class="hint">Nothing here yet. Add exercises from the library, then set the sets, reps and rest for each one.</p><p class="hint" style="margin-top:8px">Tip: on the Recommended tab, tap “Customize this routine” to start from a suggested list.</p></div>`}`;
+}
+function builderPickList(){
+  const tokens = BP.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  let items = libItems().filter(e => !NOT_WORKOUT.test(e.name));
+  if(BP.m) items = items.filter(e => muscleKeys(e).includes(BP.m));
+  if(tokens.length) items = items.filter(e => { const hay = (e.name + " " + muscleKeys(e).join(" ") + " " + equipList(e).join(" ")).toLowerCase(); return tokens.every(t => hay.includes(t)); });
+  else if(!BP.m) items = items.filter(e => STAPLES.test(e.name.trim()));
+  const rank = e => (BP.m ? scoreEx(e, [BP.m], 0, "Any") : 0) + (STAPLES.test(e.name.trim()) ? 3 : 0) - e.name.length / 40;
+  return items.map(e => [e, rank(e)]).sort((a, b) => b[1] - a[1]).map(x => x[0]).slice(0, 60);
+}
+function renderBuilderPicker(){
+  const chips = $("#bpChips"); if(!chips) return;
+  const label = new Map(facets().muscles.map(m => [m.key, m.label]));
+  const order = MUSCLE_ORDER.filter(k => label.has(k)).concat([...label.keys()].filter(k => !MUSCLE_ORDER.includes(k)));
+  chips.innerHTML = [["", "All"]].concat(order.map(k => [k, label.get(k)])).map(([k, t]) => `<button class="gchip ${BP.m === k ? "on" : ""}" data-act="b-chip" data-k="${esc(k)}" aria-pressed="${BP.m === k}">${esc(t)}</button>`).join("");
+  const list = builderPickList();
+  $("#bpHint").textContent = !BP.q.trim() && !BP.m ? "Popular exercises. Search or pick a muscle to see more." : list.length + (list.length === 60 ? "+" : "") + " match" + (list.length === 1 ? "" : "es");
+  $("#bpList").innerHTML = list.length ? list.map(e => { const on = inDraft(e.name); return `<div class="pick">${gifSlot(e.gif, {size: "sm", alt: e.name})}<span><b>${esc(e.name)}</b><small>${esc(muscleKeys(e).map(titleCase).join(" / "))} · ${esc(equipList(e).join(" / "))}</small></span><button class="btn sm ${on ? "added" : ""}" data-act="b-pick" data-name="${esc(e.name)}" aria-pressed="${on}">${on ? "Added ✓" : "Add"}</button></div>`; }).join("") : `<p class="hint" style="padding:10px 12px">No match. Try another word or create your own below.</p>`;
+  hydrate($("#bpList"));
+  const done = $("#bpDone"); if(done) done.textContent = S.builder.exercises.length ? "Done (" + S.builder.exercises.length + " in your routine)" : "Done";
+}
+function builderPicker(){
+  BP.q = ""; BP.m = "";
+  openSheet(sheetHtml({
+    title: "Add exercises",
+    body: `<div class="field"><label class="sr" for="bpSearch">Search exercises</label><input id="bpSearch" type="search" enterkeyhint="search" placeholder="Search by name, muscle or equipment" autocomplete="off"></div>
+      <div class="chips wrap" id="bpChips" style="margin-bottom:12px"></div>
+      <p class="hint" id="bpHint" style="margin-bottom:8px"></p>
+      <div class="pick-list" id="bpList" style="max-height:none"></div>
+      <p class="hint" style="margin-top:12px">Can’t find it? <button class="link" style="min-height:44px" data-act="b-new-ex">Create your own exercise</button></p>`,
+    foot: `<button class="btn primary wide" id="bpDone" data-act="close">Done</button>`
+  }));
+  SHEET = "bpick";
+  renderBuilderPicker();
+}
+function saveBuilder(){
+  const B = S.builder;
+  if(!B.exercises.length){ toast("Add at least one exercise first"); return null; }
+  const exs = B.exercises.map(x => ({...x, id: uid()}));
+  let day, msg;
+  if(B.target !== "new" && getDay(B.target)){
+    day = getDay(B.target); day.exercises.push(...exs);
+    msg = "Added " + exs.length + " exercise" + (exs.length === 1 ? "" : "s") + " to “" + day.title + "”";
+  }else{
+    const t = (B.title || "").trim() || "Custom";
+    day = {id: uid(), title: /^\s*Day\s*\d+/i.test(t) ? t : "Day " + (S.days.length + 1) + " — " + t, exercises: exs};
+    S.days.push(day);
+    msg = "Saved to Plan as “" + day.title + "”";
+  }
+  S.activeDay = day.id;
+  S.builder = {title: "", target: "new", exercises: []};
+  save();
+  toast(msg);
+  return day;
 }
 function renderKeep(){ const y = window.scrollY; render(); window.scrollTo(0, y); }
 
@@ -1887,7 +2013,8 @@ const ACT = {
     if(EDIT.mode === "lib-add"){
       if(libItems().some(e => e.name.toLowerCase() === name.toLowerCase())) return say("#formMsg", "That exercise is already in the library.", "err");
       S.custom.push({...data, custom: true});
-      toast("Added to library");
+      if(EDIT.fromBuilder){ S.builder.exercises.push({...data, id: uid()}); toast("Added to your routine"); }
+      else toast("Added to library");
     }else if(EDIT.mode === "add"){
       getDay(EDIT.dayId).exercises.push({id: uid(), ...data});
       const cb = $("#f_lib");
@@ -1929,6 +2056,40 @@ const ACT = {
     startWorkout(null);
   },
   resume(){ sessionSheet(); },
+  "rt-mode"(t){ S.routine.mode = t.dataset.m; save(); render(); window.scrollTo(0, 0); },
+  "rt-customize"(){
+    const res = routineResult(); if(!res.list.length) return;
+    const apply = () => {
+      S.builder.exercises = res.list.map(x => draftItem(x.e, x.rx));
+      S.builder.title = routineTitle().replace(/^Day \d+ — /, ""); S.builder.target = "new";
+      S.routine.mode = "custom"; save(); render(); window.scrollTo(0, 0);
+      toast("Routine copied. Edit it however you like.");
+    };
+    S.builder.exercises.length ? ask("Replace your current custom draft with this recommended routine?", "Replace", apply) : apply();
+  },
+  "b-add"(){ builderPicker(); },
+  "b-chip"(t){ BP.m = t.dataset.k; renderBuilderPicker(); },
+  "b-pick"(t){
+    const e = libItems().find(x => x.name === t.dataset.name); if(!e) return;
+    const L = S.builder.exercises, i = L.findIndex(x => nkey(x.name) === nkey(e.name));
+    if(i >= 0) L.splice(i, 1); else L.push(draftItem(e));
+    save(); renderBuilderPicker(); if(UI.tab === "routines") renderKeep();
+  },
+  "b-new-ex"(){ editorSheet("lib-add", null, null); EDIT.fromBuilder = true; },
+  "b-mv"(t){
+    const L = S.builder.exercises, i = +t.dataset.i, j = i + (+t.dataset.dir);
+    if(j < 0 || j >= L.length) return;
+    [L[i], L[j]] = [L[j], L[i]]; save(); renderKeep();
+  },
+  "b-rm"(t){ S.builder.exercises.splice(+t.dataset.i, 1); save(); renderKeep(); },
+  "b-clear"(){ ask("Clear your custom routine draft? The exercises you picked are removed from this list.", "Clear draft", () => { S.builder.exercises = []; S.builder.title = ""; save(); render(); }); },
+  "b-save"(){ if(saveBuilder()) render(); },
+  "b-start"(){
+    const go = () => { const d = saveBuilder(); if(d){ render(); startWorkout(d.id); } };
+    if(!S.builder.exercises.length) return toast("Add at least one exercise first");
+    if(S.active) return ask("You already have a workout in progress. Discard it and start this routine instead?", "Discard and start", go);
+    go();
+  },
   "rt-muscle"(t){
     const k = t.dataset.k, f = S.routine.focus;
     S.routine.focus = f.includes(k) ? f.filter(x => x !== k) : [...f, k];
@@ -2016,8 +2177,9 @@ const ACT = {
   "remove-key"(){
     setKey(""); GIF.keyBad = false;
     renderHeader();
-    $("#keyInput").value = "";
-    say("#keyStatus", "Key removed. GIFs you have already viewed still show from this device.", "ok");
+    $("#keyInput").value = getKey();
+    say("#keyStatus", "Your saved key was removed. The built-in default key is in use again.", "ok");
+    retryErrored();
   },
   async "clear-cache"(){
     await dbClear();
@@ -2096,6 +2258,13 @@ document.addEventListener("input", e => {
     if(s){ s[el.dataset.f] = el.value; save(); updateSessionStats(); }
     return;
   }
+  if(id === "bTitle"){ S.builder.title = el.value; save(); return; }
+  if(el.dataset && el.dataset.bf){
+    const x = S.builder.exercises[+el.dataset.bi];
+    if(x){ x[el.dataset.bf] = el.value; save(); const s = $("#bSummary"); if(s) s.textContent = draftSummary(); }
+    return;
+  }
+  if(id === "bpSearch"){ BP.q = el.value; renderBuilderPicker(); return; }
   if(id === "f_gif"){ clearTimeout(previewTimer); previewTimer = setTimeout(previewGif, 600); }
   else if(id === "libSearch"){ UI.q = el.value; updateLib(); }
   else if(id === "pickSearch"){ renderPicks(); }
@@ -2105,6 +2274,7 @@ document.addEventListener("change", e => {
   const id = e.target.id;
   if(id === "setGoal"){ S.profile.goal = +e.target.value; save(); toast("Weekly goal: " + S.profile.goal); if(UI.tab === "prog") render(); }
   else if(id === "setUnit"){ S.profile.unit = e.target.value; save(); if(UI.tab === "prog") render(); }
+  else if(id === "bTarget"){ S.builder.target = e.target.value; save(); renderKeep(); }
   else if(id === "rtLevel"){ S.routine.level = e.target.value; S.routine.seed = 0; save(); renderKeep(); }
   else if(id === "rtEquip"){ S.routine.equip = e.target.value; S.routine.seed = 0; save(); renderKeep(); }
   else if(id === "rtCount"){ S.routine.count = +e.target.value; save(); renderKeep(); }
