@@ -632,8 +632,11 @@ function ensureState(s){
   s.badges = s.badges && typeof s.badges === "object" ? s.badges : {};
   s.routine = Object.assign({mode: "auto", focus: ["chest"], level: "Any", equip: "All", count: 15, seed: 0}, s.routine || {});
   if(!Array.isArray(s.routine.focus)) s.routine.focus = [];
-  s.builder = Object.assign({title: "", target: "new", exercises: []}, s.builder || {});
+  s.routines = Array.isArray(s.routines) ? s.routines : [];
+  s.builder = Object.assign({title: "", editing: null, exercises: []}, s.builder || {});
   if(!Array.isArray(s.builder.exercises)) s.builder.exercises = [];
+  if(s.builder.editing && !s.routines.some(r => r.id === s.builder.editing)) s.builder.editing = null;
+  
   if(!Array.isArray(s.days)) s.days = [];
   if(!s.days.some(d => d.id === s.activeDay)) s.activeDay = s.days[0]?.id || null;
   // Fill exercises that were saved before the library finished loading
@@ -658,6 +661,7 @@ function getKey(){ try{ return localStorage.getItem(KEY_STORE) || memKey || DEFA
 function setKey(v){ memKey = v; try{ v ? localStorage.setItem(KEY_STORE, v) : localStorage.removeItem(KEY_STORE); }catch(e){} }
 
 const getDay = id => S.days.find(d => d.id === id);
+const getRoutine = id => S.routines.find(r => r.id === id);
 const curDay = () => getDay(S.activeDay) || S.days[0] || null;
 const getEx = (dayId, exId) => getDay(dayId)?.exercises.find(e => e.id === exId);
 const unit = () => S.profile.unit;
@@ -1589,16 +1593,18 @@ function makeLogEx(ex){
   });
   return {name: ex.name, gif: ex.gif || "", muscle: ex.muscle || "", target, rest: ex.rest || "", timed, rl: r ? r[1] : "", prev, sets};
 }
-function startWorkout(dayId){
-  const d = dayId ? getDay(dayId) : null;
+function startWorkout(sourceId){
+  const day = sourceId ? getDay(sourceId) : null;
+  const routine = !day && sourceId ? getRoutine(sourceId) : null;
+  const src = day || routine;
   S.active = {
-    id: uid(), dayId: d ? d.id : null,
-    title: d ? splitTitle(d.title, S.days.indexOf(d)).focus : "Quick workout",
+    id: uid(), dayId: src ? src.id : null,
+    title: day ? splitTitle(day.title, S.days.indexOf(day)).focus : (routine ? routine.title : "Quick workout"),
     start: Date.now(), restEnd: 0,
-    exercises: d ? d.exercises.map(makeLogEx) : []
+    exercises: src ? src.exercises.map(makeLogEx) : []
   };
   save(); refreshChrome();
-  if(UI.tab === "plan") render();
+  if(UI.tab === "plan" || UI.tab === "routines") render();
   sessionSheet();
 }
 function prevText(e, si){
@@ -1966,13 +1972,13 @@ function routineMinutes(list){
 function routineTitle(){
   const F = facets().muscles;
   const labs = S.routine.focus.map(k => (F.find(m => m.key === k) || {}).label || titleCase(k));
-  return "Day " + (S.days.length + 1) + " — " + (labs.length > 3 ? "Custom mix" : labs.join(" + "));
+  return "Routine " + (S.routines.length + 1) + " — " + (labs.length > 3 ? "Custom mix" : labs.join(" + "));
 }
 function saveRoutine(){
   const res = routineResult(); if(!res.list.length) return null;
-  const d = {id: uid(), title: routineTitle(), exercises: res.list.map(x => { const {custom, id, ...b} = x.e; return {...b, id: uid(), sets: x.rx.sets, rest: x.rx.rest}; })};
-  S.days.push(d); S.activeDay = d.id; save();
-  return d;
+  const r = {id: uid(), title: routineTitle(), exercises: res.list.map(x => { const {custom, id, ...b} = x.e; return {...b, id: uid(), sets: x.rx.sets, rest: x.rx.rest}; })};
+  S.routines.push(r); save();
+  return r;
 }
 function autoView(){
   const P = S.routine, F = facets();
@@ -1993,7 +1999,7 @@ function autoView(){
     result = `<h2 class="sec">Your routine</h2>
       <p class="rt-meta">${n} exercises · about ${routineMinutes(res.list)} min${cover ? " · " + esc(cover) : ""}</p>
       ${res.relaxed ? `<p class="rt-note">${esc(res.relaxed)}</p>` : ""}
-      <div class="actions" style="margin:0 0 10px"><button class="btn" data-act="rt-shuffle">Shuffle</button><button class="btn primary" data-act="rt-save">Save to plan</button></div>
+      <div class="actions" style="margin:0 0 10px"><button class="btn" data-act="rt-shuffle">Shuffle</button><button class="btn primary" data-act="rt-save">Save routine</button></div>
       <button class="btn wide" style="margin-bottom:10px" data-act="rt-customize">Customize this routine</button>
       <button class="btn signal wide" style="margin-bottom:14px" data-act="rt-start">Save and start workout</button>
       <div class="ex-list">${res.list.map((x, i) => `<article class="ex" role="button" tabindex="0" data-act="open-lib" data-name="${esc(x.e.name)}" aria-label="${esc(x.e.name)}, open details">
@@ -2015,14 +2021,30 @@ function autoView(){
     </section>
     ${result}`;
 }
+  function savedRoutinesHtml(){
+  const A = S.active;
+  if(!S.routines.length){
+    return `<h2 class="sec">Saved routines</h2><p class="hint">Routines you save here (from Recommended or Build your own) live in their own list — separate from your Plan.</p>`;
+  }
+  const rows = S.routines.map(r => {
+    const n = r.exercises.length;
+    const active = A && A.dayId === r.id;
+    return `<div class="edit-ex"><span>${esc(r.title)} · ${n} exercise${n === 1 ? "" : "s"}</span>
+      <button class="btn sm ${active ? "signal" : ""}" data-act="routine-start" data-id="${r.id}">${active ? "Resume" : "Start"}</button>
+      <button class="icon-btn" data-act="routine-edit" data-id="${r.id}" aria-label="Edit ${esc(r.title)}">✎</button>
+      <button class="icon-btn danger" data-act="routine-del" data-id="${r.id}" aria-label="Delete ${esc(r.title)}">✕</button></div>`;
+  }).join("");
+  return `<h2 class="sec">Saved routines (${S.routines.length})</h2><div class="ex-list" style="border-top:2px solid var(--edge)">${rows}</div>`;
+}
 function routineView(){
   const custom = S.routine.mode === "custom", n = S.builder.exercises.length;
-  return `<div class="lib-head"><div><h2>Routines</h2><p>${custom ? "Pick your own exercises and set the sets, reps and rest." : "Choose the muscles to focus on and get a ready-made workout."}</p></div></div>
+  return `<div class="lib-head"><div><h2>Routines</h2><p>Build workout routines that live here, separate from your Plan.</p></div></div>
     <div class="seg" role="tablist" aria-label="Routine mode">
       <button class="${custom ? "" : "on"}" role="tab" aria-selected="${!custom}" data-act="rt-mode" data-m="auto">Recommended</button>
       <button class="${custom ? "on" : ""}" role="tab" aria-selected="${custom}" data-act="rt-mode" data-m="custom">Build your own${n ? " (" + n + ")" : ""}</button>
     </div>
-    ${custom ? builderView() : autoView()}`;
+    ${custom ? builderView() : autoView()}
+    ${savedRoutinesHtml()}`;
 }
 
 /* ----- Build your own ----- */
@@ -2047,8 +2069,7 @@ function draftSummary(){
 }
 function builderView(){
   const B = S.builder, n = B.exercises.length;
-  const isNew = B.target === "new" || !getDay(B.target);
-  const targets = `<option value="new">A new workout</option>` + S.days.map(d => `<option value="${d.id}" ${B.target === d.id ? "selected" : ""}>${esc(d.title)}</option>`).join("");
+  const editingRoutine = B.editing ? getRoutine(B.editing) : null;
   const rows = B.exercises.map((x, i) => `<div class="bx" data-sort-id="${x.id}">
       <div class="bx-top"><button class="drag-handle" type="button" aria-label="Drag to reorder ${esc(x.name)}">⠿</button>${gifSlot(x.gif, {size: "sm", alt: x.name, video: hasVideo(x)})}<div class="bx-name"><b>${i + 1}. ${esc(x.name)}</b><small>${esc(muscleKeys(x).map(titleCase).join(" / "))} · ${esc(equipList(x).join(" / "))}</small></div></div>
       <div class="bx-fields"><div><label for="bs${i}">Sets × reps</label><input id="bs${i}" data-bf="sets" data-bi="${i}" value="${esc(x.sets)}" placeholder="3 × 8–12" autocomplete="off"></div>
@@ -2057,16 +2078,16 @@ function builderView(){
         <button class="icon-btn" data-act="b-mv" data-i="${i}" data-dir="1" aria-label="Move ${esc(x.name)} down" ${i === n - 1 ? "disabled" : ""}>▼</button>
         <button class="icon-btn danger" data-act="b-rm" data-i="${i}" aria-label="Remove ${esc(x.name)}">✕</button></div></div>`).join("");
   return `<section class="card">
-      <div class="field" style="margin-bottom:${isNew ? 14 : 0}px"><label for="bTarget">Save to</label><select id="bTarget">${targets}</select></div>
-      ${isNew ? `<div class="field" style="margin-bottom:0"><label for="bTitle">Workout name</label><input id="bTitle" type="text" value="${esc(B.title)}" placeholder="e.g. Push day" autocomplete="off"><p class="hint" style="margin-top:6px">“Day ${S.days.length + 1} —” is added in front automatically.</p></div>` : `<p class="hint" style="margin-top:8px">Your exercises will be added to the end of that workout.</p>`}
+      <div class="field" style="margin-bottom:0"><label for="bTitle">Routine name</label><input id="bTitle" type="text" value="${esc(B.title)}" placeholder="e.g. Push day" autocomplete="off"></div>
+      ${editingRoutine ? `<p class="hint" style="margin-top:6px">Editing “${esc(editingRoutine.title)}”. Saving updates this saved routine — it won’t touch your Plan.</p>` : `<p class="hint" style="margin-top:6px">Saved routines stay separate from your Plan.</p>`}
     </section>
     <h2 class="sec">Your exercises</h2>
     ${n ? `<p class="rt-meta" id="bSummary">${esc(draftSummary())}</p>` : ""}
     <button class="btn primary wide" data-act="b-add" style="margin-bottom:6px">${n ? "Add more exercises" : "Add exercises"}</button>
     ${n ? `<div class="ex-list" id="builderExList" style="margin-top:12px;border-top:2px solid var(--edge)">${rows}</div>
-      <div class="actions"><button class="btn" data-act="b-save">Save to plan</button><button class="btn signal" data-act="b-start">Save and start</button></div>
-      <button class="link danger" data-act="b-clear" style="margin-top:6px">Clear draft</button>`
-    : `<div class="builder-empty"><p class="hint">Nothing here yet. Add exercises from the library, then set the sets, reps and rest for each one.</p><p class="hint" style="margin-top:8px">Tip: on the Recommended tab, tap “Customize this routine” to start from a suggested list.</p></div>`}`;
+      <div class="actions"><button class="btn primary" data-act="b-save">${editingRoutine ? "Update routine" : "Save routine"}</button><button class="btn signal" data-act="b-start">Save and start</button></div>
+      <button class="link danger" data-act="b-clear" style="margin-top:6px">${editingRoutine ? "Discard changes" : "Clear draft"}</button>`
+    : `<div class="builder-empty"><p class="hint">Nothing here yet. Add exercises, then set the sets, reps and rest for each one.</p><p class="hint" style="margin-top:8px">Tip: on the Recommended tab, tap “Customize this routine” to start from a suggested list.</p></div>`}`;
 }
 function builderPickList(){
   const tokens = BP.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -2106,21 +2127,22 @@ function saveBuilder(){
   const B = S.builder;
   if(!B.exercises.length){ toast("Add at least one exercise first"); return null; }
   const exs = B.exercises.map(x => ({...x, id: uid()}));
-  let day, msg;
-  if(B.target !== "new" && getDay(B.target)){
-    day = getDay(B.target); day.exercises.push(...exs);
-    msg = "Added " + exs.length + " exercise" + (exs.length === 1 ? "" : "s") + " to “" + day.title + "”";
+  const title = (B.title || "").trim() || "Custom routine";
+  let routine, msg;
+  if(B.editing && getRoutine(B.editing)){
+    routine = getRoutine(B.editing);
+    routine.title = title;
+    routine.exercises = exs;
+    msg = "Updated “" + routine.title + "”";
   }else{
-    const t = (B.title || "").trim() || "Custom";
-    day = {id: uid(), title: /^\s*Day\s*\d+/i.test(t) ? t : "Day " + (S.days.length + 1) + " — " + t, exercises: exs};
-    S.days.push(day);
-    msg = "Saved to Plan as “" + day.title + "”";
+    routine = {id: uid(), title, exercises: exs};
+    S.routines.push(routine);
+    msg = "Saved “" + routine.title + "” to your routines";
   }
-  S.activeDay = day.id;
-  S.builder = {title: "", target: "new", exercises: []};
+  S.builder = {title: "", editing: null, exercises: []};
   save();
   toast(msg);
-  return day;
+  return routine;
 }
 function renderKeep(){ const y = window.scrollY; render(); window.scrollTo(0, y); }
 
@@ -2384,11 +2406,12 @@ const ACT = {
   },
   resume(){ sessionSheet(); },
   "rt-mode"(t){ S.routine.mode = t.dataset.m; save(); render(); window.scrollTo(0, 0); },
-  "rt-customize"(){
+    "rt-customize"(){
     const res = routineResult(); if(!res.list.length) return;
     const apply = () => {
       S.builder.exercises = res.list.map(x => draftItem(x.e, x.rx));
-      S.builder.title = routineTitle().replace(/^Day \d+ — /, ""); S.builder.target = "new";
+      S.builder.title = routineTitle().replace(/^Routine \d+ — /, "");
+      S.builder.editing = null;
       S.routine.mode = "custom"; save(); render(); window.scrollTo(0, 0);
       toast("Routine copied. Edit it however you like.");
     };
@@ -2409,7 +2432,12 @@ const ACT = {
     [L[i], L[j]] = [L[j], L[i]]; save(); renderKeep();
   },
   "b-rm"(t){ S.builder.exercises.splice(+t.dataset.i, 1); save(); renderKeep(); },
-  "b-clear"(){ ask("Clear your custom routine draft? The exercises you picked are removed from this list.", "Clear draft", () => { S.builder.exercises = []; S.builder.title = ""; save(); render(); }); },
+  "b-clear"(){
+    const editing = !!S.builder.editing;
+    ask(editing ? "Discard your changes to this routine? Nothing will be updated." : "Clear your routine draft? The exercises you picked are removed from this list.",
+        editing ? "Discard changes" : "Clear draft",
+        () => { S.builder = {title: "", editing: null, exercises: []}; save(); render(); });
+  },
   "b-save"(){ if(saveBuilder()) render(); },
   "b-start"(){
     const go = () => { const d = saveBuilder(); if(d){ render(); startWorkout(d.id); } };
@@ -2429,10 +2457,33 @@ const ACT = {
   },
   "rt-shuffle"(){ S.routine.seed++; save(); renderKeep(); },
   "rt-swap"(t){ swapRoutine(+t.dataset.i); renderKeep(); },
-  "rt-save"(){ const d = saveRoutine(); if(d) toast("Saved to Plan as “" + d.title + "”"); },
+    "rt-save"(){ const r = saveRoutine(); if(r) toast("Saved “" + r.title + "” to your routines"); },
   "rt-start"(){
-    if(S.active) return ask("You already have a workout in progress. Discard it and start this routine instead?", "Discard and start", () => { const d = saveRoutine(); if(d) startWorkout(d.id); });
-    const d = saveRoutine(); if(d) startWorkout(d.id);
+    if(S.active) return ask("You already have a workout in progress. Discard it and start this routine instead?", "Discard and start", () => { const r = saveRoutine(); if(r) startWorkout(r.id); });
+    const r = saveRoutine(); if(r) startWorkout(r.id);
+  },
+  "routine-start"(t){
+    const r = getRoutine(t.dataset.id); if(!r) return;
+    if(S.active && S.active.dayId === r.id) return sessionSheet();
+    if(S.active) return ask("You already have a workout in progress. Discard it and start this routine instead?", "Discard and start", () => startWorkout(r.id));
+    startWorkout(r.id);
+  },
+  "routine-edit"(t){
+    const r = getRoutine(t.dataset.id); if(!r) return;
+    const go = () => {
+      S.builder = {title: r.title, editing: r.id, exercises: r.exercises.map(x => ({...x, id: uid()}))};
+      S.routine.mode = "custom"; save(); render(); window.scrollTo(0, 0);
+    };
+    if(S.builder.exercises.length && S.builder.editing !== r.id) return ask("Replace your current unsaved draft with this routine?", "Replace draft", go);
+    go();
+  },
+  "routine-del"(t){
+    const r = getRoutine(t.dataset.id); if(!r) return;
+    ask(`Delete “${r.title}” and its ${r.exercises.length} exercise${r.exercises.length === 1 ? "" : "s"}? This can’t be undone.`, "Delete routine", () => {
+      S.routines = S.routines.filter(x => x.id !== r.id);
+      if(S.builder.editing === r.id) S.builder = {title: "", editing: null, exercises: []};
+      save(); refresh();
+    });
   },
   tick(t){
     const A = S.active; if(!A) return;
@@ -2602,7 +2653,6 @@ document.addEventListener("change", e => {
   if(id === "setGoal"){ S.profile.goal = +e.target.value; save(); toast("Weekly goal: " + S.profile.goal); if(UI.tab === "prog") render(); }
   else if(id === "setUnit"){ S.profile.unit = e.target.value; save(); if(UI.tab === "prog") render(); }
   else if(id === "setTheme"){ setTheme(e.target.value); }
-  else if(id === "bTarget"){ S.builder.target = e.target.value; save(); renderKeep(); }
   else if(id === "rtLevel"){ S.routine.level = e.target.value; S.routine.seed = 0; save(); renderKeep(); }
   else if(id === "rtEquip"){ S.routine.equip = e.target.value; S.routine.seed = 0; save(); renderKeep(); }
   else if(id === "rtCount"){ S.routine.count = +e.target.value; save(); renderKeep(); }
