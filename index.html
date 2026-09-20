@@ -286,6 +286,9 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .icon-btn{flex:0 0 auto;width:44px;height:44px;border-radius:8px;border:1.5px solid var(--line);background:var(--field);font-size:16px;cursor:pointer}
 .icon-btn:disabled{opacity:.35}
 .icon-btn.danger{color:var(--danger);border-color:var(--danger)}
+.drag-handle{flex:0 0 auto;width:32px;height:44px;display:grid;place-items:center;border:0;background:none;color:var(--muted);font-size:20px;line-height:1;cursor:grab;touch-action:none;padding:0}
+.drag-handle:active{cursor:grabbing}
+.edit-ex.dragging,.bx.dragging{opacity:.55;background:var(--soft);border-radius:8px}
 
 /* Bottom sheets */
 .scrim{position:fixed;inset:0;background:var(--scrim);display:none;z-index:60;align-items:flex-end;justify-content:center;overscroll-behavior:contain}
@@ -1143,6 +1146,8 @@ function render(){
   }else if(UI.tab === "routines"){
     main.innerHTML = routineView();
     hydrate(main);
+    const bl = $("#builderExList");
+    if(bl) initSortable(bl, order => reorderBuilderExercises(order));
   }else if(UI.tab === "prog"){
     main.innerHTML = progressView();
   }else if(UI.tab === "coffee"){
@@ -1153,6 +1158,7 @@ function render(){
     updateLib();
   }
 }
+  
 function refresh(){ UI.tab === "lib" ? (refreshChrome(), syncFilterUI(), updateLib()) : render(); }
 
 /* =========================================================
@@ -1411,10 +1417,66 @@ function editorSheet(mode, dayId, exId){
 /* Workout editor: rename, reorder or remove exercises, duplicate, delete */
 function dayExListHtml(d){
   if(!d.exercises.length) return `<p class="hint">No exercises yet. Close this and tap “Add exercise”.</p>`;
-  return d.exercises.map((e, i) => `<div class="edit-ex"><span>${esc(e.name)}</span>
+  return d.exercises.map((e, i) => `<div class="edit-ex" data-sort-id="${e.id}">
+    <button class="drag-handle" type="button" aria-label="Drag to reorder ${esc(e.name)}">⠿</button>
+    <span>${esc(e.name)}</span>
     <button class="icon-btn" data-act="mv-ex" data-dir="-1" data-id="${e.id}" aria-label="Move ${esc(e.name)} up" ${i === 0 ? "disabled" : ""}>▲</button>
     <button class="icon-btn" data-act="mv-ex" data-dir="1" data-id="${e.id}" aria-label="Move ${esc(e.name)} down" ${i === d.exercises.length - 1 ? "disabled" : ""}>▼</button>
     <button class="icon-btn danger" data-act="rm-ex" data-id="${e.id}" aria-label="Remove ${esc(e.name)}">✕</button></div>`).join("");
+}
+/* =========================================================
+   Drag-to-reorder lists (mouse and touch, via Pointer Events)
+   ========================================================= */
+function initSortable(listEl, onReorder){
+  if(!listEl) return;
+  let drag = null;
+  const items = () => [...listEl.querySelectorAll(":scope > [data-sort-id]")];
+  listEl.addEventListener("pointerdown", e => {
+    const handle = e.target.closest(".drag-handle");
+    if(!handle || !listEl.contains(handle)) return;
+    const row = handle.closest("[data-sort-id]");
+    if(!row) return;
+    e.preventDefault();
+    drag = {row, pid: e.pointerId};
+    row.classList.add("dragging");
+    try{ handle.setPointerCapture(e.pointerId); }catch(_){}
+  });
+  listEl.addEventListener("pointermove", e => {
+    if(!drag || e.pointerId !== drag.pid) return;
+    e.preventDefault();
+    const y = e.clientY;
+    let target = null;
+    for(const sib of items()){
+      if(sib === drag.row) continue;
+      const r = sib.getBoundingClientRect();
+      if(y < r.top + r.height / 2){ target = sib; break; }
+    }
+    if(target){ if(target !== drag.row.nextElementSibling) listEl.insertBefore(drag.row, target); }
+    else if(listEl.lastElementChild !== drag.row) listEl.appendChild(drag.row);
+  });
+  function end(e){
+    if(!drag || e.pointerId !== drag.pid) return;
+    drag.row.classList.remove("dragging");
+    const order = items().map(el => el.dataset.sortId);
+    drag = null;
+    onReorder(order);
+  }
+  listEl.addEventListener("pointerup", end);
+  listEl.addEventListener("pointercancel", end);
+}
+function reorderDayExercises(dayId, order){
+  const d = getDay(dayId); if(!d) return;
+  const map = new Map(d.exercises.map(e => [e.id, e]));
+  d.exercises = order.map(id => map.get(id)).filter(Boolean);
+  save();
+  $("#dayExList").innerHTML = dayExListHtml(d);
+  refresh();
+}
+function reorderBuilderExercises(order){
+  const map = new Map(S.builder.exercises.map(x => [x.id, x]));
+  S.builder.exercises = order.map(id => map.get(id)).filter(Boolean);
+  save();
+  renderKeep();
 }
 function daySheet(dayId){
   DAYEDIT = dayId;
@@ -1431,6 +1493,8 @@ function daySheet(dayId){
       <div class="actions" style="margin-top:0"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="save-day">Save workout</button></div>`
   }));
   const i = $("#d_title"); if(!d){ i.focus(); i.setSelectionRange(i.value.length, i.value.length); }
+  if(d) initSortable($("#dayExList"), order => reorderDayExercises(dayId, order));
+}
 }
 
 async function settingsSheet(){
@@ -1985,8 +2049,8 @@ function builderView(){
   const B = S.builder, n = B.exercises.length;
   const isNew = B.target === "new" || !getDay(B.target);
   const targets = `<option value="new">A new workout</option>` + S.days.map(d => `<option value="${d.id}" ${B.target === d.id ? "selected" : ""}>${esc(d.title)}</option>`).join("");
-  const rows = B.exercises.map((x, i) => `<div class="bx">
-      <div class="bx-top">${gifSlot(x.gif, {size: "sm", alt: x.name, video: hasVideo(x)})}<div class="bx-name"><b>${i + 1}. ${esc(x.name)}</b><small>${esc(muscleKeys(x).map(titleCase).join(" / "))} · ${esc(equipList(x).join(" / "))}</small></div></div>
+  const rows = B.exercises.map((x, i) => `<div class="bx" data-sort-id="${x.id}">
+      <div class="bx-top"><button class="drag-handle" type="button" aria-label="Drag to reorder ${esc(x.name)}">⠿</button>${gifSlot(x.gif, {size: "sm", alt: x.name, video: hasVideo(x)})}<div class="bx-name"><b>${i + 1}. ${esc(x.name)}</b><small>${esc(muscleKeys(x).map(titleCase).join(" / "))} · ${esc(equipList(x).join(" / "))}</small></div></div>
       <div class="bx-fields"><div><label for="bs${i}">Sets × reps</label><input id="bs${i}" data-bf="sets" data-bi="${i}" value="${esc(x.sets)}" placeholder="3 × 8–12" autocomplete="off"></div>
         <div><label for="br${i}">Rest</label><input id="br${i}" data-bf="rest" data-bi="${i}" value="${esc(x.rest)}" placeholder="60 sec" autocomplete="off"></div></div>
       <div class="bx-ctrl"><button class="icon-btn" data-act="b-mv" data-i="${i}" data-dir="-1" aria-label="Move ${esc(x.name)} up" ${i === 0 ? "disabled" : ""}>▲</button>
@@ -1999,7 +2063,7 @@ function builderView(){
     <h2 class="sec">Your exercises</h2>
     ${n ? `<p class="rt-meta" id="bSummary">${esc(draftSummary())}</p>` : ""}
     <button class="btn primary wide" data-act="b-add" style="margin-bottom:6px">${n ? "Add more exercises" : "Add exercises"}</button>
-    ${n ? `<div class="ex-list" style="margin-top:12px;border-top:2px solid var(--edge)">${rows}</div>
+    ${n ? `<div class="ex-list" id="builderExList" style="margin-top:12px;border-top:2px solid var(--edge)">${rows}</div>
       <div class="actions"><button class="btn" data-act="b-save">Save to plan</button><button class="btn signal" data-act="b-start">Save and start</button></div>
       <button class="link danger" data-act="b-clear" style="margin-top:6px">Clear draft</button>`
     : `<div class="builder-empty"><p class="hint">Nothing here yet. Add exercises from the library, then set the sets, reps and rest for each one.</p><p class="hint" style="margin-top:8px">Tip: on the Recommended tab, tap “Customize this routine” to start from a suggested list.</p></div>`}`;
