@@ -1160,7 +1160,55 @@ function refresh(){ UI.tab === "lib" ? (refreshChrome(), syncFilterUI(), updateL
    ========================================================= */
 const scrim = $("#scrim"), sheetEl = $("#sheet");
 let pendingYes = null, EDIT = null, DAYEDIT = null, sheetOpen = false;
+let backPending = false, wantPush = false, backTimer = 0;   // NEW: guards against a stale history.back()
 
+  function openSheet(html){
+  SHEET = "";
+  sheetEl.innerHTML = html;
+  resetSheetMotion();
+  scrim.classList.add("open");
+  document.body.classList.add("noscroll");
+  const b = $("#sheetBody"); if(b) b.scrollTop = 0;
+  if(!sheetOpen){
+    sheetOpen = true;
+    if(backPending) wantPush = true;   // a back() is still in flight: push after it finishes
+    else{ try{ history.pushState({sheet: 1}, ""); }catch(e){} }
+  }
+  hydrate(sheetEl);
+}
+
+function closeSheet(fromPop){
+  if(!sheetOpen) return;
+  sheetOpen = false; wantPush = false; SHEET = "";
+  scrim.classList.remove("open");
+  document.body.classList.remove("noscroll");
+  sheetEl.innerHTML = "";
+  resetSheetMotion();
+  pendingYes = null;
+  if(fromPop !== true && !backPending){
+    try{
+      if(history.state && history.state.sheet){
+        backPending = true;
+        clearTimeout(backTimer);
+        backTimer = setTimeout(() => { backPending = false; wantPush = false; }, 1000);   // safety net
+        history.back();
+      }
+    }catch(e){ backPending = false; }
+  }
+}
+
+window.addEventListener("popstate", () => {
+  if(backPending){                      // this popstate is the one we caused ourselves
+    backPending = false;
+    clearTimeout(backTimer);
+    if(wantPush){                       // a new sheet was opened meanwhile, so give it its history entry now
+      wantPush = false;
+      try{ history.pushState({sheet: 1}, ""); }catch(e){}
+    }
+    return;                             // don't close the sheet that is open now
+  }
+  if(sheetOpen) closeSheet(true);       // a real Back press
+});
 function sheetHtml({title, body, foot = "", close = true}){
   return `<div class="grab" aria-hidden="true"></div>
     <div class="sheet-head"><h3 id="sheetTitle">${esc(title)}</h3>${close ? `<button class="x" data-act="close" aria-label="Close">×</button>` : ""}</div>
@@ -2249,13 +2297,14 @@ const ACT = {
   "lib-more"(){ UI.libLimit += 120; updateLib(); },
   "open-lib"(t){ const e = libItems().find(x => x.name === t.dataset.name); if(e) detailSheet(e, {mode: "lib"}); },
   "add-from-lib"(t){
-    const e = libItems().find(x => x.name === t.dataset.name);
-    const day = getDay($("#addDay")?.value);
-    if(!e || !day) return;
-    day.exercises.push(libToPlan(e));
-    save(); closeSheet(); refresh();
-    toast("Added to " + splitTitle(day.title, S.days.indexOf(day)).label);
-  },
+  const e = libItems().find(x => x.name === t.dataset.name);
+  const day = getDay($("#addDay")?.value);
+  if(!e || !day) return;
+  day.exercises.push(libToPlan(e));
+  save(); closeSheet();
+  if(UI.tab !== "lib") refresh();   // the library list didn't change, so don't rebuild 120 GIF tiles
+  toast("Added to " + splitTitle(day.title, S.days.indexOf(day)).label);
+},
   "del-custom"(t){ S.custom = S.custom.filter(c => c.name !== t.dataset.name); save(); closeSheet(); refresh(); },
 
   /* logging */
