@@ -1495,7 +1495,7 @@ function daySheet(dayId){
   const i = $("#d_title"); if(!d){ i.focus(); i.setSelectionRange(i.value.length, i.value.length); }
   if(d) initSortable($("#dayExList"), order => reorderDayExercises(dayId, order));
 }
-}
+
 
 async function settingsSheet(){
   const key = getKey();
