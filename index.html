@@ -449,6 +449,28 @@ body.has-active .toast{bottom:calc(150px + env(safe-area-inset-bottom))}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+  /* Disable text selection and the long-press callout across the app */
+body{
+  -webkit-user-select:none;
+  user-select:none;
+  -webkit-touch-callout:none;   /* iOS: no long-press popup on links and images */
+}
+
+/* Keep typing, pasting and selecting working where people need it */
+input,textarea,select,[contenteditable]{
+  -webkit-user-select:text;
+  user-select:text;
+}
+.share-pre{                      /* share preview, so people can copy it by hand */
+  -webkit-user-select:text;
+  user-select:text;
+}
+
+/* Stop images and GIFs from being dragged or long-press saved */
+img{
+  -webkit-user-drag:none;
+  user-drag:none;
+}
 </style>
 </head>
 <body>
