@@ -137,48 +137,16 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .day-head h2{font-family:var(--font-display);font-weight:800;font-size:clamp(36px,9vw,56px);line-height:.95}
 .day-head .meta{color:var(--muted);font-size:14px;margin-top:8px}
 .day-head .btn{flex:0 0 auto;margin-top:4px}
-.head-actions{display:flex;flex:0 0 auto;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:6px;margin-top:4px}
-.head-actions .btn{margin-top:0}
+.day-head-actions{display:flex;gap:8px;flex:0 0 auto;align-items:flex-start}
+.day-head-actions .icon-btn{width:36px;height:36px;margin-top:4px}
 .start-btn{margin-bottom:14px}
 
 .ex-list{border-top:2px solid var(--edge)}
-.exercise-groups{border-top:2px solid var(--edge)}
-.muscle-group{padding:0 0 8px}
-.muscle-group + .muscle-group{border-top:12px solid var(--floor)}
-.muscle-group-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:14px 0 8px}
-.muscle-group-head b{font-family:var(--font-display);font-size:27px;line-height:1;font-weight:800}
-.muscle-group-head span{font-size:12.5px;color:var(--muted);white-space:nowrap}
-.muscle-part{margin-top:6px}
-.muscle-part-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 12px;background:var(--soft);border:1px solid var(--line);border-radius:8px}
-.muscle-part-head b{font-size:14px;font-weight:700}
-.muscle-part-head span{font-size:12px;color:var(--muted);white-space:nowrap}
-.group-ex-list{border-top:1px solid var(--line)}
-.group-ex-list .ex{padding-left:4px;padding-right:4px}
-@media(max-width:619px){
-  .day-head{flex-wrap:wrap;row-gap:10px}
-  .day-head > div:first-child{flex:1 1 100%;min-width:0}
-  .head-actions{width:100%;justify-content:flex-start;gap:8px;margin-top:0}
-  .head-actions .btn{flex:1 1 0;min-width:0}
-
-  /* Prevent the GIF + text + remove/chevron controls from overflowing narrow phones. */
-  .ex{grid-template-columns:80px minmax(0,1fr) 42px;gap:9px;padding:10px 0}
-  .ex .gif{width:80px}
-  .ex .go{display:none}
-  .ex .icon-btn{width:42px;height:42px;padding:0}
-  .ex-main h3{font-size:15px;line-height:1.22;overflow-wrap:anywhere}
-  .ex-sub{gap:2px 8px}
-  .ex-stats{gap:12px;margin-top:6px;flex-wrap:wrap}
-  .ex-stats b{font-size:19px}
-
-  .exercise-groups{overflow:hidden}
-  .muscle-group-head{align-items:flex-start;gap:8px}
-  .muscle-group-head b{font-size:25px;min-width:0;overflow-wrap:anywhere}
-  .muscle-group-head span{flex:0 0 auto}
-  .muscle-part-head{padding:8px 10px}
-  .muscle-part-head b{min-width:0;overflow-wrap:anywhere}
-}
-/* Exercise rows: roomy desktop layout, compact mobile layout */
-.ex{display:grid;grid-template-columns:112px minmax(0,1fr) 44px 18px;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer;min-width:0}
+.ex-group-head{font-family:var(--font-display);font-weight:800;font-size:21px;line-height:1.15;margin:22px 0 4px;padding-top:16px;border-top:2px solid var(--edge)}
+.ex-group-head:first-child{margin-top:0;padding-top:0;border-top:0}
+.ex-part-head{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:12px 0 2px}
+/* was: .ex{display:grid;grid-template-columns:112px 1fr 18px;... */
+.ex{display:grid;grid-template-columns:112px 1fr 28px 18px;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
 .ex:active{background:var(--tap)}
 .ex .gif{width:112px}
 .ex .go{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
@@ -472,9 +440,9 @@ body.has-active .toast{bottom:calc(150px + env(safe-area-inset-bottom))}
   .setbtn{display:inline-flex}
   body.kb .tabs,body.kb .resume{display:none}
 }
-@media(min-width:400px) and (max-width:619px){
-  .ex{grid-template-columns:96px minmax(0,1fr) 42px;gap:10px}
-  .ex .gif{width:96px}
+@media(min-width:400px){
+  .ex{grid-template-columns:128px 1fr 28px 18px}
+  .ex .gif{width:128px}
 }
 @media(min-width:620px){
   .lib-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -492,7 +460,8 @@ body.has-active .toast{bottom:calc(150px + env(safe-area-inset-bottom))}
   .tab:active{background:none}
   .dchip{width:150px}
     .ex-list{display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
-  .ex{grid-template-columns:168px minmax(0,1fr) 44px 18px}
+  .ex-group-head,.ex-part-head{grid-column:1/-1}
+  .ex{grid-template-columns:168px 1fr 28px 18px}
   .ex .gif{width:168px}
   .ex:hover{background:var(--hover)}
   .lib-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px}
@@ -1160,84 +1129,15 @@ function refreshChrome(){
   if(A) tickUI();
 }
 
-function exerciseClassification(ex){
-  const ms = muscleKeys(ex);
-  const group = BODY_GROUPS.find(g => ms.includes(canon(g))) || "Other";
-  if(group === "Other") return {group, part:"General"};
-
-  let part = "";
-  const areas = Array.isArray(ex.muscleAreas) ? ex.muscleAreas : [];
-  const idx = ms.findIndex(k => k === canon(group));
-  if(idx >= 0 && areas[idx]) part = String(areas[idx]);
-
-  if(!part){
-    const M = PART_MATCHERS[group];
-    if(M){
-      let pi = M.defaultPart;
-      for(const r of M.rules){
-        if(r.re.test(ex.name || "")){ pi = r.part; break; }
-      }
-      part = MUSCLE_TAXONOMY[group]?.parts?.[pi]?.name || "";
-    }
-  }
-  return {group, part: part || "General"};
-}
-
-function groupedExerciseData(items, getEx = x => x){
-  const groups = [];
-  const groupMap = new Map();
-  items.forEach((item, index) => {
-    const ex = getEx(item);
-    const c = exerciseClassification(ex);
-    let g = groupMap.get(c.group);
-    if(!g){
-      g = {group:c.group, parts:[], partMap:new Map(), first:index};
-      groupMap.set(c.group, g);
-      groups.push(g);
-    }
-    let part = g.partMap.get(c.part);
-    if(!part){
-      part = {part:c.part, items:[], first:index};
-      g.partMap.set(c.part, part);
-      g.parts.push(part);
-    }
-    part.items.push({item, index});
-  });
-  groups.sort((a,b) => {
-    const ai = BODY_GROUPS.indexOf(a.group), bi = BODY_GROUPS.indexOf(b.group);
-    const ar = ai < 0 ? 999 : ai, br = bi < 0 ? 999 : bi;
-    return ar - br || a.first - b.first;
-  });
-  groups.forEach(g => g.parts.sort((a,b) => a.first - b.first));
-  return groups;
-}
-
-function groupedExerciseHtml(items, getEx, rowRenderer){
-  const groups = groupedExerciseData(items, getEx);
-  return `<div class="exercise-groups">${groups.map(g => {
-    const total = g.parts.reduce((n,p) => n + p.items.length, 0);
-    return `<section class="muscle-group">
-      <div class="muscle-group-head"><b>${esc(g.group)}</b><span>${total} exercise${total === 1 ? "" : "s"}</span></div>
-      ${g.parts.map(p => `<section class="muscle-part">
-        <div class="muscle-part-head"><b>${esc(p.part)}</b><span>${p.items.length}</span></div>
-        <div class="group-ex-list">${p.items.map(({item,index}) => rowRenderer(item,index)).join("")}</div>
-      </section>`).join("")}
-    </section>`;
-  }).join("")}</div>`;
-}
-
-function exerciseDeleteButton(act, attrs, name){
-  return `<button class="icon-btn danger ex-delete" type="button" data-act="${act}" ${attrs} aria-label="Remove ${esc(name)} from this workout" title="Remove exercise">✕</button>`;
-}
 function exRow(ex, dayId){
   return `<article class="ex" role="button" tabindex="0" data-act="open-ex" data-day="${dayId}" data-id="${ex.id}" data-sort-id="${ex.id}" aria-label="${esc(ex.name)}, open details">
     ${gifSlot(ex.gif, {alt: ex.name, video: hasVideo(ex)})}
     <div class="ex-main">
       <h3>${esc(ex.name)}</h3>
-      <div class="ex-sub"><span class="ex-muscle">${esc(ex.muscle || muscleKeys(ex).map(titleCase).join(" / "))}</span>${pips(ex.difficulty)}</div>
+      <div class="ex-sub"><span class="ex-muscle">${esc(ex.muscle)}</span>${pips(ex.difficulty)}</div>
       ${stats(ex)}
     </div>
-    ${exerciseDeleteButton('del-ex', `data-day="${dayId}" data-id="${ex.id}"`, ex.name)}
+        <button class="drag-handle" type="button" data-act="noop" aria-label="Drag to reorder ${esc(ex.name)}">⠿</button>
     <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
   </article>`;
 }
@@ -1246,10 +1146,10 @@ function routineExRow(ex, routineId){
     ${gifSlot(ex.gif, {alt: ex.name, video: hasVideo(ex)})}
     <div class="ex-main">
       <h3>${esc(ex.name)}</h3>
-      <div class="ex-sub"><span class="ex-muscle">${esc(ex.muscle || muscleKeys(ex).map(titleCase).join(" / "))}</span>${pips(ex.difficulty)}</div>
+      <div class="ex-sub"><span class="ex-muscle">${esc(ex.muscle)}</span>${pips(ex.difficulty)}</div>
       ${stats(ex)}
     </div>
-    ${exerciseDeleteButton('del-routine-ex', `data-routine="${routineId}" data-id="${ex.id}"`, ex.name)}
+    <button class="drag-handle" type="button" data-act="noop" aria-label="Drag to reorder ${esc(ex.name)}">⠿</button>
     <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
   </article>`;
 }
@@ -1261,15 +1161,64 @@ function routineDetailView(r){
     <section>
       <div class="day-head">
         <div><h2>${esc(r.title)}</h2><p class="meta">${n} exercise${n === 1 ? "" : "s"}${od ? ", " + od + " overall" : ""}</p></div>
-        <div class="head-actions">
+        <div class="day-head-actions">
           <button class="btn sm" data-act="routine-edit" data-id="${r.id}">Edit routine</button>
-          <button class="btn sm danger" data-act="routine-del" data-id="${r.id}">Delete</button>
+          <button class="icon-btn danger" data-act="routine-del" data-id="${r.id}" aria-label="Delete ${esc(r.title)}" title="Delete routine">✕</button>
         </div>
       </div>
       ${n ? `<button class="btn signal wide start-btn" data-act="routine-start" data-id="${r.id}">${startLabel}</button>` : ""}
-      ${n ? groupedExerciseHtml(r.exercises, e => e, e => routineExRow(e, r.id)) : `<p class="empty">Nothing here yet. Add your first exercise.</p>`}
+      ${n ? `<div class="ex-list" id="routineExList">${groupedExListHtml(r.exercises, e => routineExRow(e, r.id))}</div>` : `<p class="empty">Nothing here yet. Add your first exercise.</p>`}
       <button class="btn primary wide add-ex" data-act="add-routine-ex" data-id="${r.id}">Add exercise</button>
     </section>`;
+}
+
+/* ----- Group an exercise list by muscle group -> anatomical sub-part, for display -----
+   Reuses the same MUSCLE_TAXONOMY / PART_MATCHERS classification the Build-a-Muscle
+   screen uses, so Plan and Routine lists group exercises the same way the app already
+   understands muscle anatomy. This only changes how the list is *displayed* — the
+   underlying exercise order (used when reordering or starting a workout) is untouched. */
+const GROUP_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+function classifyExercise(e){
+  const keys = muscleKeys(e);
+  let group = null;
+  for(const k of keys){ const hit = BODY_GROUPS.find(g => canon(g) === k); if(hit){ group = hit; break; } }
+  if(!group) return {group: "Other", part: null};
+  const M = PART_MATCHERS[group], info = MUSCLE_TAXONOMY[group];
+  if(!M || !info) return {group, part: null};
+  let partIndex = M.defaultPart;
+  for(const r of M.rules){ if(r.re.test(e.name)){ partIndex = r.part; break; } }
+  const part = info.parts[partIndex];
+  return {group, part: part ? part.name : null};
+}
+function groupExercisesForDisplay(list){
+  const byGroup = new Map();
+  list.forEach(e => {
+    const {group, part} = classifyExercise(e);
+    if(!byGroup.has(group)) byGroup.set(group, new Map());
+    const parts = byGroup.get(group), key = part || "";
+    if(!parts.has(key)) parts.set(key, []);
+    parts.get(key).push(e);
+  });
+  const orderedGroups = BODY_GROUPS.filter(g => byGroup.has(g)).concat([...byGroup.keys()].filter(g => !BODY_GROUPS.includes(g)));
+  return orderedGroups.map(group => {
+    const partsMap = byGroup.get(group);
+    const info = MUSCLE_TAXONOMY[group];
+    const knownOrder = info ? info.parts.map(p => p.name).filter(pn => partsMap.has(pn)) : [];
+    const rest = [...partsMap.keys()].filter(k => k && !knownOrder.includes(k));
+    const keys = knownOrder.concat(rest, partsMap.has("") ? [""] : []);
+    return {group, parts: keys.map(k => ({name: k || null, exercises: partsMap.get(k)}))};
+  });
+}
+function groupedExListHtml(list, rowFn){
+  if(!list.length) return "";
+  return groupExercisesForDisplay(list).map((g, gi) => {
+    const letter = GROUP_LETTERS[gi] || String(gi + 1);
+    const partsHtml = g.parts.map((p, pi) => {
+      const head = p.name ? `<h4 class="ex-part-head">${pi + 1}. ${esc(p.name)}</h4>` : "";
+      return head + p.exercises.map(rowFn).join("");
+    }).join("");
+    return `<h3 class="ex-group-head">${letter}. ${esc(g.group)}</h3>${partsHtml}`;
+  }).join("");
 }
 
 function planView(){
@@ -1289,12 +1238,13 @@ function planView(){
     body = `<section>
       <div class="day-head">
         <div><h2>${esc(focus)}</h2><p class="meta">${n} exercise${n === 1 ? "" : "s"}${od ? ", " + od + " overall" : ""}</p></div>
-        <div class="head-actions">
+        <div class="day-head-actions">
           <button class="btn sm" data-act="edit-day">Edit workout</button>
+          <button class="icon-btn danger" data-act="del-day" data-id="${day.id}" aria-label="Delete ${esc(day.title)}" title="Delete workout">✕</button>
         </div>
       </div>
       ${n ? `<button class="btn signal wide start-btn" data-act="start-day">${startLabel}</button>` : ""}
-      ${n ? groupedExerciseHtml(day.exercises, e => e, e => exRow(e, day.id)) : `<p class="empty">Nothing here yet. Add your first exercise to this workout.</p>`}
+      ${n ? `<div class="ex-list">${groupedExListHtml(day.exercises, e => exRow(e, day.id))}</div>` : `<p class="empty">Nothing here yet. Add your first exercise to this workout.</p>`}
       <button class="btn primary wide add-ex" data-act="add-ex">Add exercise</button>
     </section>`;
   }
@@ -2598,13 +2548,13 @@ function autoView(){
       <div class="actions" style="margin:0 0 10px"><button class="btn" data-act="rt-shuffle">Shuffle</button><button class="btn primary" data-act="rt-save">Save routine</button></div>
       <button class="btn wide" style="margin-bottom:10px" data-act="rt-customize">Customize this routine</button>
       <button class="btn signal wide" style="margin-bottom:14px" data-act="rt-start">Save and start workout</button>
-      ${groupedExerciseHtml(res.list, x => x.e, (x, i) => `<article class="ex" role="button" tabindex="0" data-act="open-lib" data-name="${esc(x.e.name)}" aria-label="${esc(x.e.name)}, open details">
+      <div class="ex-list">${res.list.map((x, i) => `<article class="ex" role="button" tabindex="0" data-act="open-lib" data-name="${esc(x.e.name)}" aria-label="${esc(x.e.name)}, open details">
         ${gifSlot(x.e.gif, {alt: x.e.name, video: hasVideo(x.e)})}
         <div class="ex-main"><h3>${i + 1}. ${esc(x.e.name)}</h3>
           <div class="ex-sub"><span class="ex-muscle">${esc(muscleKeys(x.e).map(titleCase).join(" / "))} · ${esc(equipList(x.e).join(" / "))}</span>${pips(x.e.difficulty)}</div>
           <div class="ex-stats"><div><b>${esc(x.rx.sets)}</b><span>sets × reps</span></div><div><b>${esc(x.rx.rest)}</b><span>rest</span></div></div>
           <button class="link rt-swap" data-act="rt-swap" data-i="${i}">Swap for another</button></div>
-        <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></article>`) }`;
+        <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></article>`).join("")}</div>`;
   }
   return `<section class="card">
       <div class="rt-label">Focus muscles</div><div class="chips wrap">${chips}</div>
@@ -2889,17 +2839,9 @@ const ACT = {
     S.activeDay = copy.id;
     save(); closeThen(() => { refresh(); toast("Workout duplicated"); });
   },
-  "del-current-day"(t){
-    const d = getDay(t.dataset.id); if(!d) return;
-    ask(`Delete “${d.title}” and its ${d.exercises.length} exercise${d.exercises.length === 1 ? "" : "s"}?`, "Delete workout", () => {
-      const i = S.days.indexOf(d);
-      S.days.splice(i, 1);
-      S.activeDay = (S.days[i] || S.days[i - 1] || {}).id || null;
-      save(); refresh();
-    });
-  },
-  "del-day"(){
-    const d = (DAYEDIT && getDay(DAYEDIT)) || curDay(); if(!d) return;
+  "del-day"(t){
+    const id = t && t.dataset && t.dataset.id;
+    const d = (id && getDay(id)) || (DAYEDIT && getDay(DAYEDIT)) || curDay(); if(!d) return;
     ask(`Delete “${d.title}” and its ${d.exercises.length} exercise${d.exercises.length === 1 ? "" : "s"}?`, "Delete workout", () => {
       const i = S.days.indexOf(d);
       S.days.splice(i, 1);
@@ -2951,16 +2893,7 @@ const ACT = {
     const ex = getEx(t.dataset.day, t.dataset.id); if(!ex) return;
     ask(`Remove “${ex.name}” from this workout?`, "Remove", () => {
       const d = getDay(t.dataset.day);
-      if(!d) return;
       d.exercises = d.exercises.filter(e => e.id !== ex.id);
-      save(); refresh();
-    });
-  },
-  "del-routine-ex"(t){
-    const r = getRoutine(t.dataset.routine); if(!r) return;
-    const ex = r.exercises.find(e => e.id === t.dataset.id); if(!ex) return;
-    ask(`Remove “${ex.name}” from “${r.title}”?`, "Remove", () => {
-      r.exercises = r.exercises.filter(e => e.id !== ex.id);
       save(); refresh();
     });
   },
