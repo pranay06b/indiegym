@@ -586,12 +586,12 @@ const DEFAULT_SETS = "3 × 8–12", DEFAULT_REST = "60–90 sec";
    Broad "muscles" groups expanded into anatomical sub-parts/heads.
    ========================================================= */
 const MUSCLE_TAXONOMY = {
-  "Chest": { parts: [
+  "Chest": { exerciseCount: 171, primeMovers: ["Pectoralis Major"], parts: [
     { name: "Upper Chest (Clavicular Head)", muscle: "Pectoralis Major – Clavicular Head", notes: "Targeted by incline pressing/fly movements" },
     { name: "Middle Chest (Sternal Head)", muscle: "Pectoralis Major – Sternal Head", notes: "Targeted by flat pressing/fly movements" },
     { name: "Lower Chest (Abdominal/Costal Head)", muscle: "Pectoralis Major – Abdominal (Costal) Head", notes: "Targeted by decline pressing/dips" }
   ]},
-  "Back": { parts: [
+  "Back": { exerciseCount: 314, primeMovers: ["Latissimus Dorsi", "Upper Trapezius", "Erector Spinae"], parts: [
     { name: "Lats (Latissimus Dorsi)", muscle: "Latissimus Dorsi", notes: "Width — pulldowns, pull-ups, rows" },
     { name: "Upper Traps", muscle: "Upper Trapezius", notes: "Shrugs, upright rows" },
     { name: "Mid Traps & Rhomboids", muscle: "Trapezius (middle) / Rhomboids", notes: "Horizontal rows, face pulls" },
@@ -599,40 +599,40 @@ const MUSCLE_TAXONOMY = {
     { name: "Teres Major / Minor", muscle: "Teres Major & Minor", notes: "Assists lat-driven pulling movements" },
     { name: "Lower Back (Spinal Erectors)", muscle: "Erector Spinae", notes: "Deadlifts, back extensions, good mornings" }
   ]},
-  "Shoulders": { parts: [
+  "Shoulders": { exerciseCount: 401, primeMovers: ["Anterior Deltoids", "Lateral Deltoids", "Posterior Deltoids"], parts: [
     { name: "Front Delt (Anterior Head)", muscle: "Anterior Deltoids", notes: "Front raises, overhead/incline pressing" },
     { name: "Side Delt (Lateral Head)", muscle: "Lateral Deltoids", notes: "Lateral raises — main width driver" },
     { name: "Rear Delt (Posterior Head)", muscle: "Posterior Deltoids", notes: "Rear-delt flyes, face pulls, reverse pec-deck" },
     { name: "Rotator Cuff", muscle: "Supraspinatus / Infraspinatus / Teres Minor / Subscapularis", notes: "Internal/external rotation work" }
   ]},
-  "Biceps": { parts: [
+  "Biceps": { exerciseCount: 167, primeMovers: ["Biceps Brachii", "Brachioradialis"], parts: [
     { name: "Long Head (Outer Bicep)", muscle: "Biceps Brachii – Long Head", notes: "Peak — incline curls, drag curls" },
     { name: "Short Head (Inner Bicep)", muscle: "Biceps Brachii – Short Head", notes: "Thickness — preacher/spider curls" },
     { name: "Brachialis", muscle: "Brachialis", notes: "Underlies biceps — hammer curls, reverse curls" }
   ]},
-  "Triceps": { parts: [
+  "Triceps": { exerciseCount: 226, primeMovers: ["Triceps Brachii"], parts: [
     { name: "Long Head", muscle: "Triceps Brachii – Long Head", notes: "Overhead extensions (stretched position)" },
     { name: "Lateral Head", muscle: "Triceps Brachii – Lateral Head", notes: "Pushdowns, close-grip pressing — horseshoe shape" },
     { name: "Medial Head", muscle: "Triceps Brachii – Medial Head", notes: "Active across most triceps movements" }
   ]},
-  "Forearms": { parts: [
+  "Forearms": { exerciseCount: 129, primeMovers: ["Brachioradialis"], parts: [
     { name: "Wrist Flexors (Inner Forearm)", muscle: "Flexor Carpi Radialis / Ulnaris", notes: "Wrist curls" },
     { name: "Wrist Extensors (Outer Forearm)", muscle: "Extensor Carpi Radialis / Ulnaris", notes: "Reverse wrist curls" },
     { name: "Brachioradialis", muscle: "Brachioradialis", notes: "Hammer curls, reverse curls" },
     { name: "Grip Muscles", muscle: "Flexor Digitorum Profundus/Superficialis", notes: "Farmer's carries, grip/plate work" }
   ]},
-  "Abs": { parts: [
+  "Abs": { exerciseCount: 339, primeMovers: ["Rectus Abdominis", "Obliques"], parts: [
     { name: "Upper Abs", muscle: "Rectus Abdominis (upper fibers)", notes: "Crunches, cable crunches" },
     { name: "Lower Abs", muscle: "Rectus Abdominis (lower fibers)", notes: "Leg/knee raises, reverse crunches" },
     { name: "Obliques (Side Abs)", muscle: "External & Internal Obliques", notes: "Rotational/anti-rotation work, side bends" },
     { name: "Deep Core", muscle: "Transverse Abdominis", notes: "Planks, anti-extension bracing" }
   ]},
-  "Glutes": { parts: [
+  "Glutes": { exerciseCount: 253, primeMovers: ["Gluteus Maximus", "Gluteus Medius"], parts: [
     { name: "Gluteus Maximus", muscle: "Gluteus Maximus", notes: "Main mass/power — hip thrusts, squats, lunges" },
     { name: "Gluteus Medius", muscle: "Gluteus Medius", notes: "Hip abduction, lateral stability — side steps, clamshells" },
     { name: "Gluteus Minimus", muscle: "Gluteus Minimus", notes: "Assists medius in abduction/stabilization" }
   ]},
-  "Upper Legs": { parts: [
+  "Upper Legs": { exerciseCount: 309, primeMovers: ["Quadriceps Femoris", "Biceps Femoris"], parts: [
     { name: "Quadriceps – Rectus Femoris", muscle: "Rectus Femoris", notes: "Crosses hip and knee — leg extensions, squats" },
     { name: "Quadriceps – Vastus Lateralis", muscle: "Vastus Lateralis", notes: "Outer sweep of the quad" },
     { name: "Quadriceps – Vastus Medialis", muscle: "Vastus Medialis (VMO)", notes: "Inner quad, knee stability — deep squat ROM" },
@@ -642,11 +642,14 @@ const MUSCLE_TAXONOMY = {
     { name: "Adductors (Inner Thigh)", muscle: "Adductor Magnus/Longus/Brevis", notes: "Sumo squats, adduction machine" },
     { name: "Abductors (Outer Thigh)", muscle: "Tensor Fasciae Latae / Gluteus Medius", notes: "Abduction machine, lateral band walks" }
   ]},
-  "Lower Legs": { parts: [
+  "Lower Legs": { exerciseCount: 161, primeMovers: ["Gastrocnemius", "Soleus"], parts: [
     { name: "Gastrocnemius – Medial Head", muscle: "Gastrocnemius (medial)", notes: "Standing calf raises — visible calf mass" },
     { name: "Gastrocnemius – Lateral Head", muscle: "Gastrocnemius (lateral)", notes: "Standing calf raises" },
     { name: "Soleus", muscle: "Soleus", notes: "Seated calf raises (knee bent isolates this)" },
     { name: "Tibialis Anterior (Shin)", muscle: "Tibialis Anterior", notes: "Toe raises/dorsiflexion work" }
+  ]},
+  "Cardio": { exerciseCount: 21, primeMovers: [], parts: [
+    { name: "Cardiovascular System", muscle: "Heart & Vascular System (not a discrete muscle group)", notes: "Full-body conditioning — this dataset category groups cardio/conditioning exercises rather than a specific muscle" }
   ]}
 };
 const BODY_GROUPS = Object.keys(MUSCLE_TAXONOMY);
