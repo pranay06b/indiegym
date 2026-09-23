@@ -155,11 +155,30 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .group-ex-list{border-top:1px solid var(--line)}
 .group-ex-list .ex{padding-left:4px;padding-right:4px}
 @media(max-width:619px){
-  .head-actions{width:100%;justify-content:flex-start}
-  .head-actions .btn{flex:1 1 auto}
+  .day-head{flex-wrap:wrap;row-gap:10px}
+  .day-head > div:first-child{flex:1 1 100%;min-width:0}
+  .head-actions{width:100%;justify-content:flex-start;gap:8px;margin-top:0}
+  .head-actions .btn{flex:1 1 0;min-width:0}
+
+  /* Prevent the GIF + text + remove/chevron controls from overflowing narrow phones. */
+  .ex{grid-template-columns:80px minmax(0,1fr) 42px;gap:9px;padding:10px 0}
+  .ex .gif{width:80px}
+  .ex .go{display:none}
+  .ex .icon-btn{width:42px;height:42px;padding:0}
+  .ex-main h3{font-size:15px;line-height:1.22;overflow-wrap:anywhere}
+  .ex-sub{gap:2px 8px}
+  .ex-stats{gap:12px;margin-top:6px;flex-wrap:wrap}
+  .ex-stats b{font-size:19px}
+
+  .exercise-groups{overflow:hidden}
+  .muscle-group-head{align-items:flex-start;gap:8px}
+  .muscle-group-head b{font-size:25px;min-width:0;overflow-wrap:anywhere}
+  .muscle-group-head span{flex:0 0 auto}
+  .muscle-part-head{padding:8px 10px}
+  .muscle-part-head b{min-width:0;overflow-wrap:anywhere}
 }
-/* was: .ex{display:grid;grid-template-columns:112px 1fr 18px;... */
-.ex{display:grid;grid-template-columns:112px 1fr 28px 18px;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+/* Exercise rows: roomy desktop layout, compact mobile layout */
+.ex{display:grid;grid-template-columns:112px minmax(0,1fr) 44px 18px;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer;min-width:0}
 .ex:active{background:var(--tap)}
 .ex .gif{width:112px}
 .ex .go{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
@@ -453,9 +472,9 @@ body.has-active .toast{bottom:calc(150px + env(safe-area-inset-bottom))}
   .setbtn{display:inline-flex}
   body.kb .tabs,body.kb .resume{display:none}
 }
-@media(min-width:400px){
-  .ex{grid-template-columns:128px 1fr 28px 18px}
-  .ex .gif{width:128px}
+@media(min-width:400px) and (max-width:619px){
+  .ex{grid-template-columns:96px minmax(0,1fr) 42px;gap:10px}
+  .ex .gif{width:96px}
 }
 @media(min-width:620px){
   .lib-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -473,7 +492,7 @@ body.has-active .toast{bottom:calc(150px + env(safe-area-inset-bottom))}
   .tab:active{background:none}
   .dchip{width:150px}
     .ex-list{display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
-  .ex{grid-template-columns:168px 1fr 28px 18px}
+  .ex{grid-template-columns:168px minmax(0,1fr) 44px 18px}
   .ex .gif{width:168px}
   .ex:hover{background:var(--hover)}
   .lib-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px}
@@ -1207,6 +1226,9 @@ function groupedExerciseHtml(items, getEx, rowRenderer){
   }).join("")}</div>`;
 }
 
+function exerciseDeleteButton(act, attrs, name){
+  return `<button class="icon-btn danger ex-delete" type="button" data-act="${act}" ${attrs} aria-label="Remove ${esc(name)} from this workout" title="Remove exercise">✕</button>`;
+}
 function exRow(ex, dayId){
   return `<article class="ex" role="button" tabindex="0" data-act="open-ex" data-day="${dayId}" data-id="${ex.id}" data-sort-id="${ex.id}" aria-label="${esc(ex.name)}, open details">
     ${gifSlot(ex.gif, {alt: ex.name, video: hasVideo(ex)})}
@@ -1215,7 +1237,7 @@ function exRow(ex, dayId){
       <div class="ex-sub"><span class="ex-muscle">${esc(ex.muscle || muscleKeys(ex).map(titleCase).join(" / "))}</span>${pips(ex.difficulty)}</div>
       ${stats(ex)}
     </div>
-    <button class="drag-handle" type="button" data-act="noop" aria-label="Drag to reorder ${esc(ex.name)}">⠿</button>
+    ${exerciseDeleteButton('del-ex', `data-day="${dayId}" data-id="${ex.id}"`, ex.name)}
     <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
   </article>`;
 }
@@ -1227,6 +1249,7 @@ function routineExRow(ex, routineId){
       <div class="ex-sub"><span class="ex-muscle">${esc(ex.muscle || muscleKeys(ex).map(titleCase).join(" / "))}</span>${pips(ex.difficulty)}</div>
       ${stats(ex)}
     </div>
+    ${exerciseDeleteButton('del-routine-ex', `data-routine="${routineId}" data-id="${ex.id}"`, ex.name)}
     <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
   </article>`;
 }
@@ -1268,7 +1291,6 @@ function planView(){
         <div><h2>${esc(focus)}</h2><p class="meta">${n} exercise${n === 1 ? "" : "s"}${od ? ", " + od + " overall" : ""}</p></div>
         <div class="head-actions">
           <button class="btn sm" data-act="edit-day">Edit workout</button>
-          <button class="btn sm danger" data-act="del-current-day" data-id="${day.id}">Delete</button>
         </div>
       </div>
       ${n ? `<button class="btn signal wide start-btn" data-act="start-day">${startLabel}</button>` : ""}
@@ -2929,7 +2951,16 @@ const ACT = {
     const ex = getEx(t.dataset.day, t.dataset.id); if(!ex) return;
     ask(`Remove “${ex.name}” from this workout?`, "Remove", () => {
       const d = getDay(t.dataset.day);
+      if(!d) return;
       d.exercises = d.exercises.filter(e => e.id !== ex.id);
+      save(); refresh();
+    });
+  },
+  "del-routine-ex"(t){
+    const r = getRoutine(t.dataset.routine); if(!r) return;
+    const ex = r.exercises.find(e => e.id === t.dataset.id); if(!ex) return;
+    ask(`Remove “${ex.name}” from “${r.title}”?`, "Remove", () => {
+      r.exercises = r.exercises.filter(e => e.id !== ex.id);
       save(); refresh();
     });
   },
