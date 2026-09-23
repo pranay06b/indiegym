@@ -222,6 +222,13 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .bm-ex-root svg{width:100%;height:auto;display:block}
 .bm-ex-caption{text-align:center;font-size:13px;color:var(--muted);margin:6px 0 0}
 .bm-ex-muscle-name{color:#dc2626;font-weight:800}
+.bm-ex-secondary-name{color:#ca8a04;font-weight:800}
+.bm-ex-views{display:flex;justify-content:center;gap:14px}
+.bm-ex-views figure{margin:0;flex:0 1 150px;min-width:0;text-align:center}
+.bm-ex-views figcaption{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.bm-ex-views .bm-ex-root{max-width:none}
+.bm-ex-legend{display:flex;justify-content:center;gap:14px;font-size:12px;color:var(--muted);margin-top:6px;flex-wrap:wrap}
+.bm-ex-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
 .part-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
 .part-card{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1.5px solid var(--edge);border-radius:10px;background:var(--paper);cursor:pointer;text-align:left;width:100%}
 .part-card b{display:block;font-size:15.5px}
@@ -828,6 +835,7 @@ function ensureState(s){
   if(!Array.isArray(s.routine.focus)) s.routine.focus = [];
   s.routines = Array.isArray(s.routines) ? s.routines : [];
   s.builder = Object.assign({title: "", editing: null, exercises: []}, s.builder || {});
+  s.buildPrefs = Object.assign({dayId: null, routineId: null}, s.buildPrefs || {});
   if(!Array.isArray(s.builder.exercises)) s.builder.exercises = [];
   if(s.builder.editing && !s.routines.some(r => r.id === s.builder.editing)) s.builder.editing = null;
   
@@ -1327,7 +1335,7 @@ function equipList(e){
 const diffOf = e => e.difficulty ? diffClass(e.difficulty) : "";
 const hasVideo = e => !!(e.video || e.videoDeep);
 const searchHay = e => [e.name, (e.aliases || []).join(" "), muscleKeys(e).join(" "), equipList(e).join(" "), e.primeMover || "", (e.supportMuscles || []).join(" "), (e.movement || []).join(" ")].join(" ").toLowerCase();
-const EXTRA_FIELDS = ["video","videoDeep","primeMover","supportMuscles","movement","plane","bodyRegion","force","laterality","posture","grip","classification","mechanics","skillLevel","sources"];
+const EXTRA_FIELDS = ["video","videoDeep","primeMover","supportMuscles","secondaryMuscle","tertiaryMuscle","movement","plane","bodyRegion","force","laterality","posture","grip","classification","mechanics","skillLevel","sources"];
 const isWorkout = e => !NOT_WORKOUT.test(e.name) && e.classification !== "Mobility";
 
 /* Filter options come from the data, so they always match what exists */
@@ -1595,48 +1603,102 @@ const EX_MUSCLE_REGIONS = {
   "Upper Legs": {view: "FRONT", ids: ["quads-left", "quads-right", "adductors-left", "adductors-right"]},
   "Lower Legs": {view: "BACK", ids: ["calves-gastroc-medial-left", "calves-gastroc-lateral-left", "calves-soleus-left", "calves-gastroc-medial-right", "calves-gastroc-lateral-right", "calves-soleus-right"]}
 };
+/* Secondary-only muscle names (from supportMuscles / secondaryMuscle / tertiaryMuscle) that the
+   primary table above doesn't already cover. Mapped to the nearest visible region on the body map. */
+const EX_SECONDARY_EXTRA = {
+  "Trapezius": {view: "BACK", ids: ["traps-upper-left", "traps-upper-right", "traps-mid-left", "traps-mid-right", "traps-lower-left", "traps-lower-right"]},
+  "Rhomboids": {view: "BACK", ids: ["traps-mid-left", "traps-mid-right"]},
+  "Brachialis": {view: "FRONT", ids: ["biceps-left", "biceps-right"]},
+  "Iliopsoas": {view: "FRONT", ids: ["hip-flexor-left", "hip-flexor-right"]},
+  "Tensor Fasciae Latae": {view: "FRONT", ids: ["hip-flexor-left", "hip-flexor-right"]},
+  "Rectus Femoris": {view: "FRONT", ids: ["quads-left", "quads-right"]},
+  "Levator Scapulae": {view: "BACK", ids: ["neck-left", "neck-right"]},
+  "Infraspinatus": {view: "BACK", ids: ["deltoid-rear-left", "deltoid-rear-right"]},
+  "Teres Minor": {view: "BACK", ids: ["deltoid-rear-left", "deltoid-rear-right"]},
+  "Anconeus": {view: "BACK", ids: ["triceps-lateral-left", "triceps-lateral-right"]},
+  "Gluteus Minimus": {view: "BACK", ids: ["gluteus-medius-left", "gluteus-medius-right"]},
+  "Flexor Carpi Radialis": {view: "FRONT", ids: ["forearm-left", "forearm-right"]},
+  "Tibialis Posterior": {view: "BACK", ids: ["calves-soleus-left", "calves-soleus-right"]}
+};
+function exRegion(name){ return EX_MUSCLE_REGIONS[name] || EX_SECONDARY_EXTRA[name] || null; }
+function exSecondaryNames(ex, primaryLabel){
+  const raw = [].concat(ex.supportMuscles || [], ex.secondaryMuscle || [], ex.tertiaryMuscle || []);
+  const out = [], seen = new Set([String(primaryLabel || "").trim().toLowerCase()]);
+  raw.forEach(n => {
+    const name = String(n || "").trim(), k = name.toLowerCase();
+    if(name && !seen.has(k)){ seen.add(k); out.push(name); }
+  });
+  return out;
+}
 function exMuscleTarget(ex){
+  let primary = null;
   const pm = (ex.primeMover || "").trim();
-  if(pm && EX_MUSCLE_REGIONS[pm]) return {view: EX_MUSCLE_REGIONS[pm].view, ids: EX_MUSCLE_REGIONS[pm].ids, label: pm};
-  const groups = (ex.muscles && ex.muscles.length ? ex.muscles : (ex.muscle ? [ex.muscle] : []));
-  for(const g of groups){
-    if(EX_MUSCLE_REGIONS[g]) return {view: EX_MUSCLE_REGIONS[g].view, ids: EX_MUSCLE_REGIONS[g].ids, label: g};
+  if(pm && EX_MUSCLE_REGIONS[pm]) primary = {view: EX_MUSCLE_REGIONS[pm].view, ids: EX_MUSCLE_REGIONS[pm].ids, label: pm};
+  else{
+    const groups = (ex.muscles && ex.muscles.length ? ex.muscles : (ex.muscle ? [ex.muscle] : []));
+    for(const g of groups){
+      if(EX_MUSCLE_REGIONS[g]){ primary = {view: EX_MUSCLE_REGIONS[g].view, ids: EX_MUSCLE_REGIONS[g].ids, label: g}; break; }
+    }
   }
-  return null;
+  if(!primary) return null;
+  const primaryIds = new Set(primary.ids);
+  const secondary = [];   // {label, view, ids} — ids already claimed by the primary muscle are dropped
+  exSecondaryNames(ex, primary.label).forEach(name => {
+    const r = exRegion(name); if(!r) { secondary.push({label: name, view: null, ids: []}); return; }
+    const ids = r.ids.filter(id => !primaryIds.has(id));
+    secondary.push({label: name, view: r.view, ids});
+  });
+  // ids to paint per view
+  const views = {FRONT: {primary: [], secondary: []}, BACK: {primary: [], secondary: []}};
+  views[primary.view].primary = primary.ids.slice();
+  secondary.forEach(m => { if(m.view) m.ids.forEach(id => { if(!views[m.view].secondary.includes(id)) views[m.view].secondary.push(id); }); });
+  return {view: primary.view, ids: primary.ids, label: primary.label, secondary, views};
 }
 let BM_EX_SEQ = 0;
 const BM_EX_CHARTS = {};
 function exMuscleWidgetHtml(ex){
   const t = exMuscleTarget(ex);
   if(!t) return "";
-  const rootId = "bmExRoot" + (++BM_EX_SEQ);
+  const order = t.view === "BACK" ? ["BACK", "FRONT"] : ["FRONT", "BACK"];
+  const shown = order.filter(v => t.views[v].primary.length || t.views[v].secondary.length);
+  const figs = shown.map(v => {
+    const rootId = "bmExRoot" + (++BM_EX_SEQ);
+    return `<figure><div class="bm-ex-root" id="${rootId}" data-bm-view="${v}" data-bm-primary='${esc(JSON.stringify(t.views[v].primary))}' data-bm-secondary='${esc(JSON.stringify(t.views[v].secondary))}'></div>${shown.length > 1 ? `<figcaption>${v === "FRONT" ? "Front" : "Back"}</figcaption>` : ""}</figure>`;
+  }).join("");
+  const secLabels = t.secondary.map(m => m.label);
+  const hasSec = t.secondary.some(m => m.ids.length);
   return `<h4>Muscle targeted</h4>
-    <div class="bm-ex-widget" data-bm-ex="1" data-bm-view="${t.view}" data-bm-ids='${esc(JSON.stringify(t.ids))}' data-bm-label="${esc(t.label)}">
-      <div class="bm-ex-root" id="${rootId}"></div>
+    <div class="bm-ex-widget" data-bm-ex="1" data-bm-label="${esc(t.label)}">
+      <div class="bm-ex-views">${figs}</div>
       <p class="bm-ex-caption">Primary target: <strong class="bm-ex-muscle-name">${esc(t.label)}</strong></p>
+      ${secLabels.length ? `<p class="bm-ex-caption" style="margin-top:2px">Secondary: <strong class="bm-ex-secondary-name">${esc(secLabels.join(", "))}</strong></p>` : ""}
+      <div class="bm-ex-legend"><span><i style="background:#b91c1c"></i>Primary</span>${hasSec ? `<span><i style="background:#facc15"></i>Secondary</span>` : ""}</div>
     </div>`;
 }
 function mountExMuscleCharts(root){
   const BM = window.BodyMuscles;
   if(!BM || !root) return;
   root.querySelectorAll(".bm-ex-widget[data-bm-ex]").forEach(w => {
-    const target = $(".bm-ex-root", w);
-    if(!target || target.dataset.mounted) return;
-    target.dataset.mounted = "1";
-    let ids = [];
-    try{ ids = JSON.parse(w.dataset.bmIds); }catch(e){}
-    const state = {};
-    ids.forEach(id => { state[id] = {intensity: 9, selected: true}; });   // 9 = red on the 0-10 gradient
-    try{
-      const chart = new BM.BodyChart(target, {
-        view: w.dataset.bmView === "BACK" ? BM.ViewSide.BACK : BM.ViewSide.FRONT,
-        bodyState: state,
-        ariaLabel: `Body map highlighting ${w.dataset.bmLabel}`,
-        showViewLabel: false,
-        enableTransitions: false
-      });
-      BM_EX_CHARTS[target.id] = chart;
-    }catch(e){}
+    const label = w.dataset.bmLabel;
+    w.querySelectorAll(".bm-ex-root").forEach(target => {
+      if(target.dataset.mounted) return;
+      target.dataset.mounted = "1";
+      let prim = [], sec = [];
+      try{ prim = JSON.parse(target.dataset.bmPrimary); sec = JSON.parse(target.dataset.bmSecondary); }catch(e){}
+      const state = {};
+      sec.forEach(id => { state[id] = {intensity: 2, selected: true}; });    // 2 = yellow on the 0-10 gradient
+      prim.forEach(id => { state[id] = {intensity: 9, selected: true}; });   // 9 = red; primary wins any overlap
+      try{
+        const chart = new BM.BodyChart(target, {
+          view: target.dataset.bmView === "BACK" ? BM.ViewSide.BACK : BM.ViewSide.FRONT,
+          bodyState: state,
+          ariaLabel: `Body map highlighting ${label}${sec.length ? " and secondary muscles" : ""}`,
+          showViewLabel: false,
+          enableTransitions: false
+        });
+        BM_EX_CHARTS[target.id] = chart;
+      }catch(e){}
+    });
   });
 }
 function destroyExMuscleCharts(){
@@ -1720,8 +1782,11 @@ function buildMuscleView(){
 }
 /* Exercise detail with "add to a workout" and "add to a routine" — same add pattern used by Plan and Routines */
 function buildExDetailSheet(ex){
-  const dayOpts = S.days.map(d => `<option value="${d.id}">${esc(d.title)}</option>`).join("");
-  const routineOpts = S.routines.map(r => `<option value="${r.id}">${esc(r.title)}</option>`).join("");
+  const P = S.buildPrefs || (S.buildPrefs = {dayId: null, routineId: null});
+  const dayPick = S.days.some(d => d.id === P.dayId) ? P.dayId : null;
+  const routinePick = S.routines.some(r => r.id === P.routineId) ? P.routineId : null;
+  const dayOpts = S.days.map(d => `<option value="${d.id}"${d.id === dayPick ? " selected" : ""}>${esc(d.title)}</option>`).join("");
+  const routineOpts = S.routines.map(r => `<option value="${r.id}"${r.id === routinePick ? " selected" : ""}>${esc(r.title)}</option>`).join("");
   const best = bestText(ex.name);
   openSheet(sheetHtml({
     title: ex.name,
@@ -3304,6 +3369,7 @@ const ACT = {
     const day = getDay($("#bmDaySel")?.value);
     if(!e || !day) return;
     day.exercises.push(libToPlan(e));
+    S.buildPrefs.dayId = day.id;
     save(); closeSheet();
     if(UI.tab !== "lib") refresh();
     toast("Added to " + splitTitle(day.title, S.days.indexOf(day)).label);
@@ -3313,6 +3379,7 @@ const ACT = {
     const r = getRoutine($("#bmRoutineSel")?.value);
     if(!e || !r) return;
     r.exercises.push(libToPlan(e));
+    S.buildPrefs.routineId = r.id;
     save(); closeSheet(); refresh();
     toast("Added to “" + r.title + "”");
   }
@@ -3356,6 +3423,8 @@ document.addEventListener("change", e => {
   if(id === "setGoal"){ S.profile.goal = +e.target.value; save(); toast("Weekly goal: " + S.profile.goal); if(UI.tab === "prog") render(); }
   else if(id === "setUnit"){ S.profile.unit = e.target.value; save(); if(UI.tab === "prog") render(); }
   else if(id === "setTheme"){ setTheme(e.target.value); }
+  else if(id === "bmDaySel"){ S.buildPrefs.dayId = e.target.value; save(); }
+  else if(id === "bmRoutineSel"){ S.buildPrefs.routineId = e.target.value; save(); }
   else if(id === "setTextSelect"){ S.profile.textSelect = e.target.checked; save(); applyTextSelect(); }
   else if(id === "rtLevel"){ S.routine.level = e.target.value; S.routine.seed = 0; save(); renderKeep(); }
   else if(id === "rtEquip"){ S.routine.equip = e.target.value; S.routine.seed = 0; save(); renderKeep(); }
