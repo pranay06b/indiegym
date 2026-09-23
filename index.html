@@ -850,12 +850,17 @@ function ensureState(s){
   
   if(!Array.isArray(s.days)) s.days = [];
   if(!s.days.some(d => d.id === s.activeDay)) s.activeDay = s.days[0]?.id || null;
-  // Fill exercises that were saved before the library finished loading
-  s.days.forEach(d => d.exercises.forEach(x => {
+  // Fill exercises that were saved before the library finished loading, or that were exported
+  // "slim" (name/sets/rest only) and re-imported. Must cover BOTH workouts and routines:
+  // routines were previously skipped, so imported routine exercises had no muscle data and
+  // every one was classified as "Other".
+  const fillFromLib = x => {
     const l = findLib(x.name);
     if(!x.gif && !x.instructions){ if(l) Object.assign(x, {...l, id: x.id, sets: x.sets, rest: x.rest}); }
     else if(l && !x.sources) EXTRA_FIELDS.forEach(k => { if(l[k] != null && x[k] == null) x[k] = l[k]; });
-  }));
+  };
+  s.days.forEach(d => d.exercises.forEach(fillFromLib));
+  s.routines.forEach(r => Array.isArray(r.exercises) && r.exercises.forEach(fillFromLib));
   return s;
 }
 function loadState(){
