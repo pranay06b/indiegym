@@ -108,7 +108,7 @@ button{-webkit-appearance:none;appearance:none}
 :root[data-theme="dark"] .themebtn .i-moon{display:none}
 
 /* ---------- Tabs ---------- */
-.tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(5,1fr);background:var(--paper);border-top:1.5px solid var(--edge);padding-bottom:env(safe-area-inset-bottom)}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(6,1fr);background:var(--paper);border-top:1.5px solid var(--edge);padding-bottom:env(safe-area-inset-bottom)}
 .tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:60px;border:0;background:none;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer}
 .tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .tab.on{color:var(--accent);box-shadow:inset 0 3px 0 var(--accent)}
@@ -194,7 +194,31 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .tile .gif{width:100%}
 .tile-name{display:block;font-weight:700;font-size:14px;line-height:1.25}
 .tile-meta{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}
+.tile-area{color:var(--accent)}
 .empty{grid-column:1/-1;color:var(--muted);padding:24px 0}
+
+/* ---------- Build a muscle ---------- */
+.bm-toggle{display:flex;justify-content:center;gap:8px;margin:14px 0}
+.bmuscle-wrap{position:relative;background:var(--soft);border:1.5px solid var(--edge);border-radius:20px;padding:14px 10px 10px}
+.bm-tooltip{position:absolute;left:0;top:0;pointer-events:none;background:var(--strong-bg);color:var(--strong-fg);font:800 13px var(--font-display);letter-spacing:.04em;text-transform:uppercase;padding:6px 12px;border-radius:9px;white-space:nowrap;opacity:0;transform:translate(-50%,-140%);transition:opacity .1s ease;z-index:5}
+.bm-tooltip.on{opacity:1}
+.bodymap{max-width:300px;margin:0 auto}
+.bodymap svg{width:100%;height:auto;display:block}
+.bm-ex-widget{background:var(--soft);border:1.5px solid var(--edge);border-radius:16px;padding:12px 10px 14px;margin:10px 0 16px}
+.bm-ex-root{max-width:160px;margin:0 auto}
+.bm-ex-root svg{width:100%;height:auto;display:block}
+.bm-ex-caption{text-align:center;font-size:13px;color:var(--muted);margin:6px 0 0}
+.bm-ex-muscle-name{color:#dc2626;font-weight:800}
+.part-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+.part-card{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1.5px solid var(--edge);border-radius:10px;background:var(--paper);cursor:pointer;text-align:left;width:100%}
+.part-card b{display:block;font-size:15.5px}
+.part-card span{display:block;color:var(--muted);font-size:13px;margin-top:3px;line-height:1.35}
+.part-card .go{flex:0 0 auto;width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2.4;margin-top:2px}
+.bmex-row{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.bmex-row .gif{width:72px;flex:0 0 72px}
+.bmex-main{flex:1;min-width:0;cursor:pointer}
+.bmex-main h3{font-size:15px;font-weight:700}
+@media(min-width:620px){ .part-grid{grid-template-columns:1fr 1fr} }
 
 /* ---------- Buy me a coffee ---------- */
 .coffee{max-width:420px;padding:10px;background:#fff}
@@ -485,6 +509,7 @@ img{
       <button class="tab" data-act="tab" data-tab="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>Plan</button>
       <button class="tab" data-act="tab" data-tab="lib"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Library</button>
       <button class="tab" data-act="tab" data-tab="routines"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 5.3L20 10l-4.4 3.6L17 19l-5-3-5 3 1.4-5.4L4 10l5.8-1.7z"/></svg>Routines</button>
+      <button class="tab" data-act="tab" data-tab="build"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6M20 9v6M2 12h2M20 12h2M7 7v10M17 7v10M7 12h10"/></svg>Build</button>
       <button class="tab" data-act="tab" data-tab="prog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0V4zM8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3M12 13v4M8 20h8M10 17h4"/></svg>Progress</button>
       <button class="tab" data-act="tab" data-tab="coffee"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3v2M12 3v2"/></svg>Coffee</button>
     </nav>
@@ -503,7 +528,8 @@ img{
 <div class="scrim" id="scrim"><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="./data.js?v=20260920-4" onerror="window.__JEFIT_LOAD_ERROR=true"></script>
+<script src="./data.js?v=20260923-1" onerror="window.__JEFIT_LOAD_ERROR=true"></script>
+<script src="https://unpkg.com/body-muscles/dist/umd/body-muscles.umd.min.js"></script>
 <script>
 window.__JEFIT_DATA_COUNT = Array.isArray(window.JEFIT_SCRAPED) ? window.JEFIT_SCRAPED.length : 0;
 "use strict";
@@ -526,6 +552,134 @@ const STATE_STORE = "indiegym_state_v1";
 const SPLIT = /[\/|,\\]+/;
 const DAY_MS = 864e5;
 const DEFAULT_SETS = "3 × 8–12", DEFAULT_REST = "60–90 sec";
+
+/* =========================================================
+   Build a muscle — taxonomy (derived from data_jefit_enriched_v2.js)
+   Broad "muscles" groups expanded into anatomical sub-parts/heads.
+   ========================================================= */
+const MUSCLE_TAXONOMY = {
+  "Chest": { parts: [
+    { name: "Upper Chest (Clavicular Head)", muscle: "Pectoralis Major – Clavicular Head", notes: "Targeted by incline pressing/fly movements" },
+    { name: "Middle Chest (Sternal Head)", muscle: "Pectoralis Major – Sternal Head", notes: "Targeted by flat pressing/fly movements" },
+    { name: "Lower Chest (Abdominal/Costal Head)", muscle: "Pectoralis Major – Abdominal (Costal) Head", notes: "Targeted by decline pressing/dips" }
+  ]},
+  "Back": { parts: [
+    { name: "Lats (Latissimus Dorsi)", muscle: "Latissimus Dorsi", notes: "Width — pulldowns, pull-ups, rows" },
+    { name: "Upper Traps", muscle: "Upper Trapezius", notes: "Shrugs, upright rows" },
+    { name: "Mid Traps & Rhomboids", muscle: "Trapezius (middle) / Rhomboids", notes: "Horizontal rows, face pulls" },
+    { name: "Lower Traps", muscle: "Trapezius (lower)", notes: "Y-raises, pull-ups" },
+    { name: "Teres Major / Minor", muscle: "Teres Major & Minor", notes: "Assists lat-driven pulling movements" },
+    { name: "Lower Back (Spinal Erectors)", muscle: "Erector Spinae", notes: "Deadlifts, back extensions, good mornings" }
+  ]},
+  "Shoulders": { parts: [
+    { name: "Front Delt (Anterior Head)", muscle: "Anterior Deltoids", notes: "Front raises, overhead/incline pressing" },
+    { name: "Side Delt (Lateral Head)", muscle: "Lateral Deltoids", notes: "Lateral raises — main width driver" },
+    { name: "Rear Delt (Posterior Head)", muscle: "Posterior Deltoids", notes: "Rear-delt flyes, face pulls, reverse pec-deck" },
+    { name: "Rotator Cuff", muscle: "Supraspinatus / Infraspinatus / Teres Minor / Subscapularis", notes: "Internal/external rotation work" }
+  ]},
+  "Biceps": { parts: [
+    { name: "Long Head (Outer Bicep)", muscle: "Biceps Brachii – Long Head", notes: "Peak — incline curls, drag curls" },
+    { name: "Short Head (Inner Bicep)", muscle: "Biceps Brachii – Short Head", notes: "Thickness — preacher/spider curls" },
+    { name: "Brachialis", muscle: "Brachialis", notes: "Underlies biceps — hammer curls, reverse curls" }
+  ]},
+  "Triceps": { parts: [
+    { name: "Long Head", muscle: "Triceps Brachii – Long Head", notes: "Overhead extensions (stretched position)" },
+    { name: "Lateral Head", muscle: "Triceps Brachii – Lateral Head", notes: "Pushdowns, close-grip pressing — horseshoe shape" },
+    { name: "Medial Head", muscle: "Triceps Brachii – Medial Head", notes: "Active across most triceps movements" }
+  ]},
+  "Forearms": { parts: [
+    { name: "Wrist Flexors (Inner Forearm)", muscle: "Flexor Carpi Radialis / Ulnaris", notes: "Wrist curls" },
+    { name: "Wrist Extensors (Outer Forearm)", muscle: "Extensor Carpi Radialis / Ulnaris", notes: "Reverse wrist curls" },
+    { name: "Brachioradialis", muscle: "Brachioradialis", notes: "Hammer curls, reverse curls" },
+    { name: "Grip Muscles", muscle: "Flexor Digitorum Profundus/Superficialis", notes: "Farmer's carries, grip/plate work" }
+  ]},
+  "Abs": { parts: [
+    { name: "Upper Abs", muscle: "Rectus Abdominis (upper fibers)", notes: "Crunches, cable crunches" },
+    { name: "Lower Abs", muscle: "Rectus Abdominis (lower fibers)", notes: "Leg/knee raises, reverse crunches" },
+    { name: "Obliques (Side Abs)", muscle: "External & Internal Obliques", notes: "Rotational/anti-rotation work, side bends" },
+    { name: "Deep Core", muscle: "Transverse Abdominis", notes: "Planks, anti-extension bracing" }
+  ]},
+  "Glutes": { parts: [
+    { name: "Gluteus Maximus", muscle: "Gluteus Maximus", notes: "Main mass/power — hip thrusts, squats, lunges" },
+    { name: "Gluteus Medius", muscle: "Gluteus Medius", notes: "Hip abduction, lateral stability — side steps, clamshells" },
+    { name: "Gluteus Minimus", muscle: "Gluteus Minimus", notes: "Assists medius in abduction/stabilization" }
+  ]},
+  "Upper Legs": { parts: [
+    { name: "Quadriceps – Rectus Femoris", muscle: "Rectus Femoris", notes: "Crosses hip and knee — leg extensions, squats" },
+    { name: "Quadriceps – Vastus Lateralis", muscle: "Vastus Lateralis", notes: "Outer sweep of the quad" },
+    { name: "Quadriceps – Vastus Medialis", muscle: "Vastus Medialis (VMO)", notes: "Inner quad, knee stability — deep squat ROM" },
+    { name: "Quadriceps – Vastus Intermedius", muscle: "Vastus Intermedius", notes: "Deep quad layer, general knee extension" },
+    { name: "Hamstrings – Biceps Femoris", muscle: "Biceps Femoris", notes: "Outer hamstring — leg curls, RDLs" },
+    { name: "Hamstrings – Semitendinosus/Semimembranosus", muscle: "Semitendinosus & Semimembranosus", notes: "Inner hamstring — RDLs, glute-ham raises" },
+    { name: "Adductors (Inner Thigh)", muscle: "Adductor Magnus/Longus/Brevis", notes: "Sumo squats, adduction machine" },
+    { name: "Abductors (Outer Thigh)", muscle: "Tensor Fasciae Latae / Gluteus Medius", notes: "Abduction machine, lateral band walks" }
+  ]},
+  "Lower Legs": { parts: [
+    { name: "Gastrocnemius – Medial Head", muscle: "Gastrocnemius (medial)", notes: "Standing calf raises — visible calf mass" },
+    { name: "Gastrocnemius – Lateral Head", muscle: "Gastrocnemius (lateral)", notes: "Standing calf raises" },
+    { name: "Soleus", muscle: "Soleus", notes: "Seated calf raises (knee bent isolates this)" },
+    { name: "Tibialis Anterior (Shin)", muscle: "Tibialis Anterior", notes: "Toe raises/dorsiflexion work" }
+  ]}
+};
+const BODY_GROUPS = Object.keys(MUSCLE_TAXONOMY);
+/* Keyword rules that map an exercise's name to a specific sub-part within its broad muscle group.
+   First matching rule wins; anything unmatched falls back to defaultPart. */
+const PART_MATCHERS = {
+  "Chest": { defaultPart: 1, rules: [
+    {re:/incline/i, part:0},
+    {re:/decline|\bdip\b/i, part:2}
+  ]},
+  "Back": { defaultPart: 0, rules: [
+    {re:/deadlift|back extension|good morning|hyperextension|superman/i, part:5},
+    {re:/shrug/i, part:1},
+    {re:/face pull|reverse fly|rear.?delt|y-?raise/i, part:3},
+    {re:/pull-?up|chin-?up|pulldown|pullover/i, part:0},
+    {re:/row/i, part:2}
+  ]},
+  "Shoulders": { defaultPart: 0, rules: [
+    {re:/lateral raise|side raise/i, part:1},
+    {re:/rear.?delt|reverse fly|reverse pec|face pull/i, part:2},
+    {re:/rotator|internal rotation|external rotation|\bcuff\b/i, part:3},
+    {re:/front raise|overhead press|shoulder press|military press|push press|arnold press/i, part:0}
+  ]},
+  "Biceps": { defaultPart: 1, rules: [
+    {re:/incline curl|drag curl/i, part:0},
+    {re:/hammer curl|reverse curl/i, part:2},
+    {re:/preacher|spider curl/i, part:1}
+  ]},
+  "Triceps": { defaultPart: 2, rules: [
+    {re:/overhead|french press|skull.?crusher|extension/i, part:0},
+    {re:/pushdown|close.?grip|\bdip\b|kickback/i, part:1}
+  ]},
+  "Forearms": { defaultPart: 2, rules: [
+    {re:/reverse wrist curl|extensor/i, part:1},
+    {re:/wrist curl/i, part:0},
+    {re:/hammer curl|reverse curl/i, part:2},
+    {re:/farmer|grip|plate pinch|dead hang/i, part:3}
+  ]},
+  "Abs": { defaultPart: 0, rules: [
+    {re:/leg raise|reverse crunch|knee raise|toes to bar/i, part:1},
+    {re:/twist|oblique|side bend|woodchop|side plank/i, part:2},
+    {re:/\bplank\b|dead bug|hollow|bird dog/i, part:3},
+    {re:/crunch/i, part:0}
+  ]},
+  "Glutes": { defaultPart: 0, rules: [
+    {re:/abduction|clamshell|band walk|side step|fire hydrant/i, part:1},
+    {re:/hip thrust|bridge|squat|lunge|deadlift|step-?up/i, part:0}
+  ]},
+  "Upper Legs": { defaultPart: 1, rules: [
+    {re:/leg extension/i, part:0},
+    {re:/adduction|sumo/i, part:6},
+    {re:/abduction/i, part:7},
+    {re:/leg curl|romanian deadlift|\brdl\b|glute.?ham|nordic/i, part:4},
+    {re:/squat|lunge|leg press/i, part:1}
+  ]},
+  "Lower Legs": { defaultPart: 0, rules: [
+    {re:/seated calf/i, part:2},
+    {re:/toe raise|dorsiflexion|tibialis/i, part:3},
+    {re:/standing calf|calf raise/i, part:0}
+  ]}
+};
 
 /* =========================================================
    Theme: light, dark, or follow the device
@@ -643,7 +797,8 @@ function buildDefault(){
    State (saved in this browser)
    ========================================================= */
 let S;
-const UI = {tab: "plan", q: "", muscles: [], difficulty: "All", equipment: "All", media: "All", matchAll: false, libLimit: 120, routineOpen: null}; 
+const UI = {tab: "plan", q: "", muscles: [], difficulty: "All", equipment: "All", media: "All", matchAll: false, libLimit: 120, routineOpen: null,
+  build: {screen: "body", view: "front", group: null, partIndex: null}};
 let SHEET = "";
 
 function ensureState(s){
@@ -1110,9 +1265,10 @@ function syncFilterUI(){
   $("#libChips").innerHTML = chips.map(c => `<button class="gchip ${c.on ? "on" : ""}" data-act="group" data-g="${esc(c.key)}" aria-pressed="${c.on}">${esc(c.label)}</button>`).join("");
 }
 function tile(e){
+  const muscleBit = esc((e.muscles && e.muscles.length ? e.muscles : [e.muscle]).join(" / ")) + (e.muscleAreaLabel ? ` <span class="tile-area">(${esc(e.muscleAreaLabel)})</span>` : "");
   return `<div class="tile" role="button" tabindex="0" data-act="open-lib" data-name="${esc(e.name)}" aria-label="${esc(e.name)}, open details">
     ${gifSlot(e.gif, {alt: e.name, video: hasVideo(e)})}
-    <div><span class="tile-name">${esc(e.name)}</span><span class="tile-meta">${esc((e.muscles && e.muscles.length ? e.muscles : [e.muscle]).join(" / "))} · ${esc(equipList(e).join(" / "))}${e.custom ? ", yours" : ""}</span></div>
+    <div><span class="tile-name">${esc(e.name)}</span><span class="tile-meta">${muscleBit} · ${esc(equipList(e).join(" / "))}${e.custom ? ", yours" : ""}</span></div>
   </div>`;
 }
 function updateLib(){
@@ -1190,8 +1346,264 @@ function coffeeView(){
     <p class="hint coffee-note">Using this phone? Take a screenshot of the code, then choose it from your gallery on your UPI app’s scan screen.</p>`;
 }
 
+/* =========================================================
+   Build a muscle: body diagram -> muscle parts -> targeted exercises
+   ========================================================= */
+function partExercises(group, partIndex){
+  const gk = canon(group);
+  const pool = libItems().filter(isWorkout).filter(e => muscleKeys(e).includes(gk));
+  const M = PART_MATCHERS[group];
+  if(!M) return {list: pool, fallback: false};
+  const matchedPart = e => { for(const r of M.rules) if(r.re.test(e.name)) return r.part; return M.defaultPart; };
+  let list = pool.filter(e => matchedPart(e) === partIndex);
+  let fallback = false;
+  if(!list.length){ list = pool; fallback = true; }
+  return {list, fallback};
+}
+/* body-muscles integration: classify the library's 70+ anatomical regions into
+   our own broad MUSCLE_TAXONOMY groups by matching on their human-readable name,
+   so we don't have to hardcode the library's internal muscle-id list. */
+let BM_CHART = null;
+let BM_BASE_STATE = null;
+let BM_HOVER_ID = null;
+const BM_DEFS_CACHE = {};
+function bmClassify(name){
+  const n = (name || "").toLowerCase();
+  if(/chest|pec/.test(n)) return "Chest";
+  if(/lat(?:issimus)?|trapezius|\btrap\b|rhomboid|spine|\bback\b/.test(n)) return "Back";
+  if(/delt|shoulder/.test(n)) return "Shoulders";
+  if(/bicep/.test(n)) return "Biceps";
+  if(/tricep/.test(n)) return "Triceps";
+  if(/forearm/.test(n)) return "Forearms";
+  if(/abdominal|oblique|\babs\b|\bcore\b/.test(n)) return "Abs";
+  if(/glute/.test(n)) return "Glutes";
+  if(/quad|hamstring|adductor|thigh/.test(n)) return "Upper Legs";
+  if(/calv|tibialis|shin|soleus|gastrocnemius/.test(n)) return "Lower Legs";
+  return null;
+}
+function bmMuscleDefs(view){
+  if(BM_DEFS_CACHE[view]) return BM_DEFS_CACHE[view];
+  const BM = window.BodyMuscles;
+  if(!BM || !BM.filterMuscles) return [];
+  const side = view === "back" ? BM.ViewSide.BACK : BM.ViewSide.FRONT;
+  const defs = BM.filterMuscles(side) || [];
+  BM_DEFS_CACHE[view] = defs;
+  return defs;
+}
+function bmBuildState(view){
+  const state = {};
+  bmMuscleDefs(view).forEach(d => {
+    const grp = bmClassify(d.name);
+    const info = grp && MUSCLE_TAXONOMY[grp];
+    const active = UI.build.group && grp === UI.build.group;
+    state[d.id] = {
+      intensity: info ? Math.max(2, Math.min(9, Math.round(info.exerciseCount / 40))) : 0,
+      selected: !!active
+    };
+  });
+  return state;
+}
+function bmApplyHover(hoverId){
+  if(!BM_CHART || !BM_BASE_STATE) return;
+  BM_HOVER_ID = hoverId;
+  const state = {...BM_BASE_STATE};
+  if(hoverId){
+    const cur = state[hoverId] || {intensity: 0, selected: false};
+    state[hoverId] = {...cur, intensity: 10}; // 10 = red on the library's 0-10 gradient
+  }
+  BM_CHART.update({bodyState: state});
+}
+function bmDestroyChart(){
+  if(BM_CHART){ try{ BM_CHART.destroy(); }catch(e){} BM_CHART = null; }
+  BM_BASE_STATE = null;
+  BM_HOVER_ID = null;
+}
+/* ---------- Per-exercise "muscle targeted" body-muscles diagram ----------
+   Maps this dataset's own vocabulary — the verified `primeMover` name where
+   we have one (175 exercises), falling back to the broad JEFIT `muscles`
+   group otherwise — onto the body-muscles library's anatomical region ids,
+   so every exercise's description can show exactly where it hits on the
+   body, highlighted in red (intensity 9 on the library's 0-10 scale). */
+const EX_MUSCLE_REGIONS = {
+  // exact anatomical target — used when the dataset's verified primeMover is known
+  "Biceps Brachii": {view: "FRONT", ids: ["biceps-left", "biceps-right"]},
+  "Pectoralis Major": {view: "FRONT", ids: ["chest-upper-left", "chest-lower-left", "chest-upper-right", "chest-lower-right"]},
+  "Latissimus Dorsi": {view: "BACK", ids: ["lats-upper-left", "lats-mid-left", "lats-lower-left", "lats-upper-right", "lats-mid-right", "lats-lower-right"]},
+  "Rectus Abdominis": {view: "FRONT", ids: ["abs-upper-left", "abs-upper-right", "abs-lower-left", "abs-lower-right"]},
+  "Anterior Deltoids": {view: "FRONT", ids: ["shoulder-front-left", "shoulder-front-right"]},
+  "Quadriceps Femoris": {view: "FRONT", ids: ["quads-left", "quads-right"]},
+  "Gluteus Maximus": {view: "BACK", ids: ["gluteus-maximus-left", "gluteus-maximus-right"]},
+  "Lateral Deltoids": {view: "FRONT", ids: ["shoulder-side-left", "shoulder-side-right"]},
+  "Obliques": {view: "FRONT", ids: ["obliques-left", "obliques-right"]},
+  "Triceps Brachii": {view: "BACK", ids: ["triceps-long-left", "triceps-lateral-left", "triceps-long-right", "triceps-lateral-right"]},
+  "Posterior Deltoids": {view: "BACK", ids: ["deltoid-rear-left", "deltoid-rear-right"]},
+  "Biceps Femoris": {view: "BACK", ids: ["hamstrings-lateral-left", "hamstrings-lateral-right"]},
+  "Erector Spinae": {view: "BACK", ids: ["lower-back-erectors-left", "lower-back-erectors-right"]},
+  "Upper Trapezius": {view: "BACK", ids: ["traps-upper-left", "traps-upper-right"]},
+  "Gastrocnemius": {view: "BACK", ids: ["calves-gastroc-medial-left", "calves-gastroc-lateral-left", "calves-gastroc-medial-right", "calves-gastroc-lateral-right"]},
+  "Brachioradialis": {view: "FRONT", ids: ["forearm-left", "forearm-right"]},
+  "Gluteus Medius": {view: "BACK", ids: ["gluteus-medius-left", "gluteus-medius-right"]},
+  "Soleus": {view: "BACK", ids: ["calves-soleus-left", "calves-soleus-right"]},
+  // broad JEFIT "muscles" group — fallback for exercises with no verified primeMover
+  "Chest": {view: "FRONT", ids: ["chest-upper-left", "chest-lower-left", "chest-upper-right", "chest-lower-right"]},
+  "Back": {view: "BACK", ids: ["lats-upper-left", "lats-mid-left", "lats-lower-left", "lats-upper-right", "lats-mid-right", "lats-lower-right", "traps-mid-left", "traps-mid-right", "lower-back-erectors-left", "lower-back-erectors-right"]},
+  "Shoulders": {view: "FRONT", ids: ["shoulder-front-left", "shoulder-front-right", "shoulder-side-left", "shoulder-side-right"]},
+  "Biceps": {view: "FRONT", ids: ["biceps-left", "biceps-right"]},
+  "Triceps": {view: "BACK", ids: ["triceps-long-left", "triceps-lateral-left", "triceps-long-right", "triceps-lateral-right"]},
+  "Forearms": {view: "FRONT", ids: ["forearm-left", "forearm-right"]},
+  "Abs": {view: "FRONT", ids: ["abs-upper-left", "abs-upper-right", "abs-lower-left", "abs-lower-right", "obliques-left", "obliques-right"]},
+  "Glutes": {view: "BACK", ids: ["gluteus-maximus-left", "gluteus-maximus-right", "gluteus-medius-left", "gluteus-medius-right"]},
+  "Upper Legs": {view: "FRONT", ids: ["quads-left", "quads-right", "adductors-left", "adductors-right"]},
+  "Lower Legs": {view: "BACK", ids: ["calves-gastroc-medial-left", "calves-gastroc-lateral-left", "calves-soleus-left", "calves-gastroc-medial-right", "calves-gastroc-lateral-right", "calves-soleus-right"]}
+};
+function exMuscleTarget(ex){
+  const pm = (ex.primeMover || "").trim();
+  if(pm && EX_MUSCLE_REGIONS[pm]) return {view: EX_MUSCLE_REGIONS[pm].view, ids: EX_MUSCLE_REGIONS[pm].ids, label: pm};
+  const groups = (ex.muscles && ex.muscles.length ? ex.muscles : (ex.muscle ? [ex.muscle] : []));
+  for(const g of groups){
+    if(EX_MUSCLE_REGIONS[g]) return {view: EX_MUSCLE_REGIONS[g].view, ids: EX_MUSCLE_REGIONS[g].ids, label: g};
+  }
+  return null;
+}
+let BM_EX_SEQ = 0;
+const BM_EX_CHARTS = {};
+function exMuscleWidgetHtml(ex){
+  const t = exMuscleTarget(ex);
+  if(!t) return "";
+  const rootId = "bmExRoot" + (++BM_EX_SEQ);
+  return `<h4>Muscle targeted</h4>
+    <div class="bm-ex-widget" data-bm-ex="1" data-bm-view="${t.view}" data-bm-ids='${esc(JSON.stringify(t.ids))}' data-bm-label="${esc(t.label)}">
+      <div class="bm-ex-root" id="${rootId}"></div>
+      <p class="bm-ex-caption">Primary target: <strong class="bm-ex-muscle-name">${esc(t.label)}</strong></p>
+    </div>`;
+}
+function mountExMuscleCharts(root){
+  const BM = window.BodyMuscles;
+  if(!BM || !root) return;
+  root.querySelectorAll(".bm-ex-widget[data-bm-ex]").forEach(w => {
+    const target = $(".bm-ex-root", w);
+    if(!target || target.dataset.mounted) return;
+    target.dataset.mounted = "1";
+    let ids = [];
+    try{ ids = JSON.parse(w.dataset.bmIds); }catch(e){}
+    const state = {};
+    ids.forEach(id => { state[id] = {intensity: 9, selected: true}; });   // 9 = red on the 0-10 gradient
+    try{
+      const chart = new BM.BodyChart(target, {
+        view: w.dataset.bmView === "BACK" ? BM.ViewSide.BACK : BM.ViewSide.FRONT,
+        bodyState: state,
+        ariaLabel: `Body map highlighting ${w.dataset.bmLabel}`,
+        showViewLabel: false,
+        enableTransitions: false
+      });
+      BM_EX_CHARTS[target.id] = chart;
+    }catch(e){}
+  });
+}
+function destroyExMuscleCharts(){
+  Object.values(BM_EX_CHARTS).forEach(c => { try{ c.destroy(); }catch(e){} });
+  for(const k in BM_EX_CHARTS) delete BM_EX_CHARTS[k];
+}
+function mountBodyChart(){
+  bmDestroyChart();
+  const root = $("#bmChartRoot");
+  const BM = window.BodyMuscles;
+  if(!root || !BM) return;
+  const view = UI.build.view || "front";
+  const hint = $("#bmHoverHint");
+  const wrap = root.closest(".bmuscle-wrap");
+  const tip = $("#bmTooltip");
+  if(wrap && tip){
+    wrap.addEventListener("mousemove", e => {
+      const r = wrap.getBoundingClientRect();
+      tip.style.left = (e.clientX - r.left) + "px";
+      tip.style.top = (e.clientY - r.top) + "px";
+    });
+  }
+  BM_CHART = new BM.BodyChart(root, {
+    view: view === "back" ? BM.ViewSide.BACK : BM.ViewSide.FRONT,
+    bodyState: (BM_BASE_STATE = bmBuildState(view)),
+    ariaLabel: "Interactive muscle map — tap a muscle to see targeted exercises",
+    showViewLabel: false,
+    onMuscleClick(id, name){
+      const grp = bmClassify(name);
+      if(!grp || !MUSCLE_TAXONOMY[grp]){ toast("Not tracked here yet — try a highlighted group below."); return; }
+      UI.build.group = grp; UI.build.screen = "parts"; UI.build.partIndex = null; render(); window.scrollTo(0, 0);
+    },
+    onMuscleHover(id){
+      if(id == null){
+        if(hint) hint.textContent = "Tap a highlighted muscle, or pick a group below.";
+        if(tip) tip.classList.remove("on");
+        bmApplyHover(null);
+        return;
+      }
+      const def = bmMuscleDefs(view).find(d => d.id === id);
+      const grp = def && bmClassify(def.name);
+      const clickable = !!(grp && MUSCLE_TAXONOMY[grp]);
+      // Macro title (the broad group, e.g. "Chest") only ever shows for muscles you can actually tap through to.
+      if(hint) hint.textContent = clickable ? `Tap to explore ${grp}` : "Not tracked in Build a muscle yet.";
+      if(tip){
+        if(clickable){ tip.textContent = grp; tip.classList.add("on"); }
+        else tip.classList.remove("on");
+      }
+      bmApplyHover(clickable ? id : null);
+    }
+  });
+}
+function buildBodyScreen(){
+  const view = UI.build.view || "front";
+  return `<div class="lib-head"><div><h2>Build a muscle</h2><p>Tap a muscle to see its parts and the best exercises for each.</p></div></div>
+    <div class="bm-toggle"><button class="gchip ${view === "front" ? "on" : ""}" data-act="bm-view" data-v="front" aria-pressed="${view === "front"}">Front</button><button class="gchip ${view === "back" ? "on" : ""}" data-act="bm-view" data-v="back" aria-pressed="${view === "back"}">Back</button></div>
+    <div class="bmuscle-wrap"><div class="bodymap" id="bmChartRoot"></div><div class="bm-tooltip" id="bmTooltip"></div></div>
+    <p class="hint" id="bmHoverHint" style="text-align:center;margin-top:10px">Tap a highlighted muscle, or pick a group below.</p>
+    <div class="chips wrap" style="margin-top:14px;justify-content:center">${BODY_GROUPS.map(g => `<button class="gchip" data-act="bm-pick-group" data-g="${esc(g)}">${esc(g)}</button>`).join("")}</div>`;
+}
+function buildPartsScreen(group){
+  const info = MUSCLE_TAXONOMY[group]; if(!info) return buildBodyScreen();
+  return `<button class="link" type="button" data-act="bm-back-body" style="padding-left:0;margin-bottom:10px">← All muscles</button>
+    <div class="lib-head"><div><h2>${esc(group)}</h2><p>${info.parts.length} part${info.parts.length === 1 ? "" : "s"} · pick one to see targeted exercises</p></div></div>
+    <div class="part-grid">${info.parts.map((p, i) => `<button class="part-card" type="button" data-act="bm-pick-part" data-i="${i}"><div style="flex:1"><b>${esc(p.name)}</b><span>${esc(p.muscle)}</span><span>${esc(p.notes || "")}</span></div><svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>`).join("")}</div>`;
+}
+function buildExercisesScreen(group, partIndex){
+  const info = MUSCLE_TAXONOMY[group]; const part = info && info.parts[partIndex];
+  if(!part) return buildBodyScreen();
+  const {list, fallback} = partExercises(group, partIndex);
+  return `<button class="link" type="button" data-act="bm-back-parts" style="padding-left:0;margin-bottom:6px">← ${esc(group)}</button>
+    <div class="lib-head"><div><h2>${esc(part.name)}</h2><p>${esc(part.muscle)}${part.notes ? " · " + esc(part.notes) : ""}</p></div></div>
+    ${fallback ? `<p class="rt-note">No exercises specifically isolate this exact head yet. Showing effective ${esc(group)} exercises instead.</p>` : ""}
+    ${list.length ? `<div>${list.slice(0, 60).map(e => `<div class="bmex-row">${gifSlot(e.gif, {size: "sm", alt: e.name, video: hasVideo(e)})}<div class="bmex-main" role="button" tabindex="0" data-act="bm-open-ex" data-name="${esc(e.name)}" aria-label="${esc(e.name)}, open details"><h3>${esc(e.name)}</h3><div class="ex-sub"><span class="ex-muscle">${esc(equipList(e).join(" / "))}</span>${pips(e.difficulty)}</div></div></div>`).join("")}</div>` : `<p class="empty">No exercises found for this muscle yet.</p>`}`;
+}
+function buildMuscleView(){
+  const B = UI.build;
+  if(B.screen === "parts" && B.group) return buildPartsScreen(B.group);
+  if(B.screen === "exercises" && B.group != null && B.partIndex != null) return buildExercisesScreen(B.group, B.partIndex);
+  return buildBodyScreen();
+}
+/* Exercise detail with "add to a workout" and "add to a routine" — same add pattern used by Plan and Routines */
+function buildExDetailSheet(ex){
+  const dayOpts = S.days.map(d => `<option value="${d.id}">${esc(d.title)}</option>`).join("");
+  const routineOpts = S.routines.map(r => `<option value="${r.id}">${esc(r.title)}</option>`).join("");
+  const best = bestText(ex.name);
+  openSheet(sheetHtml({
+    title: ex.name,
+    body: `${gifSlot(ex.gif, {size: "lg", alt: ex.name, video: hasVideo(ex)})}
+      ${videoLinks(ex)}
+      <div class="ex-sub"><span class="ex-muscle">${esc((ex.muscles && ex.muscles.length ? ex.muscles : [ex.muscle]).join(" / "))}</span><span class="ex-muscle">${esc(equipList(ex).join(" / "))}</span>${pips(ex.difficulty)}</div>
+      ${stats(ex)}
+      ${best ? `<p class="hint" style="margin-top:10px"><b>Your best:</b> ${esc(best)}</p>` : ""}
+      <h4>How to do it</h4>
+      <p class="how">${esc(ex.instructions || (hasVideo(ex) ? "No written steps for this exercise yet. Use the video above to see how it is done." : "No instructions added yet."))}</p>
+      ${exMuscleWidgetHtml(ex)}${factsHtml(ex)}${ex.sourceUrl ? `<p class="hint"><a href="${esc(ex.sourceUrl)}" target="_blank" rel="noopener">Open JEFIT exercise page ↗</a></p>` : ""}`,
+    foot: `<label class="add-label" for="bmDaySel">Add to a workout (Plan)</label>
+      <div class="add-row">${S.days.length ? `<select id="bmDaySel">${dayOpts}</select><button class="btn primary" data-act="bm-add-day" data-name="${esc(ex.name)}">Add</button>` : `<p class="hint">Create a workout in Plan first.</p>`}</div>
+      <label class="add-label" for="bmRoutineSel" style="margin-top:12px">Add to a saved routine</label>
+      <div class="add-row">${S.routines.length ? `<select id="bmRoutineSel">${routineOpts}</select><button class="btn" data-act="bm-add-routine" data-name="${esc(ex.name)}">Add</button>` : `<p class="hint">Save a routine in the Routines tab first.</p>`}</div>`
+  }));
+}
+
 function render(){
   refreshChrome();
+  bmDestroyChart();
   const main = $("#main");
    if(UI.tab === "plan"){
     main.innerHTML = planView();
@@ -1211,6 +1623,10 @@ function render(){
     main.innerHTML = progressView();
   }else if(UI.tab === "coffee"){
     main.innerHTML = coffeeView();
+  }else if(UI.tab === "build"){
+    main.innerHTML = buildMuscleView();
+    hydrate(main);
+    if($("#bmChartRoot", main)) mountBodyChart();
   }else{
     main.innerHTML = libSkeleton();
     syncFilterUI();
@@ -1283,6 +1699,7 @@ function sheetHtml({title, body, foot = "", close = true}){
 function resetSheetMotion(){ sheetEl.style.transform = ""; sheetEl.style.transition = ""; sheetEl.style.animation = ""; }
 function openSheet(html){
   SHEET = "";
+  destroyExMuscleCharts();
   sheetEl.innerHTML = html;
   resetSheetMotion();
   scrim.classList.add("open");
@@ -1293,12 +1710,14 @@ function openSheet(html){
     try{ history.pushState({sheet: 1}, ""); }catch(e){}
   }
   hydrate(sheetEl);
+  mountExMuscleCharts(sheetEl);
 }
 function closeSheet(fromPop){
   if(!sheetOpen) return;
   sheetOpen = false; SHEET = "";
   scrim.classList.remove("open");
   document.body.classList.remove("noscroll");
+  destroyExMuscleCharts();
   sheetEl.innerHTML = "";
   resetSheetMotion();
   pendingYes = null;
@@ -1407,7 +1826,7 @@ function setDemo(open){
   }
 }
 function factsHtml(e){
-  const rows = [["Prime mover", e.primeMover], ["Also works", (e.supportMuscles || []).join(", ")], ["Movement", (e.movement || []).join(", ")], ["Posture", e.posture], ["Grip", e.grip],
+  const rows = [["Target area", e.muscleAreaLabel], ["Prime mover", e.primeMover], ["Also works", (e.supportMuscles || []).join(", ")], ["Movement", (e.movement || []).join(", ")], ["Posture", e.posture], ["Grip", e.grip],
     ["Plane", (e.plane || []).join(", ")], ["Body region", e.bodyRegion], ["Type", [e.mechanics, e.force, e.laterality].filter(Boolean).join(" · ")], ["Style", e.classification]].filter(r => r[1]);
   return rows.length ? `<h4>Details</h4><dl class="facts">${rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : "";
 }
@@ -1432,7 +1851,8 @@ function detailSheet(ex, ctx){
       ${stats(ex)}
       ${best ? `<p class="hint" style="margin-top:10px"><b>Your best:</b> ${esc(best)}</p>` : ""}
       <h4>How to do it</h4>
-      <p class="how">${esc(ex.instructions || (hasVideo(ex) ? "No written steps for this exercise yet. Use the video above to see how it is done." : "No instructions added yet."))}</p>${factsHtml(ex)}${ex.sourceUrl ? `<p class="hint"><a href="${esc(ex.sourceUrl)}" target="_blank" rel="noopener">Open JEFIT exercise page ↗</a></p>` : ""}
+      <p class="how">${esc(ex.instructions || (hasVideo(ex) ? "No written steps for this exercise yet. Use the video above to see how it is done." : "No instructions added yet."))}</p>
+      ${exMuscleWidgetHtml(ex)}${factsHtml(ex)}${ex.sourceUrl ? `<p class="hint"><a href="${esc(ex.sourceUrl)}" target="_blank" rel="noopener">Open JEFIT exercise page ↗</a></p>` : ""}
       ${ex.source === "JEFIT" ? `<p class="hint" style="margin-top:8px">GIF and steps: JEFIT exercise database.</p>` : ""}
       ${(ex.sources || [ex.source]).includes("Functional Fitness DB") || ex.source === "Functional Fitness DB" ? `<p class="hint" style="margin-top:8px">Video and muscle details: Functional Fitness Exercise Database (Strength to Overcome).</p>` : ""}
       ${extra}`,
@@ -2704,6 +3124,31 @@ const ACT = {
       S.logs = []; S.badges = {}; S.active = null;
       save(); refresh(); toast("Progress reset");
     });
+  },
+
+  /* build a muscle */
+  "bm-view"(t){ UI.build.view = t.dataset.v; render(); },
+  "bm-pick-group"(t){ UI.build.group = t.dataset.g; UI.build.screen = "parts"; UI.build.partIndex = null; render(); window.scrollTo(0, 0); },
+  "bm-pick-part"(t){ UI.build.partIndex = +t.dataset.i; UI.build.screen = "exercises"; render(); window.scrollTo(0, 0); },
+  "bm-back-body"(){ UI.build.screen = "body"; UI.build.group = null; UI.build.partIndex = null; render(); window.scrollTo(0, 0); },
+  "bm-back-parts"(){ UI.build.screen = "parts"; UI.build.partIndex = null; render(); window.scrollTo(0, 0); },
+  "bm-open-ex"(t){ const e = libItems().find(x => x.name === t.dataset.name); if(e) buildExDetailSheet(e); },
+  "bm-add-day"(t){
+    const e = libItems().find(x => x.name === t.dataset.name);
+    const day = getDay($("#bmDaySel")?.value);
+    if(!e || !day) return;
+    day.exercises.push(libToPlan(e));
+    save(); closeSheet();
+    if(UI.tab !== "lib") refresh();
+    toast("Added to " + splitTitle(day.title, S.days.indexOf(day)).label);
+  },
+  "bm-add-routine"(t){
+    const e = libItems().find(x => x.name === t.dataset.name);
+    const r = getRoutine($("#bmRoutineSel")?.value);
+    if(!e || !r) return;
+    r.exercises.push(libToPlan(e));
+    save(); closeSheet(); refresh();
+    toast("Added to “" + r.title + "”");
   }
 };
 
