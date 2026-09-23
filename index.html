@@ -234,6 +234,12 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .part-card b{display:block;font-size:15.5px}
 .part-card span{display:block;color:var(--muted);font-size:13px;margin-top:3px;line-height:1.35}
 .part-card .go{flex:0 0 auto;width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2.4;margin-top:2px}
+.bmex-row[hidden]{display:none}
+.bm-search{margin:12px 0 4px;display:grid;gap:8px}
+.bm-search .search input{width:100%}
+.bm-search-row{display:flex;gap:8px;align-items:center}
+.bm-search-row select{flex:1;min-width:0;min-height:46px;border:1.5px solid var(--line);border-radius:8px;padding:0 10px;background:var(--field);font-size:16px}
+.bm-count{font-size:13px;color:var(--muted);margin:8px 0 2px}
 .bmex-row{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
 .bmex-row .gif{width:72px;flex:0 0 72px}
 .bmex-main{flex:1;min-width:0;cursor:pointer}
@@ -821,7 +827,7 @@ function buildDefault(){
    ========================================================= */
 let S;
 const UI = {tab: "plan", q: "", muscles: [], difficulty: "All", equipment: "All", media: "All", matchAll: false, libLimit: 120, routineOpen: null,
-  build: {screen: "body", view: "front", group: null, partIndex: null}};
+  build: {screen: "body", view: "front", group: null, partIndex: null, q: "", pm: "All", partQ: "", partPm: "All"}};
 let SHEET = "";
 
 function ensureState(s){
@@ -1643,11 +1649,22 @@ function exMuscleTarget(ex){
   if(!primary) return null;
   const primaryIds = new Set(primary.ids);
   const secondary = [];   // {label, view, ids} — ids already claimed by the primary muscle are dropped
-  exSecondaryNames(ex, primary.label).forEach(name => {
+  const names = exSecondaryNames(ex, primary.label);
+  names.forEach(name => {
     const r = exRegion(name); if(!r) { secondary.push({label: name, view: null, ids: []}); return; }
     const ids = r.ids.filter(id => !primaryIds.has(id));
     secondary.push({label: name, view: r.view, ids});
   });
+  // No verified secondary muscles in the dataset: fall back to the exercise's other broad muscle groups
+  // (e.g. a Chest + Triceps press -> Triceps), skipping any group that overlaps the primary target.
+  if(!names.length){
+    const groups = (ex.muscles && ex.muscles.length ? ex.muscles : (ex.muscle ? [ex.muscle] : []));
+    groups.forEach(g => {
+      const r = EX_MUSCLE_REGIONS[g];
+      if(!r || g === primary.label || r.ids.some(id => primaryIds.has(id))) return;
+      secondary.push({label: g, view: r.view, ids: r.ids.slice()});
+    });
+  }
   // ids to paint per view
   const views = {FRONT: {primary: [], secondary: []}, BACK: {primary: [], secondary: []}};
   views[primary.view].primary = primary.ids.slice();
@@ -1751,13 +1768,73 @@ function mountBodyChart(){
     }
   });
 }
+/* ---------- Build: search + "primary muscle" filter ---------- */
+const BM_PRIMARY_CACHE = new Map();
+function exPrimaryLabel(e){
+  if(BM_PRIMARY_CACHE.has(e.name)) return BM_PRIMARY_CACHE.get(e.name);
+  const t = exMuscleTarget(e), label = t ? t.label : "";
+  BM_PRIMARY_CACHE.set(e.name, label);
+  return label;
+}
+function bmPrimaryOptions(){
+  const counts = new Map();
+  libItems().forEach(e => { const l = exPrimaryLabel(e); if(l) counts.set(l, (counts.get(l) || 0) + 1); });
+  return [...counts.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+}
+const bmSearchActive = () => !!(UI.build.q.trim() || UI.build.pm !== "All");
+function bmExRow(e, showPrimary){
+  const prim = showPrimary ? exPrimaryLabel(e) : "";
+  return `<div class="bmex-row">${gifSlot(e.gif, {size: "sm", alt: e.name, video: hasVideo(e)})}<div class="bmex-main" role="button" tabindex="0" data-act="bm-open-ex" data-name="${esc(e.name)}" data-search="${esc(e.name.toLowerCase())}" aria-label="${esc(e.name)}, open details"><h3>${esc(e.name)}</h3><div class="ex-sub">${prim ? `<span class="ex-muscle">${esc(prim)}</span>` : ""}<span class="ex-muscle">${esc(equipList(e).join(" / "))}</span>${pips(e.difficulty)}</div></div></div>`;
+}
+function bmSearchResults(){
+  const tokens = UI.build.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const pm = UI.build.pm;
+  const list = libItems().filter(e => {
+    if(pm !== "All" && exPrimaryLabel(e) !== pm) return false;
+    if(tokens.length){ const hay = searchHay(e); if(!tokens.every(t => hay.includes(t))) return false; }
+    return true;
+  });
+  if(tokens.length){   // name matches first
+    const q = tokens.join(" ");
+    list.sort((a, b) => (b.name.toLowerCase().includes(q) - a.name.toLowerCase().includes(q)));
+  }
+  return list;
+}
+function bmResultsHtml(){
+  if(!bmSearchActive()) return "";
+  const list = bmSearchResults(), shown = list.slice(0, 60);
+  return `<p class="bm-count">${list.length} exercise${list.length === 1 ? "" : "s"}${UI.build.pm !== "All" ? " · primary: " + esc(UI.build.pm) : ""}${list.length > shown.length ? " · showing first " + shown.length + ", refine your search to narrow" : ""}</p>`
+    + (list.length ? `<div>${shown.map(e => bmExRow(e, true)).join("")}</div>` : `<p class="empty">No exercises match. Try another search or clear the muscle filter.</p>`);
+}
+function bmUpdateResults(){
+  const box = $("#bmResults"), browse = $("#bmBrowse"), clr = $("#bmClear");
+  if(!box) return;
+  const active = bmSearchActive();
+  box.innerHTML = bmResultsHtml();
+  box.hidden = !active;
+  if(browse) browse.hidden = active;
+  if(clr) clr.hidden = !active;
+  if(active) hydrate(box);
+}
 function buildBodyScreen(){
   const view = UI.build.view || "front";
-  return `<div class="lib-head"><div><h2>Build a muscle</h2><p>Tap a muscle to see its parts and the best exercises for each.</p></div></div>
+  const active = bmSearchActive();
+  const opts = bmPrimaryOptions();
+  if(UI.build.pm !== "All" && !opts.some(o => o[0] === UI.build.pm)) UI.build.pm = "All";
+  return `<div class="lib-head"><div><h2>Build a muscle</h2><p>Tap a muscle to see its parts and the best exercises for each, or search below.</p></div></div>
+    <div class="bm-search">
+      <div class="search"><label class="sr" for="bmSearch">Search exercises</label><input id="bmSearch" type="search" enterkeyhint="search" placeholder="Search by name, muscle or equipment" value="${esc(UI.build.q)}" autocomplete="off"></div>
+      <div class="bm-search-row"><label class="sr" for="bmPrimarySel">Filter by primary muscle</label>
+        <select id="bmPrimarySel"><option value="All">All primary muscles</option>${opts.map(([l, n]) => `<option value="${esc(l)}"${l === UI.build.pm ? " selected" : ""}>${esc(l)} (${n})</option>`).join("")}</select>
+        <button class="btn sm" id="bmClear" data-act="bm-search-clear"${active ? "" : " hidden"}>Clear</button></div>
+    </div>
+    <div id="bmResults"${active ? "" : " hidden"}>${bmResultsHtml()}</div>
+    <div id="bmBrowse"${active ? " hidden" : ""}>
     <div class="bm-toggle"><button class="gchip ${view === "front" ? "on" : ""}" data-act="bm-view" data-v="front" aria-pressed="${view === "front"}">Front</button><button class="gchip ${view === "back" ? "on" : ""}" data-act="bm-view" data-v="back" aria-pressed="${view === "back"}">Back</button></div>
     <div class="bmuscle-wrap"><div class="bodymap" id="bmChartRoot"></div><div class="bm-tooltip" id="bmTooltip"></div></div>
     <p class="hint" id="bmHoverHint" style="text-align:center;margin-top:10px">Tap a highlighted muscle, or pick a group below.</p>
-    <div class="chips wrap" style="margin-top:14px;justify-content:center">${BODY_GROUPS.map(g => `<button class="gchip" data-act="bm-pick-group" data-g="${esc(g)}">${esc(g)}</button>`).join("")}</div>`;
+    <div class="chips wrap" style="margin-top:14px;justify-content:center">${BODY_GROUPS.map(g => `<button class="gchip" data-act="bm-pick-group" data-g="${esc(g)}">${esc(g)}</button>`).join("")}</div>
+    </div>`;
 }
 function buildPartsScreen(group){
   const info = MUSCLE_TAXONOMY[group]; if(!info) return buildBodyScreen();
@@ -1765,14 +1842,44 @@ function buildPartsScreen(group){
     <div class="lib-head"><div><h2>${esc(group)}</h2><p>${info.parts.length} part${info.parts.length === 1 ? "" : "s"} · pick one to see targeted exercises</p></div></div>
     <div class="part-grid">${info.parts.map((p, i) => `<button class="part-card" type="button" data-act="bm-pick-part" data-i="${i}"><div style="flex:1"><b>${esc(p.name)}</b><span>${esc(p.muscle)}</span><span>${esc(p.notes || "")}</span></div><svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>`).join("")}</div>`;
 }
+function bmPartFiltered(){
+  const B = UI.build, all = partExercises(B.group, B.partIndex).list;
+  const tokens = B.partQ.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const list = all.filter(e => {
+    if(B.partPm !== "All" && exPrimaryLabel(e) !== B.partPm) return false;
+    if(tokens.length){ const hay = searchHay(e); if(!tokens.every(t => hay.includes(t))) return false; }
+    return true;
+  });
+  return {all, list};
+}
+function bmPartListHtml(){
+  const {list} = bmPartFiltered(), shown = list.slice(0, 60);
+  return `<p class="bm-count">${list.length} exercise${list.length === 1 ? "" : "s"}${UI.build.partPm !== "All" ? " · primary mover: " + esc(UI.build.partPm) : ""}${list.length > shown.length ? " · showing first " + shown.length : ""}</p>`
+    + (list.length ? `<div>${shown.map(e => bmExRow(e, true)).join("")}</div>` : `<p class="empty">No exercises match. Try another search or set the primary mover filter to All.</p>`);
+}
+function bmUpdatePartList(){
+  const box = $("#bmPartList"); if(!box) return;
+  box.innerHTML = bmPartListHtml();
+  hydrate(box);
+}
 function buildExercisesScreen(group, partIndex){
   const info = MUSCLE_TAXONOMY[group]; const part = info && info.parts[partIndex];
   if(!part) return buildBodyScreen();
   const {list, fallback} = partExercises(group, partIndex);
+  const counts = new Map();
+  list.forEach(e => { const l = exPrimaryLabel(e); if(l) counts.set(l, (counts.get(l) || 0) + 1); });
+  const isGroup = l => Object.prototype.hasOwnProperty.call(MUSCLE_TAXONOMY, l);   // broad group used when no specific primary mover is verified
+  const opts = [...counts.entries()].sort((a, b) => (isGroup(a[0]) - isGroup(b[0])) || b[1] - a[1] || a[0].localeCompare(b[0]));
+  if(UI.build.partPm !== "All" && !counts.has(UI.build.partPm)) UI.build.partPm = "All";
   return `<button class="link" type="button" data-act="bm-back-parts" style="padding-left:0;margin-bottom:6px">← ${esc(group)}</button>
     <div class="lib-head"><div><h2>${esc(part.name)}</h2><p>${esc(part.muscle)}${part.notes ? " · " + esc(part.notes) : ""}</p></div></div>
     ${fallback ? `<p class="rt-note">No exercises specifically isolate this exact head yet. Showing effective ${esc(group)} exercises instead.</p>` : ""}
-    ${list.length ? `<div>${list.slice(0, 60).map(e => `<div class="bmex-row">${gifSlot(e.gif, {size: "sm", alt: e.name, video: hasVideo(e)})}<div class="bmex-main" role="button" tabindex="0" data-act="bm-open-ex" data-name="${esc(e.name)}" aria-label="${esc(e.name)}, open details"><h3>${esc(e.name)}</h3><div class="ex-sub"><span class="ex-muscle">${esc(equipList(e).join(" / "))}</span>${pips(e.difficulty)}</div></div></div>`).join("")}</div>` : `<p class="empty">No exercises found for this muscle yet.</p>`}`;
+    ${list.length ? `<div class="bm-search">
+        <div class="search"><label class="sr" for="bmPartQ">Search these exercises</label><input id="bmPartQ" type="search" enterkeyhint="search" placeholder="Search these exercises" value="${esc(UI.build.partQ)}" autocomplete="off"></div>
+        <div class="bm-search-row"><label class="sr" for="bmPartPm">Filter by primary mover</label>
+          <select id="bmPartPm"><option value="All">All primary movers (${list.length})</option>${opts.map(([l, n]) => `<option value="${esc(l)}"${l === UI.build.partPm ? " selected" : ""}>${esc(l)}${isGroup(l) ? " · general" : ""} (${n})</option>`).join("")}</select></div>
+      </div>
+      <div id="bmPartList">${bmPartListHtml()}</div>` : `<p class="empty">No exercises found for this muscle yet.</p>`}`;
 }
 function buildMuscleView(){
   const B = UI.build;
@@ -3358,9 +3465,15 @@ const ACT = {
   },
 
   /* build a muscle */
+  "bm-search-clear"(){
+    UI.build.q = ""; UI.build.pm = "All";
+    const i = $("#bmSearch"); if(i) i.value = "";
+    const p = $("#bmPrimarySel"); if(p) p.value = "All";
+    bmUpdateResults();
+  },
   "bm-view"(t){ UI.build.view = t.dataset.v; render(); },
   "bm-pick-group"(t){ UI.build.group = t.dataset.g; UI.build.screen = "parts"; UI.build.partIndex = null; render(); window.scrollTo(0, 0); },
-  "bm-pick-part"(t){ UI.build.partIndex = +t.dataset.i; UI.build.screen = "exercises"; render(); window.scrollTo(0, 0); },
+  "bm-pick-part"(t){ UI.build.partQ = ""; UI.build.partPm = "All"; UI.build.partIndex = +t.dataset.i; UI.build.screen = "exercises"; render(); window.scrollTo(0, 0); },
   "bm-back-body"(){ UI.build.screen = "body"; UI.build.group = null; UI.build.partIndex = null; render(); window.scrollTo(0, 0); },
   "bm-back-parts"(){ UI.build.screen = "parts"; UI.build.partIndex = null; render(); window.scrollTo(0, 0); },
   "bm-open-ex"(t){ const e = libItems().find(x => x.name === t.dataset.name); if(e) buildExDetailSheet(e); },
@@ -3413,6 +3526,8 @@ document.addEventListener("input", e => {
     return;
   }
   if(id === "bpSearch"){ BP.q = el.value; renderBuilderPicker(); return; }
+  if(id === "bmSearch"){ UI.build.q = el.value; bmUpdateResults(); return; }
+  if(id === "bmPartQ"){ UI.build.partQ = el.value; bmUpdatePartList(); return; }
   if(id === "f_gif"){ clearTimeout(previewTimer); previewTimer = setTimeout(previewGif, 600); }
   else if(id === "libSearch"){ UI.q = el.value; UI.libLimit = 120; updateLib(); }
   else if(id === "pickSearch"){ renderPicks(); }
@@ -3423,6 +3538,8 @@ document.addEventListener("change", e => {
   if(id === "setGoal"){ S.profile.goal = +e.target.value; save(); toast("Weekly goal: " + S.profile.goal); if(UI.tab === "prog") render(); }
   else if(id === "setUnit"){ S.profile.unit = e.target.value; save(); if(UI.tab === "prog") render(); }
   else if(id === "setTheme"){ setTheme(e.target.value); }
+  else if(id === "bmPrimarySel"){ UI.build.pm = e.target.value; bmUpdateResults(); }
+  else if(id === "bmPartPm"){ UI.build.partPm = e.target.value; bmUpdatePartList(); }
   else if(id === "bmDaySel"){ S.buildPrefs.dayId = e.target.value; save(); }
   else if(id === "bmRoutineSel"){ S.buildPrefs.routineId = e.target.value; save(); }
   else if(id === "setTextSelect"){ S.profile.textSelect = e.target.checked; save(); applyTextSelect(); }
