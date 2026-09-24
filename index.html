@@ -556,7 +556,7 @@ img{
 <div class="scrim" id="scrim"><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="./data.js?v=20260923-1" onerror="window.__JEFIT_LOAD_ERROR=true"></script>
+<script src="./data.with_videos.js?v=20260923-1" onerror="window.__JEFIT_LOAD_ERROR=true"></script>
 <script src="./body-muscles.umd.min.js"></script>
 <script>
 window.__JEFIT_DATA_COUNT = Array.isArray(window.JEFIT_SCRAPED) ? window.JEFIT_SCRAPED.length : 0;
@@ -586,12 +586,12 @@ const DEFAULT_SETS = "3 × 8–12", DEFAULT_REST = "60–90 sec";
    Broad "muscles" groups expanded into anatomical sub-parts/heads.
    ========================================================= */
 const MUSCLE_TAXONOMY = {
-  "Chest": { exerciseCount: 171, primeMovers: ["Pectoralis Major"], parts: [
+  "Chest": { parts: [
     { name: "Upper Chest (Clavicular Head)", muscle: "Pectoralis Major – Clavicular Head", notes: "Targeted by incline pressing/fly movements" },
     { name: "Middle Chest (Sternal Head)", muscle: "Pectoralis Major – Sternal Head", notes: "Targeted by flat pressing/fly movements" },
     { name: "Lower Chest (Abdominal/Costal Head)", muscle: "Pectoralis Major – Abdominal (Costal) Head", notes: "Targeted by decline pressing/dips" }
   ]},
-  "Back": { exerciseCount: 314, primeMovers: ["Latissimus Dorsi", "Upper Trapezius", "Erector Spinae"], parts: [
+  "Back": { parts: [
     { name: "Lats (Latissimus Dorsi)", muscle: "Latissimus Dorsi", notes: "Width — pulldowns, pull-ups, rows" },
     { name: "Upper Traps", muscle: "Upper Trapezius", notes: "Shrugs, upright rows" },
     { name: "Mid Traps & Rhomboids", muscle: "Trapezius (middle) / Rhomboids", notes: "Horizontal rows, face pulls" },
@@ -599,40 +599,40 @@ const MUSCLE_TAXONOMY = {
     { name: "Teres Major / Minor", muscle: "Teres Major & Minor", notes: "Assists lat-driven pulling movements" },
     { name: "Lower Back (Spinal Erectors)", muscle: "Erector Spinae", notes: "Deadlifts, back extensions, good mornings" }
   ]},
-  "Shoulders": { exerciseCount: 401, primeMovers: ["Anterior Deltoids", "Lateral Deltoids", "Posterior Deltoids"], parts: [
+  "Shoulders": { parts: [
     { name: "Front Delt (Anterior Head)", muscle: "Anterior Deltoids", notes: "Front raises, overhead/incline pressing" },
     { name: "Side Delt (Lateral Head)", muscle: "Lateral Deltoids", notes: "Lateral raises — main width driver" },
     { name: "Rear Delt (Posterior Head)", muscle: "Posterior Deltoids", notes: "Rear-delt flyes, face pulls, reverse pec-deck" },
     { name: "Rotator Cuff", muscle: "Supraspinatus / Infraspinatus / Teres Minor / Subscapularis", notes: "Internal/external rotation work" }
   ]},
-  "Biceps": { exerciseCount: 167, primeMovers: ["Biceps Brachii", "Brachioradialis"], parts: [
+  "Biceps": { parts: [
     { name: "Long Head (Outer Bicep)", muscle: "Biceps Brachii – Long Head", notes: "Peak — incline curls, drag curls" },
     { name: "Short Head (Inner Bicep)", muscle: "Biceps Brachii – Short Head", notes: "Thickness — preacher/spider curls" },
     { name: "Brachialis", muscle: "Brachialis", notes: "Underlies biceps — hammer curls, reverse curls" }
   ]},
-  "Triceps": { exerciseCount: 226, primeMovers: ["Triceps Brachii"], parts: [
+  "Triceps": { parts: [
     { name: "Long Head", muscle: "Triceps Brachii – Long Head", notes: "Overhead extensions (stretched position)" },
     { name: "Lateral Head", muscle: "Triceps Brachii – Lateral Head", notes: "Pushdowns, close-grip pressing — horseshoe shape" },
     { name: "Medial Head", muscle: "Triceps Brachii – Medial Head", notes: "Active across most triceps movements" }
   ]},
-  "Forearms": { exerciseCount: 129, primeMovers: ["Brachioradialis"], parts: [
+  "Forearms": { parts: [
     { name: "Wrist Flexors (Inner Forearm)", muscle: "Flexor Carpi Radialis / Ulnaris", notes: "Wrist curls" },
     { name: "Wrist Extensors (Outer Forearm)", muscle: "Extensor Carpi Radialis / Ulnaris", notes: "Reverse wrist curls" },
     { name: "Brachioradialis", muscle: "Brachioradialis", notes: "Hammer curls, reverse curls" },
     { name: "Grip Muscles", muscle: "Flexor Digitorum Profundus/Superficialis", notes: "Farmer's carries, grip/plate work" }
   ]},
-  "Abs": { exerciseCount: 339, primeMovers: ["Rectus Abdominis", "Obliques"], parts: [
+  "Abs": { parts: [
     { name: "Upper Abs", muscle: "Rectus Abdominis (upper fibers)", notes: "Crunches, cable crunches" },
     { name: "Lower Abs", muscle: "Rectus Abdominis (lower fibers)", notes: "Leg/knee raises, reverse crunches" },
     { name: "Obliques (Side Abs)", muscle: "External & Internal Obliques", notes: "Rotational/anti-rotation work, side bends" },
     { name: "Deep Core", muscle: "Transverse Abdominis", notes: "Planks, anti-extension bracing" }
   ]},
-  "Glutes": { exerciseCount: 253, primeMovers: ["Gluteus Maximus", "Gluteus Medius"], parts: [
+  "Glutes": { parts: [
     { name: "Gluteus Maximus", muscle: "Gluteus Maximus", notes: "Main mass/power — hip thrusts, squats, lunges" },
     { name: "Gluteus Medius", muscle: "Gluteus Medius", notes: "Hip abduction, lateral stability — side steps, clamshells" },
     { name: "Gluteus Minimus", muscle: "Gluteus Minimus", notes: "Assists medius in abduction/stabilization" }
   ]},
-  "Upper Legs": { exerciseCount: 309, primeMovers: ["Quadriceps Femoris", "Biceps Femoris"], parts: [
+  "Upper Legs": { parts: [
     { name: "Quadriceps – Rectus Femoris", muscle: "Rectus Femoris", notes: "Crosses hip and knee — leg extensions, squats" },
     { name: "Quadriceps – Vastus Lateralis", muscle: "Vastus Lateralis", notes: "Outer sweep of the quad" },
     { name: "Quadriceps – Vastus Medialis", muscle: "Vastus Medialis (VMO)", notes: "Inner quad, knee stability — deep squat ROM" },
@@ -642,14 +642,11 @@ const MUSCLE_TAXONOMY = {
     { name: "Adductors (Inner Thigh)", muscle: "Adductor Magnus/Longus/Brevis", notes: "Sumo squats, adduction machine" },
     { name: "Abductors (Outer Thigh)", muscle: "Tensor Fasciae Latae / Gluteus Medius", notes: "Abduction machine, lateral band walks" }
   ]},
-  "Lower Legs": { exerciseCount: 161, primeMovers: ["Gastrocnemius", "Soleus"], parts: [
+  "Lower Legs": { parts: [
     { name: "Gastrocnemius – Medial Head", muscle: "Gastrocnemius (medial)", notes: "Standing calf raises — visible calf mass" },
     { name: "Gastrocnemius – Lateral Head", muscle: "Gastrocnemius (lateral)", notes: "Standing calf raises" },
     { name: "Soleus", muscle: "Soleus", notes: "Seated calf raises (knee bent isolates this)" },
     { name: "Tibialis Anterior (Shin)", muscle: "Tibialis Anterior", notes: "Toe raises/dorsiflexion work" }
-  ]},
-  "Cardio": { exerciseCount: 21, primeMovers: [], parts: [
-    { name: "Cardiovascular System", muscle: "Heart & Vascular System (not a discrete muscle group)", notes: "Full-body conditioning — this dataset category groups cardio/conditioning exercises rather than a specific muscle" }
   ]}
 };
 const BODY_GROUPS = Object.keys(MUSCLE_TAXONOMY);
@@ -850,17 +847,12 @@ function ensureState(s){
   
   if(!Array.isArray(s.days)) s.days = [];
   if(!s.days.some(d => d.id === s.activeDay)) s.activeDay = s.days[0]?.id || null;
-  // Fill exercises that were saved before the library finished loading, or that were exported
-  // "slim" (name/sets/rest only) and re-imported. Must cover BOTH workouts and routines:
-  // routines were previously skipped, so imported routine exercises had no muscle data and
-  // every one was classified as "Other".
-  const fillFromLib = x => {
+  // Fill exercises that were saved before the library finished loading
+  s.days.forEach(d => d.exercises.forEach(x => {
     const l = findLib(x.name);
     if(!x.gif && !x.instructions){ if(l) Object.assign(x, {...l, id: x.id, sets: x.sets, rest: x.rest}); }
     else if(l && !x.sources) EXTRA_FIELDS.forEach(k => { if(l[k] != null && x[k] == null) x[k] = l[k]; });
-  };
-  s.days.forEach(d => d.exercises.forEach(fillFromLib));
-  s.routines.forEach(r => Array.isArray(r.exercises) && r.exercises.forEach(fillFromLib));
+  }));
   return s;
 }
 function loadState(){
@@ -3581,3 +3573,12 @@ console.log(LIB.length ? `JEFIT library loaded: ${LIB.length} exercises.` : "JEF
 </script>
 </body>
 </html>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RNBRHR852S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RNBRHR852S');
+</script>
