@@ -311,7 +311,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4ZDm5EbiFI8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -504,7 +503,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/lJoozxC0Rns",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -593,7 +591,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/eGjt4lk6g34",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -640,7 +637,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dhRz1Ns60Zg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -688,7 +684,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/SSXS4Z8OkCg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -736,7 +731,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rrJIyZGlK8c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -1039,7 +1033,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/GcY6TZxfS0k",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -1085,7 +1078,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/v7o4xzeMri4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -1130,7 +1122,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rPw4YiGiCvE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -1177,7 +1168,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VBTeVnPGkzE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -1224,7 +1214,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tDgQx0W1JP0",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -1349,7 +1338,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/6Fzep104f0s",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -1585,7 +1573,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/yPqv3ejnZvc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -1696,7 +1683,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ZZTf3KsL9WE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -1741,7 +1727,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Z5FA9aq3L6A",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -1953,7 +1938,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/aG7CXiKxepw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -1997,7 +1981,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/36EB4I915sU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -2125,7 +2108,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Krq1dakeC-U",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -2256,7 +2238,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rqNnfP6h6Pw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -2479,7 +2460,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/631PCvXjU0Q",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -2525,7 +2505,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/NljsORR2mg0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -2572,7 +2551,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5UqZyJE4Gq8",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -2619,7 +2597,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tdGg4_rahls",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -2761,7 +2738,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/L3HZjW4oRrU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -2809,7 +2785,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rJZ40e_EXV4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -2855,7 +2830,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/qQdPwRnY8bg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -2902,7 +2876,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jd8M2Vg05co",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -2951,7 +2924,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/O5viuEPDXKY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -2997,7 +2969,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/W3CaxnLWzrg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -3192,7 +3163,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3QZlgJ40LfU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": true,
@@ -3237,7 +3207,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bwGouvrXUD4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -3281,7 +3250,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2Q-HQ3mnePg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -3325,7 +3293,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dhRz1Ns60Zg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -3484,7 +3451,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bgC53-J-6gA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -3530,7 +3496,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/JGeRYIZdojU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -3575,7 +3540,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Ja6ZlIDONac",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -3664,7 +3628,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/yX5epCTa6mg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -3711,7 +3674,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Fmjj7wFJWRE",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -3759,7 +3721,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/xqtmaivPMiw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -3805,7 +3766,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/-gSM-kqNlUw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -3935,7 +3895,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dhRz1Ns60Zg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -4026,7 +3985,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hhruLxo9yZU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -4073,7 +4031,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/43GSKivZnw4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -4198,7 +4155,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5RPVxmxnLRA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -4479,7 +4435,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/BvnVtpQkrHE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -4527,7 +4482,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rYgNArpwE7E",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -4573,7 +4527,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/acLV1OJuZUg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -4782,7 +4735,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/SRUtMJ0tE2A",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -4829,7 +4781,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Yrtvs-nEnk0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -4876,7 +4827,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/BOqrRMjxkj8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -4921,7 +4871,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/JSDpq14vCZ8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -5047,7 +4996,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/t9GuiNQo1O4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -5094,7 +5042,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/R5CYN650Zls",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -5141,7 +5088,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/GWPyAnB2K5I",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -5188,7 +5134,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7bL9GyLc7KY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -5233,7 +5178,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/RFjAyUwHuQA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -5277,7 +5221,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/qvi8aM02_GY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -5321,7 +5264,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/QEo_m-WTaUs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -5446,7 +5388,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/CQX8tDQdMlo",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -5642,7 +5583,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ltVi1F5SBkE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -5687,7 +5627,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/vsbYFIU_Quk",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -5733,7 +5672,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Ih13PJnikao",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -5944,7 +5882,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hYo72r8Ivso",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -5991,7 +5928,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hZI8Yy5elZs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -6037,7 +5973,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Sn6flwZ5EWk",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -6082,7 +6017,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/gNFMkFL5yPQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -6174,7 +6108,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/cz6LTUYCSt0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -6223,7 +6156,6 @@ window.JEFIT_SCRAPED = [
       "JEFIT",
       "Functional Fitness DB"
     ],
-    "video": "https://youtu.be/larn3Asl6oM",
     "videoDeep": "https://youtu.be/pqYr_lb04O4",
     "primeMover": "Upper Trapezius",
     "supportMuscles": [
@@ -6304,7 +6236,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/g_7iXXBrCkY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -6375,7 +6306,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Qnm83T1P3Jk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -6463,7 +6393,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/FMhKUd0BlB4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -6508,7 +6437,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Bx8ga1BLHLE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -6595,7 +6523,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/RkFVDCZRups",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -6641,7 +6568,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/zZj-ibOLJHs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -6687,7 +6613,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jYyA_6UR2lw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -6816,7 +6741,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Xg6lP1zsq_E",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -6863,7 +6787,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/zlfisQZSxU0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -6953,7 +6876,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/U0tcA7b4c3k",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -7108,7 +7030,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/plb5jEO4Unw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -7154,7 +7075,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/DuOiuPwiZKY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -7200,7 +7120,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ijOS9-7yIug",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -7246,7 +7165,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/CFBZ4jN1CMI",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -7317,7 +7235,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/HAS0dQ8O3-U",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -7444,7 +7361,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/RF1Bc-5POSo",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -7563,7 +7479,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5aMpvA1eoN4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -7609,7 +7524,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/MpfeGnBFEo8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -7657,7 +7571,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/O5viuEPDXKY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -7705,7 +7618,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/OjBR1W4iQx0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -7823,7 +7735,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/9LdvNiNOa7U",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -7869,7 +7780,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Y9EISeh1KuM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -7913,7 +7823,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dhRz1Ns60Zg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -7957,7 +7866,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/iWxTGXIViro",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -8063,7 +7971,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/9ZknEYboBOQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -8111,7 +8018,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/PFGa5_PvgVQ",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -8158,7 +8064,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/GcY6TZxfS0k",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -8204,7 +8109,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/larQGD02ndE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -8249,7 +8153,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bm0_q9bR_HA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -8293,7 +8196,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/t-llLcNvsro",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -8337,7 +8239,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/D1Xu7Lr0R60",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -8381,7 +8282,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2wPpcJBe03o",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -8427,7 +8327,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7Ry_KoNpt7o",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -8473,7 +8372,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/RABuuVuFrUY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -8519,7 +8417,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/fjcbsSnrjKc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -8567,7 +8464,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/SNiwpA13ZLU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -8614,7 +8510,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Y1J8MXYBTQM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -8659,7 +8554,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/a6wtHEbcORQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -8703,7 +8597,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/l7OroezzX9k",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -9011,7 +8904,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/n3Xp2-RYKjk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -9059,7 +8951,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Wr6Bik6Lrp4",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -9236,7 +9127,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4o7Hcwz6vXk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -9282,7 +9172,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/X-JP6sJTZAI",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -9491,7 +9380,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WNz7O59GORA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -9538,7 +9426,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/8CIm5KBLInA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -9584,7 +9471,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/6L5GptvvQaU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -9712,7 +9598,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Q1Ypb8ZNzI4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -9758,7 +9643,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/0SfJvAJMc70",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -9802,7 +9686,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/HCLC4wofXTU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -9974,7 +9857,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2wPpcJBe03o",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -10019,7 +9901,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/r5Q7vgoiriU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -10064,7 +9945,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EtH_zD5_dgk",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -10108,7 +9988,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/8DmRsmvHhss",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -10153,7 +10032,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Rd5AsxOGqss",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -10200,7 +10078,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/aWBiR5gSEes",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -10247,7 +10124,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jZEnlrNh4Rg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -10294,7 +10170,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/THlCDeLL0HQ",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -10340,7 +10215,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/KHC9toCk_j0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -10384,7 +10258,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/64A8HodRTSY",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -10428,7 +10301,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/43GSKivZnw4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -10472,7 +10344,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/fWEg_zamRmY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -10579,7 +10450,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sTULdX4lgS8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -10772,7 +10642,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/xhUcI2wiiRQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -10819,7 +10688,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2un9lmE62Kg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -10867,7 +10735,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VnHvZtV8Gz0",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -10915,7 +10782,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7SqnWtgrFZQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -10962,7 +10828,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sTULdX4lgS8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -11009,7 +10874,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/1mYbJgANqIc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -11055,7 +10919,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/1Z6XiaBxwHQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -11128,7 +10991,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/gV1i6xY3Ah4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -11174,7 +11036,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/YqRJl-iqz1g",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -11221,7 +11082,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Pvm5omaqlz4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -11270,7 +11130,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/vtH93qBItdk",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -11316,7 +11175,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/B_u8JvcV0OA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -11404,7 +11262,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sRNSYSNN3RU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -11450,7 +11307,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/neaXG4eRoP4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -11562,7 +11418,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/1E4mJcRgrhs",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -11690,7 +11545,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/enThal66tUs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -11738,7 +11592,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/O3Rtu2jvRM4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -11831,7 +11684,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/KE2A7G_nDc8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -11878,7 +11730,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tni4vtn817o",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -12005,7 +11856,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/l3rHYPtMUo8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -12076,7 +11926,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ToJeyhydUxU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -12120,7 +11969,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/NvfFTF_v76c",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -12164,7 +12012,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/B7kTkXDIMuE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -12425,7 +12272,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bwGouvrXUD4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -12549,7 +12395,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/j1fxEsUZE5U",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -12594,7 +12439,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/vLo49m8GUo4",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -12639,7 +12483,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sxA__DoLsgo",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -12683,7 +12526,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jZEnlrNh4Rg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -12933,7 +12775,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/s_H1ByzX2vQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -12979,7 +12820,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/UdSzuSdanRo",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -13027,7 +12867,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dhRz1Ns60Zg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -13119,7 +12958,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dLCwFpKBuDY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -13164,7 +13002,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2i2UkUYb_Iw",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -13208,7 +13045,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/z8I2CohTic8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -13252,7 +13088,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/PIdsj1v3fmA",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -13297,7 +13132,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/C_-CN1iji3c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -13493,7 +13327,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EuBm1n1RQVU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -13583,7 +13416,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/UDd5rTtNut8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -13720,7 +13552,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3VLTzIrnb5g",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -13764,7 +13595,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rwo-3PTM8U4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -13881,7 +13711,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Vdc85ZF2eDk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -13928,7 +13757,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/JGeRYIZdojU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -13976,7 +13804,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/T0Y3OBF1bNI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -14022,7 +13849,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/UVMEnIaY8aU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -14148,7 +13974,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/lQ7-wDYTdP4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -14257,7 +14082,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/zHSISE5HDxw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -14303,7 +14127,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3_PeX9e9aCM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -14349,7 +14172,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jYIWugY50nk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -14394,7 +14216,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/N6FVnaasdq0",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -14440,7 +14261,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Acg99yQZsXg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -14571,7 +14391,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/F6NCSkQ9y34",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -14618,7 +14437,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jBlunMD5MZs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -14709,7 +14527,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ZaDlbm8E8Tg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -14784,7 +14601,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Era6Bsiwv50",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -14895,7 +14711,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bM_qDVwnKTc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -15020,7 +14835,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/X5df_LHBVKQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -15067,7 +14881,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dU1R-AHW4IM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -15194,7 +15007,6 @@ window.JEFIT_SCRAPED = [
       "JEFIT",
       "Functional Fitness DB"
     ],
-    "video": "https://youtu.be/98eX0ndm7Z4",
     "videoDeep": "https://youtu.be/teZDcxypX54",
     "primeMover": "Obliques",
     "supportMuscles": [
@@ -15321,7 +15133,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/_Jv1wNEZW6Q",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -15367,7 +15178,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/QIpa-9dtkgA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -15414,7 +15224,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VqSsnPSpHOU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -15460,7 +15269,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/NYQpxPyIOD0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -15504,7 +15312,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LIVJZZyZ2qM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -15548,7 +15355,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/z6MvXsikOk0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -15592,7 +15398,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Cce8LrfoheY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -15721,7 +15526,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/1lIJuNLRM98",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -15766,7 +15570,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WVAaKJvToe0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -15812,7 +15615,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/YykmcX2b-LY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -15905,7 +15707,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/x4eif6YBwtE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -16077,7 +15878,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/wmfPdzqwbIY",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -16125,7 +15925,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/nXa6-tzz-Ng",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -16173,7 +15972,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WDIpL0pjun0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -16288,7 +16086,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/J21Glo_IuCI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -16334,7 +16131,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/OKS-clRiXAI",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -16380,7 +16176,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/scs5XcsZuc8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -16428,7 +16223,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/b-6PsVq9nEU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -16474,7 +16268,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/olqU_WZyRSU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -16518,7 +16311,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/A5mNrmjR6vA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -16563,7 +16355,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/i5FBrmyt0wQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -16692,7 +16483,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/UYbsgiiZgao",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -16737,7 +16527,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/BSpUNB4I6OA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -16783,7 +16572,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5FeMVdb2iWE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -16830,7 +16618,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jMQA3XtJSgo",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -16952,7 +16739,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/0cB0_SzqgBU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -16998,7 +16784,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/XVQBeug_9LU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -17043,7 +16828,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/scs5XcsZuc8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -17155,7 +16939,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/42GAiTNacp0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -17346,7 +17129,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/aqMfWavH2X4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -17390,7 +17172,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/D5Ip5TGtnWg",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -17434,7 +17215,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/kuQGbi1eYRU",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -17523,7 +17303,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/uqVbE135geY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -17571,7 +17350,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/uLVt6u15L98",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -17620,7 +17398,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/TbILTPsqGoo",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -17665,7 +17442,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/g0Kr9Wd3CeQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -17711,7 +17487,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/l6Gi5rg0g-A",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -17758,7 +17533,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hnVkRylmY04",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -17803,7 +17577,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sO1z-zhWG_E",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -17850,7 +17623,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Rj_HF9SHwe8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -17897,7 +17669,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/eJagmFMaL7I",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -17943,7 +17714,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/kWaYXzzehOY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -17989,7 +17759,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4M9WAcIbLFE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -18034,7 +17803,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4UXZtR-rIoY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -18079,7 +17847,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/qZlDovba6ik",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -18192,7 +17959,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/6gvmcqr226U",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -18307,7 +18073,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EfDjbPFSb9w",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -18353,7 +18118,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WDIpL0pjun0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -18399,7 +18163,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3rsKOL8scsU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -18445,7 +18208,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/CdY-udsR2Mw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -18491,7 +18253,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/_w7ECPka6jk",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -18536,7 +18297,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/6HGqLR9qrcI",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -18704,7 +18464,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/q5X9thiKofE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -18863,7 +18622,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hk4FH8bKPk8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -18908,7 +18666,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/oBahbD0Xh0k",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -18953,7 +18710,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/wmfPdzqwbIY",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -18997,7 +18753,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ykbAuxIDFiU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -19085,7 +18840,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EUlYHwZoKfY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -19177,7 +18931,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/kn6bj3MPZqs",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -19290,7 +19043,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/NmkqBhheGFM",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -19336,7 +19088,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/XOEL4MgekYE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -19382,7 +19133,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Wv7f0uIKh8o",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -19428,7 +19178,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ugbEAgq47DI",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -19518,7 +19267,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/HtVsCD_j6Z4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -19565,7 +19313,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2SaHeEggeBY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": true,
@@ -19691,7 +19438,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/GQTd82H75FM",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -19735,7 +19481,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VELsYz89GnM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -19823,7 +19568,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Zbs3ko8ycyg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -19870,7 +19614,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LvVxHQOyiO4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -19918,7 +19661,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/k7dmYdknbac",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -19965,7 +19707,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/makJKOu-8ds",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -20012,7 +19753,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/I6Tk4_dMdJE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -20058,7 +19798,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/X2knTOySeWQ",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -20103,7 +19842,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/9iEI95-eZWk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -20150,7 +19888,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/O5viuEPDXKY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -20245,7 +19982,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hLCJHv1n3BQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -20374,7 +20110,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hQOu7Qwv298",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -20465,7 +20200,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/vzYBpU_AK1A",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -20511,7 +20245,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Mri8jOd5mKQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -20557,7 +20290,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/A0_vGZe3fHw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -20601,7 +20333,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EKqyG87m6zw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -20646,7 +20377,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/c8e5Bnv5G7U",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -20691,7 +20421,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/u9XtfyqeJd4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -20889,7 +20618,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/E4NQ5DfqwbU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -20935,7 +20663,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/srHSUCH3iH8",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -20981,7 +20708,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/-TeEMXoHQPM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -21029,7 +20755,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/yU3kMJlau9U",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -21119,7 +20844,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/psq5CSAhG1s",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": true,
@@ -21166,7 +20890,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/b0-dFJdTTh8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -21352,7 +21075,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/U0Uu8SGzMMM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -21399,7 +21121,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/xagEKj2yDc8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -21444,7 +21165,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/oTCJdN2p0ug",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -21596,7 +21316,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/KCqs-5eWeRU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -21641,7 +21360,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/zzvDO56B0HE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -21733,7 +21451,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/O6BytlyPv1Y",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -21930,7 +21647,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/iq5D5SU2Oq4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -22006,7 +21722,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Nd3j6Avtv6Q",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -22052,7 +21767,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Ts4UXby8IZs",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -22141,7 +21855,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LX7VB8xY90E",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -22187,7 +21900,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/lPPI9W9TvSE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -22312,7 +22024,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/G-fDL9CA300",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -22399,7 +22110,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/h4Jvm80kXSw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -22444,7 +22154,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/1XlxV6y6kYI",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -22489,7 +22198,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/fbCPab_WzNU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -22533,7 +22241,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ymsn3rXRswo",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -22579,7 +22286,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5yz9ht7jA9I",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -22625,7 +22331,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/6gvmcqr226U",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -22780,7 +22485,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jIt8nG02Ss0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -22826,7 +22530,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/CXnge363CH8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -22917,7 +22620,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/8JaxPhzYPWM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -23029,7 +22731,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/CjHIKDQ4RQo",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -23104,7 +22805,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/aKBxiKs9n8A",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -23150,7 +22850,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3qgE3rPV5VE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -23196,7 +22895,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/SCU2gOzpri4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -23243,7 +22941,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5pC1skpc7e0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -23289,7 +22986,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/E68-pMl1Im8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -23334,7 +23030,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jduXuDxKwn4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -23378,7 +23073,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/RVrBJAPo868",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -23424,7 +23118,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dVjj5RMCg4Y",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -23471,7 +23164,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/73Wpb9TlP4k",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -23516,7 +23208,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LeAV0-Uzu0c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -23627,7 +23318,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/xMtCZE6rEiA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -23671,7 +23361,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/80wyM461lec",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -23762,7 +23451,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WVAaKJvToe0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -23920,7 +23608,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/c8e5Bnv5G7U",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -23967,7 +23654,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/E0rZyP0-xAM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -24013,7 +23699,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/oIj6OxLJc0Y",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -24058,7 +23743,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/G1qWo8YjDPE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -24104,7 +23788,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jMQA3XtJSgo",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -24326,7 +24009,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/uAVwnCOuGuM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -24372,7 +24054,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/yEeSE_Sz4Nw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -24463,7 +24144,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bwV3-gTy4Aw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -24716,7 +24396,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hnVkRylmY04",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -24764,7 +24443,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rc6NaWBruJ4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -24812,7 +24490,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/SJ3kBTVlfq8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -24886,7 +24563,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/uhv6IxggwhA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -24931,7 +24607,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/XPPfnSEATJA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -25003,7 +24678,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/cJPAVGJwc3Q",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -25049,7 +24723,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/6aw8CAH_65Y",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -25095,7 +24768,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7mNxV2cqIXM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -25223,7 +24895,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/t5Ft8OMG_D8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -25269,7 +24940,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/RH4NoRq7pDs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -25317,7 +24987,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ewVnQSJGzBw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -25363,7 +25032,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LIVJZZyZ2qM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -25471,7 +25139,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WbBJmFQsIMA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -25516,7 +25183,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/MB197PxxR0o",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -25561,7 +25227,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/lQH7qfR3rZ8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -25606,7 +25271,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/OslO2-OvdYo",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -25652,7 +25316,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7YWlPWCn7Wg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -25770,7 +25433,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/spRN-MvJO-A",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -25815,7 +25477,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/HEXGNzlnw5o",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -25861,7 +25522,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/PkhN_YyoWLI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -25907,7 +25567,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jBlunMD5MZs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -25952,7 +25611,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/mvkPUcxvwjc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -25997,7 +25655,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/a6wtHEbcORQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -26041,7 +25698,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dgerF9P-m7M",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -26085,7 +25741,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/h_yZV27H684",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -26173,7 +25828,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/uMffmPAOR2s",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -26300,7 +25954,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/FtqZvSzP2uU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -26348,7 +26001,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/oRVwUtJXLIQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -26464,7 +26116,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/8BiXi7-yp94",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -26509,7 +26160,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dECwx-ga6Po",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -26634,7 +26284,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2un9lmE62Kg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -26679,7 +26328,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/h5m3IZ7nV94",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -26725,7 +26373,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/0cP8QcBMGf4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": true,
@@ -26771,7 +26418,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/owL_QDF3c5A",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -26815,7 +26461,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Wm6D-n-CbeY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -26860,7 +26505,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VTtLrBvHoJ8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -26905,7 +26549,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Uf1jY-575lo",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -26949,7 +26592,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/UDciopkHHYc",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -27042,7 +26684,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/9HNd6tmthjE",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -27088,7 +26729,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4NUJeFJ14F4",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -27132,7 +26772,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/f6OpZidgi0c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -27176,7 +26815,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3UomiPXmkO4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -27381,7 +27019,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/DLzaeTLcZVg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -27428,7 +27065,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/U4-4TxGINjk",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -27570,7 +27206,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EMYzJyBY6X0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -27616,7 +27251,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VghmZ1AC0js",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -27662,7 +27296,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/HzIiNhHhhtA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -27707,7 +27340,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/osYPwlBiCRM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -27753,7 +27385,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sttAHDQt_mI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -27865,7 +27496,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tuaqqBZzLsk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -27913,7 +27543,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3dMMJMSpFV0",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -27960,7 +27589,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/HZRZ18fDleg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -28007,7 +27635,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/GNVQos5I0qk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -28053,7 +27680,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/nuVY2mjt4Cg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -28099,7 +27725,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/YosC3U8zpy4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -28147,7 +27772,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ZkRXmaks7_Q",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -28328,7 +27952,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/9V9LgH2Ty5w",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -28372,7 +27995,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/F9OT-8VG44M",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -28416,7 +28038,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4R_GwRhG0rY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -28461,7 +28082,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/qSmuPsi1_9g",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -28506,7 +28126,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3SePqFdvfBg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -28552,7 +28171,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/AjBsoiqiSyM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -28600,7 +28218,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VJNBhLMC8Rg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": true,
@@ -28648,7 +28265,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/BCqLy8nPBEI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -28694,7 +28310,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/zSFLEDnfEK8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -28782,7 +28397,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/B4U0xgIj2VA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -28874,7 +28488,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rrJIyZGlK8c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -28920,7 +28533,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LHnhBlID3TE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -28964,7 +28576,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4tpl-huz060",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -29008,7 +28619,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ECRrkOBfVEM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -29053,7 +28663,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/c28638rjwRg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -29099,7 +28708,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/stRj5jlt6JQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -29146,7 +28754,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ITSmgn_BQgY",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -29219,7 +28826,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/BPglZeSwQt8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -29263,7 +28869,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/lxdS-oh4nT4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -29391,7 +28996,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/D360_jWCxW4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -29505,7 +29109,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7oHiAdRQbyc",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -29618,7 +29221,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ZHa0OAcn7Bc",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -29665,7 +29267,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ezWS07xkIzE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -29713,7 +29314,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bPltktBq3zA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -29759,7 +29359,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Nx0TzjgsI-0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -29803,7 +29402,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/YOkDPUOXos4",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -29849,7 +29447,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/n6lRtVV7LYY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -29896,7 +29493,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/GhD0U3KPoUU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -29985,7 +29581,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/crRfGrisNrU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -30031,7 +29626,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/H8ecZAg7vHk",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -30076,7 +29670,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/kFwKJAJApXU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -30122,7 +29715,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/6aMmSehlZTk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -30199,7 +29791,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rXstLR0lT2k",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -30249,7 +29840,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/-qu2L4S2xtU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -30295,7 +29885,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/_3l43m-1Gew",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -30339,7 +29928,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/btN1oReDGNI",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -30385,7 +29973,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EVaxJjHIPwI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -30433,7 +30020,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ga4TJBSsMd0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -30523,7 +30109,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Bv4e7K6if40",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -30568,7 +30153,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/h4Jvm80kXSw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -30656,7 +30240,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/nMp3MlTz9fA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -30703,7 +30286,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7mmqN_uBplM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -30751,7 +30333,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/zOR-oqgZO50",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -30924,7 +30505,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/DUxji6eWTVg",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -30968,7 +30548,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/_u6Hqbl-EMs",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -31014,7 +30593,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/BYcExakEl7M",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -31060,7 +30638,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/egIT79Uln0c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -31106,7 +30683,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/XY5YvJMeSSY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -31218,7 +30794,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ZpI28mfvRsw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -31266,7 +30841,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/pkaENIGSHtU",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": true,
@@ -31316,7 +30890,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EHZJns1bXPM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -31362,7 +30935,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/SeExkEo63mo",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -31451,7 +31023,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/GQPT2wlVpmo",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -31497,7 +31068,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/JU9XK0QQ4So",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -31541,7 +31111,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/kxyZyR93rVA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -31585,7 +31154,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/aLlj806R0zU",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -31629,7 +31197,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ZDyeGA16xy4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -31673,7 +31240,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/8KkGcMWTYjI",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -31760,7 +31326,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/UYKkkRSKbIQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -31804,7 +31369,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/X10967UypQk",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -31849,7 +31413,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/XhSXELzPNLY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -31963,7 +31526,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/MDxfAuBbHHA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": true,
@@ -32010,7 +31572,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/P1pLE1jmnI0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -32057,7 +31618,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Cs0aTqu-Fww",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -32148,7 +31708,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/AqiicMLlL98",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -32193,7 +31752,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/nKBSk9Y5olc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -32240,7 +31798,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/n6lRtVV7LYY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -32286,7 +31843,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/NnP83rpFqRw",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -32331,7 +31887,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/x2b2Bv6kq7Q",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -32376,7 +31931,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tG3BKvnkWB0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -32463,7 +32017,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3UomiPXmkO4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -32550,7 +32103,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/om1IAdzpKsg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -32595,7 +32147,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/HFPbNaMzW3M",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -32711,7 +32262,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/nN-fkSOL1ds",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -32757,7 +32307,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/O5viuEPDXKY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -32803,7 +32352,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/pJUY83BsReY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": true,
@@ -32850,7 +32398,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/fnyi4hDabkQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -32895,7 +32442,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hP6ntc92ASk",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -33005,7 +32551,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/M9e7sUCot3E",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -33099,7 +32644,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VsK9rz0xNI4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -33145,7 +32689,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/q9Sllm2jEss",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -33191,7 +32734,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/S23y3ktmnUY",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -33239,7 +32781,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EIK8PXNRBjY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": true,
@@ -33286,7 +32827,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/vwsLb3pBDo4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -33412,7 +32952,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VuzkBRvf81o",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -33457,7 +32996,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2yenA3JNh5Q",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": true,
@@ -33503,7 +33041,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/B2pVOQwM4es",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -33548,7 +33085,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/PIdsj1v3fmA",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -33592,7 +33128,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Ode4tpT7d7s",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -33636,7 +33171,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/-f5TkjaYUEc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -33709,7 +33243,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jUXUJxxBmjY",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -33755,7 +33288,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/uZNhCPxH8r4",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -33799,7 +33331,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/MhQp54FXMqU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -33843,7 +33374,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5vLzaJt1XyA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -33889,7 +33419,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5mJQXTG2ZoY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -33937,7 +33466,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hXCjulnqk2s",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -34026,7 +33554,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Ujn1cMZo4iA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -34070,7 +33597,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Z6l_MUXvonY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -34160,7 +33686,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/RuJ9a05aa0A",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -34207,7 +33732,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/9wqia-XJSy8",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -34252,7 +33776,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/wOa4YyxyiKI",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -34372,7 +33895,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LLzttVsx6Yg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -34418,7 +33940,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/doPA462HS9Y",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -34465,7 +33986,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/OMOzA6FO4fk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -34513,7 +34033,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4tCCI7abjDA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -34604,7 +34123,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Wym5HfHseGA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -34649,7 +34167,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rSRk-33YQUI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -34694,7 +34211,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/XPPfnSEATJA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -34767,7 +34283,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EksYeCrklWE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -34856,7 +34371,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/84q9sQoxwYI",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -34902,7 +34416,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rWXy0LjnHbs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -34949,7 +34462,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/8tN3Dljp7MI",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -34995,7 +34507,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/UNR_5BUYpLg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -35042,7 +34553,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/u_u8k-VF3IA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -35089,7 +34599,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/B4U0xgIj2VA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -35134,7 +34643,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/9PGQvfYke74",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -35180,7 +34688,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/yOqnWMylR3Q",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -35253,7 +34760,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/p5FGLF2fFdk",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -35299,7 +34805,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/M_xVh93kG2Q",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -35347,7 +34852,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/i2jIa-rjv4Q",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -35439,7 +34943,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7erxS5cebhU",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -35485,7 +34988,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Q11bWwok17k",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -35595,7 +35097,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3uZJh23iYbE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -35639,7 +35140,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tIZppe-RB0g",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -35685,7 +35185,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3_PeX9e9aCM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -35731,7 +35230,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LWW0tvlgC24",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -35776,7 +35274,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/JEcLIscUSfc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -35822,7 +35319,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/xIRXGNfy-nU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -36000,7 +35496,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/l-RhNMneVcc",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -36087,7 +35582,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LW07PbZ70V0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -36203,7 +35697,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/iW_dlMLEBmM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -36298,7 +35791,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2F-EhzrKNEE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -36344,7 +35836,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WshgtVD_czw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -36390,7 +35881,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/GWPyAnB2K5I",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -36438,7 +35928,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/-7uLo7LDIfs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -36486,7 +35975,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jRKg4eGH3bI",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -36533,7 +36021,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sxA__DoLsgo",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -36672,7 +36159,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bgC53-J-6gA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -36718,7 +36204,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/foqDluSLMSo",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -36809,7 +36294,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/awpw9fL2k7o",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -36941,7 +36425,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/NNTpBlHRcA4",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -37016,7 +36499,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/lqxi7wzFOkQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -37062,7 +36544,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bDpaYemKtwE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -37107,7 +36588,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/SRUtMJ0tE2A",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -37152,7 +36632,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/TE56Vqyszqc",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -37197,7 +36676,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WVffl91g1EM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -37242,7 +36720,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hYo72r8Ivso",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -37289,7 +36766,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7KhA_TDJuyQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -37335,7 +36811,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tTkP9izcC-Y",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -37380,7 +36855,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/iqePDjAJzpA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -37513,7 +36987,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/O89t6hycAtk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -37561,7 +37034,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5R7eWaNWO3U",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -37653,7 +37125,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7um_i5Hokgs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -37700,7 +37171,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/9iXLwINlDEU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": true,
@@ -37746,7 +37216,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/FubluSoLsmk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -37792,7 +37261,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/BzdufU6pWvs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -37838,7 +37306,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jzxnzBMfa7E",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -37992,7 +37459,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/mG5zS-a2AIY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -38038,7 +37504,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/MFllH3uFReg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -38132,7 +37597,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/M5-2tDaQUs8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -38177,7 +37641,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LTXjmRhbpAI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -38222,7 +37685,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/-Ck1iF5kdOA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -38267,7 +37729,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/KxgTO2BGxLE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -38312,7 +37773,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/zZj-ibOLJHs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -38357,7 +37817,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EQhl71qo66g",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -38444,7 +37903,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/PD_KnB4bwYo",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -38488,7 +37946,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Z9psWZT0WuQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -38533,7 +37990,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ZfPfRadYez8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -38578,7 +38034,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/0n2GmFfxScw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -38623,7 +38078,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hTZfYTKWGDo",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -38759,7 +38213,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WIyRdcauQVE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -38805,7 +38258,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/GtJRTYtD6_o",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -38853,7 +38305,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/t0a1ce6z4ug",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -39007,7 +38458,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/CrM9fcsUbI0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -39122,7 +38572,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/40O_4gAP-Vs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -39168,7 +38617,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Nwm5bzpmwwg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -39338,7 +38786,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/zlfisQZSxU0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -39385,7 +38832,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/0HFXsIMKqUg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -39434,7 +38880,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/_71vJV2fZng",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -39481,7 +38926,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/J2HNCU1CmDI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -39527,7 +38971,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/6rKLTV2Y618",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -39658,7 +39101,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/OIxDFvrOic0",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -39706,7 +39148,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dZrKs0twpFs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -39798,7 +39239,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/CWEz66PSB3I",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -39843,7 +39283,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/NvL0Q7FqhoY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -39887,7 +39326,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/_XJXNktkB1Q",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": true,
@@ -39932,7 +39370,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ktexhAWb-34",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -40042,7 +39479,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/JUiBla_G0Kg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -40088,7 +39524,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/0SfJvAJMc70",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -40133,7 +39568,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/trrFycEVs_U",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -40180,7 +39614,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tUzLoRBPLDQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -40228,7 +39661,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/DEcYaWee-D8",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -40319,7 +39751,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/X4BORb390_4",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -40410,7 +39841,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5Dd8_3ZZeI8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": true,
@@ -40458,7 +39888,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dDbA781ZgEs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -40506,7 +39935,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/z1jzdKYAG90",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -40553,7 +39981,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dAKwyjJUq5k",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -40598,7 +40025,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/g9P79OKKwXA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -40642,7 +40068,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rguy45pqCEU",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -40731,7 +40156,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VkSGMEGD6Do",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -40779,7 +40203,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/K3EvsRAe394",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -40826,7 +40249,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EXer_ik-MlU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -40871,7 +40293,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/NvfFTF_v76c",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -40916,7 +40337,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ZaDlbm8E8Tg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -40961,7 +40381,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/v3a2o-ZIH4o",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -41007,7 +40426,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7v9crGd0qWc",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -41055,7 +40473,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/kRW4mieztp8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -41101,7 +40518,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bI9ztRdQfWw",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -41145,7 +40561,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hO2tKuMMoFU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -41189,7 +40604,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Q7dTbE4kRUY",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -41233,7 +40647,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4KEPvCaW81o",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -41279,7 +40692,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/V8BvJQy3jHI",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -41352,7 +40764,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2i2UkUYb_Iw",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -41397,7 +40808,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ZfPfRadYez8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -41443,7 +40853,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VpFgjaGAOoE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -41490,7 +40899,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/AidBGx3TFaw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -41536,7 +40944,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/yL5wfToc7hg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -41627,7 +41034,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sh92B-_2O48",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -41671,7 +41077,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/nSt3Xrjh0-w",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -41715,7 +41120,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3rsKOL8scsU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -41761,7 +41165,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/gw3wWEdTznk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -41854,7 +41257,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/OVdHWqEL2wM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -41898,7 +41300,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Ei2qzKMUVpw",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -42112,7 +41513,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/0SfJvAJMc70",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -42156,7 +41556,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/GcY6TZxfS0k",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -42200,7 +41599,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WzJqP6Zy2rk",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -42244,7 +41642,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Z2FeYUnR-BA",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -42290,7 +41687,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/pjoFrNl-8i4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -42338,7 +41734,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/vuOgexp-NXk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -42385,7 +41780,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bwGouvrXUD4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -42430,7 +41824,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ruOs10Eu9Q4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -42475,7 +41868,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/934rrJiJrmA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -42522,7 +41914,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/60zRDSvA_WE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -42568,7 +41959,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3SePqFdvfBg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -42612,7 +42002,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/fy-DOq-MISs",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -42660,7 +42049,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/zcNl9Fo4BKs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -42755,7 +42143,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WI8XjSb-g50",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -42800,7 +42187,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/MSWbF3Rd1y8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -42845,7 +42231,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Q7dTbE4kRUY",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -42889,7 +42274,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/KQ0cvbAvZho",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -42934,7 +42318,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sbDv6hSmUQY",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -42979,7 +42362,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/23jEuXKPOlY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -43025,7 +42407,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/CCqru4q9RK0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -43146,7 +42527,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/1Z6XiaBxwHQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -43267,7 +42647,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/g0ygnH7jjq0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -43315,7 +42694,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/OB54iSibeAE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -43362,7 +42740,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/pP4-o20mWak",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -43409,7 +42786,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/a88og0i8LxE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -43483,7 +42859,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/l7OroezzX9k",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -43557,7 +42932,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/6oe2EUn7cHk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -43605,7 +42979,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/_t3lrPI6Ns4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -43680,7 +43053,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5LwKErX-4ws",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -43727,7 +43099,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/xoMraP_SIZ8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -43774,7 +43145,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/t1kkhgSAjV4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -43820,7 +43190,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/JRxf04_PgLg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -43865,7 +43234,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/RLef_nm-PNM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -43911,7 +43279,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/9AoOdmvo2do",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -44004,7 +43371,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/kuQGbi1eYRU",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -44051,7 +43417,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/e8EFaBM1dhg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -44099,7 +43464,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/8t4TynL94Ds",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -44145,7 +43509,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/GdIaytsQL0Q",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -44189,7 +43552,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4KEPvCaW81o",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -44233,7 +43595,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/HtVsCD_j6Z4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -44320,7 +43681,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/KqtW-L4S-Qg",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -44365,7 +43725,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/SG_X8zvZL8g",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -44410,7 +43769,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3Y_RFoYl-dk",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -44454,7 +43812,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/a2xjbhP4MkY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -44498,7 +43855,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hcW2-nNH7dg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -44544,7 +43900,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/PFt98yMgW1g",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -44590,7 +43945,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/-r_LrDcui0w",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -44636,7 +43990,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/UtsMdPHPrNA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -44725,7 +44078,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VudwEqVgL0I",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -44771,7 +44123,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/gAoyWxlhxc4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -44819,7 +44170,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/AhQyicnAbr0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -45078,7 +44428,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/SGIcgpFjUTs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -45125,7 +44474,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/t50U-Jv7A8w",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -45172,7 +44520,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/C7Ma6hBv6dw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -45218,7 +44565,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Zyqgtb6zTFM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -45264,7 +44610,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/wVfN95NOksc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -45404,7 +44749,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7qF5wLkMCc4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -45450,7 +44794,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/vuOgexp-NXk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -45496,7 +44839,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2feuVZi1xx4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -45540,7 +44882,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jduXuDxKwn4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -45586,7 +44927,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5CoEX5UiQ48",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -45634,7 +44974,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ieFKuQAGYIA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -45707,7 +45046,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/-yBsH0pAo1g",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -45794,7 +45132,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5o3iz6luocc",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -45838,7 +45175,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ncGj3Tb-q50",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -45882,7 +45218,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4wInzok8pzs",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -45928,7 +45263,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/MD6vOuRVmek",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -45976,7 +45310,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rLu9P_Y5zh8",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -46024,7 +45357,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/O5viuEPDXKY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -46070,7 +45402,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rtf77DFd_y4",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -46116,7 +45447,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/aHoW8mgso1c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -46162,7 +45492,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/vHCIajYoybs",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -46208,7 +45537,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/pNgpSubqYMQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -46282,7 +45610,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WNz7O59GORA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -46329,7 +45656,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/JsNoWqT9tJs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -46376,7 +45702,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/TRUQ7Ybm9ss",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -46468,7 +45793,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/whc0aDLddVU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -46630,7 +45954,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VFEUBwVxq1Q",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -46678,7 +46001,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/8Ta_A9vAEGs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -46724,7 +46046,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Pppxa0EjM-w",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -46769,7 +46090,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Ykw-0jP3BSY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -46816,7 +46136,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Vns5jisytn8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -46862,7 +46181,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/c8kkmzxs1ek",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -46907,7 +46225,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/xxH29yHmAuM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -46953,7 +46270,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ebhRbdT25ko",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -47068,7 +46384,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/XYTTL9I7M9I",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -47114,7 +46429,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/mzPvzMivukw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -47205,7 +46519,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/buQ_DN6vW1k",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -47300,7 +46613,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/N17efE2lbmA",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -47347,7 +46659,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sUnLh9xTrmA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -47441,7 +46752,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2cGfXlLaJT0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -47487,7 +46797,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Ttym0nIar5o",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -47533,7 +46842,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ejymrsRduow",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -47581,7 +46889,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/PQNLrwW4qMY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -47628,7 +46935,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/SSGlPIZQ8ns",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -47770,7 +47076,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/epcNK0n8R6w",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -47864,7 +47169,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bG2PQEYgD7A",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -47953,7 +47257,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/O8bgSmN_r0Y",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -48001,7 +47304,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hYF_0U0N-uQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -48049,7 +47351,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/w6ua5fqNws0",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -48097,7 +47398,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/lgq68DmjIuE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -48144,7 +47444,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/xyNyl04a_DA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -48190,7 +47489,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/xaMJYDzqTZg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -48235,7 +47533,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/kFRp7NnM9ZM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -48307,7 +47604,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hhF0-q6Nuv8",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -48355,7 +47651,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sugmNPK5Pw4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -48404,7 +47699,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/X_eGLtiWZSs",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -48451,7 +47745,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4HKq7JrwjtQ",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -48498,7 +47791,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/uPqAd82GUfY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -48544,7 +47836,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3CeF8XoRfOQ",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -48631,7 +47922,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/fbCPab_WzNU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -48677,7 +47967,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/SInc6YXxrj4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -48723,7 +48012,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/CJU43mjfsjo",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -48769,7 +48057,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ArZXCfbjxWs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -48817,7 +48104,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tDgQx0W1JP0",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -48863,7 +48149,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jduXuDxKwn4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -48909,7 +48194,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/fWk5OoUBXuY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -48955,7 +48239,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/631PCvXjU0Q",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -49000,7 +48283,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4Bsl7m2hH_g",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -49046,7 +48328,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/eT2qo-Ut4vI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -49135,7 +48416,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/gM7W9G1pfuM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -49267,7 +48547,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/vSjthx8vHNs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -49312,7 +48591,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/aGSZeF6e1fM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -49358,7 +48636,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/e4D04gu-wV8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -49449,7 +48726,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/nO2m-WUNn3w",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -49494,7 +48770,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4t8qTBKjhIg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -49541,7 +48816,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/JHYVvhWqNzE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -49588,7 +48862,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tZfgEpqzew4",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -49680,7 +48953,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Dm380qf84UI",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -49726,7 +48998,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/8ICBzB5chJk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -49775,7 +49046,6 @@ window.JEFIT_SCRAPED = [
       "JEFIT",
       "Functional Fitness DB"
     ],
-    "video": "https://youtu.be/IqXtJnai1ik",
     "videoDeep": "https://youtu.be/pKjBQcEc6kU",
     "primeMover": "Pectoralis Major",
     "movement": [
@@ -49852,7 +49122,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/14FLeQKDGj8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -49898,7 +49167,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/x3UvaySw0ys",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -50027,7 +49295,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/0fLO2VeCWDc",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -50071,7 +49338,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/qgBno5x5ISI",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -50115,7 +49381,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/QKSrYQ5XoN8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -50245,7 +49510,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/97aWJVHvyqE",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -50289,7 +49553,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/QBNEX4ZYIPQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -50333,7 +49596,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hTPKulH6bqA",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -50379,7 +49641,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Gz4IOdzgFUY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -50425,7 +49686,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dk4GdbhlJj8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -50518,7 +49778,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Hp4chJUBubo",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -50566,7 +49825,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4S7X6NhUudA",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -50612,7 +49870,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/fi6D5OHwf14",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -50658,7 +49915,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/FKatrG7vBTs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -50704,7 +49960,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/wIjvMreCQzE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -50840,7 +50095,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/FTudxq7VozI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -50886,7 +50140,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rT35N_SbD6I",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -50930,7 +50183,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/-7KHsjYUATg",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -50976,7 +50228,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tuaqqBZzLsk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -51022,7 +50273,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/NzrT4O84DEE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -51109,7 +50359,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/FcHu8mjKVV4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -51153,7 +50402,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/lJvjLzJKjb0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -51293,7 +50541,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bSj6TBAcOYQ",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -51337,7 +50584,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dySA9D9_Ls8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -51383,7 +50629,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LbeKUDxlAGQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -51431,7 +50676,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/z1j2QMBJF6c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -51479,7 +50723,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/utRKKKqautc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -51571,7 +50814,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Whn9dcfDmsY",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -51618,7 +50860,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/yJUsl0GD6y8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -51664,7 +50905,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sJqVk1EiIyQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -51782,7 +51022,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Y1GyF8tme7s",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -51826,7 +51065,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/KxWKgJNKOEo",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -51870,7 +51108,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/aJHGm_E4as4",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -51915,7 +51152,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/S1PkoDxVYe8",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -51962,7 +51198,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LVckAinjmN4",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -52055,7 +51290,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tWLL1GOqmw8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -52100,7 +51334,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/raQdaeq5V8o",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -52193,7 +51426,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/QIuVFYcjePU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -52239,7 +51471,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/kLncYxu2XjE",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -52331,7 +51562,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/YMD-Qs40qrE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -52377,7 +51607,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/O0KCU_sITXU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -52422,7 +51651,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dMp8iwdlVOM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -52516,7 +51744,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Izby2cPLiK0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -52652,7 +51879,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5S8FagtrG0g",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -52702,7 +51928,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LnwnYW0H0wI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -52752,7 +51977,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Ktzsu87v8kM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": true,
@@ -52888,7 +52112,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/clTHavpjZ8U",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -52936,7 +52159,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/DxzbXy0lC6Y",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -52984,7 +52206,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/buQ_DN6vW1k",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -53032,7 +52253,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/bmxfNAgmyS0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -53080,7 +52300,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4dRMCRD0OSM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -53126,7 +52345,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/xdujB1xAXI8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -53172,7 +52390,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/0-b62YdtSjE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -53219,7 +52436,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/a-_p33mGtsQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -53264,7 +52480,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Mpy6OvL2uHc",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -53310,7 +52525,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/F8jRZzJqZFA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -53356,7 +52570,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/DUxji6eWTVg",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -53401,7 +52614,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sUtHJDcxIyM",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -53473,7 +52685,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/rFgyY7gCrVY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -53517,7 +52728,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/37pXhmr31Zk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -53610,7 +52820,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/y5o-Udnv0Zc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -53657,7 +52866,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/yVms3AwiV_4",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -53704,7 +52912,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/GRyaIANEqLE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -53752,7 +52959,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ELoeZy3Y_Mg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -53799,7 +53005,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/wOa4YyxyiKI",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -53845,7 +53050,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/s3MuJ9ARPJg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -53892,7 +53096,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2hvoXAXaqQo",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -54008,7 +53211,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/PeBZA6wwRzs",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -54099,7 +53301,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5kDlVBvbip0",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -54145,7 +53346,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/1d1fisbggOU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -54192,7 +53392,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/FPL7RKZuvEE",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -54238,7 +53437,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/78DL10B002E",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -54285,7 +53483,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/yejDq7RzEXU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -54466,7 +53663,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/r3e07nBGtzU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -54514,7 +53710,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/IQcz2l8fPOo",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -54562,7 +53757,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/VhuD6n04x4E",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -54655,7 +53849,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/OqO3-J0nwaU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -54701,7 +53894,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/XPPfnSEATJA",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -54772,7 +53964,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/f6T8dKEjxM8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -54816,7 +54007,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/XXl7NF9rvAw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -54862,7 +54052,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/9NFkYaviXgk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -54910,7 +54099,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WiFxVCB50oo",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -54958,7 +54146,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/pkzDyEgnopc",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -55006,7 +54193,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/-F81E6dQrBA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -55054,7 +54240,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/MJuwUG0_C_0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -55102,7 +54287,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/L-GldySh3qE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -55307,7 +54491,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ajgSJZ5Yros",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -55355,7 +54538,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Yp8Isoq49_A",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -55403,7 +54585,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3Coq2baN7Vw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -55451,7 +54632,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/SiNbpYFNk6M",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -55499,7 +54679,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/PwZVi-F86ms",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -55594,7 +54773,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/XvCWzf3pTrw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -55642,7 +54820,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/06YpyxKi3Ho",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -55737,7 +54914,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5bRjWYLX4IY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -55829,7 +55005,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2-3gEPfQo7o",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -55878,7 +55053,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hO2tKuMMoFU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -55926,7 +55100,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/yje5wtHlhdo",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -56305,7 +55478,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/CnWN15rJlmA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -56353,7 +55525,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7SqnWtgrFZQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -56399,7 +55570,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Q7WNjBLOlz0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -56444,7 +55614,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/7a2LlkBPsqU",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -56489,7 +55658,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jduXuDxKwn4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -56535,7 +55703,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/30nR-JnpBQA",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -56582,7 +55749,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/4R_GwRhG0rY",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -56627,7 +55793,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/pQDrcNoDNVM",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -56701,7 +55866,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/j6IVXpyi9PI",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -56747,7 +55911,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/FFxcDxY-taI",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -56793,7 +55956,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/tF9EvM5VZ_k",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -56934,7 +56096,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LPjzb3hwWU4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -57026,7 +56187,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/0DlVcwdxMM4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -57071,7 +56231,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/g0TLI5Uv4_s",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -57248,7 +56407,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Sq8o6BBi9uE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -57294,7 +56452,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/2_7jh_IczU8",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -57387,7 +56544,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/3c7LmiWblyg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -57482,7 +56638,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/XRk2782aQlg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -57557,7 +56712,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/hNv9-SXvbAE",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -57604,7 +56758,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/pDF7S14Qzas",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -57650,7 +56803,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/TgQixcfeRN0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -57738,7 +56890,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/a7MTFHGGCtg",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -57782,7 +56933,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/KqtW-L4S-Qg",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -57875,7 +57025,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/1XMIw3y-Kec",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -57922,7 +57071,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/AlE7OoyUFZ0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -57967,7 +57115,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EqV3khokI0c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -58144,7 +57291,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/mb8rhZuXOdk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -58192,7 +57338,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/dAosGhvuD14",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -58238,7 +57383,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/K-YnY2tDYi8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -58284,7 +57428,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/C5EncMSKDoY",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -58379,7 +57522,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Ja0oRNsF62o",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -58426,7 +57568,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/xe0AF9xau74",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -58500,7 +57641,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Ge53WwV4eg0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -58689,7 +57829,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/nMp3MlTz9fA",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -58735,7 +57874,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/ycsjoFPxvwE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -58781,7 +57919,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/eCdpaIvXmRw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -58828,7 +57965,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/sbDv6hSmUQY",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -58875,7 +58011,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/cnp_3N2k-NI",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -58966,7 +58101,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Z3Ep_1T4E0A",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -59098,7 +58232,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/WFRb_ql2au4",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -59146,7 +58279,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Tq9eqgSXKos",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -59193,7 +58325,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/1Z97JF1PBIY",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -59238,7 +58369,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/soBSSmLpefo",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -59284,7 +58414,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/6O7F8OztosY",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -59375,7 +58504,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/NEQG9Ffrux4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -59423,7 +58551,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/P5VvC8iy70s",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -59514,7 +58641,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/JSDpq14vCZ8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -59560,7 +58686,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/zIZiibiiuEE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -59608,7 +58733,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/LPD5Rnggzx4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -59744,7 +58868,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/5pC1skpc7e0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -59880,7 +59003,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/9ZLWXf44WSw",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -59927,7 +59049,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Yp7cT9Nwclc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -60021,7 +59142,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/wesbC-HUJWg",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -60284,7 +59404,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/EgMft3uaLpc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -60330,7 +59449,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/9Lfmlt-fR40",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -60376,7 +59494,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/aJBEW7a4ADc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -60424,7 +59541,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/M6pUm3gdViE",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -60515,7 +59631,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/F0gKY1eMK8M",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -60561,7 +59676,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/vxvTAU0f5qo",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -60652,7 +59766,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/34OHyTwG10g",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -60698,7 +59811,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/jbH15uri1eg",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -60746,7 +59858,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/D9zWVJl7dHI",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -60840,7 +59951,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/84q9sQoxwYI",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -60887,7 +59997,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/yl--j9pYBlo",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -60933,7 +60042,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/BpIEgXBLiYs",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -60978,7 +60086,6 @@ window.JEFIT_SCRAPED = [
     "sources": [
       "JEFIT"
     ],
-    "video": "https://youtu.be/Mou-o45zJlo",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
