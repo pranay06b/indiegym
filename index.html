@@ -556,7 +556,7 @@ img{
 <div class="scrim" id="scrim"><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="./data.with_videos.js?v=20260923-1" onerror="window.__JEFIT_LOAD_ERROR=true"></script>
+<script src="./data_with_videos.js?v=20260924-1" onerror="window.__JEFIT_LOAD_ERROR=true"></script>
 <script src="./body-muscles.umd.min.js"></script>
 <script>
 window.__JEFIT_DATA_COUNT = Array.isArray(window.JEFIT_SCRAPED) ? window.JEFIT_SCRAPED.length : 0;
@@ -851,7 +851,7 @@ function ensureState(s){
   s.days.forEach(d => d.exercises.forEach(x => {
     const l = findLib(x.name);
     if(!x.gif && !x.instructions){ if(l) Object.assign(x, {...l, id: x.id, sets: x.sets, rest: x.rest}); }
-    else if(l && !x.sources) EXTRA_FIELDS.forEach(k => { if(l[k] != null && x[k] == null) x[k] = l[k]; });
+    else if(l) EXTRA_FIELDS.forEach(k => { if(l[k] != null && x[k] == null) x[k] = l[k]; });
   }));
   return s;
 }
