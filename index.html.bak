@@ -847,18 +847,12 @@ function ensureState(s){
   
   if(!Array.isArray(s.days)) s.days = [];
   if(!s.days.some(d => d.id === s.activeDay)) s.activeDay = s.days[0]?.id || null;
-  // Fill exercises that were saved before the library finished loading, or imported without details
-  const fill = x => {
+  // Fill exercises that were saved before the library finished loading
+  s.days.forEach(d => d.exercises.forEach(x => {
     const l = findLib(x.name);
-    if(!l) return;
-    if(!x.gif && !x.instructions) Object.assign(x, {...l, id: x.id, sets: x.sets, rest: x.rest});
-    else EXTRA_FIELDS.forEach(k => { if(l[k] != null && x[k] == null) x[k] = l[k]; });
-    if(!x.muscles || !x.muscles.length){ x.muscles = l.muscles; x.muscle = l.muscle; }
-    if(typeof x.sets === "number" || /^\d+$/.test(String(x.sets).trim())) x.sets = x.sets + " × 8–12";
-  };
-  s.days.forEach(d => d.exercises.forEach(fill));
-  s.routines.forEach(r => r.exercises.forEach(fill));
-  s.builder.exercises.forEach(fill);
+    if(!x.gif && !x.instructions){ if(l) Object.assign(x, {...l, id: x.id, sets: x.sets, rest: x.rest}); }
+    else if(l) EXTRA_FIELDS.forEach(k => { if(l[k] != null && x[k] == null) x[k] = l[k]; });
+  }));
   return s;
 }
 function loadState(){
@@ -3025,15 +3019,6 @@ function shareSheet({title, text, file = null, copy = null}){
   }));
 }
 
-/* Imported exercises are stored slim ({name, sets, rest}); restore muscle, GIF, instructions etc. from the library */
-function hydrateImported(x){
-  const l = findLib(x.name);
-  const base = l ? (({custom, id, ...b}) => b)(l) : {};
-  const out = {...BLANK_EX, ...base, ...x, id: uid()};
-  if(typeof out.sets === "number" || /^\d+$/.test(String(out.sets).trim()))
-    out.sets = out.sets + " × 8–12";          // some exports store sets as a bare number
-  return out;
-}
 function parseImport(data){
   if(!data || typeof data !== "object") throw new Error("this isn’t a JSON object");
   let plan = null, hist = null, routinesRaw = null;
@@ -3041,11 +3026,11 @@ function parseImport(data){
   else if(Array.isArray(data.days)){ plan = {days: data.days, custom: data.custom}; hist = Array.isArray(data.logs) ? {logs: data.logs, badges: data.badges} : null; }   // older full backups
   const days = plan && Array.isArray(plan.days)
     ? plan.days.filter(d => d && typeof d.title === "string" && Array.isArray(d.exercises))
-        .map(d => ({id: uid(), title: d.title, exercises: d.exercises.filter(x => x && x.name).map(hydrateImported)})) : null;
+        .map(d => ({id: uid(), title: d.title, exercises: d.exercises.filter(x => x && x.name).map(x => ({...BLANK_EX, ...x, id: uid()}))})) : null;
   const custom = plan && Array.isArray(plan.custom) ? plan.custom.filter(c => c && c.name) : [];
   const routines = Array.isArray(routinesRaw)
     ? routinesRaw.filter(r => r && typeof r.title === "string" && Array.isArray(r.exercises))
-        .map(r => ({id: uid(), title: r.title, exercises: r.exercises.filter(x => x && x.name).map(hydrateImported)})) : null;
+        .map(r => ({id: uid(), title: r.title, exercises: r.exercises.filter(x => x && x.name).map(x => ({...BLANK_EX, ...x, id: uid()}))})) : null;
   const logs = hist && Array.isArray(hist.logs)
     ? hist.logs.filter(l => l && l.id && Array.isArray(l.exercises) && isFinite(l.start) && isFinite(l.end))
         .map(l => ({...l, sets: num(l.sets), volume: num(l.volume), xp: num(l.xp), prs: Array.isArray(l.prs) ? l.prs : []})) : null;
