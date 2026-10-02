@@ -398,7 +398,18 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .demo-inner{padding-bottom:12px}
 .demo-frame{position:relative;aspect-ratio:16/9;width:100%;background:#0B0F24;border:1.5px solid var(--edge);border-radius:8px;overflow:hidden}
 .demo-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.demo-alt{margin-top:8px}
+.demo-alt{margin-top:8px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px}
+/* Watch demo dropdown: looks like the old orange button, opens a list of every video for the exercise */
+.vid-select{flex:1 1 190px;min-width:0;max-width:100%;min-height:44px;padding:0 38px 0 16px;border-radius:8px;border:1.5px solid var(--signal);font-weight:700;font-size:14px;cursor:pointer;
+  -webkit-appearance:none;appearance:none;background-color:var(--signal);color:var(--on-signal);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23101A4A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center}
+.vid-select:focus-visible{outline:none;box-shadow:0 0 0 3px var(--ring)}
+.vid-select option{background:var(--paper);color:var(--ink);font-weight:500}
+.vid-add{margin:0 0 12px;padding:12px;border:1.5px solid var(--line);border-radius:8px;background:var(--soft)}
+.vid-add[hidden]{display:none}
+.vid-add .field{margin-bottom:10px}
+.vid-add .actions{margin-top:4px}
 .facts{margin:0;padding:0}
 .facts div{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
 .facts dt{color:var(--muted);flex:0 0 auto}
@@ -832,6 +843,7 @@ let SHEET = "";
 
 function ensureState(s){
   s.custom = Array.isArray(s.custom) ? s.custom : [];
+  s.userVideos = cleanUserVideos(s.userVideos);   // {exercise name (lower case): [{id, url, title}]}
   s.logs = Array.isArray(s.logs) ? s.logs : [];
   s.doneLog = Array.isArray(s.doneLog) ? s.doneLog : [];
   s.active = s.active && Array.isArray(s.active.exercises) ? s.active : null;
@@ -1345,9 +1357,9 @@ function equipList(e){
   return l.length ? l : ["Body Weight"];
 }
 const diffOf = e => e.difficulty ? diffClass(e.difficulty) : "";
-const hasVideo = e => !!(e.video || e.videoDeep);
+const hasVideo = e => videoSources(e).length > 0;   // library videos (video, video1, video2 …, videoDeep) plus any the user added
 const searchHay = e => [e.name, (e.aliases || []).join(" "), muscleKeys(e).join(" "), equipList(e).join(" "), e.primeMover || "", (e.supportMuscles || []).join(" "), (e.movement || []).join(" ")].join(" ").toLowerCase();
-const EXTRA_FIELDS = ["video","videoDeep","primeMover","supportMuscles","secondaryMuscle","tertiaryMuscle","movement","plane","bodyRegion","force","laterality","posture","grip","classification","mechanics","skillLevel","sources"];
+const EXTRA_FIELDS = ["video","video1","video2","video3","video4","videos","videoDeep","primeMover","supportMuscles","secondaryMuscle","tertiaryMuscle","movement","plane","bodyRegion","force","laterality","posture","grip","classification","mechanics","skillLevel","sources"];
 const isWorkout = e => !NOT_WORKOUT.test(e.name) && e.classification !== "Mobility";
 
 /* Filter options come from the data, so they always match what exists */
@@ -2109,41 +2121,115 @@ function ytId(u){
   const m = String(u || "").match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:[^#]*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/i);
   return m ? m[1] : "";
 }
-/* "Watch demo" is a toggle. The video panel starts collapsed and the player is only created on click. */
-function videoLinks(e){
-  if(!hasVideo(e)) return "";
-  const id = ytId(e.video);
-  const demoBtn = !e.video ? ""
-    : id ? `<button class="btn sm signal" type="button" data-act="toggle-demo" aria-expanded="false" aria-controls="demoPanel"><span class="vid-ic" aria-hidden="true">▶</span> <span class="vid-lbl">Watch demo</span></button>`
-    : `<a class="btn sm signal" href="${esc(e.video)}" target="_blank" rel="noopener">▶ Watch demo</a>`;   // not a recognised YouTube link: keep the plain link
-  const deep = e.videoDeep ? `<a class="btn sm" href="${esc(e.videoDeep)}" target="_blank" rel="noopener">In-depth explanation</a>` : "";
-  const panel = id ? `<div class="demo" id="demoPanel" data-id="${esc(id)}" data-title="${esc(e.name)} demo video" data-href="${esc(e.video)}" inert>
+/* =========================================================
+   Demo videos
+   Every exercise can have several videos: the library fields video, video1, video2 …, a "videos" list,
+   videoDeep, plus any YouTube links the user adds (saved in S.userVideos, per exercise name).
+   They all show up in one "Watch demo" dropdown; picking one opens the embedded player.
+   ========================================================= */
+const ytUrl = id => "https://youtu.be/" + id;
+function cleanUserVideos(v){
+  const out = {};
+  if(v && typeof v === "object" && !Array.isArray(v)){
+    Object.keys(v).forEach(k => {
+      const list = (Array.isArray(v[k]) ? v[k] : []).filter(x => x && ytId(x.url)).map(x => ({id: String(x.id || uid()), url: ytUrl(ytId(x.url)), title: String(x.title || "").trim().slice(0, 60)}));
+      if(list.length) out[k] = list;
+    });
+  }
+  return out;
+}
+function userVideosFor(name){
+  const all = (typeof S !== "undefined" && S && S.userVideos) || {};
+  return all[nkey(name)] || [];
+}
+/* Every video for an exercise, in the order they appear in the dropdown */
+function videoSources(e){
+  if(!e) return [];
+  const demos = [];
+  const addDemo = v => { const u = typeof v === "string" ? v : v && v.url; if(u && String(u).trim()) demos.push({url: String(u).trim(), title: v && v.title ? String(v.title).trim() : ""}); };
+  addDemo(e.video);
+  Object.keys(e).filter(k => /^video\d+$/i.test(k)).sort((x, y) => parseInt(x.slice(5), 10) - parseInt(y.slice(5), 10)).forEach(k => addDemo(e[k]));
+  if(Array.isArray(e.videos)) e.videos.forEach(addDemo);
+  const out = [], seen = new Set();
+  const push = (url, label, extra = {}) => {
+    const id = ytId(url), key = id || url;
+    if(seen.has(key)) return;
+    seen.add(key);
+    out.push({url, id, label, mine: false, uid: "", ...extra});
+  };
+  demos.forEach((d, i) => push(d.url, d.title || (demos.length > 1 ? "Demo video " + (i + 1) : "Demo video")));
+  if(e.videoDeep && String(e.videoDeep).trim()) push(String(e.videoDeep).trim(), "In-depth explanation");
+  userVideosFor(e.name).forEach((v, i) => push(v.url, v.title || "My video " + (i + 1), {mine: true, uid: v.id}));
+  return out;
+}
+/* Pull the 11-character video id out of youtu.be, watch?v=, embed, shorts and live links */
+function ytId(u){
+  const m = String(u || "").match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:[^#]*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/i);
+  return m ? m[1] : "";
+}
+let VIDEO_EX = null;   // the exercise whose detail sheet is open
+function videoInner(e){
+  const list = videoSources(e);
+  const opts = list.map((v, i) => `<option value="${i}" data-yt="${esc(v.id)}" data-url="${esc(v.url)}" data-mine="${esc(v.uid)}">${esc(v.label)}${v.mine ? " (mine)" : ""}${v.id ? "" : " ↗"}</option>`).join("");
+  const dropdown = list.length
+    ? `<select class="vid-select" id="demoSelect" aria-label="Watch demo: choose a video" aria-controls="demoPanel"><option value="">▶ Watch demo (${list.length})</option>${opts}</select>` : "";
+  const addBtn = `<button class="btn sm" type="button" data-act="toggle-add-video" aria-expanded="false" aria-controls="vidAdd">+ Add my video</button>`;
+  const form = `<div class="vid-add" id="vidAdd" hidden>
+      <div class="field"><label for="f_vurl">YouTube link</label><input id="f_vurl" type="url" inputmode="url" autocomplete="off" placeholder="https://youtu.be/…  or  youtube.com/watch?v=…"></div>
+      <div class="field"><label for="f_vtitle">Name (optional)</label><input id="f_vtitle" type="text" maxlength="60" autocomplete="off" placeholder="e.g. My coach's form tips"></div>
+      <p class="status" id="vMsg" role="status"></p>
+      <div class="actions"><button class="btn" type="button" data-act="toggle-add-video">Cancel</button><button class="btn primary" type="button" data-act="save-video">Save video</button></div>
+    </div>`;
+  const panel = `<div class="demo" id="demoPanel" data-title="${esc(e.name)} demo video" inert>
       <div class="demo-clip"><div class="demo-inner">
         <div class="demo-frame"></div>
-        <p class="hint demo-alt">Video not playing? <a href="${esc(e.video)}" target="_blank" rel="noopener">Open it on YouTube ↗</a></p>
-      </div></div></div>` : "";
-  return `<div class="vid">${demoBtn}${deep}</div>${panel}`;
+        <p class="hint demo-alt"><a id="demoLink" href="#" target="_blank" rel="noopener">Video not playing? Open it on YouTube ↗</a><button class="link danger" type="button" id="demoDel" data-act="del-video" data-vid="" hidden>Remove my video</button></p>
+      </div></div></div>`;
+  return `<div class="vid">${dropdown}${addBtn}</div>${form}${panel}`;
 }
-function setDemo(open){
-  const panel = $("#demoPanel"), btn = $('[data-act="toggle-demo"]');
-  if(!panel || !btn) return;
-  const frame = $(".demo-frame", panel);
+function videoLinks(e){
+  VIDEO_EX = e;
+  return `<div id="vidWrap">${videoInner(e)}</div>`;
+}
+/* Redraw the video area after a video is added or removed (select = uid of the video to start playing) */
+function refreshVideos(selectUid){
+  const w = $("#vidWrap"); if(!w || !VIDEO_EX) return;
+  w.innerHTML = videoInner(VIDEO_EX);
+  const sel = $("#demoSelect");
+  if(sel && selectUid){
+    const o = [...sel.options].find(x => x.dataset.mine === selectUid);
+    if(o){ sel.value = o.value; onDemoSelect(sel); }
+  }
+}
+function setDemoOpen(open){
+  const panel = $("#demoPanel"); if(!panel) return;
   panel.classList.toggle("open", open);
   panel.inert = !open;
-  btn.setAttribute("aria-expanded", String(open));
-  $(".vid-lbl", btn).textContent = open ? "Hide demo" : "Watch demo";
-  $(".vid-ic", btn).textContent = open ? "▲" : "▶";
-  if(open){
-    const f = document.createElement("iframe");
-    f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(panel.dataset.id) + "?rel=0&playsinline=1&autoplay=1";
-    f.title = panel.dataset.title;
-    f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
-    f.allowFullscreen = true;
-    f.referrerPolicy = "strict-origin-when-cross-origin";
-    frame.replaceChildren(f);
-  }else{
-    frame.replaceChildren();   // removing the player also stops the video
+  if(!open) $(".demo-frame", panel).replaceChildren();   // removing the player also stops the video
+}
+/* Called when the person picks something in the Watch demo dropdown */
+function onDemoSelect(sel){
+  const panel = $("#demoPanel"); if(!panel) return;
+  const opt = sel.options[sel.selectedIndex];
+  const first = sel.options[0];
+  if(!opt || opt.value === ""){ setDemoOpen(false); first.textContent = "▶ Watch demo (" + (sel.options.length - 1) + ")"; return; }
+  if(!opt.dataset.yt){                      // not a YouTube link: can't be embedded, open it in a new tab instead
+    window.open(opt.dataset.url, "_blank", "noopener");
+    sel.value = ""; setDemoOpen(false); first.textContent = "▶ Watch demo (" + (sel.options.length - 1) + ")";
+    return;
   }
+  first.textContent = "✕ Hide demo";
+  const frame = $(".demo-frame", panel);
+  const f = document.createElement("iframe");
+  f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(opt.dataset.yt) + "?rel=0&playsinline=1&autoplay=1";
+  f.title = (panel.dataset.title || "Demo video") + ": " + opt.textContent;
+  f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+  f.allowFullscreen = true;
+  f.referrerPolicy = "strict-origin-when-cross-origin";
+  frame.replaceChildren(f);
+  $("#demoLink").href = opt.dataset.url;
+  const del = $("#demoDel"); del.hidden = !opt.dataset.mine; del.dataset.vid = opt.dataset.mine || "";
+  setDemoOpen(true);
 }
 function factsHtml(e){
   const rows = [["Target area", e.muscleAreaLabel], ["Prime mover", e.primeMover], ["Also works", (e.supportMuscles || []).join(", ")], ["Movement", (e.movement || []).join(", ")], ["Posture", e.posture], ["Grip", e.grip],
@@ -2364,7 +2450,7 @@ function aboutSheet(){
   const n = LIB.length ? fmtNum(LIB.length) + " exercises" : "Thousands of exercises";
   const items = [
     ["Plan", "It comes with a ready-made 6-day split (chest, back, shoulders, arms and abs). You can edit it, reorder exercises, duplicate or delete days, or add your own."],
-    ["Library", n + " with animated GIFs, written instructions and YouTube demo videos. The video sits in a collapsible panel that opens when you tap Watch demo. Search, filter by muscle, difficulty, equipment or media, and add your own exercises."],
+    ["Library", n + " with animated GIFs, written instructions and YouTube demo videos. Every exercise has a Watch demo dropdown: pick any video to play it in the sheet, or tap Add my video to save your own YouTube link. Search, filter by muscle, difficulty, equipment or media, and add your own exercises."],
     ["Routines", "Pick the muscles you want to focus on, plus your level, equipment and workout length, and it builds a balanced routine. Shuffle or swap exercises, or build one from scratch, then save it to your plan."],
     ["Workout logging", "Start a workout and log weight and reps for each set, with your previous numbers shown alongside. An automatic rest timer alerts you when rest is over, and you can add or remove sets and exercises mid-workout."],
     ["Progress", "Earn XP and level up, build streaks (rest days don’t break them), unlock badges, and get alerted to personal records. A weekly goal tracker and full workout history are included."],
@@ -2973,6 +3059,7 @@ function buildExport(scope){
   if(scope === "all" || scope === "plan") out.plan = {days: S.days.map(d => ({title: d.title, exercises: d.exercises.map(slimEx)})), custom: S.custom};
   if(scope === "all" || scope === "routines") out.routines = S.routines.map(r => ({title: r.title, exercises: r.exercises.map(slimEx)}));
   if(scope === "all" || scope === "history") out.history = {logs: S.logs, badges: S.badges};
+  if((scope === "all" || scope === "plan") && Object.keys(S.userVideos).length) out.userVideos = S.userVideos;
   out.profile = S.profile;
   return out;
 }
@@ -3051,7 +3138,7 @@ function parseImport(data){
         .map(l => ({...l, sets: num(l.sets), volume: num(l.volume), xp: num(l.xp), prs: Array.isArray(l.prs) ? l.prs : []})) : null;
   const badges = hist && hist.badges && typeof hist.badges === "object" ? hist.badges : {};
   if(!(days && days.length) && !(routines && routines.length) && !(logs && logs.length)) throw new Error("no workouts, routines or history found");
-  return {days, custom, routines, logs, badges, profile: data.profile && typeof data.profile === "object" ? data.profile : null};
+  return {days, custom, routines, logs, badges, userVideos: cleanUserVideos(data.userVideos), profile: data.profile && typeof data.profile === "object" ? data.profile : null};
 }
 
 function applyImport(p, mode){
@@ -3061,9 +3148,14 @@ function applyImport(p, mode){
     if(p.routines){ S.routines = p.routines; r.routines = p.routines.length; }
     if(p.logs){ S.logs = p.logs; S.badges = p.badges; r.logs = p.logs.length; }
     if(p.profile) S.profile = Object.assign(S.profile, p.profile);
+    if(Object.keys(p.userVideos).length) S.userVideos = p.userVideos;
   }else{
     if(p.days){ S.days.push(...p.days); r.days = p.days.length; }
     if(p.routines){ S.routines.push(...p.routines); r.routines = p.routines.length; }
+    Object.entries(p.userVideos).forEach(([k, list]) => {
+      const have = (S.userVideos[k] || (S.userVideos[k] = []));
+      list.forEach(v => { if(!have.some(h => ytId(h.url) === ytId(v.url))) have.push(v); });
+    });
     const names = new Set(S.custom.map(c => nkey(c.name)));
     p.custom.forEach(c => { if(!names.has(nkey(c.name))){ S.custom.push(c); r.custom++; } });
     if(p.logs){
@@ -3098,7 +3190,35 @@ const ACT = {
   "open-about"(){ aboutSheet(); },
   "toggle-theme"(){ setTheme(isDark() ? "light" : "dark"); },
   "retry-gif"(t){ GIF.coolUntil = 0; const el = t.closest(".gif"); if(el) startSlot(el); },
-  "toggle-demo"(){ const p = $("#demoPanel"); if(p) setDemo(!p.classList.contains("open")); },
+  "toggle-add-video"(){
+    const f = $("#vidAdd"), b = $('[data-act="toggle-add-video"][aria-controls="vidAdd"]'); if(!f) return;
+    f.hidden = !f.hidden;
+    if(b) b.setAttribute("aria-expanded", String(!f.hidden));
+    if(!f.hidden){ say("#vMsg", ""); const i = $("#f_vurl"); if(i){ i.value = ""; $("#f_vtitle").value = ""; i.focus(); } }
+  },
+  "save-video"(){
+    const ex = VIDEO_EX; if(!ex) return;
+    const url = ($("#f_vurl").value || "").trim(), id = ytId(url);
+    if(!id) return say("#vMsg", "That doesn't look like a YouTube link. Paste a youtube.com or youtu.be address.", "err");
+    if(videoSources(ex).some(v => v.id === id)) return say("#vMsg", "That video is already in the list for this exercise.", "err");
+    const k = nkey(ex.name), v = {id: uid(), url: ytUrl(id), title: ($("#f_vtitle").value || "").trim().slice(0, 60)};
+    (S.userVideos[k] || (S.userVideos[k] = [])).push(v);
+    save();
+    refreshVideos(v.id);
+    toast("Video added");
+    if(UI.tab === "lib") refresh();
+  },
+  "del-video"(t){
+    const ex = VIDEO_EX, vid = t.dataset.vid; if(!ex || !vid) return;
+    if(!confirm("Remove this video from " + ex.name + "?")) return;
+    const k = nkey(ex.name);
+    S.userVideos[k] = (S.userVideos[k] || []).filter(v => v.id !== vid);
+    if(!S.userVideos[k].length) delete S.userVideos[k];
+    save();
+    refreshVideos();
+    toast("Video removed");
+    if(UI.tab === "lib") refresh();
+  },
 
   /* workouts */
   "pick-day"(t){ S.activeDay = t.dataset.id; save(); render(); window.scrollTo(0, 0); },
@@ -3520,6 +3640,7 @@ document.addEventListener("click", e => {
 });
 document.addEventListener("keydown", e => {
   if(e.key === "Escape") closeSheet();
+  if(e.key === "Enter" && (e.target.id === "f_vurl" || e.target.id === "f_vtitle")){ e.preventDefault(); ACT["save-video"](); return; }
   if(e.key === "Enter" && e.target.id === "d_title"){ e.preventDefault(); ACT["save-day"](); return; }
   if((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches('[role="button"][data-act]')){
     e.preventDefault();
@@ -3550,7 +3671,8 @@ document.addEventListener("input", e => {
 });
 document.addEventListener("change", e => {
   const id = e.target.id;
-  if(id === "setGoal"){ S.profile.goal = +e.target.value; save(); toast("Weekly goal: " + S.profile.goal); if(UI.tab === "prog") render(); }
+  if(id === "demoSelect"){ onDemoSelect(e.target); }
+  else if(id === "setGoal"){ S.profile.goal = +e.target.value; save(); toast("Weekly goal: " + S.profile.goal); if(UI.tab === "prog") render(); }
   else if(id === "setUnit"){ S.profile.unit = e.target.value; save(); if(UI.tab === "prog") render(); }
   else if(id === "setTheme"){ setTheme(e.target.value); }
   else if(id === "bmPrimarySel"){ UI.build.pm = e.target.value; bmUpdateResults(); }

@@ -150,6 +150,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/XPPfnSEATJA",
     "videoDeep": "https://youtu.be/3VcKaXpzqRo",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "primeMover": "Lateral Deltoids",
     "supportMuscles": [
       "Anterior Deltoids",
@@ -441,6 +442,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/e5aj8hhCPkA",
     "videoDeep": "https://youtu.be/kiuVA0gs3EI",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
     "primeMover": "Triceps Brachii",
     "supportMuscles": [
       "Anconeus",
@@ -594,6 +596,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/eGjt4lk6g34",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -641,6 +644,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/dhRz1Ns60Zg",
+    "video1": "https://www.youtube.com/watch?v=lUlbwHQt29M",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -689,6 +693,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/SSXS4Z8OkCg",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -787,6 +793,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/ZaDlbm8E8Tg",
     "videoDeep": "https://youtu.be/xphvjGDZeYE",
+    "video1": "https://www.youtube.com/watch?v=lUlbwHQt29M",
     "primeMover": "Pectoralis Major",
     "supportMuscles": [
       "Triceps Brachii"
@@ -887,7 +894,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Outer Hamstring"
     ],
-    "muscleAreaLabel": "Outer Hamstring"
+    "muscleAreaLabel": "Outer Hamstring",
+    "video1": "https://www.youtube.com/watch?v=25P6ZPD1XLQ"
   },
   {
     "name": "Dumbbell Alternating Bicep Curl",
@@ -1040,6 +1048,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/GcY6TZxfS0k",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -1178,6 +1188,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/VBTeVnPGkzE",
+    "video1": "https://www.youtube.com/watch?v=5d2ZCdhj-A8",
+    "video2": "https://www.youtube.com/watch?v=TzPB7pq_gRc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -1505,6 +1517,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/2jFFCy8JBU8",
     "videoDeep": "https://youtu.be/SrqOu55lrYU",
+    "video1": "https://www.youtube.com/watch?v=mjHYIJjb9Zw",
     "primeMover": "Pectoralis Major",
     "supportMuscles": [
       "Triceps Brachii"
@@ -1634,6 +1647,8 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/BVrlItPBX8M",
     "videoDeep": "https://youtu.be/bAWLx7PPK10",
+    "video1": "https://www.youtube.com/watch?v=Aor8Rr7-yQE",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "primeMover": "Biceps Brachii",
     "supportMuscles": [
       "Brachialis",
@@ -1742,6 +1757,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Z5FA9aq3L6A",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -2762,6 +2779,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/L3HZjW4oRrU",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -2952,6 +2970,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/O5viuEPDXKY",
+    "video1": "https://www.youtube.com/watch?v=lUlbwHQt29M",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -3113,6 +3132,7 @@ window.JEFIT_SCRAPED = [
       "Functional Fitness DB"
     ],
     "video": "https://youtu.be/fM0TQLoesLs",
+    "video1": "https://www.youtube.com/watch?v=Aor8Rr7-yQE",
     "primeMover": "Biceps Brachii",
     "supportMuscles": [
       "Brachialis",
@@ -3238,6 +3258,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/bwGouvrXUD4",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -3418,6 +3439,8 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/_l3ySVKYVJ8",
     "videoDeep": "https://youtu.be/IODxDxX7oi4",
+    "video1": "https://www.youtube.com/watch?v=5d2ZCdhj-A8",
+    "video2": "https://www.youtube.com/watch?v=TzPB7pq_gRc",
     "primeMover": "Pectoralis Major",
     "supportMuscles": [
       "Triceps Brachii"
@@ -3485,6 +3508,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/bgC53-J-6gA",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -3576,6 +3600,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Ja6ZlIDONac",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -3665,6 +3690,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/yX5epCTa6mg",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -3760,6 +3787,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/xqtmaivPMiw",
+    "video1": "https://www.youtube.com/watch?v=mjHYIJjb9Zw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -4003,7 +4031,8 @@ window.JEFIT_SCRAPED = [
       "Front Delts",
       "Triceps Medial Head"
     ],
-    "muscleAreaLabel": "Front Delts / Triceps Medial Head"
+    "muscleAreaLabel": "Front Delts / Triceps Medial Head",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0"
   },
   {
     "name": "Cable Cross-Over",
@@ -4074,6 +4103,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/43GSKivZnw4",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -4199,6 +4230,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/5RPVxmxnLRA",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -4574,6 +4607,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/acLV1OJuZUg",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -4783,6 +4817,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/SRUtMJ0tE2A",
+    "video1": "https://www.youtube.com/watch?v=lUlbwHQt29M",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -4922,6 +4957,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/JSDpq14vCZ8",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -4968,6 +5004,8 @@ window.JEFIT_SCRAPED = [
       "Functional Fitness DB"
     ],
     "video": "https://youtu.be/67-J94MVJUg",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "primeMover": "Anterior Deltoids",
     "supportMuscles": [
       "Pectoralis Major",
@@ -5048,6 +5086,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/t9GuiNQo1O4",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -5095,6 +5135,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/R5CYN650Zls",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -5234,6 +5276,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/RFjAyUwHuQA",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -5278,6 +5321,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/qvi8aM02_GY",
+    "video1": "https://www.youtube.com/watch?v=25P6ZPD1XLQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -5368,6 +5412,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/40w4sx4FAVU",
     "videoDeep": "https://youtu.be/BsULGO70tcU",
+    "video1": "https://www.youtube.com/watch?v=Aor8Rr7-yQE",
     "primeMover": "Biceps Brachii",
     "supportMuscles": [
       "Brachialis",
@@ -5447,6 +5492,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/CQX8tDQdMlo",
+    "video1": "https://www.youtube.com/watch?v=5d2ZCdhj-A8",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -5495,6 +5542,7 @@ window.JEFIT_SCRAPED = [
       "Functional Fitness DB"
     ],
     "video": "https://youtu.be/EtPb646Va9s",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
     "primeMover": "Anterior Deltoids",
     "supportMuscles": [
       "Triceps Brachii"
@@ -5643,6 +5691,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/ltVi1F5SBkE",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -5783,6 +5833,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/owr5y-s6-Qk",
     "videoDeep": "https://youtu.be/tcHaHIQStsk",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
     "primeMover": "Latissimus Dorsi",
     "supportMuscles": [
       "Pectoralis Major",
@@ -6038,6 +6089,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Sn6flwZ5EWk",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -6225,6 +6277,8 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/larn3Asl6oM",
     "videoDeep": "https://youtu.be/pqYr_lb04O4",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "primeMover": "Upper Trapezius",
     "supportMuscles": [
       "Levator Scapulae",
@@ -6305,6 +6359,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/g_7iXXBrCkY",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -6441,7 +6496,9 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Cardio / Conditioning"
     ],
-    "muscleAreaLabel": "Cardio / Conditioning"
+    "muscleAreaLabel": "Cardio / Conditioning",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU"
   },
   {
     "name": "Barbell Upright Row",
@@ -6464,6 +6521,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/FMhKUd0BlB4",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -6509,6 +6567,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Bx8ga1BLHLE",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -6574,7 +6633,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Cardio / Conditioning"
     ],
-    "muscleAreaLabel": "Cardio / Conditioning"
+    "muscleAreaLabel": "Cardio / Conditioning",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc"
   },
   {
     "name": "Machine Deltoid Raise",
@@ -6596,6 +6656,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/RkFVDCZRups",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -6736,6 +6797,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/XEFDMwmrLAM",
     "videoDeep": "https://youtu.be/cXbSJHtjrQQ",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "primeMover": "Pectoralis Major",
     "supportMuscles": [
       "Pectoralis Major"
@@ -6954,6 +7016,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/U0tcA7b4c3k",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -7000,6 +7063,7 @@ window.JEFIT_SCRAPED = [
       "Functional Fitness DB"
     ],
     "video": "https://youtu.be/Pu5p6uZGTZM",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "primeMover": "Biceps Brachii",
     "supportMuscles": [
       "Brachialis",
@@ -7318,6 +7382,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/HAS0dQ8O3-U",
+    "video1": "https://www.youtube.com/watch?v=25P6ZPD1XLQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -7870,6 +7935,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Y9EISeh1KuM",
+    "video1": "https://www.youtube.com/watch?v=XBmlvXsRNWk",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -8003,6 +8069,7 @@ window.JEFIT_SCRAPED = [
       "Functional Fitness DB"
     ],
     "video": "https://youtu.be/MQOnCts9N9c",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "primeMover": "Triceps Brachii",
     "movement": [
       "Elbow Extension"
@@ -8064,6 +8131,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/9ZknEYboBOQ",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -9060,6 +9128,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Wr6Bik6Lrp4",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -9108,6 +9177,8 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/9s0F9lgTG0E",
     "videoDeep": "https://youtu.be/FGU9j1P5L-w",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "primeMover": "Lateral Deltoids",
     "supportMuscles": [
       "Anterior Deltoids",
@@ -9492,6 +9563,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/WNz7O59GORA",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -9759,6 +9831,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/0SfJvAJMc70",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -9849,6 +9922,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/bT8NVeDvuQg",
     "videoDeep": "https://youtu.be/-WSon5E798w",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
     "primeMover": "Rectus Abdominis",
     "movement": [
       "Spinal Flexion"
@@ -9910,6 +9984,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/B6e5b8SY64g",
     "videoDeep": "https://youtu.be/xOksWZVV1_g",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "primeMover": "Anterior Deltoids",
     "supportMuscles": [
       "Pectoralis Major",
@@ -10154,6 +10229,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Rd5AsxOGqss",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -10429,6 +10505,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/43GSKivZnw4",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -10773,6 +10851,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/xhUcI2wiiRQ",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -11271,6 +11350,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/vtH93qBItdk",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -11610,6 +11690,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/4hKyhFBeclI",
     "videoDeep": "https://youtu.be/BbxA1QF3TxY",
+    "video1": "https://www.youtube.com/watch?v=Aor8Rr7-yQE",
     "primeMover": "Biceps Brachii",
     "supportMuscles": [
       "Brachialis",
@@ -11808,7 +11889,9 @@ window.JEFIT_SCRAPED = [
       "Front Delts",
       "Brachioradialis"
     ],
-    "muscleAreaLabel": "Front Delts / Brachioradialis"
+    "muscleAreaLabel": "Front Delts / Brachioradialis",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c"
   },
   {
     "name": "Dumbbell Stiff-Leg Deadlift",
@@ -12121,6 +12204,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/NvfFTF_v76c",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -12352,6 +12437,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/m_UlDFNX4mk",
     "videoDeep": "https://youtu.be/ShCYaoHmWmk",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "primeMover": "Triceps Brachii ",
     "movement": [
       "Elbow Extension"
@@ -12684,6 +12770,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/jZEnlrNh4Rg",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -12855,6 +12942,8 @@ window.JEFIT_SCRAPED = [
       "Functional Fitness DB"
     ],
     "video": "https://youtu.be/sbGP9VjnjEg",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "primeMover": "Anterior Deltoids",
     "supportMuscles": [
       "Triceps Brachii"
@@ -13028,6 +13117,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/dhRz1Ns60Zg",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -13494,6 +13584,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/EuBm1n1RQVU",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -13561,7 +13653,8 @@ window.JEFIT_SCRAPED = [
       "Lats",
       "Front Delts"
     ],
-    "muscleAreaLabel": "Lats / Front Delts"
+    "muscleAreaLabel": "Lats / Front Delts",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8"
   },
   {
     "name": "Machine Iso Lateral High Row",
@@ -13977,6 +14070,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/T0Y3OBF1bNI",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -14395,6 +14489,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/N6FVnaasdq0",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -15118,6 +15214,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/NEDrQPoITMc",
     "videoDeep": "https://youtu.be/DbSF7ipBh5Y",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
     "primeMover": "Gluteus Maximus",
     "movement": [
       "Hip Hinge"
@@ -15260,6 +15357,8 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/7UVgs18Y1P4",
     "videoDeep": "https://youtu.be/WTmnP0xIdq8",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=TzPB7pq_gRc",
     "primeMover": "Rectus Abdominis",
     "supportMuscles": [
       "Iliopsoas",
@@ -15415,6 +15514,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/VqSsnPSpHOU",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -15549,6 +15649,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/z6MvXsikOk0",
+    "video1": "https://www.youtube.com/watch?v=Aor8Rr7-yQE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -15813,6 +15914,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/YykmcX2b-LY",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -15884,7 +15986,8 @@ window.JEFIT_SCRAPED = [
       "Front Delts",
       "Triceps Medial Head"
     ],
-    "muscleAreaLabel": "Middle Chest / Front Delts / Triceps Medial Head"
+    "muscleAreaLabel": "Middle Chest / Front Delts / Triceps Medial Head",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc"
   },
   {
     "name": "Barbell Wrist Curl (Palms Up)",
@@ -15954,6 +16057,8 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/iaBVSJm78ko",
     "videoDeep": "https://youtu.be/a8HQo8z20Uo",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "primeMover": "Anterior Deltoids",
     "supportMuscles": [
       "Triceps Brachii"
@@ -16174,6 +16279,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/WDIpL0pjun0",
+    "video2": "https://www.youtube.com/watch?v=TzPB7pq_gRc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -16289,6 +16395,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/J21Glo_IuCI",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -16613,6 +16720,8 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/DL-HN35sxdg",
     "videoDeep": "https://youtu.be/Ofo2DQdT7DA",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "primeMover": "Anterior Deltoids",
     "supportMuscles": [
       "Pectoralis Major",
@@ -16784,6 +16893,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/5FeMVdb2iWE",
+    "video1": "https://www.youtube.com/watch?v=Aor8Rr7-yQE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -17391,6 +17501,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/D5Ip5TGtnWg",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -17572,6 +17684,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/uLVt6u15L98",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -17621,6 +17734,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/TbILTPsqGoo",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -17990,6 +18105,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/4M9WAcIbLFE",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -18035,6 +18151,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/4UXZtR-rIoY",
+    "video2": "https://www.youtube.com/watch?v=TzPB7pq_gRc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -18286,7 +18403,9 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Front Delts"
     ],
-    "muscleAreaLabel": "Front Delts"
+    "muscleAreaLabel": "Front Delts",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU"
   },
   {
     "name": "Machine Assisted Chin-Up",
@@ -18354,6 +18473,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/WDIpL0pjun0",
+    "video2": "https://www.youtube.com/watch?v=TzPB7pq_gRc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -18603,7 +18723,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Inner Biceps (Short Head)"
     ],
-    "muscleAreaLabel": "Inner Biceps (Short Head)"
+    "muscleAreaLabel": "Inner Biceps (Short Head)",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4"
   },
   {
     "name": "Dumbbell Seated Calf Raise",
@@ -18998,6 +19119,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/ykbAuxIDFiU",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -19178,6 +19301,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/kn6bj3MPZqs",
+    "video1": "https://www.youtube.com/watch?v=9DO_TuSha-g",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -19616,6 +19740,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/zdaEWO0S5HU",
     "videoDeep": "https://youtu.be/cxVrqTqD_J4",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "primeMover": "Latissimus Dorsi",
     "movement": [
       "Hip Hinge"
@@ -19801,7 +19926,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Glute Max"
     ],
-    "muscleAreaLabel": "Glute Max"
+    "muscleAreaLabel": "Glute Max",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8"
   },
   {
     "name": "Dumbbell Preacher Curl",
@@ -19824,6 +19950,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Zbs3ko8ycyg",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -20222,7 +20349,9 @@ window.JEFIT_SCRAPED = [
       "Lats",
       "Triceps Medial Head"
     ],
-    "muscleAreaLabel": "Side Delts / Lats / Triceps Medial Head"
+    "muscleAreaLabel": "Side Delts / Lats / Triceps Medial Head",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c"
   },
   {
     "name": "Decline Bench Weighted Twist",
@@ -20375,6 +20504,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/hQOu7Qwv298",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -20444,7 +20574,8 @@ window.JEFIT_SCRAPED = [
       "Lats",
       "Glute Max"
     ],
-    "muscleAreaLabel": "Quads / Lats / Glute Max"
+    "muscleAreaLabel": "Quads / Lats / Glute Max",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc"
   },
   {
     "name": "Barbell Wrist Curl (Palms Down)",
@@ -21400,6 +21531,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/xagEKj2yDc8",
+    "video1": "https://www.youtube.com/watch?v=lUlbwHQt29M",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -21491,6 +21624,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/DE6BcaMCwJA",
     "videoDeep": "https://youtu.be/74qC_TVP8yo",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "primeMover": "Biceps Brachii",
     "supportMuscles": [
       "Brachialis",
@@ -21575,7 +21709,9 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Cardio / Conditioning"
     ],
-    "muscleAreaLabel": "Cardio / Conditioning"
+    "muscleAreaLabel": "Cardio / Conditioning",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU"
   },
   {
     "name": "Wrist Roller",
@@ -21597,6 +21733,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/KCqs-5eWeRU",
+    "video2": "https://www.youtube.com/watch?v=TzPB7pq_gRc",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -21712,7 +21849,9 @@ window.JEFIT_SCRAPED = [
       "Triceps Medial Head",
       "Upper Abs"
     ],
-    "muscleAreaLabel": "Front Delts / Triceps Medial Head / Upper Abs"
+    "muscleAreaLabel": "Front Delts / Triceps Medial Head / Upper Abs",
+    "video1": "https://www.youtube.com/watch?v=mjHYIJjb9Zw",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c"
   },
   {
     "name": "Machine Assisted Pull-Up (Hammer Grip)",
@@ -22400,6 +22539,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/h4Jvm80kXSw",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -22580,6 +22720,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/5yz9ht7jA9I",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -22701,6 +22843,8 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/V9ButqpLLcw",
     "videoDeep": "https://youtu.be/gF9mAgwFV0U",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
+    "video2": "https://www.youtube.com/watch?v=TzPB7pq_gRc",
     "primeMover": "Quadriceps Femoris",
     "supportMuscles": [
       "Gluteus Maximus",
@@ -23030,6 +23174,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/CjHIKDQ4RQo",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -23290,6 +23435,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/E68-pMl1Im8",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -23672,6 +23818,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/80wyM461lec",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -23811,6 +23958,7 @@ window.JEFIT_SCRAPED = [
     ],
     "video": "https://youtu.be/q3cXdiyY7-Q",
     "videoDeep": "https://youtu.be/x5IU1KAVwSo",
+    "video1": "https://www.youtube.com/watch?v=lUlbwHQt29M",
     "primeMover": "Pectoralis Major",
     "supportMuscles": [
       "Triceps Brachii"
@@ -23898,7 +24046,9 @@ window.JEFIT_SCRAPED = [
       "Middle Chest",
       "Front Delts"
     ],
-    "muscleAreaLabel": "Middle Chest / Front Delts"
+    "muscleAreaLabel": "Middle Chest / Front Delts",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU"
   },
   {
     "name": "Dumbbell One-Arm Preacher Hammer Curl",
@@ -24059,6 +24209,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/G1qWo8YjDPE",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -25004,6 +25156,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/cJPAVGJwc3Q",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -25144,6 +25297,7 @@ window.JEFIT_SCRAPED = [
       "Functional Fitness DB"
     ],
     "video": "https://youtu.be/JqztIwOb4Hs",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
     "primeMover": "Anterior Deltoids",
     "supportMuscles": [
       "Triceps Brachii"
@@ -25607,6 +25761,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/OslO2-OvdYo",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -25816,6 +25971,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/HEXGNzlnw5o",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -25862,6 +26019,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/PkhN_YyoWLI",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -26151,7 +26309,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Front Delts"
     ],
-    "muscleAreaLabel": "Front Delts"
+    "muscleAreaLabel": "Front Delts",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c"
   },
   {
     "name": "Toe Touch Stretch",
@@ -26349,6 +26508,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/oRVwUtJXLIQ",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -26465,6 +26625,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/8BiXi7-yp94",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -27801,6 +27962,8 @@ window.JEFIT_SCRAPED = [
       "Functional Fitness DB"
     ],
     "video": "https://youtu.be/1feV0cW5U60",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "primeMover": "Lateral Deltoids",
     "supportMuscles": [
       "Anterior Deltoids",
@@ -28148,6 +28311,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/ZkRXmaks7_Q",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -28783,6 +28947,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/B4U0xgIj2VA",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -28965,6 +29131,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/4tpl-huz060",
+    "video1": "https://www.youtube.com/watch?v=Aor8Rr7-yQE",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -29009,6 +29176,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/ECRrkOBfVEM",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -29311,6 +29479,7 @@ window.JEFIT_SCRAPED = [
       "Functional Fitness DB"
     ],
     "video": "https://youtu.be/wbI4qof1454",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
     "primeMover": "Pectoralis Major",
     "supportMuscles": [
       "Pectoralis Major"
@@ -29619,6 +29788,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/ZHa0OAcn7Bc",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -30200,6 +30370,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/rXstLR0lT2k",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -30903,7 +31074,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Upper Chest"
     ],
-    "muscleAreaLabel": "Upper Chest"
+    "muscleAreaLabel": "Upper Chest",
+    "video1": "https://www.youtube.com/watch?v=mjHYIJjb9Zw"
   },
   {
     "name": "Cable One-Arm Preacher Curl",
@@ -30925,6 +31097,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/DUxji6eWTVg",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -31428,7 +31601,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Front Delts"
     ],
-    "muscleAreaLabel": "Front Delts"
+    "muscleAreaLabel": "Front Delts",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c"
   },
   {
     "name": "Wide Leg Stretch",
@@ -32149,6 +32323,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/AqiicMLlL98",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -32194,6 +32369,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/nKBSk9Y5olc",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -32332,6 +32509,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/x2b2Bv6kq7Q",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -32442,7 +32621,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Inner Biceps (Short Head)"
     ],
-    "muscleAreaLabel": "Inner Biceps (Short Head)"
+    "muscleAreaLabel": "Inner Biceps (Short Head)",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4"
   },
   {
     "name": "Barbell Kneeling Wrist Curl (Palms Down)",
@@ -32851,6 +33031,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/fnyi4hDabkQ",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -33710,6 +33891,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/jUXUJxxBmjY",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -34005,7 +34187,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Lats"
     ],
-    "muscleAreaLabel": "Lats"
+    "muscleAreaLabel": "Lats",
+    "video1": "https://www.youtube.com/watch?v=7VJ1_BJnW6U"
   },
   {
     "name": "Stability Ball Pike Push-Up",
@@ -34605,6 +34788,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Wym5HfHseGA",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -34695,6 +34879,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/XPPfnSEATJA",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -34903,6 +35088,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/rWXy0LjnHbs",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -35090,6 +35276,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/B4U0xgIj2VA",
+    "video1": "https://www.youtube.com/watch?v=lUlbwHQt29M",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -35486,6 +35674,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Q11bWwok17k",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -35732,6 +35922,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/LWW0tvlgC24",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -35893,7 +36084,8 @@ window.JEFIT_SCRAPED = [
       "Upper Abs",
       "Front Delts"
     ],
-    "muscleAreaLabel": "Lats / Upper Abs / Front Delts"
+    "muscleAreaLabel": "Lats / Upper Abs / Front Delts",
+    "video1": "https://www.youtube.com/watch?v=7VJ1_BJnW6U"
   },
   {
     "name": "Dumbbell One-Arm Incline Curl",
@@ -35979,7 +36171,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Upper Abs"
     ],
-    "muscleAreaLabel": "Upper Abs"
+    "muscleAreaLabel": "Upper Abs",
+    "video1": "https://www.youtube.com/watch?v=mguzg9vSWbU"
   },
   {
     "name": "Windshield Wipers",
@@ -36066,7 +36259,9 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Front Delts"
     ],
-    "muscleAreaLabel": "Front Delts"
+    "muscleAreaLabel": "Front Delts",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4"
   },
   {
     "name": "Back Bend",
@@ -36088,6 +36283,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/LW07PbZ70V0",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -36604,7 +36801,8 @@ window.JEFIT_SCRAPED = [
       "Calves (Gastrocnemius)",
       "Quads"
     ],
-    "muscleAreaLabel": "Glute Max / Calves (Gastrocnemius) / Quads"
+    "muscleAreaLabel": "Glute Max / Calves (Gastrocnemius) / Quads",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI"
   },
   {
     "name": "Dumbbell Rotational Bench Press",
@@ -37701,6 +37899,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/9iXLwINlDEU",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": true,
@@ -38268,6 +38467,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/KxgTO2BGxLE",
+    "video1": "https://www.youtube.com/watch?v=25P6ZPD1XLQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -38760,6 +38960,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/WIyRdcauQVE",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -39008,6 +39209,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/CrM9fcsUbI0",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -39169,6 +39372,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Nwm5bzpmwwg",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -39435,6 +39639,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/_71vJV2fZng",
+    "video1": "https://www.youtube.com/watch?v=25P6ZPD1XLQ",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -39659,6 +39864,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/OIxDFvrOic0",
+    "video1": "https://www.youtube.com/watch?v=IJwUnsg4JU8",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -40134,6 +40340,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/trrFycEVs_U",
+    "video1": "https://www.youtube.com/watch?v=lUlbwHQt29M",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -40554,6 +40761,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/dAKwyjJUq5k",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
+    "video2": "https://www.youtube.com/watch?v=TzPB7pq_gRc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -41008,6 +41217,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/7v9crGd0qWc",
+    "video1": "https://www.youtube.com/watch?v=25P6ZPD1XLQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -41102,6 +41312,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/bI9ztRdQfWw",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -42291,6 +42502,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/pjoFrNl-8i4",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -42734,7 +42946,8 @@ window.JEFIT_SCRAPED = [
       "Front Delts",
       "Triceps Medial Head"
     ],
-    "muscleAreaLabel": "Middle Chest / Front Delts / Triceps Medial Head"
+    "muscleAreaLabel": "Middle Chest / Front Delts / Triceps Medial Head",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw"
   },
   {
     "name": "Barbell Concentration Curl (Close Grip)",
@@ -43244,7 +43457,9 @@ window.JEFIT_SCRAPED = [
       "Glute Max",
       "Upper Abs"
     ],
-    "muscleAreaLabel": "Quads / Glute Max / Upper Abs"
+    "muscleAreaLabel": "Quads / Glute Max / Upper Abs",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
+    "video2": "https://www.youtube.com/watch?v=TzPB7pq_gRc"
   },
   {
     "name": "Barbell Pin Press",
@@ -44411,6 +44626,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/3Y_RFoYl-dk",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -44545,6 +44762,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/PFt98yMgW1g",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -44820,6 +45038,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/AhQyicnAbr0",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -45173,6 +45392,8 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/C7Ma6hBv6dw",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -45383,7 +45604,9 @@ window.JEFIT_SCRAPED = [
       "Triceps Medial Head",
       "Front Delts"
     ],
-    "muscleAreaLabel": "Middle Chest / Triceps Medial Head / Front Delts"
+    "muscleAreaLabel": "Middle Chest / Triceps Medial Head / Front Delts",
+    "video1": "https://www.youtube.com/watch?v=qYXevtvbdrI",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4"
   },
   {
     "name": "Stability Ball Hand and Foot Exchange",
@@ -45883,6 +46106,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/4wInzok8pzs",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -47488,6 +47712,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Ttym0nIar5o",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -48956,6 +49181,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/631PCvXjU0Q",
+    "video1": "https://www.youtube.com/watch?v=mjHYIJjb9Zw",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -49113,7 +49339,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Front Delts"
     ],
-    "muscleAreaLabel": "Front Delts"
+    "muscleAreaLabel": "Front Delts",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU"
   },
   {
     "name": "Broad Jump to Box Jump",
@@ -49428,7 +49655,8 @@ window.JEFIT_SCRAPED = [
       "Front Delts",
       "Triceps Medial Head"
     ],
-    "muscleAreaLabel": "Front Delts / Triceps Medial Head"
+    "muscleAreaLabel": "Front Delts / Triceps Medial Head",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0"
   },
   {
     "name": "Dumbbell Supination (Side-Lying)",
@@ -50181,7 +50409,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Middle Chest"
     ],
-    "muscleAreaLabel": "Middle Chest"
+    "muscleAreaLabel": "Middle Chest",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c"
   },
   {
     "name": "Soleus and Achilles Stretch",
@@ -50426,6 +50655,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/dk4GdbhlJj8",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -50519,6 +50749,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Hp4chJUBubo",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -51110,6 +51341,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/FcHu8mjKVV4",
+    "video1": "https://www.youtube.com/watch?v=25P6ZPD1XLQ",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -51294,6 +51526,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/bSj6TBAcOYQ",
+    "video1": "https://www.youtube.com/watch?v=USj-sK0ZCJw",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -52034,7 +52267,8 @@ window.JEFIT_SCRAPED = [
       "Glute Max",
       "Front Delts"
     ],
-    "muscleAreaLabel": "Quads / Glute Max / Front Delts"
+    "muscleAreaLabel": "Quads / Glute Max / Front Delts",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU"
   },
   {
     "name": "Barbell Reverse Grip Tricep Extension",
@@ -52171,7 +52405,8 @@ window.JEFIT_SCRAPED = [
       "Lower Chest",
       "Front Delts"
     ],
-    "muscleAreaLabel": "Triceps Horseshoe (Lateral Head) / Lower Chest / Front Delts"
+    "muscleAreaLabel": "Triceps Horseshoe (Lateral Head) / Lower Chest / Front Delts",
+    "video1": "https://www.youtube.com/watch?v=tYxbYHT3EAc"
   },
   {
     "name": "Smith Machine Reverse Bench Press (Close Grip)",
@@ -52423,6 +52658,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/dMp8iwdlVOM",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -52517,6 +52753,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Izby2cPLiK0",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -53033,6 +53270,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/bmxfNAgmyS0",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "exerciseType": "compound",
     "unilateral": false,
     "isometric": false,
@@ -53265,6 +53503,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/Mpy6OvL2uHc",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -54100,6 +54339,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/5kDlVBvbip0",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": true,
     "isometric": false,
@@ -54400,7 +54640,8 @@ window.JEFIT_SCRAPED = [
     "muscleAreas": [
       "Lats"
     ],
-    "muscleAreaLabel": "Lats"
+    "muscleAreaLabel": "Lats",
+    "video1": "https://www.youtube.com/watch?v=25P6ZPD1XLQ"
   },
   {
     "name": "Dumbbell One-Arm Bicep Curl (Prone)",
@@ -54702,6 +54943,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/XPPfnSEATJA",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -54817,6 +55059,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/XXl7NF9rvAw",
+    "video2": "https://www.youtube.com/watch?v=Gmi_DCnJ93c",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
@@ -56020,6 +56263,7 @@ window.JEFIT_SCRAPED = [
       "Functional Fitness DB"
     ],
     "video": "https://youtu.be/NQ53MadCtW0",
+    "video2": "https://www.youtube.com/watch?v=DeHfdd13tZ4",
     "primeMover": "Biceps Brachii",
     "supportMuscles": [
       "Brachialis",
@@ -59099,6 +59343,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/WFRb_ql2au4",
+    "video1": "https://www.youtube.com/watch?v=r3matX7tUf0",
     "exerciseType": "compound",
     "unilateral": true,
     "isometric": false,
@@ -60934,6 +61179,7 @@ window.JEFIT_SCRAPED = [
       "JEFIT"
     ],
     "video": "https://youtu.be/BpIEgXBLiYs",
+    "video2": "https://www.youtube.com/watch?v=ClpGjUQ7prU",
     "exerciseType": "isolation",
     "unilateral": false,
     "isometric": false,
