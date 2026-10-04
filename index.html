@@ -1258,7 +1258,8 @@ function routineDetailView(r){
           <button class="icon-btn danger" data-act="routine-del" data-id="${r.id}" aria-label="Delete ${esc(r.title)}" title="Delete routine">✕</button>
         </div>
       </div>
-      ${n ? `<button class="btn signal wide start-btn" data-act="routine-start" data-id="${r.id}">${startLabel}</button>` : ""}
+      ${n ? `<button class="btn signal wide start-btn" data-act="routine-start" data-id="${r.id}">${startLabel}</button>
+      <button class="btn wide" style="margin-bottom:14px" data-act="plan-add-routine" data-src="saved" data-id="${r.id}">Add to Plan as a day</button>` : ""}
       ${n ? `<div class="ex-list" id="routineExList">${groupedExListHtml(r.exercises, e => routineExRow(e, r.id))}</div>` : `<p class="empty">Nothing here yet. Add your first exercise.</p>`}
       <button class="btn primary wide add-ex" data-act="add-routine-ex" data-id="${r.id}">Add exercise</button>
     </section>`;
@@ -1317,11 +1318,12 @@ function planView(){
   const rail = S.days.map((d, i) => {
     const {label, focus} = splitTitle(d.title, i);
     return `<button class="dchip ${d.id === S.activeDay ? "on" : ""}" data-act="pick-day" data-id="${d.id}"><b>${esc(label)}</b><span>${esc(focus)}</span></button>`;
-  }).join("") + `<button class="dchip add" data-act="add-day" aria-label="Add a workout"><b>+</b><span>Add workout</span></button>`;
+  }).join("") + `<button class="dchip add" data-act="add-day" aria-label="Add a workout"><b>+</b><span>Add workout</span></button><button class="dchip add" data-act="plan-routine-sheet" aria-label="Add a routine as a day"><b>+</b><span>Add routine</span></button>`;
   const day = curDay();
   let body;
   if(!day){
-    body = `<p class="empty">No workouts yet. Tap “Add workout” above to build your first one.</p>`;
+    body = `<p class="empty">No workouts yet. Tap “Add workout” above to build your first one, or start from a routine.</p>
+      <button class="btn primary wide" data-act="plan-routine-sheet">Add a routine as a day</button>`;
   }else{
     const {focus} = splitTitle(day.title, S.days.indexOf(day));
     const n = day.exercises.length, od = overallDiff(day);
@@ -1338,6 +1340,7 @@ function planView(){
       ${n ? `<button class="btn signal wide start-btn" data-act="start-day">${startLabel}</button>` : ""}
       ${n ? `<div class="ex-list">${groupedExListHtml(day.exercises, e => exRow(e, day.id))}</div>` : `<p class="empty">Nothing here yet. Add your first exercise to this workout.</p>`}
       <button class="btn primary wide add-ex" data-act="add-ex">Add exercise</button>
+      <button class="btn wide" style="margin-top:10px" data-act="plan-routine-sheet">Add a routine as a new day</button>
     </section>`;
   }
   return `<div class="rail" role="tablist" aria-label="Workouts">${rail}</div>${body}`;
@@ -2449,9 +2452,9 @@ async function settingsSheet(){
 function aboutSheet(){
   const n = LIB.length ? fmtNum(LIB.length) + " exercises" : "Thousands of exercises";
   const items = [
-    ["Plan", "It comes with a ready-made 6-day split (chest, back, shoulders, arms and abs). You can edit it, reorder exercises, duplicate or delete days, or add your own."],
+    ["Plan", "It comes with a ready-made 6-day split (chest, back, shoulders, arms and abs). You can edit it, reorder exercises, duplicate or delete days, or add your own. Use Add routine to turn any recommended, self-built or saved routine into a day."],
     ["Library", n + " with animated GIFs, written instructions and YouTube demo videos. Every exercise has a Watch demo dropdown: pick any video to play it in the sheet, or tap Add my video to save your own YouTube link. Search, filter by muscle, difficulty, equipment or media, and add your own exercises."],
-    ["Routines", "Pick the muscles you want to focus on, plus your level, equipment and workout length, and it builds a balanced routine. Shuffle or swap exercises, or build one from scratch, then save it to your plan."],
+    ["Routines", "Pick the muscles you want to focus on, plus your level, equipment and workout length, and it builds a balanced routine. Shuffle or swap exercises, or build one from scratch, then save it, or add it to your Plan as a new day."],
     ["Workout logging", "Start a workout and log weight and reps for each set, with your previous numbers shown alongside. An automatic rest timer alerts you when rest is over, and you can add or remove sets and exercises mid-workout."],
     ["Progress", "Earn XP and level up, build streaks (rest days don’t break them), unlock badges, and get alerted to personal records. A weekly goal tracker and full workout history are included."],
     ["Backup and sharing", "Export or import your data as a JSON file, or share a workout through WhatsApp, Telegram or email."]
@@ -2896,6 +2899,7 @@ function autoView(){
       ${res.relaxed ? `<p class="rt-note">${esc(res.relaxed)}</p>` : ""}
       <div class="actions" style="margin:0 0 10px"><button class="btn" data-act="rt-shuffle">Shuffle</button><button class="btn primary" data-act="rt-save">Save routine</button></div>
       <button class="btn wide" style="margin-bottom:10px" data-act="rt-customize">Customize this routine</button>
+      <button class="btn wide" style="margin-bottom:10px" data-act="plan-add-routine" data-src="rec">Add to Plan as a day</button>
       <button class="btn signal wide" style="margin-bottom:14px" data-act="rt-start">Save and start workout</button>
       <div class="ex-list">${res.list.map((x, i) => `<article class="ex" role="button" tabindex="0" data-act="open-lib" data-name="${esc(x.e.name)}" aria-label="${esc(x.e.name)}, open details">
         ${gifSlot(x.e.gif, {alt: x.e.name, video: hasVideo(x.e)})}
@@ -2986,6 +2990,7 @@ function builderView(){
     <button class="btn primary wide" data-act="b-add" style="margin-bottom:6px">${n ? "Add more exercises" : "Add exercises"}</button>
     ${n ? `<div class="ex-list" id="builderExList" style="margin-top:12px;border-top:2px solid var(--edge)">${rows}</div>
       <div class="actions"><button class="btn primary" data-act="b-save">${editingRoutine ? "Update routine" : "Save routine"}</button><button class="btn signal" data-act="b-start">Save and start</button></div>
+      <button class="btn wide" style="margin-top:10px" data-act="plan-add-routine" data-src="draft">Add to Plan as a day</button>
       <button class="link danger" data-act="b-clear" style="margin-top:6px">${editingRoutine ? "Discard changes" : "Clear draft"}</button>`
     : `<div class="builder-empty"><p class="hint">Nothing here yet. Add exercises, then set the sets, reps and rest for each one.</p><p class="hint" style="margin-top:8px">Tip: on the Recommended tab, tap “Customize this routine” to start from a suggested list.</p></div>`}`;
 }
@@ -3043,6 +3048,48 @@ function saveBuilder(){
   save();
   toast(msg);
   return routine;
+}
+/* ----- Add a routine to the Plan as a new day ----- */
+const routineFocus = t => String(t || "").replace(/^\s*(?:Routine|Day)\s*\d+\s*[—–-]\s*/i, "").trim() || "Routine";
+const countLabel = n => n + " exercise" + (n === 1 ? "" : "s");
+/* The live suggestion on the Recommended tab (not saved yet), as a plain list of exercises */
+function recommendedForPlan(){
+  if(!S.routine.focus.length) return null;
+  const res = routineResult(); if(!res.list.length) return null;
+  return {
+    title: routineTitle(),
+    minutes: routineMinutes(res.list),
+    exercises: res.list.map(x => { const {custom, id, ...b} = x.e; return {...b, id: uid(), sets: x.rx.sets, rest: x.rx.rest}; })
+  };
+}
+/* Copies the exercises into a brand-new Plan day. The source routine or draft is left untouched. */
+function addRoutineToPlan(title, exercises){
+  if(!exercises || !exercises.length){ toast("That routine has no exercises yet"); return null; }
+  const copy = exercises.map(x => { const {custom, id, ...b} = JSON.parse(JSON.stringify(x)); return {...b, id: uid()}; });
+  const d = {id: uid(), title: "Day " + (S.days.length + 1) + " — " + routineFocus(title), exercises: copy};
+  S.days.push(d); S.activeDay = d.id; save();
+  return d;
+}
+function routineToPlanSheet(){
+  const rec = recommendedForPlan(), B = S.builder;
+  const row = (name, meta, attrs) => `<div class="edit-ex"><span>${esc(name)}<small style="display:block;color:var(--muted);font-weight:400;font-size:12.5px">${esc(meta)}</small></span><button class="btn sm primary" data-act="plan-add-routine" ${attrs}>Add</button></div>`;
+  const recHtml = rec
+    ? row(routineFocus(rec.title), countLabel(rec.exercises.length) + " · about " + rec.minutes + " min", 'data-src="rec"')
+    : `<p class="hint">Pick muscles on the Routines tab (Recommended) and a suggested routine will show up here.</p>`;
+  const draftHtml = B.exercises.length
+    ? row((B.title || "").trim() || "Untitled draft", draftSummary().split(" · ").slice(0, 2).join(" · "), 'data-src="draft"')
+    : `<p class="hint">Nothing in progress. Start one on the Routines tab with Build your own.</p>`;
+  const savedHtml = S.routines.length
+    ? S.routines.map(r => row(r.title, countLabel(r.exercises.length), `data-src="saved" data-id="${r.id}"`)).join("")
+    : `<p class="hint">No saved routines yet.</p>`;
+  openSheet(sheetHtml({
+    title: "Add a routine as a day",
+    body: `<p class="hint" style="margin-bottom:6px">Each one is copied into your Plan as a new day. The original routine stays as it is.</p>
+      <h4>Recommended for you</h4>${recHtml}
+      <h4 style="margin-top:18px">Your own build (in progress)</h4>${draftHtml}
+      <h4 style="margin-top:18px">Saved routines</h4>${savedHtml}`,
+    foot: `<button class="btn wide" data-act="close">Close</button>`
+  }));
 }
 function renderKeep(){ const y = window.scrollY; render(); window.scrollTo(0, y); }
 
@@ -3444,6 +3491,16 @@ const ACT = {
     };
     if(S.builder.exercises.length && S.builder.editing !== r.id) return ask("Replace your current unsaved draft with this routine?", "Replace draft", go);
     go();
+  },
+  "plan-routine-sheet"(){ routineToPlanSheet(); },
+  "plan-add-routine"(t){
+    let title, list;
+    if(t.dataset.src === "saved"){ const r = getRoutine(t.dataset.id); if(!r) return; title = r.title; list = r.exercises; }
+    else if(t.dataset.src === "draft"){ title = (S.builder.title || "").trim() || "Custom routine"; list = S.builder.exercises; }
+    else{ const rec = recommendedForPlan(); if(!rec) return toast("Pick at least one muscle first"); title = rec.title; list = rec.exercises; }
+    const d = addRoutineToPlan(title, list); if(!d) return;
+    const label = splitTitle(d.title, S.days.indexOf(d)).label;
+    closeThen(() => { UI.tab = "plan"; render(); window.scrollTo(0, 0); toast("Added as " + label + " in your Plan"); });
   },
   "routine-open"(t){ UI.routineOpen = t.dataset.id; render(); window.scrollTo(0, 0); },
   "routine-back"(){ UI.routineOpen = null; render(); window.scrollTo(0, 0); },
