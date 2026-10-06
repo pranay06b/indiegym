@@ -150,9 +150,9 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .ex-group-head:first-child{margin-top:0;padding-top:0;border-top:0}
 .ex-part-head{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:12px 0 2px}
 /* was: .ex{display:grid;grid-template-columns:112px 1fr 18px;... */
-.ex{display:grid;grid-template-columns:112px 1fr 38px 28px 18px;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.ex{display:grid;grid-template-columns:100px 1fr 44px 28px 18px;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
 .ex:active{background:var(--tap)}
-.ex .gif{width:112px}
+.ex .gif{width:100px}
 .ex .go{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .ex-main{min-width:0}
 .ex-main h3{font-size:17px;line-height:1.25;font-weight:700}
@@ -161,15 +161,35 @@ main{max-width:1120px;margin:0 auto;padding:0 var(--gr) 32px var(--gl)}
 .ex-stats{display:flex;gap:18px;margin-top:8px}
 .ex-stats b{display:block;font-family:var(--font-display);font-weight:700;font-size:22px;line-height:1.05}
 .ex-stats span{font-size:12px;color:var(--muted)}
-.done-toggle{position:relative;width:38px;height:22px;flex:0 0 auto;border-radius:999px;background:var(--line);border:1.5px solid var(--line);padding:0;cursor:pointer;transition:background .15s,border-color .15s}
-.done-toggle .knob{position:absolute;top:1px;left:1px;width:17px;height:17px;border-radius:50%;background:var(--paper);box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
-.done-toggle.on{background:var(--good);border-color:var(--good)}
-.done-toggle.on .knob{transform:translateX(16px);background:#fff}
 .pips{display:inline-flex;align-items:center;gap:4px}
 .pips i{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--ink)}
 .pips i.on{background:var(--ink)}
 .pips em{font-style:normal;font-size:12.5px;color:var(--muted);margin-left:5px}
 .add-ex{margin-top:18px}
+/* Check boxes: real input on top (44px touch target), drawn box underneath */
+.chk{position:relative;display:grid;place-items:center;width:44px;height:44px;flex:0 0 auto}
+.chk input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;z-index:1}
+.chk-box{width:26px;height:26px;border:2px solid var(--edge);border-radius:7px;background:var(--field);display:grid;place-items:center;transition:background .15s,border-color .15s}
+.chk-box svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .1s}
+.chk input:checked + .chk-box{background:var(--good);border-color:var(--good)}
+.chk input:checked + .chk-box svg{opacity:1}
+.chk input:focus-visible + .chk-box{outline:3px solid var(--signal);outline-offset:2px}
+.dchip-wrap{position:relative;flex:0 0 auto;scroll-snap-align:start}
+.dchip-wrap .dchip{scroll-snap-align:none}
+.dchip-chk{position:absolute;top:-2px;right:0}
+.dchip-chk .chk-box{width:24px;height:24px}
+.dchip-wrap.on .chk-box{border-color:#fff;background:rgba(255,255,255,.16)}
+.dchip-wrap.on .chk input:checked + .chk-box{background:#fff;border-color:#fff}
+.dchip-wrap.on .chk input:checked + .chk-box svg{stroke:var(--good)}
+.tick-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
+.tick-bar p{font-size:14px;color:var(--muted)}
+.link:disabled{opacity:.4;cursor:default;text-decoration:none}
+.daycheck{display:flex;align-items:center;gap:4px;margin:0 0 14px;padding:4px 14px 4px 4px;min-height:56px;border:1.5px solid var(--edge);border-radius:8px;background:var(--paper)}
+.daycheck.done{background:var(--done-bg);border-color:var(--good)}
+.daycheck label{flex:1;min-width:0;cursor:pointer;padding:6px 0}
+.daycheck b{display:block;font-size:15px}
+.daycheck small{display:block;font-size:12.5px;color:var(--muted)}
+.hrow.is-day b::before{content:"\2713\00a0";color:var(--ok-text)}
 
 /* GIF slots */
 .gif{position:relative;aspect-ratio:1/1;background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center}
@@ -473,7 +493,7 @@ body.has-active .toast{bottom:calc(150px + env(safe-area-inset-bottom))}
   body.kb .tabs,body.kb .resume{display:none}
 }
 @media(min-width:400px){
-  .ex{grid-template-columns:128px 1fr 38px 28px 18px}
+  .ex{grid-template-columns:128px 1fr 44px 28px 18px}
   .ex .gif{width:128px}
 }
 @media(min-width:620px){
@@ -493,7 +513,7 @@ body.has-active .toast{bottom:calc(150px + env(safe-area-inset-bottom))}
   .dchip{width:150px}
     .ex-list{display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
   .ex-group-head,.ex-part-head{grid-column:1/-1}
-  .ex{grid-template-columns:168px 1fr 38px 28px 18px}
+  .ex{grid-template-columns:168px 1fr 44px 28px 18px}
   .ex .gif{width:168px}
   .ex:hover{background:var(--hover)}
   .lib-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px}
@@ -859,6 +879,8 @@ function ensureState(s){
   
   if(!Array.isArray(s.days)) s.days = [];
   if(!s.days.some(d => d.id === s.activeDay)) s.activeDay = s.days[0]?.id || null;
+  s.dayTicks = s.dayTicks && typeof s.dayTicks === "object" && !Array.isArray(s.dayTicks) ? s.dayTicks : {};
+  Object.keys(s.dayTicks).forEach(k => { if(!s.days.some(d => d.id === k)) delete s.dayTicks[k]; });
   // Fill exercises that were saved before the library finished loading, or imported without details
   const fill = x => {
     const l = findLib(x.name);
@@ -934,14 +956,63 @@ function isDoneToday(source, sourceId, exId){
   const dk = todayKey();
   return S.doneLog.some(l => l.date === dk && l.source === source && l.sourceId === sourceId && l.exId === exId);
 }
-function toggleDone(source, sourceId, sourceTitle, ex){
-  const dk = todayKey();
-  const idx = S.doneLog.findIndex(l => l.date === dk && l.source === source && l.sourceId === sourceId && l.exId === ex.id);
-  if(idx > -1) S.doneLog.splice(idx, 1);
-  else S.doneLog.push({id: uid(), date: dk, source, sourceId, sourceTitle, exId: ex.id, exName: ex.name, muscle: ex.muscle || (Array.isArray(ex.muscles) && ex.muscles[0]) || "", at: Date.now()});
+const fmtTime = t => new Date(t).toLocaleTimeString(undefined, {hour: "numeric", minute: "2-digit"});
+const fmtStamp = t => fmtDate(t) + ", " + fmtTime(t);
+/* Exercise ticks (Plan + Routines): saved in S.doneLog with date and time. Today's ticks are simply the entries
+   dated today, so they survive view changes and reloads and start fresh on a new calendar day. */
+function setDone(source, sourceId, sourceTitle, ex, on){
+  const dk = todayKey(), same = l => l.date === dk && l.source === source && l.sourceId === sourceId && l.exId === ex.id;
+  const has = S.doneLog.some(same);
+  if(on && !has) S.doneLog.push({id: uid(), kind: "exercise", date: dk, at: Date.now(), source, sourceId, sourceTitle, exId: ex.id, exName: ex.name, muscle: ex.muscle || (Array.isArray(ex.muscles) && ex.muscles[0]) || "", sets: ex.sets || "", rest: ex.rest || ""});
+  else if(!on && has) S.doneLog = S.doneLog.filter(l => !same(l));
   save();
 }
-function removeDoneEntry(id){ S.doneLog = S.doneLog.filter(l => l.id !== id); save(); }
+function removeDoneEntry(id){
+  const l = S.doneLog.find(x => x.id === id);
+  if(l && l.kind === "day" && S.dayTicks[l.sourceId] && S.dayTicks[l.sourceId].logId === id) delete S.dayTicks[l.sourceId];
+  S.doneLog = S.doneLog.filter(x => x.id !== id); save();
+}
+/* Day ticks (Plan): S.dayTicks[dayId] = {at, date, logId}. They stay until reset. Unticking on the same day removes
+   that log entry (a correction); older entries stay in the log as history. */
+function setDayDone(dayId, on){
+  const d = getDay(dayId); if(!d) return;
+  const cur = S.dayTicks[dayId];
+  if(on && !cur){
+    const {label, focus} = splitTitle(d.title, S.days.indexOf(d)), at = Date.now(), dk = todayKey();
+    const entry = {id: uid(), kind: "day", date: dk, at, source: "plan", sourceId: dayId, sourceTitle: d.title, dayLabel: label, focus,
+      weekday: new Date(at).toLocaleDateString(undefined, {weekday: "long"}), exerciseCount: d.exercises.length,
+      exercisesDone: d.exercises.filter(e => isDoneToday("plan", dayId, e.id)).length, exercises: d.exercises.map(e => e.name),
+      muscles: [...new Set(d.exercises.flatMap(e => muscleKeys(e)).map(titleCase))], exName: label + " completed"};
+    S.doneLog.push(entry); S.dayTicks[dayId] = {at, date: dk, logId: entry.id};
+  }else if(!on && cur){
+    if(cur.date === todayKey()) S.doneLog = S.doneLog.filter(l => l.id !== cur.logId);
+    delete S.dayTicks[dayId];
+  }
+  save();
+}
+function syncDayTicks(){
+  document.querySelectorAll('input[data-act="toggle-day"]').forEach(i => { i.checked = !!S.dayTicks[i.dataset.id]; });
+  const n = S.days.filter(d => S.dayTicks[d.id]).length;
+  const sum = $("#tickSum"); if(sum) sum.textContent = n + " of " + S.days.length + " days done";
+  const rb = $("#tickReset"); if(rb) rb.disabled = !n;
+  const d = curDay(), box = $("#dayCheck"), tk = d && S.dayTicks[d.id];
+  if(box){ box.classList.toggle("done", !!tk); $("#dayCheckSub").textContent = tk ? "Done " + fmtStamp(tk.at) : "Tick it when you finish this workout"; }
+}
+const doneText = (source, h) => h.exercises.filter(e => isDoneToday(source, h.id, e.id)).length + " of " + h.exercises.length + " done today";
+const doneSumHtml = (source, h) => h.exercises.length ? ` · <span id="doneSum" data-src="${source}" data-sid="${h.id}">${doneText(source, h)}</span>` : "";
+function updateDoneSummary(){
+  const el = $("#doneSum"); if(!el) return;
+  const h = el.dataset.src === "plan" ? getDay(el.dataset.sid) : getRoutine(el.dataset.sid);
+  if(h) el.textContent = doneText(el.dataset.src, h);
+}
+/* Editing a saved routine gives its exercises new ids; carry today's (and older) ticks over by exercise name */
+function remapDoneIds(source, sid, oldList, newList){
+  S.doneLog.forEach(l => {
+    if(l.source !== source || l.sourceId !== sid || l.kind === "day") return;
+    const o = oldList.find(e => e.id === l.exId), n = o && newList.find(e => nkey(e.name) === nkey(o.name));
+    if(n) l.exId = n.id;
+  });
+}
 function doneLogByDate(){
   const byDate = new Map();
   S.doneLog.forEach(l => { if(!byDate.has(l.date)) byDate.set(l.date, []); byDate.get(l.date).push(l); });
@@ -1214,10 +1285,15 @@ function refreshChrome(){
   if(A) tickUI();
 }
 
+function chkHtml(attrs, on, label, cls = ""){
+  return `<span class="chk ${cls}"><input type="checkbox" ${attrs} ${on ? "checked" : ""} aria-label="${esc(label)}"><span class="chk-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></span>`;
+}
 function doneToggleHtml(source, sourceId, ex){
-  const on = isDoneToday(source, sourceId, ex.id);
-  const label = (on ? "Mark " : "Mark ") + esc(ex.name) + (on ? " not done today" : " done today");
-  return `<button type="button" class="done-toggle${on ? " on" : ""}" role="switch" aria-checked="${on}" data-act="toggle-done" data-source="${source}" data-source-id="${sourceId}" data-id="${ex.id}" aria-label="${label}"><span class="knob"></span></button>`;
+  return chkHtml(`data-act="toggle-done" data-source="${source}" data-source-id="${sourceId}" data-id="${ex.id}"`, isDoneToday(source, sourceId, ex.id), "Mark " + ex.name + " done today");
+}
+function dayCheckHtml(day){
+  const tk = S.dayTicks[day.id], label = splitTitle(day.title, S.days.indexOf(day)).label;
+  return `<div class="daycheck ${tk ? "done" : ""}" id="dayCheck">${chkHtml(`id="dayChk" data-act="toggle-day" data-id="${day.id}"`, !!tk, "Mark " + label + " done")}<label for="dayChk"><b>Mark this day as done</b><small id="dayCheckSub">${tk ? "Done " + esc(fmtStamp(tk.at)) : "Tick it when you finish this workout"}</small></label></div>`;
 }
 function exRow(ex, dayId){
   return `<article class="ex" role="button" tabindex="0" data-act="open-ex" data-day="${dayId}" data-id="${ex.id}" data-sort-id="${ex.id}" aria-label="${esc(ex.name)}, open details">
@@ -1252,7 +1328,7 @@ function routineDetailView(r){
   return `<button class="link" type="button" data-act="routine-back" style="margin-bottom:12px;padding-left:0">← Back to routines</button>
     <section>
       <div class="day-head">
-        <div><h2>${esc(r.title)}</h2><p class="meta">${n} exercise${n === 1 ? "" : "s"}${od ? ", " + od + " overall" : ""}</p></div>
+        <div><h2>${esc(r.title)}</h2><p class="meta">${n} exercise${n === 1 ? "" : "s"}${od ? ", " + od + " overall" : ""}${doneSumHtml("routine", r)}</p></div>
         <div class="day-head-actions">
           <button class="btn sm" data-act="routine-edit" data-id="${r.id}">Edit routine</button>
           <button class="icon-btn danger" data-act="routine-del" data-id="${r.id}" aria-label="Delete ${esc(r.title)}" title="Delete routine">✕</button>
@@ -1317,7 +1393,8 @@ function groupedExListHtml(list, rowFn){
 function planView(){
   const rail = S.days.map((d, i) => {
     const {label, focus} = splitTitle(d.title, i);
-    return `<button class="dchip ${d.id === S.activeDay ? "on" : ""}" data-act="pick-day" data-id="${d.id}"><b>${esc(label)}</b><span>${esc(focus)}</span></button>`;
+    const sel = d.id === S.activeDay;
+    return `<div class="dchip-wrap ${sel ? "on" : ""}"><button class="dchip ${sel ? "on" : ""}" data-act="pick-day" data-id="${d.id}"><b>${esc(label)}</b><span>${esc(focus)}</span></button>${chkHtml(`data-act="toggle-day" data-id="${d.id}"`, !!S.dayTicks[d.id], "Mark " + label + " done", "dchip-chk")}</div>`;
   }).join("") + `<button class="dchip add" data-act="add-day" aria-label="Add a workout"><b>+</b><span>Add workout</span></button><button class="dchip add" data-act="plan-routine-sheet" aria-label="Add a routine as a day"><b>+</b><span>Add routine</span></button>`;
   const day = curDay();
   let body;
@@ -1331,19 +1408,22 @@ function planView(){
     const startLabel = A && A.dayId === day.id ? "Resume workout" : "Start workout";
     body = `<section>
       <div class="day-head">
-        <div><h2>${esc(focus)}</h2><p class="meta">${n} exercise${n === 1 ? "" : "s"}${od ? ", " + od + " overall" : ""}</p></div>
+        <div><h2>${esc(focus)}</h2><p class="meta">${n} exercise${n === 1 ? "" : "s"}${od ? ", " + od + " overall" : ""}${doneSumHtml("plan", day)}</p></div>
         <div class="day-head-actions">
           <button class="btn sm" data-act="edit-day">Edit workout</button>
           <button class="icon-btn danger" data-act="del-day" data-id="${day.id}" aria-label="Delete ${esc(day.title)}" title="Delete workout">✕</button>
         </div>
       </div>
+      ${dayCheckHtml(day)}
       ${n ? `<button class="btn signal wide start-btn" data-act="start-day">${startLabel}</button>` : ""}
       ${n ? `<div class="ex-list">${groupedExListHtml(day.exercises, e => exRow(e, day.id))}</div>` : `<p class="empty">Nothing here yet. Add your first exercise to this workout.</p>`}
       <button class="btn primary wide add-ex" data-act="add-ex">Add exercise</button>
       <button class="btn wide" style="margin-top:10px" data-act="plan-routine-sheet">Add a routine as a new day</button>
     </section>`;
   }
-  return `<div class="rail" role="tablist" aria-label="Workouts">${rail}</div>${body}`;
+  const nDone = S.days.filter(d => S.dayTicks[d.id]).length;
+  const tickBar = S.days.length ? `<div class="tick-bar"><p id="tickSum">${nDone} of ${S.days.length} days done</p><button class="link" id="tickReset" type="button" data-act="reset-day-ticks" ${nDone ? "" : "disabled"}>Reset ticks</button></div>` : "";
+  return `<div class="rail" role="tablist" aria-label="Workouts">${rail}</div>${tickBar}${body}`;
 }
 
 /* ----- Library and filters ----- */
@@ -1495,21 +1575,21 @@ function progressView(){
 }
 
 function logView(){
-  const groups = doneLogByDate();
-  const body = groups.map(([dateKey, entries]) => {
-    const bySource = doneLogGroups(entries);
-    const sourceHtml = bySource.map(g => {
-      const rows = g.entries.slice().sort((a, b) => a.at - b.at).map(l => `<div class="hrow" style="cursor:default">
-          <span><b>${esc(l.exName)}</b><small>${esc(l.muscle || "")}</small></span>
-          <button class="icon-btn danger" type="button" data-act="undo-done" data-id="${l.id}" aria-label="Unmark ${esc(l.exName)} done">✕</button>
-        </div>`).join("");
-      return `<h4 class="ex-part-head">${esc(g.sourceTitle || (g.source === "plan" ? "Workout" : "Routine"))}</h4>${rows}`;
+  const body = doneLogByDate().map(([dateKey, entries]) => {
+    const sourceHtml = doneLogGroups(entries).map(g => {
+      const rows = g.entries.slice().sort((a, b) => a.at - b.at).map(l => {
+        const day = l.kind === "day";
+        const sub = (day ? [fmtTime(l.at), countLabel(l.exerciseCount || 0) + (l.exercisesDone ? ", " + l.exercisesDone + " ticked" : ""), (l.muscles || []).slice(0, 4).join(", ")] : [fmtTime(l.at), l.muscle]).filter(Boolean).join(" · ");
+        return `<div class="hrow${day ? " is-day" : ""}" style="cursor:default"><span><b>${esc(day ? (l.dayLabel || "Day") + " completed" : l.exName)}</b><small>${esc(sub)}</small></span>
+          <button class="icon-btn danger" type="button" data-act="undo-done" data-id="${l.id}" aria-label="Remove ${esc(day ? "day" : l.exName)} from the log">✕</button></div>`;
+      }).join("");
+      return `<h4 class="ex-part-head">${esc(g.sourceTitle || "Workout")} · ${g.source === "plan" ? "Plan" : "Routine"}</h4>${rows}`;
     }).join("");
     return `<h3 class="ex-group-head">${esc(fmtDate(dateKeyToTime(dateKey)))}</h3>${sourceHtml}`;
   }).join("");
   return `<h2 class="sec">Log</h2>
-    <p class="hint" style="margin-bottom:12px">Exercises you’ve switched on as done, from the Plan and Routines tabs, day by day. This is separate from full workout sessions tracked in Progress.</p>
-    ${body ? `<div class="hist">${body}</div>` : `<p class="empty">Nothing logged yet. Toggle an exercise as done from the Plan or Routines tab and it will show up here.</p>`}`;
+    <p class="hint" style="margin-bottom:12px">Days and exercises you’ve ticked as done in Plan and Routines, with the date and time. Full workout sessions are in Progress.</p>
+    ${body ? `<div class="hist">${body}</div>` : `<p class="empty">Nothing logged yet. Tick a day or an exercise as done and it will show up here.</p>`}`;
 }
 
 /* ----- Buy me a coffee ----- */
@@ -1940,7 +2020,7 @@ function render(){
    if(UI.tab === "plan"){
     main.innerHTML = planView();
     hydrate(main);
-    const rail = $(".rail", main), on = $(".dchip.on", main);
+    const rail = $(".rail", main), on = $(".dchip-wrap.on", main);
     if(rail && on) rail.scrollLeft = on.offsetLeft - (rail.clientWidth - on.offsetWidth) / 2;
     const pl = $(".ex-list", main);
     if(pl && S.activeDay) initSortable(pl, order => reorderDayExercises(S.activeDay, order));
@@ -3036,8 +3116,10 @@ function saveBuilder(){
   let routine, msg;
   if(B.editing && getRoutine(B.editing)){
     routine = getRoutine(B.editing);
+    const oldEx = routine.exercises;
     routine.title = title;
     routine.exercises = exs;
+    remapDoneIds("routine", routine.id, oldEx, exs);
     msg = "Updated “" + routine.title + "”";
   }else{
     routine = {id: uid(), title, exercises: exs};
@@ -3283,7 +3365,7 @@ const ACT = {
     const d = (id && getDay(id)) || (DAYEDIT && getDay(DAYEDIT)) || curDay(); if(!d) return;
     ask(`Delete “${d.title}” and its ${d.exercises.length} exercise${d.exercises.length === 1 ? "" : "s"}?`, "Delete workout", () => {
       const i = S.days.indexOf(d);
-      S.days.splice(i, 1);
+      S.days.splice(i, 1); delete S.dayTicks[d.id];
       S.activeDay = (S.days[i] || S.days[i - 1] || {}).id || null;
       save(); refresh();
     });
@@ -3328,14 +3410,23 @@ const ACT = {
   },
   "undo-done"(t){ removeDoneEntry(t.dataset.id); refresh(); },
   "toggle-done"(t){
-    const {source, sourceId, id} = t.dataset;
+    const {source, sourceId, id} = t.dataset, on = t.checked;
     const holder = source === "plan" ? getDay(sourceId) : getRoutine(sourceId);
-    const ex = holder && holder.exercises.find(e => e.id === id); if(!ex) return;
-    toggleDone(source, sourceId, holder.title, ex);
-    const on = isDoneToday(source, sourceId, id);
-    t.classList.toggle("on", on);
-    t.setAttribute("aria-checked", String(on));
-    t.setAttribute("aria-label", (on ? "Mark " : "Mark ") + ex.name + (on ? " not done today" : " done today"));
+    const ex = holder && holder.exercises.find(e => e.id === id);
+    if(!ex){ t.checked = !on; return; }
+    setDone(source, sourceId, holder.title, ex, on);
+    updateDoneSummary();
+    toast(on ? "Logged “" + ex.name + "” at " + fmtTime(Date.now()) : "Removed from today’s log");
+  },
+  "toggle-day"(t){
+    const d = getDay(t.dataset.id), on = t.checked;
+    if(!d){ t.checked = !on; return; }
+    setDayDone(d.id, on); syncDayTicks();
+    const label = splitTitle(d.title, S.days.indexOf(d)).label;
+    toast(on ? label + " marked done · logged at " + fmtTime(Date.now()) : label + " unmarked");
+  },
+  "reset-day-ticks"(){
+    ask("Clear the done tick on every day? Your log history is kept.", "Reset ticks", () => { S.dayTicks = {}; save(); syncDayTicks(); toast("Day ticks reset"); });
   },
   "open-ex"(t){ const ex = getEx(t.dataset.day, t.dataset.id); if(ex) detailSheet(ex, {mode: "plan", dayId: t.dataset.day}); },
   "edit-ex"(t){ editorSheet("edit", t.dataset.day, t.dataset.id); },
@@ -3645,7 +3736,7 @@ const ACT = {
   "reset-plan"(){
     ask("Reset to the original 6-day plan? Your changes to workouts and exercises will be discarded. History is kept.", "Reset plan", () => {
       const d = buildDefault();
-      S.days = d.days; S.activeDay = d.activeDay;
+      S.days = d.days; S.activeDay = d.activeDay; S.dayTicks = {};
       save(); refresh(); toast("Plan reset");
     });
   },
@@ -3763,6 +3854,11 @@ S = loadState();
 applyTextSelect();
 render();
 syncTop();
+/* Exercise ticks belong to one calendar day: refresh when the date changes while the app stays open */
+let lastDayKey = todayKey();
+function checkNewDay(){ const k = todayKey(); if(k === lastDayKey) return; lastDayKey = k; refresh(); toast("New day: exercise ticks have reset"); }
+document.addEventListener("visibilitychange", () => { if(!document.hidden) checkNewDay(); });
+setInterval(checkNewDay, 60000);
 console.log(LIB.length ? `JEFIT library loaded: ${LIB.length} exercises.` : "JEFIT library JS was not loaded. Check that data.js sits next to this file.");
 </script>
 </body>
